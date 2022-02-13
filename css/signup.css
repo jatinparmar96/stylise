@@ -52,3 +52,26 @@ input[type="submit"]{
     border:none;
     padding: 1rem .5rem;
 }
+hr{
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    margin: 1rem 0;
+}
+.social-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+/*
+Could not find Square google logo
+hence the font size adjustment
+*/
+.social-icons .fa-google{
+    font-size: 1.4rem;
+}
+.social-icons a{
+    font-size: 1.5rem;
+}
