@@ -66,7 +66,7 @@ function AuthenticateUser(){
     });
 }
 
-// ************Password Decription process*************************************
+// ************Password Decryption process*************************************
 // ****************************************************************************
 // function decPass(dbpassword){
 //     let pass = CryptoJS.AES.decrypt(dbpassword, password.value);
