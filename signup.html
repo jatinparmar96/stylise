@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up | Stylise</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/signup.css">
+    <script src="./js/main.js" defer></script>
+    <script src="js/signup.js" defer></script>
+    <script src="https://kit.fontawesome.com/677848d01d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <h1>Sign Up To Stylise</h1>
+    </header>
+    <main>
+        <section class="card">
+            <h2>Enter your details</h2>
+            <!--            Form Start  -->
+            <form id="registerForm">
+                <label>
+                    First Name<sup>*</sup>:
+                    <input type="text" name="firstName" id="firstName" required>
+                </label>
+                <label>
+                    Last Name:
+                    <input type="text" name="lastName" id="lastName">
+                </label>
+                <label>
+                    Email<sup>*</sup>:
+                    <input type="email" name="email" id="email" required>
+                </label>
+                <label>
+                    Password<sup>*</sup>:
+                    <input type="password" name="password" id="password" required>
+                </label>
+                <label>
+                    Confirm Password<sup>*</sup>:
+                    <input type="password" name="confirmPassword" id="confirmPassword" required>
+                </label>
+                <label>
+                    Enter your Keywords:
+                    <input type="text" name="keywords" id="keywords">
+                </label>
+                <input type="submit" value="Sign Up" id="submit">
+            </form>
+            <hr>
+
+            <div class="social-icons-wrapper">
+                <h3>Sign-up Using</h3>
+                <div class="social-icons">
+
+
+                    <a href="#">
+                        <i class="fab fa-google"></i>
+                        <span class="visually-hidden">Sign-up using Google</span>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-facebook-square"></i>
+                        <span class="visually-hidden">Sign-up using Facebook</span>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-twitter-square"></i>
+                        <span class="visually-hidden">Sign-up using Twitter</span>
+                    </a>
+                </div>
+            </div>
+
+            <!--            Form End-->
+
+        </section>
+    </main>
+</div>
+</body>
+</html>
