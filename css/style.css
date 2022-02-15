@@ -18,30 +18,36 @@
   font-weight: bold;
 }
 
+.create-account {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.username-wrapper {
+.email-wrapper {
   align-self: center;
   padding: 10px;
 }
 
-.user-label {
+.email-label {
   display: inline-block;
   width: 100px;
   font-size: 20px;
   font-weight: 600;
 }
 
-.user-input input {
+.email-input input {
   height: 25px;
   box-sizing: border-box;
 }
 
-.password-wrapper {
+.password-wrapper,
+.conf-password-wrapper {
   align-self: center;
   padding: 10px;
 }
@@ -58,16 +64,23 @@
   box-sizing: border-box;
 }
 
-.signin-button {
+.signin-button,
+.signup-button {
   align-self: center;
   padding: 15px;
 }
 
-.signin-button button {
+.signin-button button,
+.signup-button button {
   padding: 5px 25px;
   border-radius: 20px;
   text-transform: uppercase;
   font-weight: 600;
+}
+
+.error {
+  text-align: center;
+  color: red;
 }
 
 .social-wrapper {
