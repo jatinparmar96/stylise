@@ -23,48 +23,48 @@
 
 // ************HTML References*************************************************
 // ****************************************************************************
-const username = document.getElementById('username');
-const password = document.getElementById('password');
-//event listener
-login.addEventListener('click', ()=>{
-    ValidateInput();
-});
+// const username = document.getElementById('username');
+// const password = document.getElementById('password');
+// //event listener
+// login.addEventListener('click', ()=>{
+//     ValidateInput();
+// });
 
 // ************Input validation************************************************
 // ****************************************************************************
-function isEmptyOrSpaces(str){
-    //returns true if username or password field inputs are null or only contains spaces
-    return str === null || str.match(/^ *$/) !== null;
-}
+// function isEmptyOrSpaces(str){
+//     //returns true if username or password field inputs are null or only contains spaces
+//     return str === null || str.match(/^ *$/) !== null;
+// }
 
-function ValidateInput(){
-    //passes users inputs to isEmptyOrSpaces function
-    if (isEmptyOrSpaces(username.value) || isEmptyOrSpaces(password.value)){
-        alert("Please don't leave any field empty");
-    }
-    else {
-        AuthenticateUser();
-    }
-}
+// function ValidateInput(){
+//     //passes users inputs to isEmptyOrSpaces function
+//     if (isEmptyOrSpaces(username.value) || isEmptyOrSpaces(password.value)){
+//         alert("Please don't leave any field empty");
+//     }
+//     else {
+//         AuthenticateUser();
+//     }
+// }
 
 // ************User Authentication Process*************************************
 // ****************************************************************************
-function AuthenticateUser(){
-    const dbRef = ref(db);
-    //get snapshot of UsersList database and verifies if user inputs match 
-    get(child(dbRef, "UsersList/"+ username.value)).then((snapshot)=>{
-        if(snapshot.exists()){
-            let dbpassword = snapshot.val().password;
-            if(dbpassword == password.value){
-                userLogin();
-            } else {
-                alert("Wrong password");
-            }
-        } else {
-            alert("Username is invalid");
-        }
-    });
-}
+// function AuthenticateUser(){
+//     const dbRef = ref(db);
+//     //get snapshot of UsersList database and verifies if user inputs match 
+//     get(child(dbRef, "UsersList/"+ username.value)).then((snapshot)=>{
+//         if(snapshot.exists()){
+//             let dbpassword = snapshot.val().password;
+//             if(dbpassword == password.value){
+//                 userLogin();
+//             } else {
+//                 alert("Wrong password");
+//             }
+//         } else {
+//             alert("Username is invalid");
+//         }
+//     });
+// }
 
 // ************Password Decryption process*************************************
 // ****************************************************************************
@@ -75,6 +75,6 @@ function AuthenticateUser(){
 
 //*************Login function*************************************************/
 //****************************************************************************/
-function userLogin(){
-    alert("Login successful!");
-}
+// function userLogin(){
+//     alert("Login successful!");
+// }
