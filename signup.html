@@ -9,41 +9,45 @@
     <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-auth-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="js/authentication.js" type="module" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="js/signup.js" defer type="module"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="logo">Logo</div>
-    <div class="title">
-        <p class="welcome">Welcome to Stylise</p>
-        <p class="phrase">Get inspired</p>
+<div class="logo">Logo</div>
+<div class="title">
+    <p class="welcome">Welcome to Stylise</p>
+    <p class="phrase">Get inspired</p>
+</div>
+<div class="login-form">
+    <h2 class="create-account">Create Account</h2>
+    <div class="email-wrapper">
+        <span class="email-label"><label for="email">Email</label></span>
+        <span class="email-input"><input type="email" id="email" required></span>
     </div>
-    <div class="login-form">
-        <h2 class="create-account">Create Account</h2>
-        <div class="email-wrapper">
-            <span class="email-label"><label for="email">Email</label></span>
-            <span class="email-input"><input type="email" id="email" required></span>
-        </div>
-        <div class="password-wrapper">
-            <span class="pass-label"><label for="password">Password</label></span>
-            <span class="pass-input"><input type="password" id="password" required></span>
-        </div>
-        <div class="conf-password-wrapper">
-            <span class="pass-label"><label for="conf-password">Confirm Password</label></span>
-            <span class="pass-input"><input type="password" id="conf-password" required></span>
-        </div>
-        <div class="signup-button">
-            <button type="submit" id="signup">Sign up</button>
-        </div>
-        <div class="error">
-            <h4 id="error"></h4>
-        </div>
-        <div class="social-wrapper">
-            <p>OR</p>
-            <p>create account using social media</p>
-            <span class="social-icons"><button id="google-button"><i class="fa-brands fa-google"></i></button><button id="facebook-button"><i class="fa-brands fa-facebook-f"></i></button></span>
-        </div>
+    <div class="password-wrapper">
+        <span class="pass-label"><label for="password">Password</label></span>
+        <span class="pass-input"><input type="password" id="password" required></span>
     </div>
-    
+    <div class="conf-password-wrapper">
+        <span class="pass-label"><label for="conf-password">Confirm Password</label></span>
+        <span class="pass-input"><input type="password" id="conf-password" required></span>
+    </div>
+    <div class="signup-button">
+        <button type="submit" id="signup">Sign up</button>
+    </div>
+    <div class="error">
+        <h4 id="error"></h4>
+    </div>
+    <div class="social-wrapper">
+        <p>OR</p>
+        <p>create account using social media</p>
+        <span class="social-icons"><button id="google-button"><i class="fa-brands fa-google"></i></button><button
+                id="facebook-button"><i class="fa-brands fa-facebook-f"></i></button></span>
+    </div>
+</div>
+
 </body>
 </html>
