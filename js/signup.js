@@ -60,3 +60,10 @@
 
 // //Register Event Listeners
 // registerForm.addEventListener('submit', handleSubmitForm);
+
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        window.location.href = 'home-page/index.html'
+    } else {
+    }
+});
