@@ -2,6 +2,10 @@ ul{
     list-style-type: none;
     
 }
+.main-nav-list{
+    display: flex;
+    gap: 1rem;
+}
 ul li{
     display: inline-block;
 }
@@ -37,14 +41,26 @@ img{
     margin-right: auto;
 }
 .jump-bar ul li{
-    margin: 0 1rem 0 1rem;
     padding: 1rem;
+    cursor: pointer;
     
 }
 .jump-bar ul li:hover{
     background-color: gainsboro;
 }
+
+.active{
+    background-color: gainsboro;
+}
+
 .jump-bar ul{
     border-bottom: 10px solid black;
     padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+.user-info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
