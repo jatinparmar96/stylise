@@ -89,22 +89,6 @@ function emailLogIn() {
         });
 }
 
-/**
- * Returns the current user object else returns null.
- * @param void
- * @returns UserObject | null
- */
-export function getCurrentUser() {
-    return currentUser;
-}
-
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        currentUser = user;
-    } else {
-    }
-});
-  
 
 
 

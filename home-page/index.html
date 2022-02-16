@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stylise</title>
     <link rel="stylesheet" href="home-style.css" />
+    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-auth-compat.js"></script>
+    <script src="../js/authentication.js" type="module"></script>
+    <script src="./home-page.js" defer></script>
   </head>
   <body>
     <header>
@@ -15,14 +19,17 @@
           <li>COMMUNITY</li>
           <li>CLOSET</li>
           <li>ACCOUNT</li>
+          <li><a onclick="logoutCurrentUser()" href="#">LOG OUT</a></li>
         </ul>
         <div class="search">
+
           <span></span>
           <form>
             <i class="fas fa-utensils"></i>
             <input type="text" placeholder="Search" />
           </form>
         </div>
+      
       </nav>
       <div class="jump-bar">
         <ul>
