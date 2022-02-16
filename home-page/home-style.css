@@ -1,0 +1,50 @@
+ul{
+    list-style-type: none;
+    
+}
+ul li{
+    display: inline-block;
+}
+.main-nav{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    justify-items: center;
+}
+.wrapper{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 1rem;
+}
+img{
+    width: 100%;
+}
+.dp{
+    width: 50px;
+    border-radius: 50%;
+}
+#logo{
+    background-color: gainsboro;
+    padding: 1rem;
+}
+.jump-bar{
+    text-align: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.jump-bar ul li{
+    margin: 0 1rem 0 1rem;
+    padding: 1rem;
+    
+}
+.jump-bar ul li:hover{
+    background-color: gainsboro;
+}
+.jump-bar ul{
+    border-bottom: 10px solid black;
+    padding: 0;
+}
