@@ -1,0 +1,10 @@
+{
+  "short_name": "Stylise",
+  "name": "Stylise - Wear Wise, Recycle Wise",
+  "icons": [
+          {  "src": "icons/icon-192x192.png",  "sizes": "192x192",   "type": "image/png"    },
+          {  "src": "icons/icon-512x512.png",  "sizes": "512x512",   "type": "image/png"    }
+  ],
+  "start_url": "/home-page/index.html",
+  "display": "standalone"
+}
