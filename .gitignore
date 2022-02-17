@@ -109,3 +109,7 @@ dist
 
 #OS Files
 .DS_Store
+
+#firebase 
+.firebase
+.firebaserc
