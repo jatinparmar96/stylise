@@ -101,7 +101,9 @@ function emailLogIn() {
 function OAuthLogin(provider) {
     firebase.auth()
         .signInWithPopup(provider)
-        .then((result) => { }).catch(error=>console.log(error))
+        .then((result) => {
+            window.location.href="/home-page/index.html"
+        }).catch(error=>console.log(error))
 }
 
 /**
