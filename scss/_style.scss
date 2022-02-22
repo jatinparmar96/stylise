@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .logo {
+    margin: 50px 0;
+    text-align: center;
+  }
+  
+  .title {
+    text-align: center;
+    margin: 50px 0 80px 0;
+  }
+  
+  .welcome {
+    font-size: 3em;
+    font-weight: bold;
+  }
+  
+  .create-account {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .email-wrapper {
+    align-self: center;
+    padding: 10px;
+  }
+  
+  .email-label {
+    display: inline-block;
+    width: 100px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .email-input input {
+    height: 25px;
+    box-sizing: border-box;
+  }
+  
+  .password-wrapper,
+  .conf-password-wrapper {
+    align-self: center;
+    padding: 10px;
+  }
+  
+  .pass-label {
+    display: inline-block;
+    width: 100px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .pass-input input {
+    height: 25px;
+    box-sizing: border-box;
+  }
+  
+  .signin-button,
+  .signup-button {
+    align-self: center;
+    padding: 15px;
+  }
+  
+  .signin-button button,
+  .signup-button button {
+    padding: 5px 25px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  .error {
+    text-align: center;
+    color: red;
+  }
+  
+  .social-wrapper {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .social-wrapper p {
+    text-align: center;
+    padding: 5px;
+  }
+  
+  .social-icons button {
+    border: none;
+    border-radius: 50px;
+    margin: 5px;
+    background-color: gray;
+  }
+  
+  .social-icons i {
+    padding: 10px 10px;
+    /* font-size: larger; */
+  }
+  
+  .social-icons .fa-facebook-f {
+    padding: 10px 12px;
+  }
+  

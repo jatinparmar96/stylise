@@ -35,9 +35,12 @@ const errorElem = document.getElementById('error');
  *************************************************************/
 
 // Handle signup button
-document.getElementById('signup')?.addEventListener('click', emailSignUp);
-document.getElementById('google-button').addEventListener('click', handleGoogleAuth);
-document.getElementById('facebook-button').addEventListener('click', handleFacebookAuth);
+function init() {
+    document.getElementById('signup')?.addEventListener('click', emailSignUp);
+    document.getElementById('google-button').addEventListener('click', handleGoogleAuth);
+    document.getElementById('facebook-button').addEventListener('click', handleFacebookAuth);
+}
+init();
 
 /**
  * Email sign up (firebase auth)
@@ -53,7 +56,7 @@ function emailSignUp() {
         auth
             .createUserWithEmailAndPassword(txtEmail.value, txtPassword.value)
             .then(function () {
-                window.location.href = 'signup.html';
+                window.location.href = 'index.html#home';
             })
             .catch((error) => {
                 console.log('Error in Sign Up : ' + error.code);
@@ -101,7 +104,9 @@ function emailLogIn() {
 function OAuthLogin(provider) {
     firebase.auth()
         .signInWithPopup(provider)
-        .then((result) => { }).catch(error=>console.log(error))
+        .then((result) => {
+            window.location.href = "index.html#home"
+        }).catch(error => console.log(error))
 }
 
 /**

@@ -1,8 +1,8 @@
- 
+
 function logoutCurrentUser() {
     firebase.auth().signOut().then(() => {
         redirectToLogin();
-   });
+    });
 }
 
 firebase.auth().onAuthStateChanged(user => {
@@ -13,5 +13,5 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 function redirectToLogin() {
-    window.location.href = '/login.html'
+    window.location.href = 'index.html#login.html'
 }

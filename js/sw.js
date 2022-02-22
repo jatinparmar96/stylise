@@ -1,6 +1,6 @@
 
-const cacheName = "v1";    
-const urlsToCache = [ "/" , "/home-page/index.html", "/css/main.css", "/js/main.js","/js/authentication.js" ]; 
+const cacheName="v1";
+const urlsToCache = [ "/" ,"/home-page/index.html","/css/main.css", "/js/main.js","/js/authentication.js"];
 
 
 self.addEventListener('install', event => {
