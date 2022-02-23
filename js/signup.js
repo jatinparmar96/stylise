@@ -15,7 +15,7 @@ function init() {
 
     // Handle Social button
     const signUpBtn = document.getElementById('signup')
-    const googelBtn = document.getElementById('google-button')
+    const googleBtn = document.getElementById('google-button')
     const facebookBtn = document.getElementById('facebook-button')
 
     //Initialize error Element
@@ -25,7 +25,7 @@ function init() {
     const loginBtn = document.getElementById('login');
 
     signUpBtn.addEventListener('click', emailSignUp);
-    googelBtn.addEventListener('click', handleGoogleAuth);
+    googleBtn.addEventListener('click', handleGoogleAuth);
     facebookBtn.addEventListener('click', handleFacebookAuth);
     auth = firebaseApp.auth();
     checkLogin();
