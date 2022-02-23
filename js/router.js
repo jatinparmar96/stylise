@@ -5,12 +5,11 @@ class Page {
         this.name = name;
         this.htmlName = htmlName;
         // if jsName is not given use html name + .js
-        if (!Array.isArray(jsName)) {
-            this.jsName = new Array(jsName
-                ? jsName
-                : htmlName.substring(htmlName.lastIndexOf('/') + 1, htmlName.lastIndexOf('.')) + '.js');
-        } else {
+        if (Array.isArray(jsName)) {
             this.jsName = jsName.map(name => name + '.js');
+        }
+        else {
+            this.jsName = [];
         }
 
     }
@@ -53,7 +52,7 @@ class Router {
                 page.jsName.forEach((jsName) => {
                     const script = document.createElement('script');
                     script.setAttribute('src', jsName);
-                    script.setAttribute('type', 'text/javascript');
+                    script.setAttribute('type', 'module');
                     Router.rootElem.appendChild(script);
                 })
             }

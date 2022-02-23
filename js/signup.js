@@ -1,69 +1,59 @@
-// const registerForm = document.getElementById('registerForm');
+import { firebaseApp } from '/js/firebase.js'
+import { handleFacebookAuth, handleGoogleAuth } from './socialAuth.js'
 
-// /**
-//  * @class RegisterForm
-//  * @property firstName:string
-//  * @property lastName:string
-//  * @property email:string
-//  * @property password:string
-//  * @property confirmPassword:string
-//  * @property keywords:string
-//  */
-// class RegisterForm {
-//     constructor(firstName, lastName, email, password, confirmPassword, keywords) {
-//         this.firstName = firstName;
-//         this.lastName = lastName;
-//         this.email = email;
-//         this.password = password;
-//         this.confirmPassword = confirmPassword;
-//         this.keywords = keywords;
-//     }
+function checkLogin() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            window.location.href = 'index.html#home'
+        } else {
+        }
+    });
+}
+let errorElem;
+let auth;
+function init() {
 
-//     /**
-//      * TODO: Add password length check
-//      * @return {boolean}
-//      */
-//     isPasswordValid() {
-//         return this.password === this.confirmPassword;
-//     }
-// }
+    // Handle Social button
+    const signUpBtn = document.getElementById('signup')
+    const googelBtn = document.getElementById('google-button')
+    const facebookBtn = document.getElementById('facebook-button')
 
-// /**
-//  * Handle the Register Form Submit Event
-//  * @method handleSubmitForm
-//  * @return {void};
-//  * @param event:Event
-//  */
-// const handleSubmitForm = (event) => {
-//     event.preventDefault();
-//     const firstName = document.getElementById('firstName');
-//     const lastName = document.getElementById('lastName');
-//     const email = document.getElementById('email');
-//     const password = document.getElementById('password');
-//     const confirmPassword = document.getElementById('confirmPassword');
-//     const keywords = document.getElementById('keywords');
+    //Initialize error Element
+    errorElem = document.getElementById('error');
 
-//     const formData = new RegisterForm(firstName, lastName, email, password, confirmPassword, keywords);
-//     if (formData.isPasswordValid()) {
-//         submitForm(formData)
-//     } else {
-//         alert("Password Mismatch")
-//     }
-// }
+    // Handle login button
+    const loginBtn = document.getElementById('login');
 
-// /**
-//  * TODO: Submit validated Form
-//  */
-// function submitForm(formData) {
-//     console.error("Method not Implemented")
-// }
+    signUpBtn.addEventListener('click', emailSignUp);
+    googelBtn.addEventListener('click', handleGoogleAuth);
+    facebookBtn.addEventListener('click', handleFacebookAuth);
+    auth = firebaseApp.auth();
+    checkLogin();
+}
+init();
 
-// //Register Event Listeners
-// registerForm.addEventListener('submit', handleSubmitForm);
+/**
+ * Email sign up (firebase auth)
+ * @method emailSignUp
+ */
+function emailSignUp() {
 
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        window.location.href = 'home-page/index.html'
+    const txtEmail = document.getElementById('email');
+    const txtPassword = document.getElementById('password');
+    const txtConfPassword = document.getElementById('conf-password');
+
+    if (txtPassword.value === txtConfPassword.value) {
+        auth
+            .createUserWithEmailAndPassword(txtEmail.value, txtPassword.value)
+            .then(function () {
+                window.location.href = 'index.html#home';
+            })
+            .catch((error) => {
+                console.log('Error in Sign Up : ' + error.code);
+                errorElem.innerText = error.message;
+            });
     } else {
+        errorElem.innerText = "Those passwords didn't match. Try again.";
     }
-});
+
+}
