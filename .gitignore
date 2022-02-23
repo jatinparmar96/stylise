@@ -113,3 +113,4 @@ dist
 #firebase 
 .firebase
 .firebaserc
+scss/main.css.map
