@@ -1,0 +1,40 @@
+$primary-color: #765FC2;
+$secondary-color:#BDB8CF;
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  /*Generic font family for now*/
+  font-family: sans-serif;
+}
+h1{
+  font-size: 2rem;
+}
+.visually-hidden{
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex{
+  display: flex;
+  gap: 1rem;
+}
+.flex-center{
+  justify-content: center;
+  align-items: center;
+}
+.mb-1{
+  margin-bottom: 1rem;
+}
