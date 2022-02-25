@@ -15,3 +15,4 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 // Firebase Authentication methods
 export { firebaseApp };
+export { firebaseConfig };
