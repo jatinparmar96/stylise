@@ -1,36 +1,34 @@
-import { firebaseApp } from '/js/firebase.js';
-import { getStorage, uploadBytes, ref as myRef } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
+import { firebaseConfig } from "/js/firebase.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+import { getStorage, uploadBytes, ref } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
+
+initializeApp(firebaseConfig);
+
+let userID = ""; // variable to store user id
+let items = []; // array to store items to upload
+const storage = getStorage(); // create a root reference
+
+document.getElementById('upload').addEventListener('click', uploadItem); // event handler
 
 
-let userID;
-
+async function uploadItem(){
+    // check if there is a user logged in and get userID
     firebase.auth().onAuthStateChanged(user => {
         if (!user) {
             console.log('user not logged in');
             redirectToLogin();
         } else {
             userID = user.uid;
-           
-            document.getElementById('upload')?.addEventListener('click', uploadItem);
+            const closetRef = ref(storage, "closet/"+userID+"/imgName"); // reference to user storage folder
+            items = document.getElementById('img').files[0]; //image selected to upload by user
+            // method to upload file from user input
+            uploadBytes(closetRef, items).then((snapshot) => {
+                console.log('Uploaded a blob or file!');
+            })
+            .catch((error) => {
+                console.log('Failed to upload : ' + error.code);
+                // errorElem.innerText = error.message;
+            });
         }
-    });
-
-
-async function uploadItem(){
-    console.log(userID);
-    const storage = getStorage(firebaseApp);
-    //const storageRef = myRef(storage);
-    const closetPath = userID+'/closet/category/img';
-    const closetRef = myRef(storage, closetPath);
-    //console.log(closetRef);
-
-    let items = document.getElementById('img').files[0];
-
-    uploadBytes(closetRef, items).then((snapshot) => {
-        console.log('Uploaded a blob or file!');
-    })
-    .catch((error) => {
-        console.log('Failed to upload : ' + error.code);
-        // errorElem.innerText = error.message;
     });
 }
