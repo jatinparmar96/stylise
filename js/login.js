@@ -1,7 +1,7 @@
-import { firebaseApp } from '/js/firebase.js'
-import { handleFacebookAuth, handleGoogleAuth } from '/js/socialAuth.js'
+import { app } from './firebase.js'
+import { handleFacebookAuth, handleGoogleAuth } from './socialAuth.js'
 
-const auth = firebaseApp.auth();
+const auth = app.auth();
 
 let errorElement;
 function init() {

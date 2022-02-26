@@ -1,6 +1,5 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -16,8 +15,7 @@ h1 {
 
 .visually-hidden {
   clip: rect(1px, 1px, 1px, 1px);
-  -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
+  clip-path: inset(50%);
   height: 1px;
   width: 1px;
   margin: -1px;
@@ -32,19 +30,17 @@ a {
 }
 
 .flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 1rem;
 }
 
 .flex-center {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
 }
 
 .mb-1 {
@@ -74,16 +70,9 @@ sup {
 }
 
 .card {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-flow: column nowrap;
+  align-items: center;
   background-color: #e2e2e2;
   border-radius: 10px;
   padding: 1rem;
@@ -92,19 +81,10 @@ sup {
 }
 
 form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   gap: 1rem;
 }
@@ -115,18 +95,18 @@ label, input {
 }
 
 input {
-  padding: 0.5rem .75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 5px;
 }
 
-input[type="submit"] {
+input[type=submit] {
   background-color: darkseagreen;
   color: black;
   text-transform: uppercase;
   font-weight: bold;
   border-radius: 5px;
   border: none;
-  padding: 1rem .5rem;
+  padding: 1rem 0.5rem;
 }
 
 hr {
@@ -137,28 +117,16 @@ hr {
 }
 
 .social-icons {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 
-/*
-Could not find Square google logo
-hence the font size adjustment
-*/
-.social-icons .fa-google {
-  font-size: 1.4rem;
-}
-
-.social-icons a {
+.social-icons button {
+  cursor: pointer;
   font-size: 1.5rem;
+  color: white;
 }
 
 * {
@@ -187,22 +155,13 @@ hence the font size adjustment
 }
 
 .login-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .email-wrapper {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  align-self: center;
   padding: 10px;
 }
 
@@ -215,15 +174,12 @@ hence the font size adjustment
 
 .email-input input {
   height: 25px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .password-wrapper,
 .conf-password-wrapper {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  align-self: center;
   padding: 10px;
 }
 
@@ -236,15 +192,12 @@ hence the font size adjustment
 
 .pass-input input {
   height: 25px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .signin-button,
 .signup-button {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  align-self: center;
   padding: 15px;
 }
 
@@ -292,8 +245,6 @@ ul {
 }
 
 .main-nav-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 1rem;
 }
@@ -303,13 +254,9 @@ ul li {
 }
 
 .main-nav {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
   justify-items: center;
 }
 
@@ -317,10 +264,8 @@ ul li {
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
 }
 
@@ -340,8 +285,6 @@ img {
 
 .jump-bar {
   text-align: center;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
@@ -363,19 +306,26 @@ img {
 .jump-bar ul {
   border-bottom: 10px solid black;
   padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 1rem;
 }
 
 .user-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   gap: 1rem;
 }
+
+.wrapper > div > img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.dp {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
 /*# sourceMappingURL=main.css.map */

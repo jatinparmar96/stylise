@@ -1,5 +1,5 @@
-import { firebaseApp } from '/js/firebase.js'
-import { handleFacebookAuth, handleGoogleAuth } from './socialAuth.js'
+import {app, db} from './firebase.js'
+import {handleFacebookAuth, handleGoogleAuth} from './socialAuth.js'
 
 function checkLogin() {
     firebase.auth().onAuthStateChanged(user => {
@@ -9,8 +9,10 @@ function checkLogin() {
         }
     });
 }
+
 let errorElem;
 let auth;
+
 function init() {
 
     // Handle Social button
@@ -27,9 +29,10 @@ function init() {
     signUpBtn.addEventListener('click', emailSignUp);
     googleBtn.addEventListener('click', handleGoogleAuth);
     facebookBtn.addEventListener('click', handleFacebookAuth);
-    auth = firebaseApp.auth();
+    auth = app.auth();
     checkLogin();
 }
+
 init();
 
 /**
@@ -37,7 +40,7 @@ init();
  * @method emailSignUp
  */
 function emailSignUp() {
-
+    const username = document.getElementById('username');
     const txtEmail = document.getElementById('email');
     const txtPassword = document.getElementById('password');
     const txtConfPassword = document.getElementById('conf-password');
@@ -45,7 +48,11 @@ function emailSignUp() {
     if (txtPassword.value === txtConfPassword.value) {
         auth
             .createUserWithEmailAndPassword(txtEmail.value, txtPassword.value)
-            .then(function () {
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+                await db.collection(`users`).doc(user.uid).set({
+                    'username': username.value
+                })
                 window.location.href = 'index.html#home';
             })
             .catch((error) => {
