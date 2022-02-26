@@ -1,10 +1,13 @@
 import { firebaseConfig } from "/js/firebase.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
 import { getStorage, uploadBytes, ref } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
 
 initializeApp(firebaseConfig);
 
-let userID = ""; // variable to store user id
+const auth = getAuth();
+
+//const userID; // variable to store user id
 let items = []; // array to store items to upload
 const storage = getStorage(); // create a root reference
 
@@ -18,8 +21,9 @@ async function uploadItem(){
             console.log('user not logged in');
             redirectToLogin();
         } else {
-            userID = user.uid;
-            const closetRef = ref(storage, "closet/"+userID+"/imgName"); // reference to user storage folder
+            let currentDate = new Date();
+            const userID = auth.currentUser.uid;
+            let closetRef = ref(storage, "closet/"+userID+"/"+currentDate.getTime()); // reference to user storage folder
             items = document.getElementById('img').files[0]; //image selected to upload by user
             // method to upload file from user input
             uploadBytes(closetRef, items).then((snapshot) => {
