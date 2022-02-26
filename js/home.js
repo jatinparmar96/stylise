@@ -1,7 +1,7 @@
 
 import { firebaseApp } from '/js/firebase.js';
 function init() {
-    document.getElementById('logout').addEventListener('click', logoutCurrentUser)
+    document.getElementById('logout').addEventListener('click', logoutCurrentUser);
     checkLogin();
 }
 function logoutCurrentUser() {
