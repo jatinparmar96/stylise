@@ -62,7 +62,8 @@ async function handleFormSubmit(event) {
             values[key] = value;
         }
     })
-   db.collection('users').doc(auth.currentUser.uid).update(values)
+   await db.collection('users').doc(auth.currentUser.uid).update(values);
+    window.location.href = 'index.html#home'
 }
 
 function uploadImageToFireStore(file) {
