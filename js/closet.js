@@ -1,7 +1,7 @@
 import { firebaseConfig } from "/js/firebase.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
-import { getStorage, uploadBytes, ref } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
+import { getStorage, uploadBytes, ref, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
 
 initializeApp(firebaseConfig);
 
@@ -12,7 +12,8 @@ let items = []; // array to store items to upload
 const storage = getStorage(); // create a root reference
 
 document.getElementById('upload').addEventListener('click', uploadItem); // event handler
-
+let downloadIMG = document.getElementById('img-download');
+//let imgElement = document.createElement('img');
 
 async function uploadItem(){
     // check if there is a user logged in and get userID
@@ -30,12 +31,21 @@ async function uploadItem(){
                 // method to upload file from user input
                 uploadBytes(closetRef, items[i]).then((snapshot) => {
                     console.log('Uploaded a blob or file!');
+                    // method to get the image cloud storage url
+                    getDownloadURL(closetRef)
+                    .then((url) => {
+                        console.log(url);
+                        downloadIMG.innerHTML += (`<img src="${url}">`);
+                    })
+                    .catch((error) => {
+                        console.log(error.code);
+                    });
                 })
                 .catch((error) => {
                     console.log('Failed to upload : ' + error.code);
                     // errorElem.innerText = error.message;
-                });
-            }
+                }); 
+            } 
         }
     });
 }
