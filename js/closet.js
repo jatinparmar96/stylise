@@ -23,16 +23,19 @@ async function uploadItem(){
         } else {
             let currentDate = new Date();
             const userID = auth.currentUser.uid;
-            let closetRef = ref(storage, "closet/"+userID+"/"+currentDate.getTime()); // reference to user storage folder
-            items = document.getElementById('img').files[0]; //image selected to upload by user
-            // method to upload file from user input
-            uploadBytes(closetRef, items).then((snapshot) => {
-                console.log('Uploaded a blob or file!');
-            })
-            .catch((error) => {
-                console.log('Failed to upload : ' + error.code);
-                // errorElem.innerText = error.message;
-            });
+            items = document.getElementById('img').files; //image selected to upload by user
+            // for loop to upload multiple images to storage
+            for (let i = 0; i < items.length; i++) {
+                let closetRef = ref(storage, "closet/"+userID+"/"+currentDate.getTime()+i); // reference to user storage folder
+                // method to upload file from user input
+                uploadBytes(closetRef, items[i]).then((snapshot) => {
+                    console.log('Uploaded a blob or file!');
+                })
+                .catch((error) => {
+                    console.log('Failed to upload : ' + error.code);
+                    // errorElem.innerText = error.message;
+                });
+            }
         }
     });
 }
