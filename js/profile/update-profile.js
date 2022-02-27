@@ -46,15 +46,23 @@ async function handleFormSubmit(event) {
     event.preventDefault();
     let form = document.getElementById('update-profile-form');
     const formData = new FormData(form);
-    await uploadImageToFireStore(formData.get('profile-image'));
+    if (formData.get('profile-image').size){
+        await uploadImageToFireStore(formData.get('profile-image'));
+    }
     let values = {}
     formData.forEach((value, key) => {
         // Skip Profile Image, not storing in user Document
-        if (key !== 'profile-image') {
-            values[key] = values[key] ? values[key] + ';' + value : value;
+        if (key === 'profile-image') {
+            return;
+        }
+        if (key === 'forYouOption[]') {
+            let newKey = key.substring(0,key.length-2);
+            values[newKey] = values[newKey] ? [...values[newKey],value] : [value];
+        } else {
+            values[key] = value;
         }
     })
-    db.collection('users').doc(auth.currentUser.uid).set(values)
+   db.collection('users').doc(auth.currentUser.uid).update(values)
 }
 
 function uploadImageToFireStore(file) {
