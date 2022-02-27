@@ -1,0 +1,39 @@
+.update-profile{
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .form-field{
+    width: 100%;
+  }
+
+  input[type="radio"]{
+    width: auto;
+    cursor: pointer;
+  }
+  input[type="checkbox"], input[type="checkbox"]+label{
+    display: inline;
+    width: auto;
+  }
+  input[type=submit]{
+    cursor: pointer;
+  }
+  input[type=submit]:disabled{
+    opacity: .8;
+    cursor: not-allowed;
+  }
+  .profile-image{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+    object-fit: cover;
+    object-position: top;
+
+  }
+}

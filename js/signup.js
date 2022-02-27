@@ -1,14 +1,6 @@
 import {app, db} from './firebase.js'
 import {handleFacebookAuth, handleGoogleAuth} from './socialAuth.js'
 
-function checkLogin() {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            window.location.href = 'index.html#home'
-        } else {
-        }
-    });
-}
 
 let errorElem;
 let auth;
@@ -30,7 +22,6 @@ function init() {
     googleBtn.addEventListener('click', handleGoogleAuth);
     facebookBtn.addEventListener('click', handleFacebookAuth);
     auth = app.auth();
-    checkLogin();
 }
 
 init();
@@ -53,7 +44,7 @@ function emailSignUp() {
                 await db.collection(`users`).doc(user.uid).set({
                     'username': username.value
                 })
-                window.location.href = 'index.html#home';
+                window.location.href = 'index.html#update-profile';
             })
             .catch((error) => {
                 console.log('Error in Sign Up : ' + error.code);

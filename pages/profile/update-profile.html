@@ -1,0 +1,91 @@
+<main class="update-profile">
+    <section>
+        <h2 class="text-center">Update your profile</h2>
+        <div class="container">
+            <form id="update-profile-form" name="update-profile-form">
+                <div class="form-field">
+                    <img src="" id="image">
+                    <label for="img-picker">Choose an image</label>
+                    <input type="file" id="img-picker" name="profile-image">
+                </div>
+                <div class="flex form-field align-center gap-1 mt-1">
+                    <input type="checkbox" name="noTerms" id="gender" >
+                    <label for="gender">I don’t need to fill this because I’m not going to post in community.</label>
+                </div>
+                <div class="form-field">
+                    <span>Gender</span>
+                    <div class="flex gap-2">
+                        <div class="flex align-center gap-1">
+                            <input class="form-input" name="gender" id="gender-she" value="female" type="radio">
+                            <label for="gender-she">She</label>
+                        </div>
+                        <div class="flex align-center gap-1">
+                            <input class="form-input" name="gender" id="gender-he" value="male" type="radio">
+
+                            <label for="gender-he">He</label>
+                        </div>
+                        <div class="flex align-center gap-1">
+                            <input class="form-input" name="gender" id="gender-they" value="they" type="radio">
+                            <label for="gender-they">They</label>
+                        </div>
+                    </div>
+
+                </div>
+
+<!--                Birth Date field-->
+                <div class="form-field">
+                    <label for="birthDate">Birth Date</label>
+                    <div class="flex gap-2">
+                        <input class="form-input" type="date" name="birthDate" id="birthDate">
+                    </div>
+                    <div class="flex align-center gap-1 mt-1">
+                        <input class="form-input" type="checkbox" name="no-terms-birth-date" id="birth" >
+                        <label for="birth">I don’t need to fill this because I’m not going to post in community.</label>
+                    </div>
+                </div>
+<!--                Location Field-->
+                <div class="form-field">
+                    <label for="location-city">Location (City)</label>
+                    <div class="flex gap-2">
+                        <input  class="form-input" type="text" id="location-city" name="location">
+                    </div>
+                </div>
+<!--                For You Suggestion-->
+                <div class="form-field">
+                    <span>I want to look at community of</span>
+                    <div class="flex">
+                        <div class="flex align-center gap-1">
+                            <input class="form-input" name="forYouOption[]" id="for-you-she" value="female" type="checkbox">
+                            <label for="for-you-she">She</label>
+                        </div>
+                        <div class="flex align-center gap-1">
+                            <input class="form-input" name="forYouOption[]" id="for-you-he" value="male" type="checkbox">
+
+                            <label for="for-you-he">He</label>
+                        </div>
+                        <div class="flex align-center gap-1">
+                            <input class="form-input" name="forYouOption[]" id="for-you-they" value="they" type="checkbox">
+                            <label for="for-you-they">They</label>
+                        </div>
+                        <div class="flex align-center gap-1">
+                            <select class="form-input" name="for-you-age" id="for-you-age">
+                                <option selected disabled>Age</option>
+                                <option value="19"><19</option>
+                                <option value="20-25">20-25</option>
+                                <option value="26-30">26-30</option>
+                                <option value="31-35">31-35</option>
+                                <option value="36-40">36-40</option>
+                                <option value="41-45">41-45</option>
+                                <option value="46-50">46-50</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <input type="submit" value="Save" id="submit-btn">
+
+            </form>
+        </div>
+    </section>
+</main>
