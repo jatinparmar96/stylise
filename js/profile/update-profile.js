@@ -9,7 +9,7 @@ function init() {
     addCheckboxEventListeners();
     const imgSrc = document.getElementById('img-picker');
     const target = document.getElementById('image')
-    showImage(imgSrc, target)
+    addImageChangeListener(imgSrc, target)
 
 }
 
@@ -22,18 +22,18 @@ function addCheckboxEventListeners() {
 
 function handleCheckboxChange() {
     //Toggle Inputs,
-    toggleInputs(this.id, this.checked);
+    toggleInputs(this.checked);
 
 }
 
-function toggleInputs(id, toggleValue) {
-    const inputs = document.querySelectorAll(getInputQuerySelector(id));
+function toggleInputs(toggleValue) {
+    const inputs = document.querySelectorAll(getInputQuerySelector());
     inputs.forEach(input => {
         input.disabled = toggleValue;
     })
 }
 
-function getInputQuerySelector(id) {
+function getInputQuerySelector() {
     return `input[class="form-input"],select[class="form-input"]`
 }
 
@@ -46,7 +46,7 @@ async function handleFormSubmit(event) {
     event.preventDefault();
     let form = document.getElementById('update-profile-form');
     const formData = new FormData(form);
-    if (formData.get('profile-image').size){
+    if (formData.get('profile-image').size) {
         await uploadImageToFireStore(formData.get('profile-image'));
     }
     let values = {}
@@ -56,13 +56,13 @@ async function handleFormSubmit(event) {
             return;
         }
         if (key === 'forYouOption[]') {
-            let newKey = key.substring(0,key.length-2);
-            values[newKey] = values[newKey] ? [...values[newKey],value] : [value];
+            let newKey = key.substring(0, key.length - 2);
+            values[newKey] = values[newKey] ? [...values[newKey], value] : [value];
         } else {
             values[key] = value;
         }
     })
-   await db.collection('users').doc(auth.currentUser.uid).update(values);
+    await db.collection('users').doc(auth.currentUser.uid).update(values);
     window.location.href = 'index.html#home'
 }
 
@@ -99,7 +99,7 @@ function setProfileImage(imageUrl) {
     });
 }
 
-function showImage(src, target) {
+function addImageChangeListener(src, target) {
     const fileReader = new FileReader();
     fileReader.onload = function () {
         target.src = this.result
