@@ -1,9 +1,8 @@
-import {app} from '/js/firebase.js';
 
 
 function init() {
     document.getElementById('logout').addEventListener('click', logoutCurrentUser)
-    checkLogin();
+    // checkLogin();
 }
 function logoutCurrentUser() {
     app.auth().signOut().then(() => {

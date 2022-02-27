@@ -17,7 +17,7 @@ function OAuthLogin(provider) {
 /**
  * Handle Google button click
  */
-export function handleGoogleAuth() {
+function handleGoogleAuth() {
     const provider = new firebase.auth.GoogleAuthProvider();
     OAuthLogin(provider);
 }
@@ -25,7 +25,7 @@ export function handleGoogleAuth() {
 /**
  * Handle Facebook button click
  */
-export function handleFacebookAuth() {
+function handleFacebookAuth() {
     const provider = new firebase.auth.FacebookAuthProvider();
     OAuthLogin(provider);
 }

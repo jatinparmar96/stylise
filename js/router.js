@@ -4,7 +4,6 @@ class Page {
     constructor(name, htmlName, jsName) {
         this.name = name;
         this.htmlName = htmlName;
-        // if jsName is not given use html name + .js
         if (Array.isArray(jsName)) {
             this.jsName = jsName.map(name => name + '.js');
         }
@@ -21,7 +20,7 @@ class Router {
         Router.rootElem = document.getElementById(mainAreaId);
         window.addEventListener('hashchange', function (e) {
             Router.handleHashChange();
-            console.log('route ' + this.window.location.hash);
+           
         });
         Router.handleHashChange();
     }
@@ -47,12 +46,16 @@ class Router {
         try {
             const response = await fetch(page.htmlName);
             Router.rootElem.innerHTML = await response.text();
+            console.log(page);
             //append JS part to run.
             if (page.jsName.length) {
                 page.jsName.forEach((jsName) => {
                     const script = document.createElement('script');
                     script.setAttribute('src', jsName);
-                    script.setAttribute('type', 'module');
+                    script.setAttribute('type', 'text/javascript');
+                    // script.onload = function () {
+                    //     window[jsName]();
+                    // }
                     Router.rootElem.appendChild(script);
                 })
             }

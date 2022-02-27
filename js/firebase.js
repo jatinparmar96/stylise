@@ -16,4 +16,3 @@ const db = firebase.firestore();
 const storage = firebase.storage();
 
 // Firebase Authentication methods
-export {app, db, storage};

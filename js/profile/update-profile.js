@@ -1,9 +1,5 @@
-import {app, db, storage} from "../firebase.js"
-
-let auth;
 
 function init() {
-    auth = app.auth();
     const form = document.getElementById('update-profile-form')
     form.addEventListener('submit', handleFormSubmit);
     addCheckboxEventListeners();
@@ -62,13 +58,13 @@ async function handleFormSubmit(event) {
             values[key] = value;
         }
     })
-    await db.collection('users').doc(auth.currentUser.uid).update(values);
+    await db.collection('users').doc(app.auth().currentUser.uid).update(values);
     window.location.href = 'index.html#home'
 }
 
 function uploadImageToFireStore(file) {
     const submitBtn = document.getElementById('submit-btn')
-    const uploadTask = storage.ref().child(`images/${auth.currentUser.uid}`).put(file)
+    const uploadTask = storage.ref().child(`images/${app.auth().currentUser.uid}`).put(file)
     submitBtn.disabled = true;
     return new Promise((resolve, reject) => {
         uploadTask.on('state_changed',
@@ -93,7 +89,7 @@ function uploadImageToFireStore(file) {
 }
 
 function setProfileImage(imageUrl) {
-    const user = auth.currentUser;
+    const user = app.auth().currentUser;
     return user.updateProfile({
         photoURL: imageUrl
     });

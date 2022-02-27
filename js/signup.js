@@ -1,9 +1,4 @@
-import {app, db} from './firebase.js'
-import {handleFacebookAuth, handleGoogleAuth} from './socialAuth.js'
 
-
-let errorElem;
-let auth;
 
 function init() {
 
@@ -21,16 +16,15 @@ function init() {
     signUpBtn.addEventListener('click', emailSignUp);
     googleBtn.addEventListener('click', handleGoogleAuth);
     facebookBtn.addEventListener('click', handleFacebookAuth);
-    auth = app.auth();
 }
 
-init();
 
 /**
  * Email sign up (firebase auth)
  * @method emailSignUp
  */
 function emailSignUp() {
+    const auth = app.auth();
     const username = document.getElementById('username');
     const txtEmail = document.getElementById('email');
     const txtPassword = document.getElementById('password');
@@ -55,3 +49,4 @@ function emailSignUp() {
     }
 
 }
+init()
