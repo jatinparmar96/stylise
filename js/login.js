@@ -27,8 +27,7 @@ function emailLogIn() {
 
     auth.signInWithEmailAndPassword(txtEmail.value, txtPassword.value)
         .then((cred) => {
-            console.log(cred);
-            // window.location.href = 'login.html';
+             window.location.href = 'index.html#home';
         })
         .catch((error) => {
             console.log('Error in Log In : ' + error.code);
