@@ -31,7 +31,7 @@ async function uploadItem(){
                 // method to upload file from user input
                 uploadBytes(closetRef, items[i]).then((snapshot) => {
                     console.log('Uploaded a blob or file!');
-                    // method to get the image cloud storage url
+                    // method to get image download url
                     getDownloadURL(closetRef)
                     .then((url) => {
                         console.log(url);
@@ -39,7 +39,7 @@ async function uploadItem(){
                     })
                     .catch((error) => {
                         console.log(error.code);
-                    });
+                    });  
                 })
                 .catch((error) => {
                     console.log('Failed to upload : ' + error.code);
