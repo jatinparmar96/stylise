@@ -1,0 +1,8 @@
+.upload-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 300 px;
+  height: 300 px;
+  align-content: end;
+  grid-gap: 20px;
+}
