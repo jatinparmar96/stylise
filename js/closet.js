@@ -11,6 +11,7 @@ function init() {
 
     const uploadBtn = document.getElementById('upload'); // event handler
     uploadBtn.addEventListener('click', uploadItem);
+
     downloadImg = document.getElementById('img-download');
     storageRef = storage.ref();
 
@@ -42,5 +43,6 @@ async function uploadItem() {
                 console.log('Failed to upload : ' + error);
                 // errorElem.innerText = error.message;
             });
-    }
+    } 
+    document.getElementById('img').value = null;
 };
