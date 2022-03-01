@@ -1,11 +1,11 @@
 
-import { firebaseApp } from '/js/firebase.js';
+
 function init() {
-    document.getElementById('logout').addEventListener('click', logoutCurrentUser);
-    checkLogin();
+    document.getElementById('logout').addEventListener('click', logoutCurrentUser)
+    // checkLogin();
 }
 function logoutCurrentUser() {
-    firebaseApp.auth().signOut().then(() => {
+    app.auth().signOut().then(() => {
         redirectToLogin();
     });
 }

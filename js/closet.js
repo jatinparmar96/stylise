@@ -1,51 +1,46 @@
-import { firebaseConfig } from "/js/firebase.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
-import { getStorage, uploadBytes, ref, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
+let auth;
+let items;
+let downloadImg;
+let storageRef;
+function init() {
 
-initializeApp(firebaseConfig);
+    auth = app.auth();
+    //const userID; // variable to store user id
+    items = []; // array to store items to upload
+    // const storage = getStorage(); // create a root reference
 
-const auth = getAuth();
+    const uploadBtn = document.getElementById('upload'); // event handler
+    uploadBtn.addEventListener('click', uploadItem);
+    downloadImg = document.getElementById('img-download');
+    storageRef = storage.ref();
 
-//const userID; // variable to store user id
-let items = []; // array to store items to upload
-const storage = getStorage(); // create a root reference
+}
 
-document.getElementById('upload').addEventListener('click', uploadItem); // event handler
-let downloadIMG = document.getElementById('img-download');
-//let imgElement = document.createElement('img');
+init();
 
-async function uploadItem(){
-    // check if there is a user logged in and get userID
-    firebase.auth().onAuthStateChanged(user => {
-        if (!user) {
-            console.log('user not logged in');
-            redirectToLogin();
-        } else {
-            let currentDate = new Date();
-            const userID = auth.currentUser.uid;
-            items = document.getElementById('img').files; //image selected to upload by user
-            // for loop to upload multiple images to storage
-            for (let i = 0; i < items.length; i++) {
-                let closetRef = ref(storage, "closet/"+userID+"/"+currentDate.getTime()+i); // reference to user storage folder
-                // method to upload file from user input
-                uploadBytes(closetRef, items[i]).then((snapshot) => {
-                    console.log('Uploaded a blob or file!');
-                    // method to get image download url
-                    getDownloadURL(closetRef)
-                    .then((url) => {
-                        console.log(url);
-                        downloadIMG.innerHTML += (`<img src="${url}">`);
-                    })
-                    .catch((error) => {
-                        console.log(error.code);
-                    });  
+async function uploadItem() {
+    let currentDate = new Date();
+    const userID = auth.currentUser.uid;
+    items = document.getElementById('img').files; //image selected to upload by user
+    // for loop to upload multiple images to storage
+    for (let i = 0; i < items.length; i++) {
+        let closetRef = storageRef.child("closet/" + userID + "/" + currentDate.getTime() + i) // reference to user storage folder
+        // method to upload file from user input
+        closetRef.put(items[i]).then((snapshot) => {
+            console.log('Uploaded a blob or file!');
+            // method to get the image cloud storage url
+            snapshot.ref.getDownloadURL()
+                .then((url) => {
+                    console.log(url);
+                    downloadImg.innerHTML += (`<img src="${url}">`);
                 })
                 .catch((error) => {
-                    console.log('Failed to upload : ' + error.code);
-                    // errorElem.innerText = error.message;
-                }); 
-            } 
-        }
-    });
-}
+                    console.log(error.code);
+                });
+        })
+            .catch((error) => {
+                console.log('Failed to upload : ' + error);
+                // errorElem.innerText = error.message;
+            });
+    }
+};

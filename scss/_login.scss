@@ -65,13 +65,8 @@ hr{
   gap: 1rem;
 }
 
-/*
-Could not find Square google logo
-hence the font size adjustment
-*/
-.social-icons .fa-google{
-  font-size: 1.4rem;
-}
-.social-icons a{
+.social-icons button{
+  cursor: pointer;
   font-size: 1.5rem;
+  color: white;
 }

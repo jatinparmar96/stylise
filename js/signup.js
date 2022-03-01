@@ -1,16 +1,5 @@
-import { firebaseApp } from '/js/firebase.js'
-import { handleFacebookAuth, handleGoogleAuth } from './socialAuth.js'
 
-function checkLogin() {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            window.location.href = 'index.html#home'
-        } else {
-        }
-    });
-}
-let errorElem;
-let auth;
+
 function init() {
 
     // Handle Social button
@@ -27,17 +16,16 @@ function init() {
     signUpBtn.addEventListener('click', emailSignUp);
     googleBtn.addEventListener('click', handleGoogleAuth);
     facebookBtn.addEventListener('click', handleFacebookAuth);
-    auth = firebaseApp.auth();
-    checkLogin();
 }
-init();
+
 
 /**
  * Email sign up (firebase auth)
  * @method emailSignUp
  */
 function emailSignUp() {
-
+    const auth = app.auth();
+    const username = document.getElementById('username');
     const txtEmail = document.getElementById('email');
     const txtPassword = document.getElementById('password');
     const txtConfPassword = document.getElementById('conf-password');
@@ -45,8 +33,12 @@ function emailSignUp() {
     if (txtPassword.value === txtConfPassword.value) {
         auth
             .createUserWithEmailAndPassword(txtEmail.value, txtPassword.value)
-            .then(function () {
-                window.location.href = 'index.html#home';
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+                await db.collection(`users`).doc(user.uid).set({
+                    'username': username.value
+                })
+                window.location.href = 'index.html#update-profile';
             })
             .catch((error) => {
                 console.log('Error in Sign Up : ' + error.code);
@@ -57,3 +49,4 @@ function emailSignUp() {
     }
 
 }
+init()
