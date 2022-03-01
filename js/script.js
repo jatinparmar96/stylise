@@ -6,7 +6,8 @@ Router.init('mainArea', [
     new Page('#about', '/pages/about.html'),
     new Page('#login', '/pages/login.html', ['/js/login']),
     new Page('#register', '/pages/signup.html', ['/js/signup']),
-    new Page('#home', '/pages/home.html', ['/js/home'])
+    new Page('#home', '/pages/home.html', ['/js/home']),
+    new Page('#update-profile', '/pages/profile/update-profile.html', ['/js/profile/update-profile'])
 
     // add new pages here
 ]);
