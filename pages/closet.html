@@ -1,8 +1,68 @@
+<header>
+    <nav class="main-nav">
+        <h1 id="logo">LOGO</h1>
+        <ul class="main-nav-list">
+            <li>COMMUNITY</li>
+            <li><a id="closet" href="#closet">CLOSET</a></li>
+            <li>ACCOUNT</li>
+            <li><a id="logout" href="#">LOG OUT</a></li>
+        </ul>
+        <div class="search">
+            <form>
+                <input type="text" placeholder="Search" />
+            </form>
+        </div>
 
-<div>
-    <input type="file" id="img" name="img" accept="image/*" multiple>
-    <input type="submit" id="upload">
-</div>
-<div class="images-container" id="img-download">
+    </nav>
+    <div class="jump-bar">
+        <ul>
+            <li class="active">FOR YOU</li>
+            <li>ALL</li>
+            <li>FAVORITE</li>
+            <li>DONATE</li>
+        </ul>
+    </div>
+</header>
+<main>
+    <div class="upload-item">
+        <div class="upload-image">
+            <div class="images-container" id="img-download">
 
-</div>
+
+            </div>
+            <div>
+                <input type="file" id="img" name="img" accept="image/*" multiple>
+                <input type="submit" id="upload" value="Upload Image">
+            </div>
+        </div>
+        <form>
+
+            <div class="item-description">
+                <div class="category">
+                    <input list="categories" name="category" id="category" placeholder="Category">
+                    <datalist id="categories">
+                    <option value="Cat 1">
+                    <option value="Cat 2">
+                    <option value="Cat 3">
+                    <option value="Cat 4">
+                    <option value="Cat 5">
+                    </datalist>
+                    
+                </div>
+                <div class="keywords">
+                    <label for="keywords">Keywords</label>
+                    <textarea id="keywords" name="keywords" rows="4" cols="50">
+                    
+                    </textarea>
+
+                </div>
+            </div>
+            
+
+
+            <input type="submit" value="Save" id="saveBtn">
+        </form>
+    </div>
+
+</main>
+
