@@ -10,7 +10,9 @@ function init() {
     // const storage = getStorage(); // create a root reference
 
     const uploadBtn = document.getElementById('upload'); // event handler
-    uploadBtn.addEventListener('click', uploadItem);
+    const saveBtn = document.getElementById('saveBtn');
+    uploadBtn.addEventListener('click', uploadItemImg);
+    saveBtn.addEventListener('click', uploadItemDesc);
 
     downloadImg = document.getElementById('img-download');
     storageRef = storage.ref();
@@ -19,7 +21,7 @@ function init() {
 
 init();
 
-async function uploadItem() {
+async function uploadItemImg() {
     let currentDate = new Date();
     const userID = auth.currentUser.uid;
     items = document.getElementById('img').files; //image selected to upload by user
@@ -46,3 +48,37 @@ async function uploadItem() {
     } 
     document.getElementById('img').value = null;
 };
+
+/**
+ * Handle save btn
+ *  @returns {Promise<void>}
+ */
+ async function uploadItemDesc() {
+     console.log('test');
+    let category = document.getElementById('category').value;
+    let keywords = document.getElementById('keywords').value;
+    try {
+        const itemObject ={
+            category: category,
+            keywords: keywords,
+            //to save item img
+            uri: ' '
+        };
+    const docRef = await db.collection('users').doc(app.auth().currentUser.uid)
+        .collection('closet').add(itemObject);
+    console.log('Document written with ID: ', docRef.id);
+
+    } catch(error) {
+        console.error('Error adding document: ', error);
+    }
+
+}
+
+//to do: 
+    // 1 - html: leave just save button to execute both functions
+    // 2 - Create a save button handler function to execute both functions
+    // 3 - link image to item description document
+    //
+
+
+
