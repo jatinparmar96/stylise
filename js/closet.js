@@ -61,10 +61,11 @@ async function uploadItemImg() {
         const itemObject ={
             category: category,
             keywords: keywords,
+            uri: " "
             //to save item img
-            uri: ' '
+            
         };
-    const docRef = await db.collection('users').doc(app.auth().currentUser.uid)
+    const docRef = await db.collection('users').doc(auth.currentUser.uid)
         .collection('closet').add(itemObject);
     console.log('Document written with ID: ', docRef.id);
 
