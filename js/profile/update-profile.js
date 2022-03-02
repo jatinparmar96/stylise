@@ -63,7 +63,7 @@ async function handleFormSubmit(event) {
         values.noTerms = 'off';
     }
     await db.collection('users').doc(app.auth().currentUser.uid).update(values);
-  //  window.location.href = 'index.html#home'
+    window.location.href = 'index.html#home'
 }
 
 function uploadImageToFireStore(file) {
