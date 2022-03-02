@@ -1,3 +1,4 @@
+
 let auth;
 let items;
 let downloadImg;
@@ -12,8 +13,9 @@ function init() {
     const uploadBtn = document.getElementById('upload'); // event handler
     const saveBtn = document.getElementById('saveBtn');
     uploadBtn.addEventListener('click', uploadItemImg);
-    saveBtn.addEventListener('click', uploadItemDesc);
-
+    // saveBtn.addEventListener('click', uploadItemDesc);
+    const form = document.getElementById('add-item-form');
+    form.addEventListener('submit', uploadItemDesc)
     downloadImg = document.getElementById('img-download');
     storageRef = storage.ref();
 
@@ -53,8 +55,9 @@ async function uploadItemImg() {
  * Handle save btn
  *  @returns {Promise<void>}
  */
- async function uploadItemDesc() {
-     console.log('test');
+async function uploadItemDesc(event) {
+    console.log('test');
+    event.preventDefault();
     let category = document.getElementById('category').value;
     let keywords = document.getElementById('keywords').value;
     try {
