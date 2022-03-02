@@ -6,7 +6,7 @@ function init() {
     const imgSrc = document.getElementById('img-picker');
     const target = document.getElementById('image')
     addImageChangeListener(imgSrc, target)
-
+    app.auth().onAuthStateChanged(handleAuthStateChange);
 }
 
 function addCheckboxEventListeners() {
@@ -58,8 +58,12 @@ async function handleFormSubmit(event) {
             values[key] = value;
         }
     })
+    // set No Terms to off if not present in values 
+    if (!values.noTerms && values.noTerms !== 'on') {
+        values.noTerms = 'off';
+    }
     await db.collection('users').doc(app.auth().currentUser.uid).update(values);
-    window.location.href = 'index.html#home'
+  //  window.location.href = 'index.html#home'
 }
 
 function uploadImageToFireStore(file) {
@@ -110,6 +114,53 @@ function addImageChangeListener(src, target) {
         }
 
     })
+}
+
+async function handleAuthStateChange(user) {
+    const userFieldsRef = await db.collection('users').doc(user.uid).get();
+    if (userFieldsRef.exists) {
+        const userFields = userFieldsRef.data();
+        const form = document.getElementById('update-profile-form');
+        const inputs = form.elements;
+        if (user.photoURL) {
+            const image = document.getElementById('image');
+            image.src = user.photoURL;
+            image.classList.add('profile-image');
+        }
+        console.log(userFields)
+        // Iterate over the form controls
+        for (i = 0; i < inputs.length; i++) {
+            if (inputs[i].nodeName === "INPUT") {
+
+                // Update text input
+                const inputName = inputs[i].name;
+                inputs[i][inputName] = userFields[inputName];
+
+
+
+                //Update Checkbox or Radio Input
+                if (inputs[i].type === 'checkbox' || inputs[i].type === 'radio') {
+                    const value = userFields[inputName];
+                    if (value === 'on' && inputs[i].name === 'noTerms') {
+                        toggleInputs(true);
+                        console.log('hello')
+                    }
+
+                    if (inputs[i].value === value) {
+                        inputs[i].checked = true;
+                    }
+                }
+
+                if (inputs[i].type === 'date') {
+                    const value = new Date(userFields[inputName]);
+                    inputs[i].valueAsDate = value;
+                }
+
+            }
+
+        }
+
+    }
 }
 
 init();
