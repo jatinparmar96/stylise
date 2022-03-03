@@ -79,6 +79,10 @@ a {
   text-align: center;
 }
 
+.dn {
+  display: none;
+}
+
 h1 {
   margin-top: 2rem;
   text-align: center;

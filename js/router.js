@@ -1,5 +1,6 @@
 'use strict';
 
+const routesWithoutNav = ['#', '#login', '#register'];
 class Page {
     constructor(name, htmlName, jsName) {
         this.name = name;
@@ -32,15 +33,26 @@ class Router {
             for (let i = 0; i < Router.pages.length; i++) {
                 // find which page matches the hash then navigate to it
                 if (urlHash === Router.pages[i].name) {
+                    console.log(routesWithoutNav.includes(urlHash))
+                    if (routesWithoutNav.includes(urlHash)) {
+                        this.toggleHeader()
+                    }
+                    else {
+                        this.toggleHeader(true);
+                    }
+
                     Router.goToPage(Router.pages[i]);
                     break;
                 }
             }
         } else {
             // If no hash in URL, load the first Page as the default page
+            this.toggleHeader()
             Router.goToPage(Router.pages[0]);
         }
     }
+
+
 
     static async goToPage(page) {
         try {
@@ -64,5 +76,15 @@ class Router {
         } catch (error) {
             console.error(error);
         }
+    }
+
+    static toggleHeader(show = false) {
+        if (show) {
+            document.getElementById('nav-header').classList.remove('dn')
+        }
+        else {
+            document.getElementById('nav-header').classList.add('dn')
+        }
+
     }
 }
