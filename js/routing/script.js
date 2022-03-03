@@ -8,7 +8,8 @@ Router.init('mainArea', [
     new Page('#register', '/pages/signup.html', ['/js/signup']),
     new Page('#home', '/pages/home.html', ['/js/home']),
     new Page('#update-profile', '/pages/profile/update-profile.html', ['/js/profile/update-profile']),
-    new Page('#closet', '/pages/closet.html', ['/js/closet'])
-
+    new Page('#closet', '/pages/closet/closet.html', ['/js/closet/closet']),
+    new Page('#category', '/pages/closet/add-item.html', ['/js/closet/add-item']),
+    new Page('#closet/add-item', '/pages/closet/add-item.html', ['/js/closet/add-item'])
     // add new pages here
 ]);

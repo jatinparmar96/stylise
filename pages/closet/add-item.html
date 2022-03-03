@@ -1,42 +1,43 @@
-
 <main>
     <div class="upload-item">
-        <div class="upload-image">
-            <div class="images-container" id="img-download">
-            </div>
-            <div>
-                <input type="file" id="img" name="img" accept="image/*" multiple>
-            </div>
-        </div>
-        <form id="add-item-form">
 
+        <form id="add-item-form">
+            <div class="upload-image">
+                <div class="images-container" id="img-download">
+                </div>
+                <div>
+                    <input type="file" id="img" name="img" accept="image/*">
+                </div>
+            </div>
             <div class="item-description">
                 <div class="category">
                     <input list="categories" name="category" id="category" placeholder="Category">
                     <datalist id="categories">
-                    <option value="Cat 1">
-                    <option value="Cat 2">
-                    <option value="Cat 3">
-                    <option value="Cat 4">
-                    <option value="Cat 5">
+                        <option value="Cat 1">
+                        <option value="Cat 2">
+                        <option value="Cat 3">
+                        <option value="Cat 4">
+                        <option value="Cat 5">
                     </datalist>
-                    
+
                 </div>
                 <div class="keywords">
                     <label for="keywords">Keywords</label>
                     <textarea id="keywords" name="keywords" rows="4" cols="50">
-                    
+
                     </textarea>
 
                 </div>
             </div>
-            
+
 
 
             <input type="submit" value="Save" id="saveBtn">
         </form>
     </div>
 
+    <div class="flex gap-2" id="category-images" style="margin-top: 1rem">
+
+    </div>
+
 </main>
-
-

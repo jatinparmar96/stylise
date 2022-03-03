@@ -27,7 +27,8 @@ class Router {
     }
 
     static handleHashChange() {
-        const urlHash = window.location.hash;
+        const urlHash = window.location.hash.split('?')[0];
+        console.log(urlHash)
         if (urlHash.length > 0) {
             // If there is a hash in URL
             for (let i = 0; i < Router.pages.length; i++) {
