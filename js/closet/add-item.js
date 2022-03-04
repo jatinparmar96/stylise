@@ -1,20 +1,10 @@
-let items;
-let downloadImg;
-let storageRef;
-let categoryId;
-
 function init() {
     //const userID; // variable to store user id
-    items = []; // array to store items to upload
-    // const storage = getStorage(); // create a root reference
-    categoryId = getCategoryIdFromUrl();
     const saveBtn = document.getElementById('saveBtn');
     // saveBtn.addEventListener('click', uploadItemDesc);
     const form = document.getElementById('add-item-form');
     form.addEventListener('submit', uploadItemDesc)
-    downloadImg = document.getElementById('img-download');
-    storageRef = storage.ref();
-    listenCategoryImageChanges(categoryId);
+    listenCategoryImageChanges(getCategoryIdFromUrl());
 }
 
 init();
@@ -27,15 +17,19 @@ function getCategoryIdFromUrl() {
     return window.location.hash.split('?')[1].split('=')[1];
 }
 
+/**
+ * Uploads Image to firestorage and returns a ref to uploaded object.
+ * @returns {Promise<unknown>}
+ */
 async function uploadItemImg() {
     const currentDate = new Date();
+    const storageRef = storage.ref();
     const userID = auth.currentUser.uid;
-    items = document.getElementById('img').files[0]; //image selected to upload by user
+    const items = document.getElementById('img').files[0]; //image selected to upload by user
     // for loop to upload multiple images to storage
     const closetRef = storageRef.child("closet/" + userID + "/" + currentDate.getTime())// reference to user storage folder
     return new Promise((resolve, reject) => {
         closetRef.put(items).then((snapshot) => {
-            console.log('Uploaded a blob or file!');
             document.getElementById('img').value = null;
             resolve(snapshot);
         }).catch((error) => {
@@ -50,10 +44,10 @@ async function uploadItemImg() {
  *  @returns {Promise<void>}
  */
 async function uploadItemDesc(event) {
-    console.log('test');
     event.preventDefault();
     let category = document.getElementById('category').value;
     let keywords = document.getElementById('keywords').value;
+    const categoryId = getCategoryIdFromUrl();
     try {
 
         const imageRef = await uploadItemImg();
@@ -65,13 +59,35 @@ async function uploadItemDesc(event) {
         };
         const docRef = await db.collection('categories').doc(categoryId)
             .collection('images').add(itemObject);
-        console.log('Document written with ID: ', docRef.id);
-
+        /**
+         * Only for testing
+         */
+        await addImageToPost(itemObject);
     } catch (error) {
         console.error('Error adding document: ', error);
     }
 
 }
+async function addImageToPost(itemObject) {
+
+    const userRef = await getUserData(auth.currentUser.uid);
+    const userData = userRef.data();
+    const postRef = await db.collection('posts').add({
+        user: {
+            username: userData.username,
+            location: userData.location,
+            uid: userRef.id
+        }, ...itemObject
+    });
+}
+
+async function getUserData(uid) {
+    return db.collection('users').doc(uid).get();
+}
+
+/**
+ * Listen to Image collection Changes in a given Category.
+ */
 
 function listenCategoryImageChanges(categoryId) {
     const query = db.collection(`categories`).doc(categoryId).collection('images');
@@ -84,9 +100,13 @@ function listenCategoryImageChanges(categoryId) {
     })
 }
 
+/**
+ * Render a div containing Image from category.
+ * @param imageDoc
+ * @returns {string}
+ */
 function renderImages(imageDoc){
     const imageData = imageDoc.data();
-    console.log(imageData);
     return`
         <div class="flex flex-column closet-item" style="max-width: 25%;">
             <img src="${imageData.uri}" style="object-fit: cover;height: 200px;width: 200px">
