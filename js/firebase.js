@@ -14,5 +14,26 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
-
+const auth = firebase.auth();
 // Firebase Authentication methods
+
+async function getCurrentUser() {
+    if (!auth.currentUser) {
+        await initAuth();
+        return auth.currentUser;
+    }
+    else {
+        return auth.currentUser;
+    }
+}
+
+/**
+ * Wait for auth object to initialize before performing any operation.
+ */
+async function initAuth() {
+    return new Promise((resolve, reject) => {
+        auth.onAuthStateChanged(user => {
+            resolve(user);
+        })
+    })
+}

@@ -14,6 +14,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
     <script src="/js/firebase.js" defer></script>
     <script src="/js/socialAuth.js" defer></script>
+    <script src="/js/database-models.js" defer></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
@@ -22,16 +23,29 @@
 </head>
 
 <body>
+    <header id="nav-header">
+        <nav class="main-nav">
+            <h1 id="logo">LOGO</h1>
+            <ul class="main-nav-list">
+                <li>COMMUNITY</li>
+                <li><a id="closet" href="#closet">CLOSET</a></li>
+                <li> <a href="#update-profile"> ACCOUNT </a></li>
+                <li><a id="logout" href="#">LOG OUT</a></li>
+            </ul>
+            <div class="search">
+                <form>
+                    <input type="text" placeholder="Search" />
+                </form>
+            </div>
+    
+        </nav>
+    </header>
     <div class="container" id="mainArea">
-        <h1 class="mb-1">Landing Page</h1>
-        <div class="flex flex-center">
-            <a href="#login">Login</a>
-            <a href="#register">Register</a>
-        </div>
+        
     </div>
 
-<script src="../js/router.js"></script>
-<script src="../js/script.js"></script>
+<script src="../js/routing/router.js"></script>
+<script src="../js/routing/script.js"></script>
 </body>
 
 </html>

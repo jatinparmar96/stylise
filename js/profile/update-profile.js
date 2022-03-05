@@ -62,7 +62,7 @@ async function handleFormSubmit(event) {
     if (!values.noTerms && values.noTerms !== 'on') {
         values.noTerms = 'off';
     }
-    await db.collection('users').doc(app.auth().currentUser.uid).update(values);
+    await db.collection('users').doc(app.auth().currentUser.uid).set(values, { merge: true });
     window.location.href = 'index.html#home'
 }
 
