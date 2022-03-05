@@ -91,6 +91,11 @@ select {
   width: 100%;
 }
 
+video {
+  width: 200px;
+  height: 200px;
+}
+
 .dn {
   display: none;
 }
@@ -486,7 +491,6 @@ img {
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   width: 300px;
-  height: 300px;
   -ms-flex-line-pack: end;
       align-content: end;
   grid-gap: 20px;
