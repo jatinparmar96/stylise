@@ -4,7 +4,8 @@ function init() {
     // saveBtn.addEventListener('click', uploadItemDesc);
     const form = document.getElementById('add-item-form');
     form.addEventListener('submit', uploadItemDesc)
-    listenCategoryImageChanges(getCategoryIdFromUrl());
+    initImageListener(getCategoryIdFromUrl());
+    initCategoryListener();
 }
 
 init();
@@ -21,15 +22,13 @@ function getCategoryIdFromUrl() {
  * Uploads Image to firestorage and returns a ref to uploaded object.
  * @returns {Promise<unknown>}
  */
-async function uploadItemImg() {
+async function uploadItemImg(imgItem) {
     const currentDate = new Date();
     const storageRef = storage.ref();
     const userID = auth.currentUser.uid;
-    const items = document.getElementById('img').files[0]; //image selected to upload by user
-    // for loop to upload multiple images to storage
     const closetRef = storageRef.child("closet/" + userID + "/" + currentDate.getTime())// reference to user storage folder
     return new Promise((resolve, reject) => {
-        closetRef.put(items).then((snapshot) => {
+        closetRef.put(imgItem).then((snapshot) => {
             document.getElementById('img').value = null;
             resolve(snapshot);
         }).catch((error) => {
@@ -45,52 +44,84 @@ async function uploadItemImg() {
  */
 async function uploadItemDesc(event) {
     event.preventDefault();
-    let category = document.getElementById('category').value;
-    let keywords = document.getElementById('keywords').value;
+    const category = document.getElementById('category').value;
+    const keywords = document.getElementById('keywords').value;
+    const imageItem = document.getElementById('img').files[0]; //image selected to upload by user
     const categoryId = getCategoryIdFromUrl();
     try {
-
-        const imageRef = await uploadItemImg();
+        if (!imageItem) {
+            return;
+        }
+        const imageRef = await uploadItemImg(imageItem);
         const imageUrl = await imageRef.ref.getDownloadURL()
         const itemObject = {
-            category: category,
+            categoryId,
             keywords: keywords,
-            uri: imageUrl
+            uri: imageUrl,
+            type: 'closet-item',
+            public: false
         };
-        const docRef = await db.collection('categories').doc(categoryId)
-            .collection('images').add(itemObject);
-        /**
-         * Only for testing
-         */
-        await addImageToPost(itemObject);
+        const docRef = await db.collection('posts').add(itemObject);
+
     } catch (error) {
         console.error('Error adding document: ', error);
     }
 
 }
-async function addImageToPost(itemObject) {
 
-    const userRef = await getUserData(auth.currentUser.uid);
-    const userData = userRef.data();
-    const postRef = await db.collection('posts').add({
-        user: {
-            username: userData.username,
-            location: userData.location,
-            uid: userRef.id
-        }, ...itemObject
-    });
+function toggleInput(hideField, showField) {
+    hideField.disabled = true;
+    hideField.style.display = 'none';
+    showField.disabled = false;
+    showField.style.display = 'flex';
+    showField.childNodes.forEach(node => {
+        node.disabled = false;
+        if (node.type === 'text') {
+            node.focus();
+        }
+    })
 }
-
+function toggleSelect(inputElement) {
+    if (inputElement.value === '') {
+        disableInput(inputElement)
+    }
+}
+function disableInput(inputElement) {
+    inputElement.parentElement.style.display = 'none';
+    inputElement.disabled = true;
+    inputElement.parentElement.previousElementSibling.style.display = 'inline';
+    inputElement.parentElement.previousElementSibling.disabled = false;
+}
+function checkOptionValue(selectField) {
+    console.log(selectField.nextSibling)
+    if (selectField.options[selectField.selectedIndex].value === 'custom') {
+        toggleInput(selectField, selectField.nextElementSibling);
+        selectField.selectedIndex = 0;
+    }
+}
+function setCategorySelectValue(value) {
+    document.getElementById('categories').value = value;
+}
+async function addCategory() {
+    const categoryInput = document.getElementById('category-input');
+    const doc = await db.collection(Models.categories).add({
+        category: categoryInput.value,
+        user: auth.currentUser.uid
+    })
+    disableInput(categoryInput);
+    setCategorySelectValue(doc.id);
+}
 async function getUserData(uid) {
     return db.collection('users').doc(uid).get();
 }
 
+
 /**
- * Listen to Image collection Changes in a given Category.
+ * Listen to Posts collection Changes.
  */
 
-function listenCategoryImageChanges(categoryId) {
-    const query = db.collection(`categories`).doc(categoryId).collection('images');
+function initImageListener(categoryId) {
+    const query = db.collection(`posts`);
     query.onSnapshot(querySnapshot =>{
         const categoryImages = document.getElementById('category-images');
         categoryImages.innerHTML = '';
@@ -98,6 +129,26 @@ function listenCategoryImageChanges(categoryId) {
            categoryImages.innerHTML += renderImages(doc)
        })
     })
+}
+
+/**
+ * Listen To Category Collections
+ */
+async function initCategoryListener() {
+    const query = db.collection(Models.categories);
+    query.onSnapshot(querySnapshot => {
+        const categoryList = document.getElementById('categories');
+        categoryList.innerHTML = '';
+        categoryList.innerHTML += `<option></option>
+        <option value='custom'>Add Category</option>`
+        querySnapshot.forEach(doc => {
+            categoryList.innerHTML += renderDataListItem(doc);
+        })
+    })
+}
+
+function renderDataListItem(itemDoc) {
+    return `<option value=${itemDoc.id}>${itemDoc.data().category}</option>`
 }
 
 /**

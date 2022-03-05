@@ -11,20 +11,17 @@
             </div>
             <div class="item-description">
                 <div class="category">
-                    <input list="categories" name="category" id="category" placeholder="Category">
-                    <datalist id="categories">
-                        <option value="Cat 1">
-                        <option value="Cat 2">
-                        <option value="Cat 3">
-                        <option value="Cat 4">
-                        <option value="Cat 5">
-                    </datalist>
+                    <select name="category" onchange="checkOptionValue(this)" id="categories">
+                    </select>
+                    <div style="display:none">
+                        <input disabled name="category" onblur="toggleSelect(this)" id="category-input" placeholder="Category">
+                        <button type="button" onclick="addCategory()">Add Category</button>
+                    </div>
 
                 </div>
                 <div class="keywords">
                     <label for="keywords">Keywords</label>
                     <textarea id="keywords" name="keywords" rows="4" cols="50">
-
                     </textarea>
 
                 </div>
