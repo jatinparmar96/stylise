@@ -3,8 +3,14 @@ function init() {
     const saveBtn = document.getElementById('saveBtn');
     // saveBtn.addEventListener('click', uploadItemDesc);
     const form = document.getElementById('add-item-form');
+
+    const imageSrc = document.getElementById('image-input');
+    const imageTarget = document.getElementById('image');
+
+    const cameraBtn = document.getElementById('openCameraBtn');
     form.addEventListener('submit', uploadItemDesc)
     initImageListener(getCategoryIdFromUrl());
+    addImageChangeListener(imageSrc, imageTarget)
     initCategoryListener();
 }
 
@@ -27,13 +33,17 @@ async function uploadItemImg(imgItem) {
     const userID = auth.currentUser.uid;
     const closetRef = storageRef.child("closet/" + userID + "/" + currentDate.getTime())// reference to user storage folder
     return new Promise((resolve, reject) => {
-        closetRef.put(imgItem).then((snapshot) => {
-            document.getElementById('img').value = null;
-            resolve(snapshot);
-        }).catch((error) => {
+        try {
+            closetRef.put(imgItem).then((snapshot) => {
+                document.getElementById('image-input').value = null;
+                resolve(snapshot);
+
+            })
+        }
+        catch (error) {
             console.log(error.code);
             reject();
-        })
+        }
     })
 }
 
@@ -43,28 +53,23 @@ async function uploadItemImg(imgItem) {
  */
 async function uploadItemDesc(event) {
     event.preventDefault();
-    const category = document.getElementById('category').value;
+    const category = document.getElementById('categories').value;
     const keywords = document.getElementById('keywords').value;
-    const imageItem = document.getElementById('img').files[0]; //image selected to upload by user
-    const categoryId = getCategoryIdFromUrl();
-    try {
-        if (!imageItem) {
+    const imageItem = document.getElementById('image-input').files[0]; //image selected to upload by user
+    if (!imageItem) {
             return;
-        }
-        const imageRef = await uploadItemImg(imageItem);
-        const imageUrl = await imageRef.ref.getDownloadURL()
+    }
+    const imageRef = await uploadItemImg(imageItem);
+    const imageUrl = await imageRef.ref.getDownloadURL()
+    console.log(keywords)
         const itemObject = {
-            categoryId,
+            category,
             keywords: keywords.split(','),
             uri: imageUrl,
             type: 'closet-item',
             public: false
         };
         const docRef = await db.collection('posts').add(itemObject);
-
-    } catch (error) {
-        console.error('Error adding document: ', error);
-    }
 
 }
 
@@ -167,6 +172,48 @@ function renderImages(imageDoc){
             <span>${imageData.keywords}</span>
         </div>
     `
+}
+/**
+ * Trigger Image file input field
+ */
+function triggerImageInput() {
+    document.getElementById('image-input').click();
+}
+
+/**
+ * 
+ * Add Image Change listener, same method form update-profile.js file
+ */
+function addImageChangeListener(src, target) {
+    const fileReader = new FileReader();
+    fileReader.onload = function () {
+        target.src = this.result
+        target.classList.add('profile-image')
+    }
+    src.addEventListener('change', function () {
+        if (src.files.length) {
+            fileReader.readAsDataURL(src.files[0])
+        } else {
+            target.classList.remove('profile-image');
+            target.src = '';
+        }
+
+    })
+}
+
+function openCamera() {
+    const video = document.getElementById('video-stream')
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Not adding `{ audio: true }` since we only want video now
+        navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+            //video.src = window.URL.createObjectURL(stream);
+            video.srcObject = stream;
+            video.classList.remove('dn')
+            // video.play();  // or autplay
+        });
+    } else {
+        console.log('media devices not available in this browser');
+    }
 }
 
 //to do:
