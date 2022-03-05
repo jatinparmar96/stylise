@@ -34,7 +34,7 @@ function listenToCategory() {
                 closeList.innerHTML += renderCloseCard(doc);
             });
     });
-    window.removeFirebaseListeners.push(listener);
+    window.removeFirebaseListener.push(listener);
 }
 
 function renderCloseCard(categoryDocument) {
