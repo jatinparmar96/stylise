@@ -9,7 +9,6 @@ function init() {
 }
 
 init();
-
 /**
  * Parse url and return the parameter q={parameter}
  * @returns {string}
@@ -56,7 +55,7 @@ async function uploadItemDesc(event) {
         const imageUrl = await imageRef.ref.getDownloadURL()
         const itemObject = {
             categoryId,
-            keywords: keywords,
+            keywords: keywords.split(','),
             uri: imageUrl,
             type: 'closet-item',
             public: false
@@ -122,21 +121,23 @@ async function getUserData(uid) {
 
 function initImageListener(categoryId) {
     const query = db.collection(`posts`);
-    query.onSnapshot(querySnapshot =>{
+    const listener = query.onSnapshot(querySnapshot => {
         const categoryImages = document.getElementById('category-images');
         categoryImages.innerHTML = '';
        querySnapshot.forEach(doc =>{
            categoryImages.innerHTML += renderImages(doc)
        })
     })
+    window.removeFirebaseListener.push(listener);
 }
 
 /**
  * Listen To Category Collections
  */
 async function initCategoryListener() {
-    const query = db.collection(Models.categories);
-    query.onSnapshot(querySnapshot => {
+    const user = await getCurrentUser();
+    const query = db.collection(Models.categories).where('user', '==', user.uid);
+    const listener = query.onSnapshot(querySnapshot => {
         const categoryList = document.getElementById('categories');
         categoryList.innerHTML = '';
         categoryList.innerHTML += `<option></option>
@@ -145,6 +146,7 @@ async function initCategoryListener() {
             categoryList.innerHTML += renderDataListItem(doc);
         })
     })
+    window.removeFirebaseListener.push(listener);
 }
 
 function renderDataListItem(itemDoc) {

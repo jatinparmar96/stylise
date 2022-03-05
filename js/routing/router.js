@@ -1,6 +1,7 @@
 'use strict';
 
 const routesWithoutNav = ['#', '#login', '#register'];
+window.removeFirebaseListener = [];
 class Page {
     constructor(name, htmlName, jsName) {
         this.name = name;
@@ -21,7 +22,6 @@ class Router {
         Router.rootElem = document.getElementById(mainAreaId);
         window.addEventListener('hashchange', function (e) {
             Router.handleHashChange();
-           
         });
         Router.handleHashChange();
     }
@@ -72,6 +72,14 @@ class Router {
                     Router.rootElem.appendChild(script);
                 })
             }
+            /**
+             * Need to remove All Snapshot listeners, to avoid memory leaks and 
+             * Snapshots causing problems on other pages.
+             * To remove simply call the listener function.
+             * */
+            window.removeFirebaseListener.forEach(listener => {
+                listener();
+            })
 
 
         } catch (error) {

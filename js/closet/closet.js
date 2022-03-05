@@ -27,15 +27,14 @@ async function handleFormSubmit(event) {
 function listenToCategory() {
     const user = auth.currentUser;
 
-    db.collection("categories").where("user", "==", user.uid)
-        .onSnapshot((querySnapshot) => {
+    const listener = db.collection("categories").where("user", "==", user.uid).onSnapshot((querySnapshot) => {
             const closeList = document.getElementById('closetList');
             closeList.innerHTML = '';
             querySnapshot.forEach((doc) => {
                 closeList.innerHTML += renderCloseCard(doc);
             });
-        });
-
+    });
+    window.removeFirebaseListeners.push(listener);
 }
 
 function renderCloseCard(categoryDocument) {
