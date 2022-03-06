@@ -1,0 +1,48 @@
+<main>
+    <div class="upload-item">
+
+        <form id="add-item-form">
+            <div class="upload-image">
+                <div class="images-container" id="img-download">
+                </div>
+                <div class="flex flex-column">
+                
+                    <!-- <video class="dn" id="video-stream" autoplay></video>
+                    <button class="dn" id="snap-photo">Capture Image</button> -->
+                    <img id="image">
+                    <input type="file" style="display: none;" id="image-input" name="img" accept="image/*">
+                </div>
+                <div class="flex gap-1">
+                    <!-- <button type="button" id="openCameraBtn" onclick="openCamera()">Open Camera</button> -->
+                    <button type="button" id="uploadImageBtn">Upload Image</button>
+                </div>
+            </div>
+            <!-- <div class="item-description">
+                <div class="category">
+                    <select name="category" onchange="checkOptionValue(this)" id="categories">
+                    </select>
+                    <div style="display:none">
+                        <input disabled name="category" onblur="toggleSelect(this)" id="category-input" placeholder="Category">
+                        <button type="button" onclick="addCategory()">Add Category</button>
+                    </div>
+
+                </div>
+                <div class="keywords">
+                    <label for="keywords">Keywords</label>
+                    <textarea id="keywords" name="keywords" rows="4" cols="50">
+                    </textarea>
+
+                </div>
+            </div> -->
+
+
+
+            <input type="submit" value="Save" id="saveBtn">
+        </form>
+    </div>
+
+    <div class="flex gap-2" id="category-images" style="margin-top: 1rem">
+
+    </div>
+
+</main>

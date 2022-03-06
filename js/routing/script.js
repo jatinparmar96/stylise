@@ -10,6 +10,7 @@ Router.init('mainArea', [
     new Page('#update-profile', '/pages/profile/update-profile.html', ['/js/profile/update-profile']),
     new Page('#closet', '/pages/closet/closet.html', ['/js/closet/closet']),
     new Page('#category', '/pages/closet/add-item.html', ['/js/closet/add-item']),
-    new Page('#closet/add-item', '/pages/closet/add-item.html', ['/js/closet/add-item'])
+    new Page('#closet/add-item', '/pages/closet/add-item.html', ['/js/closet/add-item']),
+    new Page('#donate/post-item', '/pages/donate/post-item.html', ['/js/donate/post-item'])
     // add new pages here
 ]);
