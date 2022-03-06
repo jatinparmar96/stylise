@@ -1,7 +1,7 @@
 <main>
     <div class="upload-item">
 
-        <form id="add-item-form">
+        <div id="add-item-form">
             <div class="upload-image">
                 <div class="images-container" id="img-download">
                 </div>
@@ -17,28 +17,33 @@
                     <button type="button" id="uploadImageBtn" onclick="triggerDonateInput()">Upload Image</button>
                 </div>
             </div>
-            <!-- <div class="item-description">
-                <div class="category">
-                    <select name="category" onchange="checkOptionValue(this)" id="categories">
-                    </select>
-                    <div style="display:none">
-                        <input disabled name="category" onblur="toggleSelect(this)" id="category-input" placeholder="Category">
-                        <button type="button" onclick="addCategory()">Add Category</button>
-                    </div>
-
-                </div>
-                <div class="keywords">
-                    <label for="keywords">Keywords</label>
-                    <textarea id="keywords" name="keywords" rows="4" cols="50">
+            <div class="item-description">
+                <div class="comments-wrapper">
+                    <label for="comments">Comments</label>
+                    <textarea id="comments" name="comments" rows="4" cols="50">
                     </textarea>
-
                 </div>
-            </div> -->
+                <div class="location-wrapper">
+                    <label for="location">Select a location:</label>
+                    <select name="location" id="location">
+                        <option value="vancouver">Vancouver</option>
+                        <option value="north-vancouver">North Vancouver</option>
+                        <option value="burnaby">Burnaby</option>
+                        <option value="richmond">Richmond</option>
+                        <option value="surrey">Surrey</option>
+                    </select>
+                </div>
+                <div class="tags-wrapper">
+                    <label for="tags">Add Tags</label>
+                    <input type="text" name="tags" id="tags">
+                    <input type="button" value="Add tag" id="add-tag">
+                </div>
+            </div>
 
 
 
-            <input type="submit" value="Post" id="postBtn">
-        </form>
+            <input type="button" value="Post" id="postBtn">
+        </div>
     </div>
 
     <div class="flex gap-2" id="category-images" style="margin-top: 1rem">

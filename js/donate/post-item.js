@@ -1,14 +1,16 @@
+
+
 function init() {
     //const userID; // variable to store user id
     //const postBtn = document.getElementById('postBtn');
     // saveBtn.addEventListener('click', uploadItemDesc);
-    const form = document.getElementById('add-item-form');
+    const postBtn = document.getElementById('postBtn');
 
     const imageSrc = document.getElementById('donate-input');
     const imageTarget = document.getElementById('image');
 
     //const cameraBtn = document.getElementById('openCameraBtn');
-    form.addEventListener('submit', uploadDonationDesc);
+    postBtn.addEventListener('click', uploadDonationDesc);
     //initImageListener(getCategoryIdFromUrl());
     addImageChangeListener(imageSrc, imageTarget);
     //initCategoryListener();
@@ -16,6 +18,14 @@ function init() {
 
 init();
 
+document.getElementById('add-tag').addEventListener('click', addTagInput);
+let tagValue = document.getElementById('tags');
+let tagsArray = [];
+function addTagInput(){
+    if (tagValue.value != '' && tagValue.value.trim().length > 0){
+    tagsArray.push(tagValue.value);
+    }
+}
 
 /**
  * Trigger Image file input field
@@ -54,8 +64,10 @@ init();
  */
  async function uploadDonationDesc(event) {
     event.preventDefault();
-    //const category = document.getElementById('categories').value;
-    //const keywords = document.getElementById('keywords').value;
+    const userID = auth.currentUser.uid;
+    const comments = document.getElementById('comments').value;
+    const location = document.getElementById('location').value;
+    //const tags = document.getElementById('tags').value;
     const imageItem = document.getElementById('donate-input').files[0]; //image selected to upload by user
     if (!imageItem) {
             return;
@@ -63,14 +75,16 @@ init();
     const imageRef = await donateItemImg(imageItem);
     const imageUrl = await imageRef.ref.getDownloadURL()
     console.log(imageUrl);
-        // const itemObject = {
-        //     category,
-        //     keywords: keywords.split(','),
-        //     uri: imageUrl,
-        //     type: 'donate-item',
-        //     public: true
-        // };
-        // const docRef = await db.collection('posts').add(itemObject);
+        const itemObject = {
+            userID,
+            comments,
+            location,
+            tags : tagsArray,
+            uri: imageUrl,
+            type: 'donate-item',
+            public: true
+        };
+        await db.collection('posts').add(itemObject);
 }
 
 /**
