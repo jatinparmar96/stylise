@@ -10,11 +10,11 @@
                     <!-- <video class="dn" id="video-stream" autoplay></video>
                     <button class="dn" id="snap-photo">Capture Image</button> -->
                     <img id="image">
-                    <input type="file" style="display: none;" id="image-input" name="img" accept="image/*">
+                    <input type="file" style="display: none;" id="donate-input" name="img" accept="image/*">
                 </div>
                 <div class="flex gap-1">
                     <!-- <button type="button" id="openCameraBtn" onclick="openCamera()">Open Camera</button> -->
-                    <button type="button" id="uploadImageBtn">Upload Image</button>
+                    <button type="button" id="uploadImageBtn" onclick="triggerDonateInput()">Upload Image</button>
                 </div>
             </div>
             <!-- <div class="item-description">
@@ -37,7 +37,7 @@
 
 
 
-            <input type="submit" value="Save" id="saveBtn">
+            <input type="submit" value="Post" id="postBtn">
         </form>
     </div>
 

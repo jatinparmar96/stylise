@@ -1,3 +1,29 @@
+function init() {
+    //const userID; // variable to store user id
+    //const postBtn = document.getElementById('postBtn');
+    // saveBtn.addEventListener('click', uploadItemDesc);
+    const form = document.getElementById('add-item-form');
+
+    const imageSrc = document.getElementById('donate-input');
+    const imageTarget = document.getElementById('image');
+
+    //const cameraBtn = document.getElementById('openCameraBtn');
+    form.addEventListener('submit', uploadDonationDesc);
+    //initImageListener(getCategoryIdFromUrl());
+    addImageChangeListener(imageSrc, imageTarget);
+    //initCategoryListener();
+}
+
+init();
+
+
+/**
+ * Trigger Image file input field
+ */
+ function triggerDonateInput() {
+    document.getElementById('donate-input').click();
+}
+
 /**
  * Uploads Image to firestorage and returns a ref to uploaded object.
  * @returns {Promise<unknown>}
@@ -10,7 +36,7 @@
     return new Promise((resolve, reject) => {
         try {
             closetRef.put(imgItem).then((snapshot) => {
-                document.getElementById('image-input').value = null;
+                document.getElementById('donate-input').value = null;
                 resolve(snapshot);
 
             })
@@ -26,23 +52,44 @@
  * Handle save btn
  *  @returns {Promise<void>}
  */
- async function uploadItemDesc(event) {
+ async function uploadDonationDesc(event) {
     event.preventDefault();
-    const category = document.getElementById('categories').value;
-    const keywords = document.getElementById('keywords').value;
-    const imageItem = document.getElementById('image-input').files[0]; //image selected to upload by user
+    //const category = document.getElementById('categories').value;
+    //const keywords = document.getElementById('keywords').value;
+    const imageItem = document.getElementById('donate-input').files[0]; //image selected to upload by user
     if (!imageItem) {
             return;
     }
     const imageRef = await donateItemImg(imageItem);
     const imageUrl = await imageRef.ref.getDownloadURL()
-    console.log(keywords)
-        const itemObject = {
-            category,
-            keywords: keywords.split(','),
-            uri: imageUrl,
-            type: 'donate-item',
-            public: true
-        };
-        const docRef = await db.collection('posts').add(itemObject);
+    console.log(imageUrl);
+        // const itemObject = {
+        //     category,
+        //     keywords: keywords.split(','),
+        //     uri: imageUrl,
+        //     type: 'donate-item',
+        //     public: true
+        // };
+        // const docRef = await db.collection('posts').add(itemObject);
+}
+
+/**
+ * 
+ * Add Image Change listener, same method form update-profile.js file
+ */
+ function addImageChangeListener(src, target) {
+    const fileReader = new FileReader();
+    fileReader.onload = function () {
+        target.src = this.result;
+        target.classList.add('profile-image');
+    }
+    src.addEventListener('change', function () {
+        if (src.files.length) {
+            fileReader.readAsDataURL(src.files[0]);
+        } else {
+            target.classList.remove('profile-image');
+            target.src = '';
+        }
+
+    })
 }
