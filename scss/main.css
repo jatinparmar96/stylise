@@ -356,6 +356,20 @@ ul li {
   justify-items: center;
 }
 
+.community-nav-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 20px;
+}
+
 .wrapper {
   margin-left: auto;
   margin-right: auto;

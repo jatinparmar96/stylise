@@ -14,6 +14,14 @@ ul li {
   align-items: center;
   justify-items: center;
 }
+
+.community-nav-list {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 .wrapper {
   margin-left: auto;
   margin-right: auto;
