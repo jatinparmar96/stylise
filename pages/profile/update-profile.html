@@ -1,17 +1,15 @@
 <main class="update-profile">
     <section>
-        <h2 class="text-center">Update your profile</h2>
+        <h2 class="text-center">YOUR ACCOUNT</h2>
         <div class="container">
             <form id="update-profile-form" name="update-profile-form">
                 <div class="form-field">
+                    <h4 id="user-name" class="text-center">Username</h4>
                     <img src="" id="image">
                     <label for="img-picker">Choose an image</label>
                     <input type="file" id="img-picker" name="profile-image">
                 </div>
-                <div class="flex form-field align-center gap-1 mt-1">
-                    <input type="checkbox" name="noTerms" id="gender" >
-                    <label for="gender">I don't need to fill this because I'm not going to post in community.</label>
-                </div>
+
                 <div class="form-field">
                     <span>Gender</span>
                     <div class="flex gap-2">
@@ -31,13 +29,21 @@
                     </div>
 
                 </div>
+                <div class="flex form-field align-center gap-1 mt-1">
+                    <input type="checkbox" name="noTerms" id="gender" >
+                    <label for="gender">I don't need to fill this because I'm not going to post in community.</label>
+                </div>
 
 <!--                Birth Date field-->
                 <div class="form-field">
-                    <label for="birthDate">Birth Date</label>
+                    <label for="birthDate">Birthday</label>
                     <div class="flex gap-2">
                         <input class="form-input" type="date" name="birthDate" id="birthDate">
                     </div>
+                </div>
+                <div class="flex form-field align-center gap-1 mt-1">
+                    <input type="checkbox" name="noTerms" id="gender" >
+                    <label for="gender">I don't need to fill this because I'm not going to post in community.</label>
                 </div>
 <!--                Location Field-->
                 <div class="form-field">
@@ -48,6 +54,7 @@
                 </div>
 <!--                For You Suggestion-->
                 <div class="form-field">
+                    <span>FOR YOU Suggestion Preference</span>
                     <span>I want to look at community of</span>
                     <div class="flex">
                         <div class="flex align-center gap-1">
@@ -76,8 +83,16 @@
                             </select>
                         </div>
                     </div>
+                    <div class="tags">
+                        <textarea rows= "4" cols="80" placeholder="casual dress sport" id="tags" name="tags" ></textarea>
+                    </div>
+                    <div class="flex form-field align-center gap-1 mt-1">
+                        <input type="checkbox" name="noTerms" id="gender" >
+                        <label for="gender">I don't need to fill this because I don't need "FOR YOU" suggestions.</label>
+                    </div>
 
                 </div>
+
 
                 <input type="submit" value="Save" id="submit-btn">
 
