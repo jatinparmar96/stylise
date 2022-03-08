@@ -55,6 +55,12 @@ async function handleFormSubmit(event) {
         if (key === 'forYouOption[]') {
             let newKey = key.substring(0, key.length - 2);
             values[newKey] = values[newKey] ? [...values[newKey], value] : [value];
+        }
+        else if (key === 'tags') {
+            let newKey= value.split(" ");
+            console.log(newKey);
+            values[key] = newKey;
+
         } else {
             values[key] = value;
         }
