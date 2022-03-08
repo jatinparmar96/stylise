@@ -81,7 +81,7 @@ video {
   height: 200px;
 }
 
-.camera video {
+.camera video#player {
   width: 376px;
   height: 296px;
 }

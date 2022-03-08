@@ -1,6 +1,6 @@
 * {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -17,7 +17,7 @@ h1 {
 .visually-hidden {
   clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
+  clip-path: inset(50%);
   height: 1px;
   width: 1px;
   margin: -1px;
@@ -40,24 +40,24 @@ a {
 
 .flex-center {
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .flex-column {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .align-center {
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .gap-2 {
@@ -89,6 +89,11 @@ a {
 select {
   padding: 0.5rem 0.75rem;
   width: 100%;
+}
+
+.camera video#player {
+  width: 376px;
+  height: 296px;
 }
 
 video {
@@ -128,11 +133,11 @@ sup {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-color: #e2e2e2;
   border-radius: 10px;
   padding: 1rem;
@@ -146,36 +151,37 @@ form {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
   gap: 1rem;
 }
 
-label, input {
+label,
+input {
   display: block;
   width: 100%;
 }
 
 input {
-  padding: 0.5rem .75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 5px;
 }
 
-input[type="submit"] {
+input[type='submit'] {
   background-color: darkseagreen;
   color: black;
   text-transform: uppercase;
   font-weight: bold;
   border-radius: 5px;
   border: none;
-  padding: 1rem .5rem;
+  padding: 1rem 0.5rem;
 }
 
 hr {
@@ -190,11 +196,11 @@ hr {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -235,17 +241,17 @@ hr {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .email-wrapper {
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -ms-grid-row-align: center;
+  align-self: center;
   padding: 10px;
 }
 
@@ -259,14 +265,14 @@ hr {
 .email-input input {
   height: 25px;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .password-wrapper,
 .conf-password-wrapper {
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -ms-grid-row-align: center;
+  align-self: center;
   padding: 10px;
 }
 
@@ -280,14 +286,14 @@ hr {
 .pass-input input {
   height: 25px;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .signin-button,
 .signup-button {
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -ms-grid-row-align: center;
+  align-self: center;
   padding: 15px;
 }
 
@@ -348,11 +354,11 @@ ul li {
 .main-nav {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-columns: (1fr) [3];
+  grid-template-columns: repeat(3, 1fr);
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   justify-items: center;
 }
 
@@ -362,8 +368,8 @@ ul li {
   max-width: 800px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-columns: (1fr) [3];
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
 }
 
@@ -417,8 +423,8 @@ img {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -426,14 +432,14 @@ img {
   width: 100%;
   height: 200px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .dp {
   width: 50px;
   height: 50px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .update-profile .container {
@@ -441,11 +447,11 @@ img {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   max-width: 800px;
   margin: auto;
 }
@@ -454,22 +460,23 @@ img {
   width: 100%;
 }
 
-.update-profile input[type="radio"] {
+.update-profile input[type='radio'] {
   width: auto;
   cursor: pointer;
 }
 
-.update-profile input[type="checkbox"], .update-profile input[type="checkbox"] + label {
+.update-profile input[type='checkbox'],
+.update-profile input[type='checkbox'] + label {
   display: inline;
   width: auto;
 }
 
-.update-profile input[type=submit] {
+.update-profile input[type='submit'] {
   cursor: pointer;
 }
 
-.update-profile input[type=submit]:disabled {
-  opacity: .8;
+.update-profile input[type='submit']:disabled {
+  opacity: 0.8;
   cursor: not-allowed;
 }
 
@@ -480,19 +487,19 @@ img {
   display: block;
   margin: auto;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: top;
-     object-position: top;
+  object-position: top;
 }
 
 .upload-item {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
   width: 300px;
   -ms-flex-line-pack: end;
-      align-content: end;
+  align-content: end;
   grid-gap: 20px;
   margin: auto;
 }
