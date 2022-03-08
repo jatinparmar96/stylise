@@ -72,7 +72,8 @@ async function showForYou() {
  * Fetch all public-posts type community
  * @method showAllPosts
  */
-function showAllPosts() {
+async function showAllPosts() {
+    const user = await getCurrentUser();
     clearWrapper();
     // fetch all posts from "posts" collection
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community")
@@ -87,7 +88,8 @@ function showAllPosts() {
  * Fetch all public-posts type donation
  * @method showDonatePosts
  */
- function showDonatePosts() {
+ async function showDonatePosts() {
+    const user = await getCurrentUser();
     clearWrapper();
     // fetch posts from "posts" collection with type = donate-item
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item")
