@@ -1,15 +1,13 @@
 
 
 function init() {
-    //const userID; // variable to store user id
-    //const postBtn = document.getElementById('postBtn');
-    // saveBtn.addEventListener('click', uploadItemDesc);
     const postBtn = document.getElementById('postBtn');
 
     const imageSrc = document.getElementById('donate-input');
     const imageTarget = document.getElementById('image');
 
-    //const cameraBtn = document.getElementById('openCameraBtn');
+    const cameraBtn = document.getElementById('openCameraBtn');
+    cameraBtn.addEventListener('click', openCamera);
     postBtn.addEventListener('click', uploadDonationDesc);
     //initImageListener(getCategoryIdFromUrl());
     addImageChangeListener(imageSrc, imageTarget);
@@ -31,6 +29,8 @@ function addTagInput(){
  * Trigger Image file input field
  */
  function triggerDonateInput() {
+    let camera = document.getElementById('camera');
+    camera.innerHTML = '';
     document.getElementById('donate-input').click();
 }
 
@@ -47,6 +47,10 @@ function addTagInput(){
         try {
             closetRef.put(imgItem).then((snapshot) => {
                 document.getElementById('donate-input').value = null;
+                const context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                let camera = document.getElementById('camera');
+                camera.innerHTML = '';
                 resolve(snapshot);
 
             })
@@ -58,6 +62,27 @@ function addTagInput(){
     })
 }
 
+async function imageInput() {
+  const canvas = document.getElementById('canvas');
+  const imageItem = document.getElementById('donate-input').files[0];//image selected to upload by user
+  let imageBlob;
+  try {
+    imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+  } catch (err) {
+    console.log(err);
+  }
+  let inputImage;
+
+  if (imageItem) {
+    inputImage = imageItem;
+    return inputImage;
+  } 
+  if (imageBlob){
+    inputImage = imageBlob;
+    return inputImage;
+  }
+}
+
 /**
  * Handle save btn
  *  @returns {Promise<void>}
@@ -67,12 +92,13 @@ function addTagInput(){
     const userID = auth.currentUser.uid;
     const comments = document.getElementById('comments').value;
     const location = document.getElementById('location').value;
-    //const tags = document.getElementById('tags').value;
-    const imageItem = document.getElementById('donate-input').files[0]; //image selected to upload by user
-    if (!imageItem) {
-            return;
+    const imageValue = await imageInput();
+   
+    if ((imageValue == null)||(location.trim().length < 1)||(comments.trim().length < 1)||(tagsArray.length < 1)) {
+      console.log("Please don't leave any fields empty");
+      return;
     }
-    const imageRef = await donateItemImg(imageItem);
+    const imageRef = await donateItemImg(imageValue);
     const imageUrl = await imageRef.ref.getDownloadURL()
     console.log(imageUrl);
         const itemObject = {
@@ -106,4 +132,38 @@ function addTagInput(){
         }
 
     })
+}
+
+//*************************************************** */
+//**************************************************** */
+//*************************************************** */
+async function openCamera(){
+  let camera = document.getElementById('camera');
+  camera.innerHTML = '<video id="player" autoplay></video>';
+  document.getElementById('capture-btn').innerHTML = '<button id="capture">Capture</button>';
+  const player = document.getElementById('player');
+  const captureButton = document.getElementById('capture');
+
+  const constraints = {
+    video: true,
+  };
+
+  captureButton.addEventListener('click', () => {
+    camera.innerHTML = '<video id="player" width="0" style="display:none" autoplay></video><canvas id="canvas" width="376" height="296"></canvas>';
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    // Draw the video frame to the canvas.
+    context.drawImage(player, 0, 0, canvas.width, canvas.height);
+    document.getElementById('capture-btn').innerHTML = '';
+    
+    // Stop all video streams.
+    player.srcObject.getVideoTracks().forEach(track => track.stop());
+  });
+
+
+  navigator.mediaDevices.getUserMedia(constraints)
+    .then((stream) => {
+      player.srcObject = stream;
+    });
+
 }
