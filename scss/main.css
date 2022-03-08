@@ -176,6 +176,7 @@ input[type="submit"] {
   border-radius: 5px;
   border: none;
   padding: 1rem .5rem;
+  cursor: pointer;
 }
 
 hr {
@@ -503,15 +504,6 @@ img {
   width: auto;
 }
 
-.update-profile input[type=submit] {
-  cursor: pointer;
-}
-
-.update-profile input[type=submit]:disabled {
-  opacity: .8;
-  cursor: not-allowed;
-}
-
 .update-profile .profile-image {
   width: 300px;
   height: 300px;
@@ -522,6 +514,15 @@ img {
      object-fit: cover;
   -o-object-position: top;
      object-position: top;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+input[type="submit"]:disabled {
+  opacity: .8;
+  cursor: not-allowed;
 }
 
 .upload-item {

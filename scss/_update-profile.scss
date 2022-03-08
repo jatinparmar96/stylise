@@ -19,13 +19,7 @@
     display: inline;
     width: auto;
   }
-  input[type=submit]{
-    cursor: pointer;
-  }
-  input[type=submit]:disabled{
-    opacity: .8;
-    cursor: not-allowed;
-  }
+ 
   .profile-image{
     width: 300px;
     height: 300px;
@@ -36,4 +30,11 @@
     object-position: top;
 
   }
+}
+input[type="submit"]{
+  cursor: pointer;
+}
+input[type="submit"]:disabled{
+  opacity: .8;
+  cursor: not-allowed;
 }

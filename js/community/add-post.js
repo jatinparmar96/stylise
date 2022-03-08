@@ -44,6 +44,7 @@ async function uploadItemDesc(event) {
     event.preventDefault();
     const user = await getCurrentUser();
     console.log(user);
+    const saveBtn = document.getElementById('saveBtn');
     const category = document.getElementById('comments').value;
     const keywords = document.getElementById('keywords').value;
     const imageItem = document.getElementById('image-input').files[0]; //image selected to upload by user
@@ -53,6 +54,7 @@ async function uploadItemDesc(event) {
     if (!imageItem && !capturedImage) {
         return;
     }
+    saveBtn.disabled = true;
     if (capturedImage) {
         const blob = await new Promise(resolve => capturedImage.toBlob(resolve))
         imageRef = await uploadItemImg(blob);
@@ -60,17 +62,23 @@ async function uploadItemDesc(event) {
     else {
         imageRef = await uploadItemImg(imageItem);
     }
+
     const imageUrl = await imageRef.ref.getDownloadURL();
     const userData = await getUserData(user.uid);
-    const itemObject = {
+    let itemObject = {
         public: true,
         type: 'community',
         keywords: keywords.split(','),
         uri: imageUrl,
         userID: user.uid,
         user_uri: user.photoURL,
-        username: userData.data().username
     };
+    if (userData.data().username) {
+        itemObject = { ...itemObject, ...{ username: userData.data().username } }
+    }
+    else {
+        itemObject = { ...itemObject, ...{ username: `You don't have a username` } }
+    }
     const docRef = await db.collection('posts').add(itemObject);
     alert('item added');
     window.location.href = 'index.html#home'
