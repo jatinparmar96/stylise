@@ -37,7 +37,6 @@ async function uploadItemImg(imgItem) {
             closetRef.put(imgItem).then((snapshot) => {
                 document.getElementById('image-input').value = null;
                 resolve(snapshot);
-
             })
         }
         catch (error) {
@@ -56,13 +55,21 @@ async function uploadItemDesc(event) {
     const category = document.getElementById('categories').value;
     const keywords = document.getElementById('keywords').value;
     const imageItem = document.getElementById('image-input').files[0]; //image selected to upload by user
-    if (!imageItem) {
-            return;
+    const capturedImage = document.getElementById('capturedImage');
+    let imageRef;
+
+    if (!imageItem && !capturedImage) {
+        return;
     }
-    const imageRef = await uploadItemImg(imageItem);
-    const imageUrl = await imageRef.ref.getDownloadURL()
-    console.log(keywords)
-        const itemObject = {
+    if (capturedImage) {
+        const blob = await new Promise(resolve => capturedImage.toBlob(resolve))
+        imageRef = await uploadItemImg(blob);
+    }
+    else {
+        imageRef = await uploadItemImg(imageItem);
+    }
+    const imageUrl = await imageRef.ref.getDownloadURL();
+    const itemObject = {
             category,
             keywords: keywords.split(','),
             uri: imageUrl,
@@ -97,7 +104,6 @@ function disableInput(inputElement) {
     inputElement.parentElement.previousElementSibling.disabled = false;
 }
 function checkOptionValue(selectField) {
-    console.log(selectField.nextSibling)
     if (selectField.options[selectField.selectedIndex].value === 'custom') {
         toggleInput(selectField, selectField.nextElementSibling);
         selectField.selectedIndex = 0;
@@ -125,7 +131,7 @@ async function getUserData(uid) {
  */
 
 function initImageListener(categoryId) {
-    const query = db.collection(`posts`);
+    const query = db.collection(`posts`).where('category', '==', getCategoryIdFromUrl());
     const listener = query.onSnapshot(querySnapshot => {
         const categoryImages = document.getElementById('category-images');
         categoryImages.innerHTML = '';
@@ -202,20 +208,45 @@ function addImageChangeListener(src, target) {
 }
 
 function openCamera() {
-    const video = document.getElementById('video-stream')
+    const video = document.getElementById('video-stream');
+    const snapBtn = document.getElementById('snapPhotoBtn');
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         // Not adding `{ audio: true }` since we only want video now
         navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
             //video.src = window.URL.createObjectURL(stream);
             video.srcObject = stream;
             video.classList.remove('dn')
+            snapBtn.classList.remove('dn');
+
             // video.play();  // or autplay
         });
     } else {
-        console.log('media devices not available in this browser');
+        alert('media devices not available in this browser');
     }
 }
 
+function captureImage() {
+    const video = document.getElementById('video-stream');
+    const canvasElement = document.createElement('canvas');
+    const context = canvasElement.getContext('2d');
+    canvasElement.width = video.videoWidth;
+    canvasElement.height = video.videoHeight;
+    canvasElement.id = 'capturedImage';
+    context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+    document.getElementById('image').src = canvasElement.toDataURL('image/jpeg');
+    const imageContainer = document.getElementById('imageContainer');
+    canvasElement.classList.add('dn');
+    if (imageContainer.lastElementChild.nodeName === 'CANVAS') {
+        const prevCanvas = document.getElementById('capturedImage');
+        imageContainer.replaceChild(canvasElement, prevCanvas);
+    }
+    else {
+        imageContainer.appendChild(canvasElement);
+    }
+    const tracks = video.srcObject.getTracks();
+    tracks.forEach((track) => track.stop());
+    video.classList.add('dn');
+}
 //to do:
 // 1 - html: leave just save button to execute both functions
 // 2 - Create a save button handler function to execute both functions

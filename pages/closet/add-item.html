@@ -5,10 +5,10 @@
             <div class="upload-image">
                 <div class="images-container" id="img-download">
                 </div>
-                <div class="flex flex-column">
+                <div class="flex flex-column" id="imageContainer">
                 
                     <video class="dn" id="video-stream" autoplay></video>
-                    <button class="dn" id="snap-photo">Capture Image</button>
+                    <button class="dn" type="button" id="snapPhotoBtn" onclick="captureImage()">Capture Image</button>
                     <img id="image">
                     <input type="file" style="display: none;" id="image-input" name="img" accept="image/*">
                 </div>
