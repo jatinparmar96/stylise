@@ -26,6 +26,7 @@ function addTagInput(){
     if (tagValue.value != '' && tagValue.value.trim().length > 0){
     tagsArray.push(tagValue.value); //stores tag in an array
     }
+    tagValue.value = null;
 }
 
 /**
