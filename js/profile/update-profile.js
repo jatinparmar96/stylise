@@ -3,6 +3,7 @@ function init() {
     const form = document.getElementById('update-profile-form')
     form.addEventListener('submit', handleFormSubmit);
     addCheckboxEventListeners();
+ 
     const imgSrc = document.getElementById('img-picker');
     const target = document.getElementById('image')
     addImageChangeListener(imgSrc, target)
@@ -54,6 +55,12 @@ async function handleFormSubmit(event) {
         if (key === 'forYouOption[]') {
             let newKey = key.substring(0, key.length - 2);
             values[newKey] = values[newKey] ? [...values[newKey], value] : [value];
+        }
+        else if (key === 'tags') {
+            let newKey= value.split(" ");
+            console.log(newKey);
+            values[key] = newKey;
+
         } else {
             values[key] = value;
         }
@@ -120,6 +127,8 @@ async function handleAuthStateChange(user) {
     const userFieldsRef = await db.collection('users').doc(user.uid).get();
     if (userFieldsRef.exists) {
         const userFields = userFieldsRef.data();
+        const userName = document.getElementById('user-name');
+        userName.innerHTML = userFields.username;
         const form = document.getElementById('update-profile-form');
         const inputs = form.elements;
         if (user.photoURL) {
