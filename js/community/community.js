@@ -24,6 +24,36 @@ function clearWrapper(){
 }
 
 /**
+ * add posts into the wrapper
+ * @method addPosts
+ * @param
+ */
+function addPosts(doc){
+    let div= document.createElement("div");
+    div.classList.add("post");
+
+        let img = document.createElement("img");
+        img.src = doc.data().uri;
+        div.appendChild(img);
+
+    let div_user = document.createElement("div");
+    div_user.classList.add("user-info");
+
+        let img_user = document.createElement("img");
+        img_user.classList.add("dp");
+        img_user.src = doc.data().user_uri;
+        div_user.appendChild(img_user);
+
+        let username = document.createElement("span");
+        username.innerHTML = doc.data().username;
+        div_user.appendChild(username);
+
+    div.appendChild(div_user);
+    
+    document.getElementById("wrapper").appendChild(div);
+}
+
+/**
  * Show posts that are tagged with account keywords
  * @method showForYou
  */
@@ -41,28 +71,7 @@ async function showForYou() {
         .get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
             
-                let div= document.createElement("div");
-                div.classList.add("post");
-
-                    let img = document.createElement("img");
-                    img.src = doc.data().uri;
-                    div.appendChild(img);
-
-                let div_user = document.createElement("div");
-                div_user.classList.add("user-info");
-
-                    let img_user = document.createElement("img");
-                    img_user.classList.add("dp");
-                    img_user.src = doc.data().user_uri;
-                    div_user.appendChild(img_user);
-
-                    let username = document.createElement("span");
-                    username.innerHTML = doc.data().username;
-                    div_user.appendChild(username);
-
-                div.appendChild(div_user);
-                
-                document.getElementById("wrapper").appendChild(div);
+               addPosts(doc);
                 
             });
     });
@@ -82,28 +91,7 @@ function showAllPosts() {
         .get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
             
-                let div= document.createElement("div");
-                div.classList.add("post");
-
-                    let img = document.createElement("img");
-                    img.src = doc.data().uri;
-                    div.appendChild(img);
-
-                let div_user = document.createElement("div");
-                div_user.classList.add("user-info");
-
-                    let img_user = document.createElement("img");
-                    img_user.classList.add("dp");
-                    img_user.src = doc.data().user_uri;
-                    div_user.appendChild(img_user);
-
-                    let username = document.createElement("span");
-                    username.innerHTML = doc.data().username;
-                    div_user.appendChild(username);
-
-                div.appendChild(div_user);
-                
-                document.getElementById("wrapper").appendChild(div);
+                addPosts(doc);
                 
             });
     });
@@ -121,28 +109,7 @@ function showAllPosts() {
         .get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
             
-                let div= document.createElement("div");
-                div.classList.add("post");
-
-                    let img = document.createElement("img");
-                    img.src = doc.data().uri;
-                    div.appendChild(img);
-
-                let div_user = document.createElement("div");
-                div_user.classList.add("user-info");
-
-                    let img_user = document.createElement("img");
-                    img_user.classList.add("dp");
-                    img_user.src = doc.data().user_uri;
-                    div_user.appendChild(img_user);
-
-                    let username = document.createElement("span");
-                    username.innerHTML = doc.data().username;
-                    div_user.appendChild(username);
-
-                div.appendChild(div_user);
-                
-                document.getElementById("wrapper").appendChild(div);
+                addPosts(doc);
                 
             });
     });
