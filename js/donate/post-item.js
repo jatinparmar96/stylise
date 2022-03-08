@@ -16,12 +16,15 @@ function init() {
 
 init();
 
+/**
+ * handle add tag button
+ */
 document.getElementById('add-tag').addEventListener('click', addTagInput);
 let tagValue = document.getElementById('tags');
-let tagsArray = [];
+let tagsArray = []; //array to store tags
 function addTagInput(){
     if (tagValue.value != '' && tagValue.value.trim().length > 0){
-    tagsArray.push(tagValue.value);
+    tagsArray.push(tagValue.value); //stores tag in an array
     }
 }
 
@@ -46,6 +49,7 @@ function addTagInput(){
     return new Promise((resolve, reject) => {
         try {
             closetRef.put(imgItem).then((snapshot) => {
+                document.getElementById('image').removeAttribute('src');
                 document.getElementById('donate-input').value = null;
                 let camera = document.getElementById('camera');
                 camera.innerHTML = '';
@@ -60,12 +64,14 @@ function addTagInput(){
     })
 }
 
+//**********************************
+//*****check if image exists in canvas or donate-input */
 async function imageInput() {
   const canvas = document.getElementById('canvas');
   const imageItem = document.getElementById('donate-input').files[0];//image selected to upload by user
   let imageBlob;
   try {
-    imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+    imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));//image captured by camera 
   } catch (err) {
     console.log(err);
   }
@@ -137,9 +143,11 @@ async function imageInput() {
 }
 
 //*************************************************** */
-//**************************************************** */
+//******handle open camera button******************** */
 //*************************************************** */
 async function openCamera(){
+  document.getElementById('image').removeAttribute('src');
+  document.getElementById('donate-input').value = null;
   let camera = document.getElementById('camera');
   camera.innerHTML = '<video id="player" autoplay></video>';
   document.getElementById('capture-btn').innerHTML = '<button id="capture">Capture</button>';
