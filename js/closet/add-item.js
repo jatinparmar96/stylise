@@ -104,7 +104,6 @@ function disableInput(inputElement) {
     inputElement.parentElement.previousElementSibling.disabled = false;
 }
 function checkOptionValue(selectField) {
-    console.log(selectField.nextSibling)
     if (selectField.options[selectField.selectedIndex].value === 'custom') {
         toggleInput(selectField, selectField.nextElementSibling);
         selectField.selectedIndex = 0;
@@ -196,8 +195,6 @@ function addImageChangeListener(src, target) {
     fileReader.onload = function () {
         target.src = this.result
         target.classList.add('profile-image')
-        console.log(target.src)
-
     }
     src.addEventListener('change', function () {
         if (src.files.length) {
@@ -224,7 +221,7 @@ function openCamera() {
             // video.play();  // or autplay
         });
     } else {
-        console.log('media devices not available in this browser');
+        alert('media devices not available in this browser');
     }
 }
 
@@ -239,7 +236,6 @@ function captureImage() {
     document.getElementById('image').src = canvasElement.toDataURL('image/jpeg');
     const imageContainer = document.getElementById('imageContainer');
     canvasElement.classList.add('dn');
-    console.log(imageContainer.lastChild.nodeName)
     if (imageContainer.lastElementChild.nodeName === 'CANVAS') {
         const prevCanvas = document.getElementById('capturedImage');
         imageContainer.replaceChild(canvasElement, prevCanvas);
