@@ -47,8 +47,6 @@ function addTagInput(){
         try {
             closetRef.put(imgItem).then((snapshot) => {
                 document.getElementById('donate-input').value = null;
-                const context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height);
                 let camera = document.getElementById('camera');
                 camera.innerHTML = '';
                 resolve(snapshot);
@@ -111,6 +109,10 @@ async function imageInput() {
             public: true
         };
         await db.collection('posts').add(itemObject);
+
+        document.getElementById('comments').value = null;
+        document.getElementById('location').value = null;
+        document.getElementById('tags').value = null;
 }
 
 /**
