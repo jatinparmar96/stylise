@@ -450,6 +450,31 @@ img {
      object-fit: cover;
 }
 
+.fab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 50%;
+  background-color: aquamarine;
+  border: 0;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
 .update-profile .container {
   display: -webkit-box;
   display: -ms-flexbox;

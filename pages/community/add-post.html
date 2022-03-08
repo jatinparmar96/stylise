@@ -1,0 +1,32 @@
+<main>
+    <div class="upload-item">
+        <a href="index.html#home">Back</a>
+        <form id="add-item-form">
+            <div class="upload-image">
+                <div class="images-container" id="img-download">
+                </div>
+                <div class="flex flex-column" id="imageContainer">
+
+                    <video class="dn" id="video-stream" autoplay></video>
+                    <button class="dn" type="button" id="snapPhotoBtn" onclick="captureImage()">Capture Image</button>
+                    <img id="image">
+                    <input type="file" style="display: none;" id="image-input" name="img" accept="image/*">
+                </div>
+                <div class="flex gap-1">
+                    <button type="button" id="openCameraBtn" onclick="openCamera()">Open Camera</button>
+                    <button type="button" id="uploadImageBtn" onclick="triggerImageInput()">Upload Image</button>
+                </div>
+            </div>
+            <div class="post-description">
+                <label>
+                    Comments
+                </label>
+                <textarea id="comments" rows="4" style="width: 100%;" placeholder="some context"></textarea>
+                <label for="keywords">Keywords</label>
+                <textarea id="keywords" name="keywords" rows="4" style="width: 100%;"
+                    placeholder="summer,winter,rain"></textarea>
+            </div>
+            <input type="submit" value="Save" id="saveBtn">
+        </form>
+    </div>
+</main>
