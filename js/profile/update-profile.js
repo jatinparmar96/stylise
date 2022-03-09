@@ -136,7 +136,7 @@ async function handleAuthStateChange(user) {
             image.src = user.photoURL;
             image.classList.add('profile-image');
         }
-        console.log(userFields)
+        console.log(userFields);
         // Iterate over the form controls
         for (i = 0; i < inputs.length; i++) {
             if (inputs[i].nodeName === "INPUT") {
@@ -144,7 +144,6 @@ async function handleAuthStateChange(user) {
                 // Update text input
                 const inputName = inputs[i].name;
                 inputs[i][inputName] = userFields[inputName];
-
 
 
                 //Update Checkbox or Radio Input
@@ -168,6 +167,8 @@ async function handleAuthStateChange(user) {
             }
 
         }
+        const location = document.getElementById("location-city");
+        location.value = userFields.location;
 
     }
 }
