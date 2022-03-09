@@ -11,6 +11,7 @@ Router.init('mainArea', [
     new Page('#closet', '/pages/closet/closet.html', ['/js/closet/closet']),
     new Page('#category', '/pages/closet/add-item.html', ['/js/closet/add-item']),
     new Page('#closet/add-item', '/pages/closet/add-item.html', ['/js/closet/add-item']),
+    new Page('#community/add-post', '/pages/community/add-post.html', ['/js/community/add-post']),
     new Page('#donate/post-item', '/pages/donate/post-item.html', ['/js/donate/post-item'])
     // add new pages here
 ]);
