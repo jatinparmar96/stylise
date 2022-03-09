@@ -58,8 +58,7 @@ async function handleFormSubmit(event) {
         }
         else if (key === 'tags') {
             let newKey = value.split(",");
-            newKey = newKey.trim();
-            console.log(newKey);
+            newKey.map(k => k.trim());
             values[key] = newKey;
 
         } else {
