@@ -1,6 +1,6 @@
-$primary-color: #765FC2;
-$secondary-color:#BDB8CF;
-*{
+$primary-color: #765fc2;
+$secondary-color: #bdb8cf;
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -9,10 +9,10 @@ body {
   /*Generic font family for now*/
   font-family: sans-serif;
 }
-h1{
+h1 {
   font-size: 2rem;
 }
-.visually-hidden{
+.visually-hidden {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
   height: 1px;
@@ -22,51 +22,56 @@ h1{
   padding: 0;
   position: absolute;
 }
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-.flex{
+.flex {
   display: flex;
   gap: 1rem;
 }
-.flex-center{
+.flex-center {
   justify-content: center;
   align-items: center;
 }
-.flex-column{
+.flex-column {
   flex-direction: column;
 }
-.align-center{
+.align-center {
   align-items: center;
 }
-.gap-2{
+.gap-2 {
   gap: 1.5rem;
 }
-.gap-1{
+.gap-1 {
   gap: 0.5rem;
 }
-.row{
+.row {
   display: flex;
 }
 
-.mt-1{
+.mt-1 {
   margin-top: 1rem;
 }
-.mb-1{
+.mb-1 {
   margin-bottom: 1rem;
 }
 
-.text-center{
+.text-center {
   text-align: center;
 }
-select{
+select {
   padding: 0.5rem 0.75rem;
   width: 100%;
 }
 
-video{
+video {
   width: 200px;
   height: 200px;
+}
+
+.camera video#player {
+  width: 376px;
+  height: 296px;
 }
