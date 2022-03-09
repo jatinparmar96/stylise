@@ -57,8 +57,8 @@ async function handleFormSubmit(event) {
             values[newKey] = values[newKey] ? [...values[newKey], value] : [value];
         }
         else if (key === 'tags') {
-            let newKey = value.split(",");
-            newKey.map(k => k.trim());
+            let keyaux = value.split(",");
+            let newKey = keyaux.map(key => key.trim());
             values[key] = newKey;
 
         } else {
@@ -169,6 +169,9 @@ async function handleAuthStateChange(user) {
         }
         const location = document.getElementById("location-city");
         location.value = userFields.location;
+
+        const tags = document.getElementById("tags");
+        tags.value = userFields.tags;
 
     }
 }
