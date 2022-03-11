@@ -1,5 +1,5 @@
 const Models = {
     categories: 'categories',
-    post: 'post',
-    user: 'user'
+    post: 'posts',
+    user: 'users'
 }
