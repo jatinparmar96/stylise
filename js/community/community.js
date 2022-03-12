@@ -42,6 +42,25 @@ function addPosts(doc){
         let username = document.createElement("span");
         username.innerHTML = doc.data().username;
         div_user.appendChild(username);
+        let favoriteIcon = document.createElement("button");
+        favoriteIcon.classList.add("favorite-icon");
+        favoriteIcon.setAttribute('id','favorite-icon');
+        favoriteIcon.innerHTML = "Add to Favorite";
+        /**
+         * Add post to favorites function
+         */
+        favoriteIcon.onclick = async function addToFavorites (){
+            console.log(`${doc.id} added to favorites`);
+            const user = await getCurrentUser();
+            const docFavRef = await db.collection('users/'+user.uid+'/favorites').doc(doc.id).set(doc.data());
+            
+        }
+        div_user.appendChild(favoriteIcon);
+            // let favElement = document.createElement("i");
+            // favElement.classList.add("fa-regular");
+            // favElement.classList.add("fa-heart");
+            // favoriteIcon.appendChild(favElement);
+
     div.appendChild(div_user);
     document.getElementById("wrapper").appendChild(div);
 }
@@ -99,5 +118,6 @@ async function showAllPosts() {
             });
     });
 }
+
 
 init();
