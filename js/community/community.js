@@ -13,6 +13,24 @@ function init() {
     //Handle community favorite
     const favorite = document.getElementById('community-favourite')
     favorite.addEventListener('click', showFavorite);
+
+    /**
+     * identify active home tab
+     */
+    // Get the container element
+    let btnContainer = document.getElementById("community-nav-list");
+
+    // Get all buttons with class="nav-btn" inside the container
+    let btns = btnContainer.getElementsByClassName("nav-btn");
+
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (let i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+        let current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+    });
+    }
    
 }
 
@@ -23,24 +41,6 @@ function init() {
 function clearWrapper(){
     const wrapper = document.getElementById("wrapper");
     wrapper.innerHTML="";
-}
-
-/**
- * identify active home tab
- */
-// Get the container element
-let btnContainer = document.getElementById("community-nav-list");
-
-// Get all buttons with class="nav-btn" inside the container
-let btns = btnContainer.getElementsByClassName("nav-btn");
-
-// Loop through the buttons and add the active class to the current/clicked button
-for (let i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-    let current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
 }
 
 
@@ -166,6 +166,5 @@ async function showAllPosts() {
             });
     });
 }
-
 
 init();
