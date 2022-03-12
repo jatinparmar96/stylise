@@ -10,6 +10,9 @@ function init() {
      //Handle Community For You
     const forYou = document.getElementById('community-for-you')
     forYou.addEventListener('click', showForYou);
+    //Handle community favorite
+    const favorite = document.getElementById('community-favourite')
+    favorite.addEventListener('click', showFavorite);
    
 }
 
@@ -96,6 +99,22 @@ async function showAllPosts() {
     clearWrapper();
     // fetch all posts from "posts" collection
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community")
+        .get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                addPosts(doc);
+            });
+    });
+}
+
+/**
+ * Fetch all favorite posts
+ * 
+ */
+ async function showFavorite() {
+    const user = await getCurrentUser();
+    clearWrapper();
+    // fetch all posts from "favorites" collection
+    db.collection("users/"+user.uid+"/favorites")
         .get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 addPosts(doc);
