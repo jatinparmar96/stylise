@@ -72,7 +72,11 @@ function addPosts(doc){
         if (all.classList.contains('active') || forYou.classList.contains('active')){
             favoriteIcon.classList.add("favorite-icon");
             favoriteIcon.setAttribute('id','favorite-icon');
-            favoriteIcon.innerHTML = "Add to Favorite";
+            //favoriteIcon.innerHTML = "Add to Favorite";
+            let favElement = document.createElement("i");
+            favElement.classList.add("fa");
+            favElement.classList.add("fa-heart");
+            favoriteIcon.appendChild(favElement);
         }
         /**
          * Add post to favorites function
