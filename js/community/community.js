@@ -26,6 +26,25 @@ function clearWrapper(){
 }
 
 /**
+ * identify active home tab
+ */
+// Get the container element
+let btnContainer = document.getElementById("community-nav-list");
+
+// Get all buttons with class="nav-btn" inside the container
+let btns = btnContainer.getElementsByClassName("nav-btn");
+
+// Loop through the buttons and add the active class to the current/clicked button
+for (let i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    let current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+
+/**
  * add posts into the wrapper
  * @method addPosts
  * @param
@@ -45,10 +64,16 @@ function addPosts(doc){
         let username = document.createElement("span");
         username.innerHTML = doc.data().username;
         div_user.appendChild(username);
+
+        const all = document.getElementById('community-all');
+        const forYou = document.getElementById('community-for-you');
         let favoriteIcon = document.createElement("button");
-        favoriteIcon.classList.add("favorite-icon");
-        favoriteIcon.setAttribute('id','favorite-icon');
-        favoriteIcon.innerHTML = "Add to Favorite";
+        
+        if (all.classList.contains('active') || forYou.classList.contains('active')){
+            favoriteIcon.classList.add("favorite-icon");
+            favoriteIcon.setAttribute('id','favorite-icon');
+            favoriteIcon.innerHTML = "Add to Favorite";
+        }
         /**
          * Add post to favorites function
          */
