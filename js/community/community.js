@@ -71,8 +71,6 @@ function addPosts(doc){
         
         if (all.classList.contains('active') || forYou.classList.contains('active')){
             favoriteIcon.classList.add("favorite-icon");
-            favoriteIcon.setAttribute('id','favorite-icon');
-            //favoriteIcon.innerHTML = "Add to Favorite";
             let favElement = document.createElement("i");
             favElement.classList.add("fa");
             favElement.classList.add("fa-heart");
@@ -88,10 +86,6 @@ function addPosts(doc){
             
         }
         div_user.appendChild(favoriteIcon);
-            // let favElement = document.createElement("i");
-            // favElement.classList.add("fa-regular");
-            // favElement.classList.add("fa-heart");
-            // favoriteIcon.appendChild(favElement);
 
     div.appendChild(div_user);
     document.getElementById("wrapper").appendChild(div);
