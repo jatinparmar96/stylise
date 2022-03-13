@@ -23,8 +23,11 @@ document.getElementById('add-tag').addEventListener('click', addTagInput);
 let tagValue = document.getElementById('tags');
 let tagsArray = []; //array to store tags
 function addTagInput(){
+    const showTags = document.getElementById('show-tags');
     if (tagValue.value != '' && tagValue.value.trim().length > 0){
     tagsArray.push(tagValue.value); //stores tag in an array
+    let tagsString = tagsArray.join(", ");
+    showTags.innerHTML = tagsString;
     }
     tagValue.value = null;
 }
