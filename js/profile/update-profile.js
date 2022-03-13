@@ -176,4 +176,19 @@ async function handleAuthStateChange(user) {
     }
 }
 
+/**
+ * 
+ */
+function getCurrentUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(handleCoords);
+    }
+}
+async function handleCoords(position) {
+    const coords = position.coords;
+    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${coords.latitude}&lon=${coords.longitude}&format=json`);
+    data = await response.json();
+    document.getElementById('location-city').value = data.address.city;
+    // console.log(data);
+}
 init();
