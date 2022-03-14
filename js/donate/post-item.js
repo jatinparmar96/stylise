@@ -91,16 +91,22 @@ async function imageInput() {
   }
 }
 
+async function getUserData(uid) {
+  return db.collection('users').doc(uid).get();
+}
+
 /**
  * Handle save btn
  *  @returns {Promise<void>}
  */
  async function uploadDonationDesc(event) {
     event.preventDefault();
-    const userID = auth.currentUser.uid;
+    const user = await getCurrentUser();
+    const userID = user.uid;
     const comments = document.getElementById('comments').value;
     const location = document.getElementById('location').value;
     const imageValue = await imageInput();
+    
    
     if ((imageValue == null)||(location.trim().length < 1)||(comments.trim().length < 1)||(tagsArray.length < 1)) {
       console.log("Please don't leave any fields empty");
@@ -109,6 +115,7 @@ async function imageInput() {
     const imageRef = await donateItemImg(imageValue);
     const imageUrl = await imageRef.ref.getDownloadURL()
     console.log(imageUrl);
+    const userData = await getUserData(userID);
         const itemObject = {
             userID,
             comments,
@@ -116,7 +123,10 @@ async function imageInput() {
             tags : tagsArray,
             uri: imageUrl,
             type: 'donate-item',
-            public: true
+            public: true,
+            timeStamp: timestamp(),
+            username: userData.data().username,
+           
         };
         await db.collection('posts').add(itemObject);
 
