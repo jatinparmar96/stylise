@@ -1,7 +1,7 @@
+
+
 function init() {
-    //const userID; // variable to store user id
     const saveBtn = document.getElementById('saveBtn');
-    // saveBtn.addEventListener('click', uploadItemDesc);
     const form = document.getElementById('add-item-form');
 
     const imageSrc = document.getElementById('image-input');
@@ -45,7 +45,7 @@ async function uploadItemDesc(event) {
     const user = await getCurrentUser();
     console.log(user);
     const saveBtn = document.getElementById('saveBtn');
-    const category = document.getElementById('comments').value;
+    const comments = document.getElementById('comments').value;
     const keywords = document.getElementById('keywords').value;
     const imageItem = document.getElementById('image-input').files[0]; //image selected to upload by user
     const capturedImage = document.getElementById('capturedImage');
@@ -69,9 +69,11 @@ async function uploadItemDesc(event) {
         public: true,
         type: 'community',
         keywords: keywords.split(','),
+        comments: comments,
         uri: imageUrl,
         userID: user.uid,
         user_uri: user.photoURL,
+        timeStamp: timestamp(),
     };
     if (userData.data().username) {
         itemObject = { ...itemObject, ...{ username: userData.data().username } }
@@ -81,6 +83,7 @@ async function uploadItemDesc(event) {
     }
     const docRef = await db.collection('posts').add(itemObject);
     alert('item added');
+    
     window.location.href = 'index.html#home'
 
 }
@@ -168,11 +171,7 @@ function captureImage() {
     tracks.forEach((track) => track.stop());
     video.classList.add('dn');
 }
-//to do:
-// 1 - html: leave just save button to execute both functions
-// 2 - Create a save button handler function to execute both functions
-// 3 - link image to item description document
-//
+
 
 
 
