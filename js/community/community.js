@@ -65,8 +65,11 @@ function addPosts(doc) {
     img_user.src = doc.data().user_uri;
     div_user.appendChild(img_user);
     let username = document.createElement("span");
+    const userLink = document.createElement('a');
+    userLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     username.innerHTML = doc.data().username;
-    div_user.appendChild(username);
+    userLink.appendChild(username)
+    div_user.appendChild(userLink);
 
     const all = document.getElementById('community-all');
     const forYou = document.getElementById('community-for-you');

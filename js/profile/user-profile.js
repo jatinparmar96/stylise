@@ -1,7 +1,6 @@
 function init() {
     userDetails();
     showUserPosts();
-    console.log("test");
     //Handle User Outfit Posts
     const outfit = document.getElementById('profile-outfit')
     outfit.addEventListener('click', showUserPosts);
@@ -30,6 +29,7 @@ for (let i = 0; i < btns.length; i++) {
 
 async function userDetails() {
 const user = await getCurrentUser();
+console.log(user);
 const userFieldsRef = await db.collection('users').doc(user.uid).get();
 if (userFieldsRef.exists) {
     const userFields = userFieldsRef.data();
