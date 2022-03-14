@@ -553,9 +553,60 @@ input[type="submit"]:disabled {
   margin: auto;
 }
 
+.user-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  margin: 10px 20px 30px 20px;
+}
+
+.user-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.counter {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  grid-gap: 2px;
+  margin: auto 30px;
+}
+
+.user-message {
+  margin: auto 15px;
+}
+
+.action-buttons {
+  margin: auto 15px;
+}
+
+.action-btn {
+  margin: 5px auto;
+}
+
 .profile-image {
   width: 120px;
   height: 120px;
   border-radius: 50%;
+}
+
+.user-posts-type {
+  margin-left: 20px;
 }
 /*# sourceMappingURL=main.css.map */
