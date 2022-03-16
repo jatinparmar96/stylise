@@ -179,7 +179,7 @@ async function handleAuthStateChange(user) {
 /**
  * Runs on get location button click
  */
-async function getCurrentUserLocation() {
+function getCurrentUserLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(handleCoords);
     }
