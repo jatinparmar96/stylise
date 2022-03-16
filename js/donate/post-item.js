@@ -1,17 +1,17 @@
 
 
 function init() {
-    const postBtn = document.getElementById('postBtn');
+  const postBtn = document.getElementById('postBtn');
 
-    const imageSrc = document.getElementById('donate-input');
-    const imageTarget = document.getElementById('image');
+  const imageSrc = document.getElementById('donate-input');
+  const imageTarget = document.getElementById('image');
 
-    const cameraBtn = document.getElementById('openCameraBtn');
-    cameraBtn.addEventListener('click', openCamera);
-    postBtn.addEventListener('click', uploadDonationDesc);
-    //initImageListener(getCategoryIdFromUrl());
-    addImageChangeListener(imageSrc, imageTarget);
-    //initCategoryListener();
+  const cameraBtn = document.getElementById('openCameraBtn');
+  cameraBtn.addEventListener('click', openCamera);
+  postBtn.addEventListener('click', uploadDonationDesc);
+  //initImageListener(getCategoryIdFromUrl());
+  addImageChangeListener(imageSrc, imageTarget);
+  //initCategoryListener();
 }
 
 init();
@@ -22,50 +22,50 @@ init();
 document.getElementById('add-tag').addEventListener('click', addTagInput);
 let tagValue = document.getElementById('tags');
 let tagsArray = []; //array to store tags
-function addTagInput(){
-    const showTags = document.getElementById('show-tags');
-    if (tagValue.value != '' && tagValue.value.trim().length > 0){
+function addTagInput() {
+  const showTags = document.getElementById('show-tags');
+  if (tagValue.value != '' && tagValue.value.trim().length > 0) {
     tagsArray.push(tagValue.value); //stores tag in an array
     let tagsString = tagsArray.join(", ");
     showTags.innerHTML = tagsString;
-    }
-    tagValue.value = null;
+  }
+  tagValue.value = null;
 }
 
 /**
  * Trigger Image file input field
  */
- function triggerDonateInput() {
-    let camera = document.getElementById('camera');
-    camera.innerHTML = '';
-    document.getElementById('donate-input').click();
+function triggerDonateInput() {
+  let camera = document.getElementById('camera');
+  camera.innerHTML = '';
+  document.getElementById('donate-input').click();
 }
 
 /**
  * Uploads Image to firestorage and returns a ref to uploaded object.
  * @returns {Promise<unknown>}
  */
- async function donateItemImg(imgItem) {
-    const currentDate = new Date();
-    const storageRef = storage.ref();
-    const userID = auth.currentUser.uid;
-    const closetRef = storageRef.child("donate/" + userID + "/" + currentDate.getTime());// reference to user storage folder
-    return new Promise((resolve, reject) => {
-        try {
-            closetRef.put(imgItem).then((snapshot) => {
-                document.getElementById('image').removeAttribute('src');
-                document.getElementById('donate-input').value = null;
-                let camera = document.getElementById('camera');
-                camera.innerHTML = '';
-                resolve(snapshot);
+async function donateItemImg(imgItem) {
+  const currentDate = new Date();
+  const storageRef = storage.ref();
+  const userID = auth.currentUser.uid;
+  const closetRef = storageRef.child("donate/" + userID + "/" + currentDate.getTime());// reference to user storage folder
+  return new Promise((resolve, reject) => {
+    try {
+      closetRef.put(imgItem).then((snapshot) => {
+        document.getElementById('image').removeAttribute('src');
+        document.getElementById('donate-input').value = null;
+        let camera = document.getElementById('camera');
+        camera.innerHTML = '';
+        resolve(snapshot);
 
-            })
-        }
-        catch (error) {
-            console.log(error.code);
-            reject();
-        }
-    })
+      })
+    }
+    catch (error) {
+      console.log(error.code);
+      reject();
+    }
+  })
 }
 
 //**********************************
@@ -84,8 +84,8 @@ async function imageInput() {
   if (imageItem) {
     inputImage = imageItem;
     return inputImage;
-  } 
-  if (imageBlob){
+  }
+  if (imageBlob) {
     inputImage = imageBlob;
     return inputImage;
   }
@@ -99,67 +99,74 @@ async function getUserData(uid) {
  * Handle save btn
  *  @returns {Promise<void>}
  */
- async function uploadDonationDesc(event) {
-    event.preventDefault();
-    const user = await getCurrentUser();
-    const userID = user.uid;
-    const comments = document.getElementById('comments').value;
-    const location = document.getElementById('location').value;
-    const imageValue = await imageInput();
-    
-   
-    if ((imageValue == null)||(location.trim().length < 1)||(comments.trim().length < 1)||(tagsArray.length < 1)) {
-      console.log("Please don't leave any fields empty");
-      return;
-    }
-    const imageRef = await donateItemImg(imageValue);
-    const imageUrl = await imageRef.ref.getDownloadURL()
-    console.log(imageUrl);
-    const userData = await getUserData(userID);
-        const itemObject = {
-            userID,
-            comments,
-            location,
-            tags : tagsArray,
-            uri: imageUrl,
-            type: 'donate-item',
-            public: true,
-            timeStamp: timestamp(),
-            username: userData.data().username,
-           
-        };
-        await db.collection('posts').add(itemObject);
+async function uploadDonationDesc(event) {
+  event.preventDefault();
+  const userID = auth.currentUser.uid;
+  const comments = document.getElementById('comments').value;
+  const location = document.getElementById('location').value;
+  const imageValue = await imageInput();
 
-        document.getElementById('comments').value = null;
-        document.getElementById('location').value = null;
-        document.getElementById('tags').value = null;
+  if ((imageValue == null) || (location.trim().length < 1) || (comments.trim().length < 1) || (tagsArray.length < 1)) {
+    console.log("Please don't leave any fields empty");
+    return;
+  }
+  const imageRef = await donateItemImg(imageValue);
+  const imageUrl = await imageRef.ref.getDownloadURL();
+  const locationCity = document.getElementById('location').value;
+  const locationCoords = document.getElementById('locationCoords').value;
+  let locationObject = {}
+  if (locationCity && locationCoords) {
+    locationObject = {
+      city: locationCity,
+      coords: {
+        latitude: locationCoords.split(',')[0],
+        longitude: locationCoords.split(',')[1],
+      }
+    }
+  }
+
+  const itemObject = {
+    userID,
+    comments,
+    location,
+    tags: tagsArray,
+    uri: imageUrl,
+    type: 'donate-item',
+    public: true,
+    location: locationObject
+  };
+  await db.collection('posts').add(itemObject);
+
+  document.getElementById('comments').value = null;
+  document.getElementById('location').value = null;
+  document.getElementById('tags').value = null;
 }
 
 /**
  * 
  * Add Image Change listener, same method form update-profile.js file
  */
- function addImageChangeListener(src, target) {
-    const fileReader = new FileReader();
-    fileReader.onload = function () {
-        target.src = this.result;
-        target.classList.add('profile-image');
+function addImageChangeListener(src, target) {
+  const fileReader = new FileReader();
+  fileReader.onload = function () {
+    target.src = this.result;
+    target.classList.add('profile-image');
+  }
+  src.addEventListener('change', function () {
+    if (src.files.length) {
+      fileReader.readAsDataURL(src.files[0]);
+    } else {
+      target.classList.remove('profile-image');
+      target.src = '';
     }
-    src.addEventListener('change', function () {
-        if (src.files.length) {
-            fileReader.readAsDataURL(src.files[0]);
-        } else {
-            target.classList.remove('profile-image');
-            target.src = '';
-        }
 
-    })
+  })
 }
 
 //*************************************************** */
 //******handle open camera button******************** */
 //*************************************************** */
-async function openCamera(){
+async function openCamera() {
   document.getElementById('image').removeAttribute('src');
   document.getElementById('donate-input').value = null;
   let camera = document.getElementById('camera');
@@ -179,7 +186,7 @@ async function openCamera(){
     // Draw the video frame to the canvas.
     context.drawImage(player, 0, 0, canvas.width, canvas.height);
     document.getElementById('capture-btn').innerHTML = '';
-    
+
     // Stop all video streams.
     player.srcObject.getVideoTracks().forEach(track => track.stop());
   });
@@ -190,4 +197,19 @@ async function openCamera(){
       player.srcObject = stream;
     });
 
+}
+
+/**
+ * Runs on get location button click
+ */
+function getCurrentUserLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(handleCoords);
+  }
+}
+async function handleCoords(position) {
+  const locationData = await reverseGeoCode(position);
+  document.getElementById('location').value = locationData.address.city;
+  console.log(position)
+  document.getElementById('locationCoords').value = `${position.coords.latitude},${position.coords.longitude}`;
 }

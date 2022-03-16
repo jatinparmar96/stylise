@@ -28,13 +28,11 @@
                 </div>
                 <div class="location-wrapper">
                     <label for="location">Select a location:</label>
-                    <select name="location" id="location">
-                        <option value="vancouver">Vancouver</option>
-                        <option value="north-vancouver">North Vancouver</option>
-                        <option value="burnaby">Burnaby</option>
-                        <option value="richmond">Richmond</option>
-                        <option value="surrey">Surrey</option>
-                    </select>
+                    <div class="flex gap-1">
+                        <input type="text" id="location">
+                        <input type="hidden" id="locationCoords">
+                        <button type="button" onclick="getCurrentUserLocation()"> Get Location</button>
+                    </div>
                 </div>
                 <div class="tags-wrapper">
                     <label for="tags">Add Tags</label>

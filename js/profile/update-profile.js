@@ -176,4 +176,17 @@ async function handleAuthStateChange(user) {
     }
 }
 
+/**
+ * Runs on get location button click
+ */
+function getCurrentUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(handleCoords);
+    }
+}
+async function handleCoords(position) {
+    const locationData = await reverseGeoCode(position);
+    document.getElementById('location-city').value = locationData.address.city;
+}
+
 init();
