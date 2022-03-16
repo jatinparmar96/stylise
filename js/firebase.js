@@ -15,6 +15,8 @@ const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
 const auth = firebase.auth();
+
+const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 // Firebase Authentication methods
 
 async function getCurrentUser() {

@@ -91,6 +91,10 @@ async function imageInput() {
   }
 }
 
+async function getUserData(uid) {
+  return db.collection('users').doc(uid).get();
+}
+
 /**
  * Handle save btn
  *  @returns {Promise<void>}
