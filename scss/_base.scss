@@ -1,17 +1,13 @@
 $primary-color: #765fc2;
 $secondary-color: #bdb8cf;
+$text-color:#444444;
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-body {
-  /*Generic font family for now*/
-  font-family: sans-serif;
-}
-h1 {
-  font-size: 2rem;
-}
+
+
 .visually-hidden {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);

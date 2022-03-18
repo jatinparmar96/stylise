@@ -1,4 +1,10 @@
 .update-profile{
+
+  section {
+    background: radial-gradient(circle at top left, #765fc2 0%, #F6F4F9 60%,transparent 80%),
+    radial-gradient(circle at bottom right, #765fc2 0%, #F6F4F9 60%,transparent 80%);
+  }
+
   .container{
     display: flex;
     justify-content: center;
@@ -28,13 +34,31 @@
     margin: auto;
     object-fit: cover;
     object-position: top;
-
   }
-}
+
 input[type="submit"]{
   cursor: pointer;
 }
 input[type="submit"]:disabled{
   opacity: .8;
   cursor: not-allowed;
+}
+}
+
+form {
+// MEDIUM
+@media screen and (min-width: 992px) {
+  display: grid;
+  grid-template-columns: 1fr, 2fr;
+  grid-gap: 2rem;
+}
+
+#name-img.form-field{
+grid-column:1/2;
+}
+
+#user-info {
+  grid-column: 2/3;
+}
+
 }
