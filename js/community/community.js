@@ -156,15 +156,62 @@ async function showFavorite() {
  * @method showDonatePosts
  */
 async function showDonatePosts() {
+    // Setting distance to 10KM for now.
+    const distance = 10;
     const user = await getCurrentUser();
     clearWrapper();
+    const userMetaDataDoc = await db.collection('users').doc(user.uid).get()
+    const userMetaData = userMetaDataDoc.data();
     // fetch posts from "posts" collection with type = donate-item
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item")
         .get().then((querySnapshot) => {
+            let donateDocsArray = [];
             querySnapshot.forEach((doc) => {
-                addPosts(doc);
+                donateDocsArray.push(
+                    {
+                        ...doc.data(), id: doc.id
+                    }
+                );
             });
+            donateDocsArray = donateDocsArray.filter((item) => {
+                if (item.location.coords) {
+                    const coordsDistance = distanceBetweenCoords(
+                        userMetaData.locationCoords.latitude,
+                        userMetaData.locationCoords.longitude,
+                        item.location.coords.latitude,
+                        item.location.coords.longitude
+                    )
+                    if (Math.round(coordsDistance) <= distance) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                return false;
+            });
+            const wrapper = document.getElementById("wrapper");
+            donateDocsArray.forEach(item => {
+                wrapper.innerHTML += renderDonateItems(item);
+
+            })
         });
 }
 
+function renderDonateItems(item) {
+    return `
+    <div class="post">
+        <a href="index.html#view-post?id=${item.id}">
+            <img src="${item.uri}">
+        </a>
+        <div class="user-info">
+            <img class="dp" src="${item.user_uri}">
+            <a href=""> 
+                <span>${item.username}</span>
+            </a>
+            <button class="favorite-icon"><i class="fa fa-heart"></i></button>
+        </div>
+    </div>
+    `
+}
 init();
