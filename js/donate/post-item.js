@@ -130,6 +130,7 @@ async function uploadDonationDesc(event) {
     username: userData.data().username,
     comments,
     location,
+    user_uri: user.photoURL,
     tags: tagsArray,
     uri: imageUrl,
     user_uri: user.photoURL,

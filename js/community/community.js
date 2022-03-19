@@ -199,6 +199,7 @@ async function showDonatePosts() {
 }
 
 function renderDonateItems(item) {
+    console.log(item);
     return `
     <div class="post">
         <a href="index.html#view-post?id=${item.id}">
@@ -206,10 +207,9 @@ function renderDonateItems(item) {
         </a>
         <div class="user-info">
             <img class="dp" src="${item.user_uri}">
-            <a href=""> 
+            <a href="#"> 
                 <span>${item.username}</span>
             </a>
-            <button class="favorite-icon"><i class="fa fa-heart"></i></button>
         </div>
     </div>
     `
