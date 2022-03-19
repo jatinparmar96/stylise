@@ -13,8 +13,8 @@
                 <div id="user-info">
 
                 <div class="form-field">
-                    <span>Gender</span>
-                    <div class="flex gap-2">
+                    <span id = "gender">Gender</span>
+                    <div class="flex gap-2" id="gender_field">
                         <div class="flex align-center gap-1">
                             <input class="form-input" name="gender" id="gender-she" value="female" type="radio">
                             <label for="gender-she">She</label>
@@ -29,15 +29,15 @@
                             <label for="gender-they">They</label>
                         </div>
                     </div>
-
                 </div>
+
                 <div class="flex form-field align-center gap-1 mt-1">
                     <input type="checkbox" name="noTerms" id="gender" >
-                    <label for="gender">I don't need to fill this because I'm not going to post in community.</label>
+                    <label for="gender">Prefer not to say</label>
                 </div>
 
 <!--                Birth Date field-->
-                <div class="form-field">
+                <div class="form-field" id="birthday">
                     <label for="birthDate">Birthday</label>
                     <div class="flex gap-2">
                         <input class="form-input" type="date" name="birthDate" id="birthDate">
@@ -45,20 +45,20 @@
                 </div>
                 <div class="flex form-field align-center gap-1 mt-1">
                     <input type="checkbox" name="noTerms" id="gender" >
-                    <label for="gender">I don't need to fill this because I'm not going to post in community.</label>
+                    <label for="gender">Prefer not to say.</label>
                 </div>
 <!--                Location Field-->
                 <div class="form-field">
-                    <label for="location-city">Location (City)</label>
+                    <label for="location-city" id="location">Location (City)</label>
                     <div class="flex gap-2">
                         <input  class="form-input" type="text" id="location-city" name="location">
-                        <button type="button" onclick="getCurrentUserLocation()">Get Location</button>
+                        <button type="button" onclick="getCurrentUserLocation()" id="get">Get location <i class="fas fa-map-marker-alt"></i></button>
                     </div>
                 </div>
 <!--                For You Suggestion-->
                 <div class="form-field">
-                    <span>FOR YOU Suggestion Preference</span>
-                    <span>I want to look at community of</span>
+                    <span id="for_you">FOR YOU Suggestion Preference</span>
+                    <span id="want">I want to look at community of</span>
                     <div class="flex">
                         <div class="flex align-center gap-1">
                             <input class="form-input" name="forYouOption[]" id="for-you-she" value="female" type="checkbox">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="flex align-center gap-1">
                             <select class="form-input" name="for-you-age" id="for-you-age">
-                                <option selected disabled>Age</option>
+                                <option selected disabled>age</option>
                                 <option value="19"><19</option>
                                 <option value="20-25">20-25</option>
                                 <option value="26-30">26-30</option>
@@ -87,11 +87,11 @@
                         </div>
                     </div>
                     <div class="tags">
-                        <textarea rows= "4" cols="80" placeholder="casual dress sport" id="tags" name="tags" ></textarea>
+                        <textarea rows= "5" cols="80" placeholder="casual dress sport" id="tags" name="tags"></textarea>
                     </div>
                     <div class="flex form-field align-center gap-1 mt-1">
                         <input type="checkbox" name="noTerms" id="gender" >
-                        <label for="gender">I don't need to fill this because I don't need "FOR YOU" suggestions.</label>
+                        <label for="gender">Prefer not to say.</label>
                     </div>
 
                 </div>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,300;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,900;1,300;1,600;1,700&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -137,7 +137,6 @@ input {
 input[type=submit] {
   background-color: darkseagreen;
   color: black;
-  text-transform: uppercase;
   font-weight: bold;
   border-radius: 5px;
   border: none;
@@ -402,55 +401,185 @@ img {
 }
 
 .update-profile section {
-  background: radial-gradient(circle at top left, #765fc2 0%, #F6F4F9 60%, transparent 80%), radial-gradient(circle at bottom right, #765fc2 0%, #F6F4F9 60%, transparent 80%);
+  background: radial-gradient(circle at top left, #BDB8CF 10%, #FAFAFD 40%, transparent 80%), radial-gradient(circle at bottom right, #BDB8CF 10%, #FAFAFD 40%, transparent 80%);
+}
+.update-profile #gender, .update-profile #birthday label, .update-profile #location, .update-profile #for_you {
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #EAE7F6;
+  display: block;
+  padding-left: 0.2rem;
+}
+.update-profile #birthday label, .update-profile #location, .update-profile #for_you {
+  margin-bottom: 1rem;
+}
+.update-profile #want, .update-profile div.flex.form-field label {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.update-profile #get {
+  border: none;
+  background-color: transparent;
+  color: #765fc2;
+  margin-left: -120px;
+}
+.update-profile #get i {
+  font-size: 1rem;
+}
+.update-profile span#for_you {
+  margin-top: 2rem;
+}
+.update-profile div.flex.form-field {
+  margin-top: 0.5rem;
+}
+.update-profile #img-picker label {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.update-profile h2 {
+  display: none;
+}
+.update-profile #user-info, .update-profile textarea {
+  max-width: 90vw;
+}
+.update-profile #user-name {
+  font-weight: 900;
+  font-size: 1rem;
+}
+.update-profile div#name-img.form-field {
+  padding: 2rem 0 0 0;
+  display: grid;
+  grid-template-rows: 50px, 1fr, 50px, 50px;
+  justify-content: center;
+  text-align: center;
+}
+.update-profile div#user-info {
+  padding-top: 0;
+}
+.update-profile div.flex.form-field {
+  padding-bottom: 2rem;
 }
 .update-profile .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 800px;
   margin: auto;
+}
+.update-profile #img-picker {
+  display: none;
+}
+.update-profile #name-img label {
+  color: #765fc2;
+  text-decoration: underline;
+  font-size: 0.875rem;
 }
 .update-profile .form-field {
   width: 100%;
 }
+.update-profile input#location-city, .update-profile input#birthDate, .update-profile select#for-you-age {
+  background: #FFFFFF;
+  box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 50px;
+  height: 2.5rem;
+  border: none;
+}
+.update-profile select#for-you-age {
+  width: 7.5rem;
+}
+.update-profile textarea {
+  background: #FFFFFF;
+  box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+  border: none;
+  margin-top: 0.5rem;
+}
+.update-profile ::placeholder {
+  color: #BDB8CF;
+  font-size: 1rem;
+  font-weight: 500;
+}
 .update-profile input[type=radio] {
   width: auto;
   cursor: pointer;
+  accent-color: #765fc2;
 }
 .update-profile input[type=checkbox], .update-profile input[type=checkbox] + label {
   display: inline;
   width: auto;
-}
-.update-profile .profile-image {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  display: block;
-  margin: auto;
-  object-fit: cover;
-  object-position: top;
+  accent-color: #765fc2;
 }
 .update-profile input[type=submit] {
   cursor: pointer;
+  width: 9rem;
+  color: #FFFFFF;
+  background: #765fc2;
+  border-radius: 39.9056px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 21px;
+  padding: 0.5rem;
+  align-self: center;
 }
 .update-profile input[type=submit]:disabled {
   opacity: 0.8;
   cursor: not-allowed;
 }
+.update-profile .profile-image {
+  width: 35vw;
+  height: 35vw;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+  object-fit: cover;
+  object-position: top;
+  padding: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+  .update-profile .container {
+    max-width: 750px;
+  }
+  .update-profile .profile-image {
+    width: 25vw;
+    height: 25vw;
+  }
+}
+@media screen and (min-width: 992px) {
+  .update-profile .container {
+    max-width: 1200px;
+  }
+  .update-profile div#name-img.form-field {
+    padding: 0;
+  }
+  .update-profile .profile-image {
+    width: 20vw;
+    height: 20vw;
+  }
+  .update-profile div#name-img.form-field {
+    align-self: start;
+  }
+}
 
+form #user-info {
+  display: flex;
+  flex-flow: column nowrap;
+}
 @media screen and (min-width: 992px) {
   form {
     display: grid;
-    grid-template-columns: 1fr, 2fr;
+    grid-template-columns: 200px, 1rem;
     grid-gap: 2rem;
   }
-}
-form #name-img.form-field {
-  grid-column: 1/2;
-}
-form #user-info {
-  grid-column: 2/3;
+  form #name-img.form-field {
+    grid-column: 1/2;
+    grid-row: span 2;
+    margin-top: 2rem;
+  }
+  form div#user-info {
+    grid-column: 2/3;
+    margin-top: 2rem;
+    padding-left: 1rem;
+    border-left: #BDB8CF solid 2px;
+  }
 }
 
 .upload-item {
@@ -499,6 +628,8 @@ form #user-info {
   width: 120px;
   height: 120px;
   border-radius: 50%;
+  margin: 0.1rem;
+  border: 0.3rem solid #ffff;
 }
 
 .user-posts-type {
