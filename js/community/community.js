@@ -13,6 +13,9 @@ function init() {
     //Handle community favorite
     const favorite = document.getElementById('community-favourite')
     favorite.addEventListener('click', showFavorite);
+    //Handle search
+    const searchBtn = document.getElementById('searchBtn')
+    searchBtn.addEventListener('click', showSearchResults);
 
     /**
      * identify active home tab
@@ -41,6 +44,23 @@ function init() {
 function clearWrapper() {
     const wrapper = document.getElementById("wrapper");
     wrapper.innerHTML = "";
+}
+
+/**
+ * show search results in community pages
+ * 
+ */
+function showSearchResults() {
+    clearWrapper();
+    const all = document.getElementById('community-all');
+    const donate = document.getElementById('community-donate');
+
+    if (all.classList.contains('active')) {
+        showAllPosts();
+    }
+    else if (donate.classList.contains('active')){
+        showDonatePosts();
+    }
 }
 
 
@@ -125,7 +145,19 @@ async function showForYou() {
  */
 async function showAllPosts() {
     const user = await getCurrentUser();
+    const searchInput = document.getElementById('searchInput');
+    const searchValue = searchInput.value;
     clearWrapper();
+    if (searchValue.trim().length > 1){
+        console.log(searchValue);
+        db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains", searchValue)
+        .get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                addPosts(doc);
+            });
+        });
+    }
+    else {
     // fetch all posts from "posts" collection
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community")
         .get().then((querySnapshot) => {
@@ -133,6 +165,7 @@ async function showAllPosts() {
                 addPosts(doc);
             });
         });
+    }
 }
 
 /**
@@ -157,7 +190,19 @@ async function showFavorite() {
  */
 async function showDonatePosts() {
     const user = await getCurrentUser();
+    const searchInput = document.getElementById('searchInput');
+    const searchValue = searchInput.value;
     clearWrapper();
+    if (searchValue.trim().length > 1){
+        console.log(searchValue);
+        db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item").where("tags", "array-contains", searchValue)
+        .get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                addPosts(doc);
+            });
+        });
+    }
+    else {
     // fetch posts from "posts" collection with type = donate-item
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item")
         .get().then((querySnapshot) => {
@@ -165,6 +210,7 @@ async function showDonatePosts() {
                 addPosts(doc);
             });
         });
+    }
 }
 
 init();
