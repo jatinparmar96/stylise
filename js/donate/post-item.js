@@ -9,6 +9,9 @@ function init() {
   const cameraBtn = document.getElementById('openCameraBtn');
   cameraBtn.addEventListener('click', openCamera);
   postBtn.addEventListener('click', uploadDonationDesc);
+
+  document.getElementById('add-tag').addEventListener('click', addTagInput);
+
   //initImageListener(getCategoryIdFromUrl());
   addImageChangeListener(imageSrc, imageTarget);
   //initCategoryListener();
@@ -18,15 +21,18 @@ function init() {
 /**
  * handle add tag button
  */
-var tagsArray = []; //array to store tags
 function addTagInput() {
-  let tagValue = document.getElementById('tags');
   const showTags = document.getElementById('show-tags');
+  const hiddenTagsValueElement = document.getElementById('tagsHiddenValue')
+  const tagsArray = JSON.parse(hiddenTagsValueElement.value || "[]");
+  const tagValue = document.getElementById('tags');
+
   if (tagValue.value != '' && tagValue.value.trim().length > 0) {
     tagsArray.push(tagValue.value); //stores tag in an array
     let tagsString = tagsArray.join(", ");
     showTags.innerHTML = tagsString;
   }
+  hiddenTagsValueElement.value = JSON.stringify(tagsArray);
   tagValue.value = null;
 }
 
@@ -47,17 +53,27 @@ async function donateItemImg(imgItem) {
   const currentDate = new Date();
   const storageRef = storage.ref();
   const userID = auth.currentUser.uid;
+  const progress = document.getElementById('showStatus');
   const closetRef = storageRef.child("donate/" + userID + "/" + currentDate.getTime());// reference to user storage folder
   return new Promise((resolve, reject) => {
     try {
-      closetRef.put(imgItem).then((snapshot) => {
-        document.getElementById('image').removeAttribute('src');
-        document.getElementById('donate-input').value = null;
-        let camera = document.getElementById('camera');
-        camera.innerHTML = '';
-        resolve(snapshot);
+      const uploadTask = closetRef.put(imgItem)
+      progress.classList.remove('dn')
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          let uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          progress.innerHTML = `Uploading... ${Math.round(uploadProgress)}%`;
+        },
+        (error) => { },
+        () => {
+          document.getElementById('image').removeAttribute('src');
+          document.getElementById('donate-input').value = null;
+          let camera = document.getElementById('camera');
+          camera.innerHTML = '';
+          progress.classList.add('dn');
+          resolve(uploadTask.snapshot)
+        });
 
-      })
     }
     catch (error) {
       console.log(error.code);
@@ -73,7 +89,9 @@ async function imageInput() {
   const imageItem = document.getElementById('donate-input').files[0];//image selected to upload by user
   let imageBlob;
   try {
-    imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));//image captured by camera 
+    if (canvas) {
+      imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));//image captured by camera 
+    }
   } catch (err) {
     console.log(err);
   }
@@ -99,29 +117,34 @@ async function getUserData(uid) {
  */
 async function uploadDonationDesc(event) {
   event.preventDefault();
+  const submitBtn = document.getElementById('postBtn');
+  submitBtn.disabled = true;
   const userID = auth.currentUser.uid;
   const user = await getCurrentUser();
   const userData = await getUserData(user.uid);
   const comments = document.getElementById('comments').value;
   const location = document.getElementById('location').value;
+  const tagsArray = JSON.parse(document.getElementById('tagsHiddenValue').value || '[]');
   const imageValue = await imageInput();
-
+  let imageUrl;
   if ((imageValue == null) || (location.trim().length < 1) || (comments.trim().length < 1) || (tagsArray.length < 1)) {
     console.log("Please don't leave any fields empty");
     return;
   }
-  const imageRef = await donateItemImg(imageValue);
-  const imageUrl = await imageRef.ref.getDownloadURL();
+  try {
+    const imageRef = await donateItemImg(imageValue);
+    imageUrl = await imageRef.ref.getDownloadURL();
+  }
+  catch (err) {
+    console.error(err)
+  }
   const locationCity = document.getElementById('location').value;
   const locationCoords = document.getElementById('locationCoords').value;
   let locationObject = {}
   if (locationCity && locationCoords) {
     locationObject = {
       city: locationCity,
-      coords: {
-        latitude: locationCoords.split(',')[0],
-        longitude: locationCoords.split(',')[1],
-      }
+      coords: JSON.parse(locationCoords)
     }
   }
 
@@ -139,12 +162,12 @@ async function uploadDonationDesc(event) {
     location: locationObject
   };
   await db.collection('posts').add(itemObject);
-
+  submitBtn.disabled = false;
   document.getElementById('comments').value = null;
   document.getElementById('location').value = null;
   document.getElementById('tags').value = null;
   document.getElementById('show-tags').innerHTML = "";
-  tagsArray.splice(0, tagsArray.length);
+  document.getElementById('tagsHiddenValue').value = null;
 }
 
 /**
@@ -216,6 +239,10 @@ async function handleCoords(position) {
   const locationData = await reverseGeoCode(position);
   document.getElementById('location').value = locationData.address.city;
   console.log(position)
-  document.getElementById('locationCoords').value = `${position.coords.latitude},${position.coords.longitude}`;
+  const locationCoords = {
+    latitude: position.coords.latitude,
+    longitude: position.coords.longitude
+  }
+  document.getElementById('locationCoords').value = JSON.stringify(locationCoords);
 }
 init();
