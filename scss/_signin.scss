@@ -1,0 +1,70 @@
+.welcome {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 42px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #444444;
+  }
+  .phrase {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #444444;
+  }
+  .email-input input, .pass-input input {
+    background: #FFFFFF;
+    box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+    width: 350px;
+    height: 40px;
+    border: none;
+  }
+  .signin-button button {
+    background: #765FC2;
+    border-radius: 39.9056px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+  /* identical to box height */
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    color: #FFFFFF;
+  }
+  body {
+    height: 100vh;
+    background: radial-gradient(circle at top left,#BDB8CF 10%, #FAFAFD 50%,transparent 80%),
+    radial-gradient(circle at bottom right, #BDB8CF 10%, #FAFAFD 50%,transparent 80%); 
+  }
+  .forget-password p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+  /* identical to box height */
+    letter-spacing: 0.05em;
+    text-decoration-line: underline;
+    color: #765FC2;
+    padding: 1rem;
+  }
+  .forget-password {
+    display: flex;
+    margin: auto;
+  }
+  ::placeholder {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+    color: #BDB8CF; 
+  }
