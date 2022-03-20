@@ -249,7 +249,7 @@ hr {
 .signup-button button {
   padding: 5px 25px;
   border-radius: 20px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 600;
 }
 
