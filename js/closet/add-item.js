@@ -61,6 +61,7 @@ async function uploadItemDesc(event) {
     if (!imageItem && !capturedImage) {
         return;
     }
+    saveBtn.disabled = true;
     if (capturedImage) {
         const blob = await new Promise(resolve => capturedImage.toBlob(resolve))
         imageRef = await uploadItemImg(blob);
@@ -77,6 +78,7 @@ async function uploadItemDesc(event) {
             public: false
         };
         const docRef = await db.collection('posts').add(itemObject);
+        saveBtn.disabled = false;
 
 }
 
