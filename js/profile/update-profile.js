@@ -42,6 +42,7 @@ function getInputQuerySelector() {
 async function handleFormSubmit(event) {
     event.preventDefault();
     let form = document.getElementById('update-profile-form');
+    const user = await getCurrentUser();
     const formData = new FormData(form);
     if (formData.get('profile-image').size) {
         await uploadImageToFireStore(formData.get('profile-image'));
@@ -50,20 +51,26 @@ async function handleFormSubmit(event) {
     formData.forEach((value, key) => {
         // Skip Profile Image, not storing in user Document
         if (key === 'profile-image') {
+            values[key] = user.photoURL
             return;
         }
         if (key === 'forYouOption[]') {
             let newKey = key.substring(0, key.length - 2);
             values[newKey] = values[newKey] ? [...values[newKey], value] : [value];
+            return;
         }
-        else if (key === 'tags') {
+        if (key === 'tags') {
             let keyaux = value.split(",");
             let newKey = keyaux.map(key => key.trim());
             values[key] = newKey;
-
-        } else {
-            values[key] = value;
+            return;
         }
+        if (key === 'locationCoords') {
+            values[key] = JSON.parse(value);
+            return;
+        }
+            values[key] = value;
+
     })
     // set No Terms to off if not present in values 
     if (!values.noTerms && values.noTerms !== 'on') {
@@ -136,7 +143,6 @@ async function handleAuthStateChange(user) {
             image.src = user.photoURL;
             image.classList.add('profile-image');
         }
-        console.log(userFields);
         // Iterate over the form controls
         for (i = 0; i < inputs.length; i++) {
             if (inputs[i].nodeName === "INPUT") {
@@ -185,8 +191,24 @@ function getCurrentUserLocation() {
     }
 }
 async function handleCoords(position) {
+    console.log(position.coords);
     const locationData = await reverseGeoCode(position);
     document.getElementById('location-city').value = locationData.address.city;
+    const locationObject = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+    }
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = 'locationCoords'
+    hiddenInput.value = JSON.stringify(locationObject);
+    const form = document.getElementById('update-profile-form');
+    if (form.elements.locationCoords) {
+        form.replaceChild(hiddenInput, form.elements.locationCoords);
+    }
+    else {
+        form.append(hiddenInput)
+    }
 }
 
 init();
