@@ -36,10 +36,12 @@ img {
 .dp {
   width: 50px;
   border-radius: 50%;
+  border: 2px solid white;
 }
 #logo {
-  background-color: gainsboro;
   padding: 1rem;
+  max-width: 100px;
+
 }
 .jump-bar {
   text-align: center;
@@ -90,12 +92,59 @@ img {
   bottom: 1rem;
   right: 1rem;
   border-radius: 50%;
-  background-color: aquamarine;
-  border: 0;
+  background-color: #765FC2;
+  color: white;
+  border: 3px solid white ;
   height: 3rem;
   width: 3rem;
   font-size: 1.75rem;
   font-weight: bold;
   box-shadow: 0 0 2px 2px rgba($color: #000, $alpha: 0.5);
   cursor: pointer;
+}
+.container{
+  background-image: url("../icons/background.png");
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.community-nav-list{
+  background-color: white;
+}
+.nav-btn:active,.nav-btn:hover{
+  background-color: #F7F7FA;
+  border-bottom: 3px solid #765FC2 ;
+}
+.nav-btn{
+  padding: 1rem;
+  color: #BDB8CF;
+  border: none;
+  background-color: white;
+}
+
+#search{
+  border-radius: 25px;
+  padding: 10px;
+
+}
+#search-icon{
+  background-color: #765FC2;
+  position: absolute;
+  max-width: 30px;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.post{
+  background-color: white;
+  border-radius: 25px;
+  padding: 30px 10px 10px 10px;
+  display: block;
+  position: relative;
+}
+
+.user-info{
+  position:absolute;
+  top: -15px;
+  left: -20px;
 }

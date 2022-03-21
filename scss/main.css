@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -405,11 +407,12 @@ img {
 .dp {
   width: 50px;
   border-radius: 50%;
+  border: 2px solid white;
 }
 
 #logo {
-  background-color: gainsboro;
   padding: 1rem;
+  max-width: 100px;
 }
 
 .jump-bar {
@@ -481,8 +484,9 @@ img {
   bottom: 1rem;
   right: 1rem;
   border-radius: 50%;
-  background-color: aquamarine;
-  border: 0;
+  background-color: #765FC2;
+  color: white;
+  border: 3px solid white;
   height: 3rem;
   width: 3rem;
   font-size: 1.75rem;
@@ -490,6 +494,55 @@ img {
   -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+}
+
+.container {
+  background-image: url("../icons/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.community-nav-list {
+  background-color: white;
+}
+
+.nav-btn:active, .nav-btn:hover {
+  background-color: #F7F7FA;
+  border-bottom: 3px solid #765FC2;
+}
+
+.nav-btn {
+  padding: 1rem;
+  color: #BDB8CF;
+  border: none;
+  background-color: white;
+}
+
+#search {
+  border-radius: 25px;
+  padding: 10px;
+}
+
+#search-icon {
+  background-color: #765FC2;
+  position: absolute;
+  max-width: 30px;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.post {
+  background-color: white;
+  border-radius: 25px;
+  padding: 30px 10px 10px 10px;
+  display: block;
+  position: relative;
+}
+
+.user-info {
+  position: absolute;
+  top: -15px;
+  left: -20px;
 }
 
 .update-profile .container {
@@ -608,5 +661,19 @@ input[type="submit"]:disabled {
 
 .user-posts-type {
   margin-left: 20px;
+}
+
+#main-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.main-nav-list a {
+  font-family: 'Poppins', sans-serif;
 }
 /*# sourceMappingURL=main.css.map */
