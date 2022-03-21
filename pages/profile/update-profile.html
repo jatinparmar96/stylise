@@ -3,16 +3,16 @@
         <h2 class="text-center">YOUR ACCOUNT</h2>
         <div class="container">
             <form id="update-profile-form" name="update-profile-form">
-                <div class="form-field" id = "name-img">
+                <div class="form-field name-img">
                     <h4 id="user-name" class="text-center">Username</h4>
                     <img src="" id="image">
                     <label for="img-picker">Choose an image</label>
                     <input type="file" id="img-picker" name="profile-image">
                 </div>
 
-                <div id="user-info">
+                <div class="user-info">
 
-                <div class="form-field">
+                <div class="form-field gender">
                     <span id = "gender">Gender</span>
                     <div class="flex gap-2" id="gender_field">
                         <div class="flex align-center gap-1">
@@ -37,7 +37,7 @@
                 </div>
 
 <!--                Birth Date field-->
-                <div class="form-field" id="birthday">
+                <div class="form-field birthday">
                     <label for="birthDate">Birthday</label>
                     <div class="flex gap-2">
                         <input class="form-input" type="date" name="birthDate" id="birthDate">
@@ -48,17 +48,17 @@
                     <label for="gender">Prefer not to say.</label>
                 </div>
 <!--                Location Field-->
-                <div class="form-field">
-                    <label for="location-city" id="location">Location (City)</label>
+                <div class="form-field location">
+                    <label for="location-city">Location (City)</label>
                     <div class="flex gap-2">
                         <input  class="form-input" type="text" id="location-city" name="location">
                         <button type="button" onclick="getCurrentUserLocation()" id="get">Get location <i class="fas fa-map-marker-alt"></i></button>
                     </div>
                 </div>
 <!--                For You Suggestion-->
-                <div class="form-field">
-                    <span id="for_you">FOR YOU Suggestion Preference</span>
-                    <span id="want">I want to look at community of</span>
+                <div class="form-field foryou">
+                    <span>FOR YOU Suggestion Preference</span>
+                    <span>I want to look at community of</span>
                     <div class="flex">
                         <div class="flex align-center gap-1">
                             <input class="form-input" name="forYouOption[]" id="for-you-she" value="female" type="checkbox">

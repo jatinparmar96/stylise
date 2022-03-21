@@ -5,7 +5,7 @@
     radial-gradient(circle at bottom right, #BDB8CF 10%, #FAFAFD 40%,transparent 80%);
   }
 
-  #gender, #birthday label, #location, #for_you {
+  .form-field.gender span, .form-field.birthday label, .form-field.location label, .form-field.foryou span:first-of-type {
     font-size: 1rem;
     font-weight: 600;
     background-color: #EAE7F6;
@@ -13,59 +13,59 @@
     padding-left:.2rem;
   }
 
-  #birthday label, #location, #for_you {
+
+  .birthday label, .location label, .form-field.foryou span:first-of-type {
     margin-bottom:1rem;
   }
 
-  #want, div.flex.form-field label  {
+  .form-field.foryou span:last-of-type, div.flex.form-field label  {
     font-size: 	0.875rem;
     font-weight: 400;
   }
 
- #get {
+  .form-field.location button {
    border:none;
    background-color: transparent;
    color:$primary-color;
    margin-left: -120px;
  }
 
- #get i {
+ .form-field.location button i{
    font-size: 1rem;
  }
 
- span#for_you {
+ .form-field.foryou span:first-of-type {
    margin-top: 2rem;
  }
 
   div.flex.form-field {
-    margin-top: .5rem;
+    margin-top: 0;
   }
 
-  #img-picker label {
-    font-size: 	0.875rem;
-    font-weight: 400;
+  div.flex.form-field:last-of-type {
+    margin-top: 1rem;
   }
 
   h2 {
     display:none;
   }
-  #user-info, textarea {
+  .user-info, textarea {
     max-width:90vw;
   }
 
-  #user-name {
+  .form-field.name-img h4 {
     font-weight:900;
     font-size: 1rem;
   }
 
-  div#name-img.form-field {
+  div.form-field.name-img {
   padding:2rem 0 0 0;
   display: grid;
   grid-template-rows: 50px, 1fr, 50px, 50px;
   justify-content: center;
   text-align:center;
   }
-  div#user-info {
+  div.user-info {
     padding-top:0;
   }
 
@@ -80,23 +80,23 @@
     margin: auto;
     
   }
-
-
+ 
   #img-picker {
     display:none;
   }
 
- #name-img label {
+  .form-field.name-img label {
     color:$primary-color;
     text-decoration: underline;
     font-size: 	0.875rem;
+    font-weight: 400;
   }
 
   .form-field{
     width: 100%;
   }
 
-input#location-city, input#birthDate, select#for-you-age { 
+  .form-field.location input, .form-field.birthday input,  .form-field.foryou select { 
   background: #FFFFFF;
   box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
   border-radius: 50px;
@@ -104,7 +104,7 @@ input#location-city, input#birthDate, select#for-you-age {
   border: none;
 }
 
-select#for-you-age {
+.form-field.foryou select {
  width:7.5rem;
 }
 
@@ -165,7 +165,7 @@ textarea {
   }
 
   @media screen and (min-width: 768px) {
-    .container {
+    .update-profile {
       max-width: 750px;
     }
 
@@ -178,11 +178,11 @@ textarea {
  
   @media screen and (min-width: 992px) {
 
-    .container {
+    .update-profile {
       max-width: 1200px;
     }
 
-    div#name-img.form-field {
+    div.form-field.name-img {
       padding:0;
     }
 
@@ -191,19 +191,17 @@ textarea {
       height: 20vw;
     }
 
-    div#name-img.form-field {
+    div.form-field.name-img {
       align-self: start;
     }
  
 }
 }
 
-form {
-
-  #user-info {
+.update-profile form {
+  .user-info {
     display: flex;
     flex-flow:column nowrap;
- 
   }
 
 
@@ -214,14 +212,13 @@ form {
   grid-gap: 2rem;
 
 
-#name-img.form-field{
+.form-field.name-img {
 grid-column:1/2;
 grid-row: span 2;
 margin-top:2rem;
-
 }
 
-div#user-info {
+div.user-info {
   grid-column: 2/3;
   margin-top:2rem;
   padding-left:1rem;
