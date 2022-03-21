@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Compile CSS from SCSS files
+        uses: gha-utilities/sass-build@v0.4.8
+        with:
+          source: ./scss/main.scss
+          destination:  ./scss/main.css 
+      #Firebase Hosting
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
