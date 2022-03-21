@@ -7,9 +7,6 @@ function init() {
     const imageSrc = document.getElementById('image-input');
     const imageTarget = document.getElementById('image');
 
-    const tags =document.getElementById('add-tag');
-    tags.addEventListener('click', addTagInput);
-
     form.addEventListener('submit', uploadItemDesc)
     addImageChangeListener(imageSrc, imageTarget)
 }
@@ -49,7 +46,7 @@ async function uploadItemDesc(event) {
     console.log(user);
     const saveBtn = document.getElementById('saveBtn');
     const comments = document.getElementById('comments').value;
-    const tagsArray = JSON.parse(document.getElementById('tagsHiddenValue').value || '[]');
+    const keywords = document.getElementById('keywords').value;
     const imageItem = document.getElementById('image-input').files[0]; //image selected to upload by user
     const capturedImage = document.getElementById('capturedImage');
     let imageRef;
@@ -71,7 +68,7 @@ async function uploadItemDesc(event) {
     let itemObject = {
         public: true,
         type: 'community',
-        keywords: tagsArray,
+        keywords: keywords.split(','),
         comments: comments,
         uri: imageUrl,
         userID: user.uid,
@@ -174,21 +171,6 @@ function captureImage() {
     tracks.forEach((track) => track.stop());
     video.classList.add('dn');
 }
-
-function addTagInput() {
-    const showTags = document.getElementById('show-tags');
-    const hiddenTagsValueElement = document.getElementById('tagsHiddenValue')
-    const tagsArray = JSON.parse(hiddenTagsValueElement.value || "[]");
-    const tagValue = document.getElementById('tags');
-  
-    if (tagValue.value != '' && tagValue.value.trim().length > 0) {
-      tagsArray.push(tagValue.value); //stores tag in an array
-      let tagsString = tagsArray.join(", ");
-      showTags.innerHTML = tagsString;
-    }
-    hiddenTagsValueElement.value = JSON.stringify(tagsArray);
-    tagValue.value = null;
-  }
 
 
 
