@@ -12,8 +12,8 @@ jobs:
       - name: Compile CSS from SCSS files
         uses: gha-utilities/sass-build@v0.4.8
         with:
-          source: ./scss/main.scss
-          destination:  ./scss/main.css 
+          source: /scss/main.scss
+          destination:  /scss/main.css 
       #Firebase Hosting
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
