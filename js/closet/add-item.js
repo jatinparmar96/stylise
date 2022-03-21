@@ -138,7 +138,8 @@ function initImageListener(categoryId) {
         const categoryImages = document.getElementById('category-images');
         categoryImages.innerHTML = '';
        querySnapshot.forEach(doc =>{
-           categoryImages.innerHTML += renderImages(doc)
+           categoryImages.innerHTML += renderImages(doc);
+           
        })
     })
     window.removeFirebaseListener.push(listener);
@@ -173,9 +174,12 @@ function renderDataListItem(itemDoc) {
  */
 function renderImages(imageDoc){
     const imageData = imageDoc.data();
+    
     return`
         <div class="flex flex-column closet-item" style="max-width: 25%;">
+            <a href="index.html#view-item?id=${imageDoc.id}">
             <img src="${imageData.uri}" style="object-fit: cover;height: 200px;width: 200px">
+            </a>
             <span>${imageData.category}</span>
             <span>${imageData.keywords}</span>
         </div>
