@@ -1,11 +1,11 @@
 function init() {
+    //const userID; // variable to store user id
     const saveBtn = document.getElementById('saveBtn');
+    // saveBtn.addEventListener('click', uploadItemDesc);
     const form = document.getElementById('add-item-form');
 
     const imageSrc = document.getElementById('image-input');
     const imageTarget = document.getElementById('image');
-    const tags =document.getElementById('add-tag');
-    tags.addEventListener('click', addTagInput);
 
     const cameraBtn = document.getElementById('openCameraBtn');
     form.addEventListener('submit', uploadItemDesc)
@@ -53,7 +53,7 @@ async function uploadItemImg(imgItem) {
 async function uploadItemDesc(event) {
     event.preventDefault();
     const category = document.getElementById('categories').value;
-    const tagsArray = JSON.parse(document.getElementById('tagsHiddenValue').value || '[]');
+    const keywords = document.getElementById('keywords').value;
     const imageItem = document.getElementById('image-input').files[0]; //image selected to upload by user
     const capturedImage = document.getElementById('capturedImage');
     let imageRef;
@@ -72,7 +72,7 @@ async function uploadItemDesc(event) {
     const imageUrl = await imageRef.ref.getDownloadURL();
     const itemObject = {
             category,
-            keywords: tagsArray,
+            keywords: keywords.split(','),
             uri: imageUrl,
             type: 'closet-item',
             public: false
@@ -249,19 +249,11 @@ function captureImage() {
     tracks.forEach((track) => track.stop());
     video.classList.add('dn');
 }
+//to do:
+// 1 - html: leave just save button to execute both functions
+// 2 - Create a save button handler function to execute both functions
+// 3 - link image to item description document
+//
 
-function addTagInput() {
-    const showTags = document.getElementById('show-tags');
-    const hiddenTagsValueElement = document.getElementById('tagsHiddenValue')
-    const tagsArray = JSON.parse(hiddenTagsValueElement.value || "[]");
-    const tagValue = document.getElementById('tags');
-  
-    if (tagValue.value != '' && tagValue.value.trim().length > 0) {
-      tagsArray.push(tagValue.value); //stores tag in an array
-      let tagsString = tagsArray.join(", ");
-      showTags.innerHTML = tagsString;
-    }
-    hiddenTagsValueElement.value = JSON.stringify(tagsArray);
-    tagValue.value = null;
-  }
+
 
