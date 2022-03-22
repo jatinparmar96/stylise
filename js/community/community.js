@@ -272,9 +272,20 @@ async function showDonatePosts() {
                 searchMessage.innerHTML = "<p>No results were found for <strong>"+searchValue+"</strong></p>";
             }
             else {
+                let donateDocsArray = [];
                 searchMessage.innerHTML = "<p>Results for <strong>"+searchValue+"</strong></p>";
                 querySnapshot.forEach((doc) => {
-                addPosts(doc);
+                    donateDocsArray.push(
+                        {
+                            ...doc.data(), id: doc.id
+                        }
+                    );
+                //addPosts(doc);
+                const wrapper = document.getElementById("wrapper");
+                donateDocsArray.forEach(item => {
+                    wrapper.innerHTML += renderDonateItems(item);
+    
+                })
             });
         }
         });
