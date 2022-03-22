@@ -186,6 +186,35 @@
     background-color: $secondary-color02;
     width: 100%;
     padding: 4rem 0;
+
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1rem;
+      max-width: 80%;
+      margin: auto;
+
+      .rectangle {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 30px;
+        width: 250px;
+        height: 254px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .post {
+          width: 234px;
+          height: 238px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          border-radius: 30px;
+          margin: auto;
+        }
+      }
+    }
   }
 }
 
