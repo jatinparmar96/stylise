@@ -4,7 +4,7 @@
         <div class="container">
             <form id="update-profile-form" name="update-profile-form">
                 <div class="form-field name-img">
-                    <h4 id="user-name" class="text-center">Username</h4>
+                    <h4 id="user-name" class="text-center"></h4>
                     <img src="" id="image">
                     <label for="img-picker">Choose an image</label>
                     <input type="file" id="img-picker" name="profile-image">
@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="flex form-field align-center gap-1 mt-1">
-                    <input type="checkbox" name="noTerms" id="gender" >
-                    <label for="gender">Prefer not to say</label>
+                    <input type="checkbox" name="noTerms" id="noTerms">
+                    <label for="noTerms">Prefer not to say</label>
                 </div>
 
 <!--                Birth Date field-->
@@ -43,15 +43,11 @@
                         <input class="form-input" type="date" name="birthDate" id="birthDate">
                     </div>
                 </div>
-                <div class="flex form-field align-center gap-1 mt-1">
-                    <input type="checkbox" name="noTerms" id="gender" >
-                    <label for="gender">Prefer not to say.</label>
-                </div>
 <!--                Location Field-->
                 <div class="form-field location">
                     <label for="location-city">Location (City)</label>
                     <div class="flex gap-2">
-                        <input  class="form-input" type="text" id="location-city" name="location">
+                        <input readonly class="form-input" type="text" id="location-city" name="location">
                         <button type="button" onclick="getCurrentUserLocation()" id="get">Get location <i class="fas fa-map-marker-alt"></i></button>
                     </div>
                 </div>
@@ -87,13 +83,8 @@
                         </div>
                     </div>
                     <div class="tags">
-                        <textarea rows= "5" cols="80" placeholder="casual dress sport" id="tags" name="tags"></textarea>
+                        <textarea class="form-input" rows="5" cols="80" placeholder="casual dress sport" id="tags" name="tags"></textarea>
                     </div>
-                    <div class="flex form-field align-center gap-1 mt-1">
-                        <input type="checkbox" name="noTerms" id="gender" >
-                        <label for="gender">Prefer not to say.</label>
-                    </div>
-
                 </div>
 
                 <input type="submit" value="Save" id="submit-btn">

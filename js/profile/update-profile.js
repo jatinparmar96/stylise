@@ -31,7 +31,7 @@ function toggleInputs(toggleValue) {
 }
 
 function getInputQuerySelector() {
-    return `input[class="form-input"],select[class="form-input"]`
+    return `input[class="form-input"],select[class="form-input"],textarea[class="form-input"]`
 }
 
 /**
@@ -60,7 +60,6 @@ async function handleFormSubmit(event) {
             let keyaux = value.split(",");
             let newKey = keyaux.map(key => key.trim());
             values[key] = newKey;
-
         } else {
             values[key] = value;
         }
@@ -128,7 +127,7 @@ async function handleAuthStateChange(user) {
     if (userFieldsRef.exists) {
         const userFields = userFieldsRef.data();
         const userName = document.getElementById('user-name');
-        userName.innerHTML = userFields.username;
+        userName.innerHTML = userFields.username || '';
         const form = document.getElementById('update-profile-form');
         const inputs = form.elements;
         if (user.photoURL) {
