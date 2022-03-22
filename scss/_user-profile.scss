@@ -239,4 +239,12 @@
 
 .user-posts-type {
   margin-left: 20px;
+  @media screen and (min-width: 768px) {
+    .profile {
+    }
+  }
+  @media screen and (min-width: 992px) {
+    .profile {
+    }
+  }
 }
