@@ -54,13 +54,36 @@ function showSearchResults() {
     clearWrapper();
     const all = document.getElementById('community-all');
     const donate = document.getElementById('community-donate');
+    // const forYou = document.getElementById('community-for-you');
+    // const favourite = document.getElementById('community-favourite');
+    let btnContainer = document.getElementById("community-nav-list");
 
-    if (all.classList.contains('active')) {
+    // Get all buttons with class="nav-btn" inside the container
+    let btns = btnContainer.getElementsByClassName("nav-btn");
+
+    if (all.classList.contains("active")){
         showAllPosts();
     }
-    else if (donate.classList.contains('active')){
+    else if (donate.classList.contains("active")){
         showDonatePosts();
     }
+    else {
+    // Loop through the buttons and add the active class to the current/clicked button
+        for (let i = 0; i < btns.length; i++) {
+            if (btns[i].classList.contains("active") ){
+                btns[i].classList.remove("active");
+            }
+        }
+        all.classList += " active";
+        showAllPosts();
+    }
+
+    // if (all.classList.contains('active')) {
+    //     showAllPosts();
+    // }
+    // else if (donate.classList.contains('active')){
+    //     showDonatePosts();
+    // }
     if(document.getElementById('cancelSearch')){
         console.log("Cancel button already exists");
     }
@@ -86,10 +109,10 @@ function cancelSearch() {
     const all = document.getElementById('community-all');
     const donate = document.getElementById('community-donate');
 
-    if (all.classList.contains('active')) {
+    if (all.classList.contains("active")) {
         showAllPosts();
     }
-    else if (donate.classList.contains('active')){
+    else if (donate.classList.contains("active")){
         showDonatePosts();
     }
 }
@@ -153,6 +176,8 @@ function addPosts(doc) {
  * @method showForYou
  */
 async function showForYou() {
+    const searchMessage = document.getElementById('searchMessage');
+    searchMessage.innerHTML = "";
     const user = await getCurrentUser();
     // Get user tags
     const userFieldsRef = await db.collection('users').doc(user.uid).get();
@@ -166,8 +191,12 @@ async function showForYou() {
                 addPosts(doc);
             });
         });
-
-
+    
+    if (document.getElementById('cancelSearch')){
+        document.getElementById('searchInput').value = "";
+        const cancelSearchBtn = document.getElementById('cancelSearch');
+        cancelSearchBtn.remove();
+    }
 }
 
 /**
@@ -212,8 +241,10 @@ async function showAllPosts() {
  * 
  */
 async function showFavorite() {
-    const user = await getCurrentUser();
     clearWrapper();
+    const searchMessage = document.getElementById('searchMessage');
+    searchMessage.innerHTML = "";
+    const user = await getCurrentUser();
     // fetch all posts from "favorites" collection
     db.collection("users/" + user.uid + "/favorites")
         .get().then((querySnapshot) => {
@@ -221,6 +252,11 @@ async function showFavorite() {
                 addPosts(doc);
             });
         });
+    if (document.getElementById('cancelSearch')){
+        document.getElementById('searchInput').value = "";
+        const cancelSearchBtn = document.getElementById('cancelSearch');
+        cancelSearchBtn.remove();
+    }
 }
 
 /**
