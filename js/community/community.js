@@ -207,7 +207,7 @@ function renderDonateItems(item) {
         </a>
         <div class="user-info">
             <img class="dp" src="${item.user_uri}">
-            <a href="#"> 
+            <a href="index.html#view-user-profile?id=${item.userID}"> 
                 <span>${item.username}</span>
             </a>
         </div>
