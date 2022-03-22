@@ -34,7 +34,6 @@ function init() {
             this.className += " active";
         });
     }
-
 }
 
 /**
