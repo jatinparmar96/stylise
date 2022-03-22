@@ -12,17 +12,15 @@ function init() {
   //initImageListener(getCategoryIdFromUrl());
   addImageChangeListener(imageSrc, imageTarget);
   //initCategoryListener();
+  document.getElementById('add-tag').addEventListener('click', addTagInput);
 }
-
-init();
 
 /**
  * handle add tag button
  */
-document.getElementById('add-tag').addEventListener('click', addTagInput);
-let tagValue = document.getElementById('tags');
-let tagsArray = []; //array to store tags
+var tagsArray = []; //array to store tags
 function addTagInput() {
+  let tagValue = document.getElementById('tags');
   const showTags = document.getElementById('show-tags');
   if (tagValue.value != '' && tagValue.value.trim().length > 0) {
     tagsArray.push(tagValue.value); //stores tag in an array
@@ -102,6 +100,8 @@ async function getUserData(uid) {
 async function uploadDonationDesc(event) {
   event.preventDefault();
   const userID = auth.currentUser.uid;
+  const user = await getCurrentUser();
+  const userData = await getUserData(user.uid);
   const comments = document.getElementById('comments').value;
   const location = document.getElementById('location').value;
   const imageValue = await imageInput();
@@ -127,10 +127,13 @@ async function uploadDonationDesc(event) {
 
   const itemObject = {
     userID,
+    username: userData.data().username,
     comments,
     location,
+    user_uri: user.photoURL,
     tags: tagsArray,
     uri: imageUrl,
+    user_uri: user.photoURL,
     type: 'donate-item',
     public: true,
     location: locationObject
@@ -140,6 +143,8 @@ async function uploadDonationDesc(event) {
   document.getElementById('comments').value = null;
   document.getElementById('location').value = null;
   document.getElementById('tags').value = null;
+  document.getElementById('show-tags').innerHTML = "";
+  tagsArray.splice(0, tagsArray.length);
 }
 
 /**
@@ -150,13 +155,13 @@ function addImageChangeListener(src, target) {
   const fileReader = new FileReader();
   fileReader.onload = function () {
     target.src = this.result;
-    target.classList.add('profile-image');
+    target.classList.add('input-image');
   }
   src.addEventListener('change', function () {
     if (src.files.length) {
       fileReader.readAsDataURL(src.files[0]);
     } else {
-      target.classList.remove('profile-image');
+      target.classList.remove('input-image');
       target.src = '';
     }
 
@@ -213,3 +218,4 @@ async function handleCoords(position) {
   console.log(position)
   document.getElementById('locationCoords').value = `${position.coords.latitude},${position.coords.longitude}`;
 }
+init();
