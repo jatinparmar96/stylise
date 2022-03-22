@@ -1,13 +1,17 @@
+$body-text: #444444;
 $primary-color: #765fc2;
 $secondary-color: #bdb8cf;
-$text-color-dark:#444444;
-$text-color-light:#FFFFFF;
+$text-color-dark: #444444;
+$text-color-light: #ffffff;
+$secondary-color02: #eae7f6;
+$secondary-color03: #f7f7fa;
+$error: #db6984;
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 
 .visually-hidden {
   clip: rect(1px, 1px, 1px, 1px);

@@ -1,5 +1,11 @@
 <main class="profile">
-    <h4 id="user-name" class="text-center"></h4>
+    <div class="username-container">
+        <div class="back-arrow">
+            <img src="/icons/keyboard_arrow_right.svg">
+        </div>
+        <span id="user-name" class="username"></span>
+    </div>
+    
     <div class="user-profile">
         <div class="user-details">
             <div class="circle">
@@ -9,16 +15,18 @@
             </div>  
             <div class="counter">
                 <div class="followers">
-                    <p id="q-followers">?</p>
-                    <p>Followers</p>
+                    <p id="q-followers" class="q">15</p>
+                    <p class="counter-title">Followers</p>
                 </div>
+                <div class="line"></div>
                 <div class="thanks">
-                    <p id="q-thanks">?</p>
-                    <p>Thanks</p>
+                    <p id="q-thanks" class="q">3</p>
+                    <p class="counter-title">Thanks</p>
                 </div>
+                <div class="line"></div>
                 <div class="posts">
-                    <p id="q-posts"></p>
-                    <p>Posts</p>
+                    <p id="q-posts" class="q"></p>
+                    <p class="counter-title">Posts</p>
                 </div>
                 
             </div>
@@ -27,6 +35,11 @@
         <div class="user-message">
             
             <p class="text-message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </p>
+        </div>
+
+        <div class="action-buttons">
+            <button class="edit-btn action-btn">Edit Profile</button>
+            <button class="delete-btn action-btn">Delete Account</button>
         </div>
 
     </div>
