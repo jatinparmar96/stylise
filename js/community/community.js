@@ -54,8 +54,6 @@ function showSearchResults() {
     clearWrapper();
     const all = document.getElementById('community-all');
     const donate = document.getElementById('community-donate');
-    // const forYou = document.getElementById('community-for-you');
-    // const favourite = document.getElementById('community-favourite');
     let btnContainer = document.getElementById("community-nav-list");
 
     // Get all buttons with class="nav-btn" inside the container
@@ -78,12 +76,6 @@ function showSearchResults() {
         showAllPosts();
     }
 
-    // if (all.classList.contains('active')) {
-    //     showAllPosts();
-    // }
-    // else if (donate.classList.contains('active')){
-    //     showDonatePosts();
-    // }
     if(document.getElementById('cancelSearch')){
         console.log("Cancel button already exists");
     }
