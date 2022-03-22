@@ -39,8 +39,7 @@ if (userFieldsRef.exists) {
 
     if (user.photoURL) {
         const image = document.getElementById('profile-image');
-        image.src = user.photoURL;
-        image.classList.add('profile-image');
+        image.style.backgroundImage = `url(${user.photoURL})`;
     }
 
     db.collection("posts").where("userID", "==", user.uid)
