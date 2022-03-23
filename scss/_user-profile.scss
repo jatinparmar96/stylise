@@ -16,13 +16,13 @@
 
       font-style: normal;
       font-weight: 600;
-      font-size: 24px;
-      line-height: 36px;
+      font-size: 14px;
+      line-height: 21px;
     }
 
     .back-arrow {
-      width: 30px;
-      height: 30px;
+      width: 18px;
+      height: 18px;
       justify-self: start;
       align-self: center;
       grid-area: arrow;
@@ -30,21 +30,18 @@
   }
 
   .user-profile {
-    width: 80%;
     margin: auto;
-    height: 10rem;
-    position: relative;
     display: grid;
-    grid-template-columns: 0.5fr 1.3fr 0.2fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "user-details user-message buttons";
-    gap: 0px 1rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.5fr 1fr;
+    grid-template-areas: "user-details" "buttons" "user-message ";
 
     margin-bottom: 1rem;
 
     .user-details {
       grid-area: user-details;
       align-self: center;
+      justify-self: center;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
@@ -53,15 +50,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 8rem;
-        width: 8rem;
+        height: 7rem;
+        width: 7rem;
         border-radius: 50%;
         background: #ffffff;
         box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.05);
 
         .profile-image {
-          height: 7.6rem;
-          width: 7.6rem;
+          height: 6.6rem;
+          width: 6.6rem;
           background-repeat: no-repeat;
           border-radius: 50%;
           background-size: cover;
@@ -79,22 +76,22 @@
 
         .line {
           width: 1px;
-          height: 65px;
+          height: 46px;
           background-color: $secondary-color02;
         }
 
         .q {
           font-weight: 500;
-          font-size: 22px;
-          line-height: 33px;
+          font-size: 18px;
+          line-height: 27px;
           text-align: center;
         }
 
         .counter-title {
           font-style: normal;
           font-weight: 400;
-          font-size: 16px;
-          line-height: 24px;
+          font-size: 12px;
+          line-height: 18px;
 
           text-align: center;
         }
@@ -102,10 +99,10 @@
     }
     .user-message {
       grid-area: user-message;
-      justify-self: end;
+      justify-self: center;
       align-self: center;
-      width: 28rem;
-      height: 6rem;
+      width: 350px;
+      padding: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -115,6 +112,10 @@
 
       .text-message {
         display: inline;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
       }
     }
 
@@ -125,8 +126,8 @@
 
       .edit-btn {
         width: 165px;
-        height: 30px;
-        margin-bottom: 15px;
+        height: 26px;
+        margin-right: 2rem;
 
         font-style: normal;
         font-weight: 600;
@@ -138,7 +139,7 @@
 
         background: $primary-color;
         border-radius: 50px;
-        border-color: transparent;
+        border: 2px solid $primary-color;
       }
 
       .delete-btn {
@@ -161,90 +162,167 @@
     }
   }
   .user-posts-type {
-    .nav-btn {
-      margin: 0;
-      width: 150px;
-      height: 50px;
-      border-color: transparent;
-      border-radius: 13.6px 13.6px 0px 0px;
-      border-style: solid;
-      border-bottom-color: $secondary-color03;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 30px;
-      color: $secondary-color;
-    }
-    .active {
-      background: $secondary-color03;
+    .post-type-nav {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      padding-inline-start: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
 
-      border-bottom-color: $primary-color;
-      color: $body-text;
+      .nav-btn {
+        margin: auto;
+        width: 100%;
+        height: 30px;
+        border-color: transparent;
+        border-radius: 8px 8px 0px 0px;
+        border-style: solid;
+        border-bottom-color: $secondary-color03;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        color: $secondary-color;
+      }
+      .active {
+        background: $secondary-color03;
+
+        border-bottom-color: $primary-color;
+        color: $body-text;
+      }
     }
   }
   .wrapper-container {
     background-color: $secondary-color02;
-    width: 100%;
     padding: 4rem 0;
 
     .wrapper {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       grid-gap: 1rem;
-      max-width: 80%;
+      max-width: 95vw;
       margin: auto;
+      place-items: center;
 
       .rectangle {
         background: rgba(255, 255, 255, 0.8);
         box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
-        border-radius: 30px;
-        width: 250px;
-        height: 254px;
+        border-radius: 20px;
+        width: 112px;
+        height: 116px;
         display: flex;
         justify-content: center;
         align-items: center;
 
         .post {
-          width: 234px;
-          height: 238px;
+          width: 104.96px;
+          height: 108.65px;
+          justify-self: center;
+          align-self: center;
           background-repeat: no-repeat;
           background-size: cover;
           background-position: center;
-          border-radius: 30px;
-          margin: auto;
+          border-radius: 20px;
         }
       }
     }
   }
 }
 
-.action-buttons {
-  margin: auto 15px;
-}
+@media screen and (min-width: 992px) {
+  .profile {
+    .username-container {
+      .username {
+        font-size: 24px;
+        line-height: 36px;
+      }
 
-.action-btn {
-  margin: 5px auto;
-}
+      .back-arrow {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .user-profile {
+      width: 90vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
 
-.profile-image {
-  //   position: absolute;
-  width: 120px;
-  height: 120px;
-  //   left: 560px;
-  //   //   top: 90px;
-  border-radius: 50%;
-  margin: 0.1rem;
-  border: 0.3rem solid #ffff;
-}
+      .user-details {
+        .counter {
+          margin: auto 8px;
+          .line {
+            height: 65px;
+          }
 
-.user-posts-type {
-  margin-left: 20px;
-  @media screen and (min-width: 768px) {
-    .profile {
+          .q {
+            font-size: 22px;
+            line-height: 33px;
+          }
+
+          .counter-title {
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+      }
+
+      .user-message {
+        width: 316px;
+      }
+      .action-buttons {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 15px;
+        justify-self: end;
+        width: 114px;
+
+        .edit-btn {
+          width: 114px;
+          height: 30px;
+          margin: 0;
+          font-size: 14px;
+          line-height: 21px;
+        }
+
+        .delete-btn {
+          width: 114px;
+
+          font-size: 14px;
+          line-height: 21px;
+        }
+      }
     }
   }
-  @media screen and (min-width: 992px) {
-    .profile {
+}
+
+@media screen and (min-width: 1200px) {
+  .profile {
+    .user-profile {
+      .user-message {
+        width: 383px;
+      }
+      .action-buttons {
+        width: 165px;
+
+        .edit-btn {
+          width: 165px;
+          height: 30px;
+        }
+
+        .delete-btn {
+          width: 165px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .profile {
+    .user-profile {
+      .user-message {
+        width: 460px;
+      }
     }
   }
 }
