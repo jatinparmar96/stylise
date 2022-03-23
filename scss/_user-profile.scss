@@ -125,7 +125,8 @@
       align-self: center;
       grid-area: buttons;
 
-      .edit-btn {
+      .edit-btn,
+      .follow-btn {
         width: 165px;
         height: 26px;
         margin-right: 2rem;
@@ -143,7 +144,8 @@
         border: 2px solid $primary-color;
       }
 
-      .delete-btn {
+      .delete-btn,
+      .thanks-btn {
         width: 165px;
         height: 30px;
 
@@ -296,7 +298,8 @@
         justify-self: end;
         width: 114px;
 
-        .edit-btn {
+        .edit-btn,
+        .follow-btn {
           width: 114px;
           height: 30px;
           margin: 0;
@@ -304,7 +307,8 @@
           line-height: 21px;
         }
 
-        .delete-btn {
+        .delete-btn,
+        .thanks-btn {
           width: 114px;
 
           font-size: 14px;
@@ -357,12 +361,14 @@
       .action-buttons {
         width: 165px;
 
-        .edit-btn {
+        .edit-btn,
+        .follow-btn {
           width: 165px;
           height: 30px;
         }
 
-        .delete-btn {
+        .delete-btn,
+        .thanks-btn {
           width: 165px;
         }
       }
