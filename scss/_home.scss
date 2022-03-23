@@ -106,11 +106,11 @@ img {
   cursor: pointer;
 }
 #index-body{
-   background-image: url("../icons/background.png");
-   background-repeat: no-repeat;
-   background-size:cover;
-  // background: radial-gradient(circle at top left,#BDB8CF 10%, #FAFAFD 40%,transparent 80%),
-  // radial-gradient(circle at bottom right, #BDB8CF 10%, #FAFAFD 40%,transparent 80%);
+  //  background-image: url("../icons/background.png");
+  //  background-repeat: no-repeat;
+  //  background-size:cover;
+   background: radial-gradient(circle at top left,#BDB8CF 10%, #FAFAFD 40%,transparent 80%),
+   radial-gradient(circle at bottom right, #BDB8CF 10%, #FAFAFD 40%,transparent 80%);
 }
 
 .community-nav-list{
@@ -131,7 +131,7 @@ img {
   border-radius: 25px;
   padding: 10px;
   border: none;
-  width: 201px;
+  width: 200px;
   box-shadow: 0 0 2px 2px rgba($color: rgba(66, 66, 66, 0.692), $alpha: 0.3);
 }
 .search{
