@@ -1,11 +1,13 @@
-.main-container {
+.landing-page-background{
+  background: radial-gradient(circle at top left, #765fc2 0%, #F6F4F9 60%,transparent 80%),
+  radial-gradient(circle at bottom right, #765fc2 0%, #F6F4F9 60%,transparent 80%);
+  background-repeat:  no-repeat,no-repeat;
+}
+.landing-page-container {
   min-height: 100vh;
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(2rem);
-}
-
-.landing-page-container {
   @media screen and (min-width: $breakpoints-md) {
     padding-top: 3rem;
   }
