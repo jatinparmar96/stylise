@@ -1,4 +1,4 @@
-.welcome {
+.signin-welcome {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -8,7 +8,7 @@
     letter-spacing: 0.1em;
     color: #444444;
   }
-  .phrase {
+  .signin-phrase {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -19,13 +19,18 @@
     letter-spacing: 0.05em;
     color: #444444;
   }
-  .email-input input, .pass-input input {
+  .signin-email-input input, .signin-pass-input input {
     background: #FFFFFF;
     box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
     border-radius: 50px;
     width: 350px;
     height: 40px;
     border: none;
+    margin: auto;
+  }
+  .signin-email-wrapper, .signin-password-wrapper {
+    text-align: center;
+    padding-bottom: 1rem;
   }
   .signin-button button {
     background: #765FC2;
@@ -40,27 +45,34 @@
     cursor: pointer;
     color: #FFFFFF;
   }
-  body {
+  .signin-button {
+    text-align: center;
+  }
+  .signin-links-container a {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+    letter-spacing: 0.05em;
+    text-decoration-line: underline;  
+    color: #765FC2;
+    padding: 0 1rem;
+  }
+  .signin-links-container {
+    display: flex;
+    justify-content: center;
+  }
+  .signin-about, .signin-forgot-password {
+    margin: auto;
+  }
+  .signin-body-wrapper {
     height: 100vh;
     background: radial-gradient(circle at top left,#BDB8CF 10%, #FAFAFD 50%,transparent 80%),
     radial-gradient(circle at bottom right, #BDB8CF 10%, #FAFAFD 50%,transparent 80%); 
   }
-  .forget-password p{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
-  /* identical to box height */
-    letter-spacing: 0.05em;
-    text-decoration-line: underline;
-    color: #765FC2;
-    padding: 1rem;
-  }
-  .forget-password {
-    display: flex;
-    margin: auto;
-  }
-  ::placeholder {
+  #signin-email::placeholder, #signin-password::placeholder,
+  #signin-conf-password::placeholder,
+  #signin-username::placeholder {
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
