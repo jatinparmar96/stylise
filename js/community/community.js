@@ -1,6 +1,8 @@
 function init() {
     //When load show For You by default
     showForYou();
+    //Show Loader
+
     //Handle Community All
     const all = document.getElementById('community-all')
     all.addEventListener('click', showAllPosts);
@@ -102,6 +104,7 @@ function addPosts(doc) {
  * @method showForYou
  */
 async function showForYou() {
+    showLoader();
     const user = await getCurrentUser();
     // Get user tags
     const userFieldsRef = await db.collection('users').doc(user.uid).get();
@@ -114,6 +117,7 @@ async function showForYou() {
             querySnapshot.forEach((doc) => {
                 addPosts(doc);
             });
+            hideLoader();
         });
 
 
@@ -124,6 +128,7 @@ async function showForYou() {
  * @method showAllPosts
  */
 async function showAllPosts() {
+    showLoader();
     const user = await getCurrentUser();
     clearWrapper();
     // fetch all posts from "posts" collection
@@ -132,6 +137,7 @@ async function showAllPosts() {
             querySnapshot.forEach((doc) => {
                 addPosts(doc);
             });
+            hideLoader();
         });
 }
 
@@ -140,6 +146,7 @@ async function showAllPosts() {
  * 
  */
 async function showFavorite() {
+    showLoader();
     const user = await getCurrentUser();
     clearWrapper();
     // fetch all posts from "favorites" collection
@@ -148,6 +155,7 @@ async function showFavorite() {
             querySnapshot.forEach((doc) => {
                 addPosts(doc);
             });
+            hideLoader();
         });
 }
 
@@ -158,6 +166,7 @@ async function showFavorite() {
 async function showDonatePosts() {
     // Setting distance to 10KM for now.
     const distance = 10;
+    showLoader();
     const user = await getCurrentUser();
     clearWrapper();
     const userMetaDataDoc = await db.collection('users').doc(user.uid).get()
@@ -201,6 +210,7 @@ async function showDonatePosts() {
                 wrapper.innerHTML += renderDonateItems(item);
 
             })
+            hideLoader();
         });
 }
 

@@ -73,3 +73,11 @@ function distanceBetweenCoords(lat1, lon1, lat2, lon2, unit) {
         return dist;
     }
 }
+// Functions for showing and hiding loader
+
+function showLoader() {
+    document.getElementById('loader').classList.remove('dn');
+}
+function hideLoader() {
+    document.getElementById('loader').classList.add('dn');
+}
