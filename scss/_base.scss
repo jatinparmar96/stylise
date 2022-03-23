@@ -7,7 +7,10 @@ $secondary-color: #bdb8cf;
 }
 body {
   /*Generic font family for now*/
-  font-family: sans-serif;
+  background: radial-gradient(circle at top left, #765fc2 0%, #F6F4F9 60%,transparent 80%),
+  radial-gradient(circle at bottom right, #765fc2 0%, #F6F4F9 60%,transparent 80%);
+  background-repeat:  no-repeat,no-repeat;
+  min-height: 100vh;
 }
 h1 {
   font-size: 2rem;
