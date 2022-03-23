@@ -1,48 +1,393 @@
-.user-profile {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin: 10px 20px 30px 20px;
+.profile {
+  margin: auto;
+
+  .username-container {
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "arrow user blank";
+
+    .username {
+      justify-self: center;
+      align-self: center;
+      grid-area: user;
+
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    .back-arrow {
+      width: 18px;
+      height: 18px;
+      justify-self: start;
+      align-self: center;
+      grid-area: arrow;
+    }
+  }
+
+  .user-profile {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.5fr 1fr;
+    grid-template-areas: "user-details" "buttons" "user-message ";
+
+    margin-bottom: 1rem;
+
+    .user-details {
+      grid-area: user-details;
+      align-self: center;
+      justify-self: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      .circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.05);
+
+        .profile-image {
+          height: 75px;
+          width: 75px;
+          background-repeat: no-repeat;
+          border-radius: 50%;
+          background-size: cover;
+          background-position: center;
+        }
+      }
+
+      .counter {
+        display: grid;
+        grid-template-columns: 1fr 3px 1fr 3px 1fr;
+        text-align: center;
+        gap: 0px 10px;
+        margin: auto 30px;
+        color: $primary-color;
+
+        .line {
+          width: 1px;
+          height: 46px;
+          background-color: $secondary-color02;
+        }
+
+        .q {
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 27px;
+          text-align: center;
+        }
+
+        .counter-title {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 18px;
+
+          text-align: center;
+        }
+      }
+    }
+    .user-message {
+      grid-area: user-message;
+      justify-self: center;
+      align-self: center;
+      width: 350px;
+      height: 96px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #ffffff;
+      box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+
+      .text-message {
+        display: inline;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+
+    .action-buttons {
+      justify-self: center;
+      align-self: center;
+      grid-area: buttons;
+
+      .edit-btn,
+      .follow-btn {
+        width: 165px;
+        height: 26px;
+        margin-right: 2rem;
+
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+
+        color: #ffffff;
+
+        background: $primary-color;
+        border-radius: 50px;
+        border: 2px solid $primary-color;
+      }
+
+      .delete-btn,
+      .thanks-btn {
+        width: 165px;
+        height: 30px;
+
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+
+        color: $primary-color;
+
+        background: #ffffff;
+        border: 2px solid $primary-color;
+        box-sizing: border-box;
+        border-radius: 50px;
+      }
+    }
+  }
+  .user-posts-type {
+    .post-type-nav {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      padding-inline-start: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      .nav-btn {
+        margin: auto;
+        width: 100%;
+        height: 30px;
+        border-color: transparent;
+        border-radius: 8px 8px 0px 0px;
+        border-style: solid;
+        border-bottom-color: $secondary-color03;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        color: $secondary-color;
+      }
+      .active {
+        background: $secondary-color03;
+
+        border-bottom-color: $primary-color;
+        color: $body-text;
+      }
+    }
+  }
+  .wrapper-container {
+    background-color: $secondary-color02;
+    padding: 4rem 0;
+
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1rem;
+      max-width: 95vw;
+      margin: auto;
+      place-items: center;
+
+      .rectangle {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        width: 112px;
+        height: 116px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .post {
+          width: 104.96px;
+          height: 108.65px;
+          justify-self: center;
+          align-self: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
 }
 
-.user-details {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+@media screen and (min-width: 768px) {
+  .profile {
+    .wrapper-container {
+      .wrapper {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
 }
 
-.counter {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  text-align: center;
-  grid-gap: 2px;
-  margin: auto 30px;
+@media screen and (min-width: 992px) {
+  .profile {
+    .username-container {
+      .username {
+        font-size: 24px;
+        line-height: 36px;
+      }
+
+      .back-arrow {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .user-profile {
+      width: 90vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .user-details {
+        .circle {
+          height: 120px;
+          width: 120px;
+
+          .profile-image {
+            height: 112.5px;
+            width: 112.5px;
+          }
+        }
+        .counter {
+          margin: auto 8px;
+          .line {
+            height: 65px;
+          }
+
+          .q {
+            font-size: 22px;
+            line-height: 33px;
+          }
+
+          .counter-title {
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+      }
+
+      .user-message {
+        width: 316px;
+      }
+      .action-buttons {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 15px;
+        justify-self: end;
+        width: 165px;
+
+        .edit-btn,
+        .follow-btn {
+          width: 165px;
+          height: 30px;
+          margin: 0;
+          font-size: 14px;
+          line-height: 21px;
+        }
+
+        .delete-btn,
+        .thanks-btn {
+          width: 165px;
+
+          font-size: 14px;
+          line-height: 21px;
+        }
+      }
+    }
+    .user-posts-type {
+      .post-type-nav {
+        margin-top: 40px;
+        display: flex;
+        justify-content: flex-start;
+
+        .nav-btn {
+          margin: auto;
+          width: 146.67px;
+          height: 50px;
+          border-radius: 13.6px 13.6px 0px 0px;
+
+          font-size: 20px;
+          line-height: 30px;
+        }
+      }
+    }
+    .wrapper-container {
+      .wrapper {
+        grid-template-columns: repeat(3, 1fr);
+        .rectangle {
+          box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+          border-radius: 30px;
+          width: 250px;
+          height: 254px;
+
+          .post {
+            width: 234px;
+            height: 238px;
+            border-radius: 30px;
+          }
+        }
+      }
+    }
+  }
 }
 
-.user-message {
-  margin: auto 15px;
+@media screen and (min-width: 1200px) {
+  .profile {
+    .user-profile {
+      .user-message {
+        width: 383px;
+      }
+      .action-buttons {
+        width: 165px;
+
+        .edit-btn,
+        .follow-btn {
+          width: 165px;
+          height: 30px;
+        }
+
+        .delete-btn,
+        .thanks-btn {
+          width: 165px;
+        }
+      }
+    }
+    .wrapper-container {
+      .wrapper {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
 }
 
-.action-buttons {
-  margin: auto 15px;
+@media screen and (min-width: 1400px) {
+  .profile {
+    .user-profile {
+      .user-message {
+        width: 460px;
+      }
+    }
+  }
 }
-
-.action-btn {
-  margin: 5px auto;
-}
-
-.profile-image {
-  //   position: absolute;
-  width: 120px;
-  height: 120px;
-  //   left: 560px;
-  //   //   top: 90px;
-  border-radius: 50%;
-  margin: .1rem;
-  border:.3rem solid #ffff;
-}
-
-.user-posts-type {
-  margin-left: 20px;
-}
-
