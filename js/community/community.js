@@ -175,9 +175,15 @@ async function showDonatePosts() {
             });
             donateDocsArray = donateDocsArray.filter((item) => {
                 if (item.location.coords) {
+
+                    if (!userMetaData.locationCoords?.latitude
+                        || userMetaData.locationCoords?.longitude
+                    ) {
+                        return true;
+                    }
                     const coordsDistance = distanceBetweenCoords(
-                        userMetaData.locationCoords.latitude,
-                        userMetaData.locationCoords.longitude,
+                        userMetaData.locationCoords?.latitude,
+                        userMetaData.locationCoords?.longitude,
                         item.location.coords.latitude,
                         item.location.coords.longitude
                     )
