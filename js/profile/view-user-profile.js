@@ -50,8 +50,8 @@ async function renderUserProfile() {
 
         if (userFields['profile-image']) {
             const image = document.getElementById('profile-image');
-            image.src = userFields['profile-image'];
-            image.classList.add('profile-image');
+            const pic = userFields['profile-image'];
+            image.style.backgroundImage = `url(${pic})`;
         }
 
         db.collection("posts").where("userID", "==", userUid)
@@ -69,15 +69,19 @@ async function renderUserProfile() {
  * @param doc
  */
  function addUserPosts(doc) {
-    let div = document.createElement("div");
-    div.classList.add("post");
-    const link = document.createElement('a');
-    link.href = `index.html#view-post?id=${doc.id}`;
-    let img = document.createElement("img");
-    img.src = doc.data().uri;
-    link.appendChild(img)
-    div.appendChild(link);
-    document.getElementById("wrapper").appendChild(div);
+        let rectangle = document.createElement("div");
+        rectangle.classList.add("rectangle");
+        const link = document.createElement('a');
+        link.href = `index.html#view-post?id=${doc.id}`;
+        let post = document.createElement("div");
+        post.classList.add("post");
+        post.style.backgroundImage = `url(${doc.data().uri})`;
+    
+        link.appendChild(post)
+        rectangle.appendChild(link);
+        document.getElementById("wrapper").appendChild(rectangle);
+    
+     
 
  }
 
