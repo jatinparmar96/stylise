@@ -1,0 +1,14 @@
+$primary-color: #765fc2;
+$accent-color: #fff;
+
+$breakpoints-sm: 576px;
+$breakpoints-md: 768px;
+$breakpoints-lg: 992px;
+$breakpoints-xl: 1200px;
+
+$grid-breakpoints: (
+  sm: $breakpoints-sm,
+  md:  $breakpoints-md,
+  lg:  $breakpoints-lg,
+  xl:  $breakpoints-xl,
+);

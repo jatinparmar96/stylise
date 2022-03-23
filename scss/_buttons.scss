@@ -1,0 +1,24 @@
+.btn{
+    border-radius: 2rem;
+    padding: .5rem 2rem;
+    border: 1px solid $primary-color;
+    cursor: pointer;
+    text-align: center;
+}
+.btn-primary{
+    background-color: $primary-color;
+    color: $accent-color;
+}
+.btn-accent-filled{
+    background-color: $accent-color;
+    color: $primary-color;
+}
+
+.btn-accent{
+   color: $accent-color;
+   border: 1px solid $accent-color;
+}
+.btn-group{
+    display: flex;
+    gap: 1rem;
+}
