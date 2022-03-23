@@ -1,4 +1,18 @@
 function init() {
+    // Get the container element
+    let btnsContainer = document.getElementById("post-type-nav");
+    // Get all buttons with class="nav-btn" inside the container
+    let btns = btnsContainer.getElementsByClassName("nav-btn");
+    /**
+     * identify active post-type tab // Loop through the buttons and add the active class to the current/clicked button
+     */
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            let current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
     userDetails();
     showUserPosts();
     //Handle User Outfit Posts
@@ -10,26 +24,12 @@ function init() {
 
 }
 
-/**
- * identify active post-type tab
- */
-// Get the container element
-let btnContainer = document.getElementById("post-type-nav");
-console.log(btnContainer);
-// Get all buttons with class="nav-btn" inside the container
-let btns = btnContainer.getElementsByClassName("nav-btn");
-// Loop through the buttons and add the active class to the current/clicked button
-for (let i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function () {
-        let current = document.getElementsByClassName("active");
-        current[0].className = current[0].className.replace(" active", "");
-        this.className += " active";
-    });
-}
+
+
+
 
 async function userDetails() {
 const user = await getCurrentUser();
-console.log(user);
 const userFieldsRef = await db.collection('users').doc(user.uid).get();
 if (userFieldsRef.exists) {
     const userFields = userFieldsRef.data();

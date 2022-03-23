@@ -1,6 +1,20 @@
 function init() {
 renderUserProfile();
 showUserPosts();
+// Get the container element
+let btnsContainer = document.getElementById("post-type-nav");
+// Get all buttons with class="nav-btn" inside the container
+let btns = btnsContainer.getElementsByClassName("nav-btn");
+/**
+ * identify active post-type tab // Loop through the buttons and add the active class to the current/clicked button
+ */
+for (let i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () {
+        let current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+    });
+}
 //Handle User Outfit Posts
 const outfit = document.getElementById('profile-outfit')
 outfit.addEventListener('click', showUserPosts);
@@ -34,11 +48,11 @@ async function renderUserProfile() {
         userName.innerHTML = userFields.username;
         const qPosts = document.getElementById('q-posts');
 
-        // if (user.photoURL) {
-        //     const image = document.getElementById('profile-image');
-        //     image.src = user.photoURL;
-        //     image.classList.add('profile-image');
-        // }
+        if (userFields['profile-image']) {
+            const image = document.getElementById('profile-image');
+            image.src = userFields['profile-image'];
+            image.classList.add('profile-image');
+        }
 
         db.collection("posts").where("userID", "==", userUid)
         .get().then((querySnapshot) => {
