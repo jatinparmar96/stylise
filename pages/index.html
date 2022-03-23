@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="../scss/main.css">
     <link rel="manifest" href="/app.webmanifest">
     <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
-    
+
     <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -25,48 +26,48 @@
 
 <body>
     <div class="main-container">
-    <header id="nav-header">
-       
-        <nav class="main-nav">
-            <div class="notification-bell">
-                <img src="../icons/notifications.png" alt="logo" id="logo">
-            </div>
-            <img src="../icons/logo.png" alt="logo" id="logo">
-            <ul class="main-nav-list">
-                <li><a id="community" href="#home">COMMUNITY</a></li>
-                <li><a id="closet" href="#closet">CLOSET</a></li>
-                <li> <a href="#update-profile"> ACCOUNT </a></li>
-                <li><a id="logout" href="#">LOG OUT</a></li>
-            </ul>
-            <div class="search">
-                <form>
-                    <input type="text" placeholder="Search" id="search"/>
-                    <img src="../icons/search.png" alt="search" id="search-icon">
-                </form>
-            </div>
-    
-        </nav>
-    </header>
-    <div class="container" id="mainArea">
-        
-    </div>
+        <header id="nav-header">
 
-    <div class="loader dn" id="loader">
-        <div class="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <nav class="main-nav">
+                <div class="notification-bell">
+                    <img src="../icons/notifications.png" alt="logo" id="logo">
+                </div>
+                <img src="../icons/logo.png" alt="logo" id="logo">
+                <ul class="main-nav-list">
+                    <li><a id="community" href="#home">COMMUNITY</a></li>
+                    <li><a id="closet" href="#closet">CLOSET</a></li>
+                    <li> <a href="#update-profile"> ACCOUNT </a></li>
+                    <li><a id="logout" href="#">LOG OUT</a></li>
+                </ul>
+                <div class="search">
+                    <form>
+                        <input type="text" placeholder="Search" id="search" />
+                        <img src="../icons/search.png" alt="search" id="search-icon">
+                    </form>
+                </div>
+
+            </nav>
+        </header>
+        <div class="container" id="mainArea">
+
+        </div>
+
+        <div class="loader dn" id="loader">
+            <div class="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="../js/routing/router.js"></script>
-<script src="../js/routing/script.js"></script>
+    <script src="../js/routing/router.js"></script>
+    <script src="../js/routing/script.js"></script>
 </body>
 
 </html>
