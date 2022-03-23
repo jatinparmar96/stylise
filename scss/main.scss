@@ -1,5 +1,8 @@
+@import "./variables";
+@import "./mixins";
 @import "./base";
 @import "./utils";
+@import "./buttons";
 @import "./login";
 @import "./style";
 @import "./home";
@@ -7,3 +10,5 @@
 @import "./closet";
 @import "./user-profile";
 @import "./loader";
+@import "./landing-page";
+@import "./typography";

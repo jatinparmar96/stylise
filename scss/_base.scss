@@ -1,13 +1,24 @@
+$body-text: #444444;
 $primary-color: #765fc2;
 $secondary-color: #bdb8cf;
+$text-color-dark: #444444;
+$text-color-light: #ffffff;
+$secondary-color02: #eae7f6;
+$secondary-color03: #f7f7fa;
+$error: #db6984;
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 body {
   /*Generic font family for now*/
-  font-family: sans-serif;
+  background: radial-gradient(circle at top left, #765fc2 0%, #F6F4F9 60%,transparent 80%),
+  radial-gradient(circle at bottom right, #765fc2 0%, #F6F4F9 60%,transparent 80%);
+  background-repeat:  no-repeat,no-repeat;
+  min-height: 100vh;
 }
 h1 {
   font-size: 2rem;
