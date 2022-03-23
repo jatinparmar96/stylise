@@ -7,6 +7,9 @@ function init() {
     const imageSrc = document.getElementById('image-input');
     const imageTarget = document.getElementById('image');
 
+    const tags =document.getElementById('add-tag');
+    tags.addEventListener('click', addTagInput);
+
     const cameraBtn = document.getElementById('openCameraBtn');
     form.addEventListener('submit', uploadItemDesc)
     initImageListener(getCategoryIdFromUrl());
@@ -14,7 +17,7 @@ function init() {
     initCategoryListener();
 }
 
-init();
+
 /**
  * Parse url and return the parameter q={parameter}
  * @returns {string}
@@ -53,7 +56,7 @@ async function uploadItemImg(imgItem) {
 async function uploadItemDesc(event) {
     event.preventDefault();
     const category = document.getElementById('categories').value;
-    const keywords = document.getElementById('keywords').value;
+    const tagsArray = JSON.parse(document.getElementById('tagsHiddenValue').value || '[]');
     const imageItem = document.getElementById('image-input').files[0]; //image selected to upload by user
     const capturedImage = document.getElementById('capturedImage');
     let imageRef;
@@ -72,7 +75,7 @@ async function uploadItemDesc(event) {
     const imageUrl = await imageRef.ref.getDownloadURL();
     const itemObject = {
             category,
-            keywords: keywords.split(','),
+            keywords: tagsArray,
             uri: imageUrl,
             type: 'closet-item',
             public: false
@@ -138,7 +141,8 @@ function initImageListener(categoryId) {
         const categoryImages = document.getElementById('category-images');
         categoryImages.innerHTML = '';
        querySnapshot.forEach(doc =>{
-           categoryImages.innerHTML += renderImages(doc)
+           categoryImages.innerHTML += renderImages(doc);
+           
        })
     })
     window.removeFirebaseListener.push(listener);
@@ -173,9 +177,12 @@ function renderDataListItem(itemDoc) {
  */
 function renderImages(imageDoc){
     const imageData = imageDoc.data();
+    
     return`
         <div class="flex flex-column closet-item" style="max-width: 25%;">
+            <a href="index.html#view-item?id=${imageDoc.id}">
             <img src="${imageData.uri}" style="object-fit: cover;height: 200px;width: 200px">
+            </a>
             <span>${imageData.category}</span>
             <span>${imageData.keywords}</span>
         </div>
@@ -249,11 +256,22 @@ function captureImage() {
     tracks.forEach((track) => track.stop());
     video.classList.add('dn');
 }
-//to do:
-// 1 - html: leave just save button to execute both functions
-// 2 - Create a save button handler function to execute both functions
-// 3 - link image to item description document
-//
 
 
 
+function addTagInput() {
+    const showTags = document.getElementById('show-tags');
+    const hiddenTagsValueElement = document.getElementById('tagsHiddenValue')
+    const tagsArray = JSON.parse(hiddenTagsValueElement.value || "[]");
+    const tagValue = document.getElementById('tags');
+  
+    if (tagValue.value != '' && tagValue.value.trim().length > 0) {
+      tagsArray.push(tagValue.value); //stores tag in an array
+      let tagsString = tagsArray.join(", ");
+      showTags.innerHTML = tagsString;
+    }
+    hiddenTagsValueElement.value = JSON.stringify(tagsArray);
+    tagValue.value = null;
+  }
+
+init();
