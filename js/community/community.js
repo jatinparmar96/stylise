@@ -15,6 +15,9 @@ function init() {
     //Handle community favorite
     const favorite = document.getElementById('community-favourite')
     favorite.addEventListener('click', showFavorite);
+    //Handle search
+     const searchBtn = document.getElementById('searchBtn')
+     searchBtn.addEventListener('click', showSearchResults);
 
     /**
      * identify active home tab
@@ -33,7 +36,6 @@ function init() {
             this.className += " active";
         });
     }
-
 }
 
 /**
@@ -43,6 +45,69 @@ function init() {
 function clearWrapper() {
     const wrapper = document.getElementById("wrapper");
     wrapper.innerHTML = "";
+}
+
+/**
+ * show search results in community pages
+ * 
+ */
+ function showSearchResults() {
+    clearWrapper();
+    const all = document.getElementById('community-all');
+    const donate = document.getElementById('community-donate');
+    let btnContainer = document.getElementById("community-nav-list");
+
+    // Get all buttons with class="nav-btn" inside the container
+    let btns = btnContainer.getElementsByClassName("nav-btn");
+
+    if (all.classList.contains("active")){
+        showAllPosts();
+    }
+    else if (donate.classList.contains("active")){
+        showDonatePosts();
+    }
+    else {
+    // Loop through the buttons and add the active class to the current/clicked button
+        for (let i = 0; i < btns.length; i++) {
+            if (btns[i].classList.contains("active") ){
+                btns[i].classList.remove("active");
+            }
+        }
+        all.classList += " active";
+        showAllPosts();
+    }
+
+    if(document.getElementById('cancelSearch')){
+        console.log("Cancel button already exists");
+    }
+    else {
+        let cancelBtn = document.createElement("button");
+        cancelBtn.classList.add("cancelSearch");
+        cancelBtn.id = "cancelSearch";
+        document.getElementById('search').appendChild(cancelBtn);
+        const cancelSearchBtn = document.getElementById('cancelSearch');
+        cancelSearchBtn.innerHTML = "cancel";
+    }
+    document.getElementById('cancelSearch').addEventListener('click', cancelSearch);
+}
+
+/**
+ * 
+ * cancel search and show all posts or donate posts
+ */
+function cancelSearch() {
+    document.getElementById('searchInput').value = "";
+    const cancelSearchBtn = document.getElementById('cancelSearch');
+    cancelSearchBtn.remove();
+    const all = document.getElementById('community-all');
+    const donate = document.getElementById('community-donate');
+
+    if (all.classList.contains("active")) {
+        showAllPosts();
+    }
+    else if (donate.classList.contains("active")){
+        showDonatePosts();
+    }
 }
 
 
@@ -104,7 +169,10 @@ function addPosts(doc) {
  * @method showForYou
  */
 async function showForYou() {
+    const searchMessage = document.getElementById('searchMessage');
+    searchMessage.innerHTML = "";
     showLoader();
+
     const user = await getCurrentUser();
     // Get user tags
     const userFieldsRef = await db.collection('users').doc(user.uid).get();
@@ -120,7 +188,11 @@ async function showForYou() {
             hideLoader();
         });
 
-
+    if (document.getElementById('cancelSearch')){
+        document.getElementById('searchInput').value = "";
+        const cancelSearchBtn = document.getElementById('cancelSearch');
+        cancelSearchBtn.remove();
+    }
 }
 
 /**
@@ -130,8 +202,28 @@ async function showForYou() {
 async function showAllPosts() {
     showLoader();
     const user = await getCurrentUser();
+    const searchInput = document.getElementById('searchInput');
+    const searchValue = searchInput.value;
+    const searchMessage = document.getElementById('searchMessage');
     clearWrapper();
+    if (searchValue.trim().length > 1){
+        console.log(searchValue);
+        db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains", searchValue)
+        .get().then((querySnapshot) => {
+            if (querySnapshot.empty){
+                searchMessage.innerHTML = "<p>No results were found for <strong>"+searchValue+"</strong></p>";
+            }
+            else {
+                searchMessage.innerHTML = "<p>Results for <strong>"+searchValue+"</strong></p>";
+                querySnapshot.forEach((doc) => {
+                addPosts(doc);
+            });
+        }
+        });
+    }
+    else {
     // fetch all posts from "posts" collection
+    searchMessage.innerHTML = "";
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community")
         .get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -139,6 +231,7 @@ async function showAllPosts() {
             });
             hideLoader();
         });
+    }
 }
 
 /**
@@ -149,6 +242,9 @@ async function showFavorite() {
     showLoader();
     const user = await getCurrentUser();
     clearWrapper();
+    const searchMessage = document.getElementById('searchMessage');
+    searchMessage.innerHTML = "";
+    const user = await getCurrentUser();
     // fetch all posts from "favorites" collection
     db.collection("users/" + user.uid + "/favorites")
         .get().then((querySnapshot) => {
@@ -157,6 +253,11 @@ async function showFavorite() {
             });
             hideLoader();
         });
+    if (document.getElementById('cancelSearch')){
+        document.getElementById('searchInput').value = "";
+        const cancelSearchBtn = document.getElementById('cancelSearch');
+        cancelSearchBtn.remove();
+    }
 }
 
 /**
@@ -168,9 +269,40 @@ async function showDonatePosts() {
     const distance = 10;
     showLoader();
     const user = await getCurrentUser();
+    const searchInput = document.getElementById('searchInput');
+    const searchValue = searchInput.value;
+    const searchMessage = document.getElementById('searchMessage');
     clearWrapper();
     const userMetaDataDoc = await db.collection('users').doc(user.uid).get()
     const userMetaData = userMetaDataDoc.data();
+    if (searchValue.trim().length > 1){
+        console.log(searchValue);
+        db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item").where("tags", "array-contains", searchValue)
+        .get().then((querySnapshot) => {
+            if (querySnapshot.empty){
+                searchMessage.innerHTML = "<p>No results were found for <strong>"+searchValue+"</strong></p>";
+            }
+            else {
+                let donateDocsArray = [];
+                searchMessage.innerHTML = "<p>Results for <strong>"+searchValue+"</strong></p>";
+                querySnapshot.forEach((doc) => {
+                    donateDocsArray.push(
+                        {
+                            ...doc.data(), id: doc.id
+                        }
+                    );
+                //addPosts(doc);
+                const wrapper = document.getElementById("wrapper");
+                donateDocsArray.forEach(item => {
+                    wrapper.innerHTML += renderDonateItems(item);
+    
+                })
+            });
+        }
+        });
+    }
+    else {
+        searchMessage.innerHTML = "";
     // fetch posts from "posts" collection with type = donate-item
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item")
         .get().then((querySnapshot) => {
@@ -212,6 +344,7 @@ async function showDonatePosts() {
             })
             hideLoader();
         });
+    }
 }
 
 function renderDonateItems(item) {
