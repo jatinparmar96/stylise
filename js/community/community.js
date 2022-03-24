@@ -1,6 +1,8 @@
 function init() {
     //When load show For You by default
     showForYou();
+    //Show Loader
+
     //Handle Community All
     const all = document.getElementById('community-all')
     all.addEventListener('click', showAllPosts);
@@ -169,6 +171,8 @@ function addPosts(doc) {
 async function showForYou() {
     const searchMessage = document.getElementById('searchMessage');
     searchMessage.innerHTML = "";
+    showLoader();
+
     const user = await getCurrentUser();
     // Get user tags
     const userFieldsRef = await db.collection('users').doc(user.uid).get();
@@ -181,6 +185,7 @@ async function showForYou() {
             querySnapshot.forEach((doc) => {
                 addPosts(doc);
             });
+            hideLoader();
         });
 
     if (document.getElementById('cancelSearch')){
@@ -195,6 +200,7 @@ async function showForYou() {
  * @method showAllPosts
  */
 async function showAllPosts() {
+    showLoader();
     const user = await getCurrentUser();
     const searchInput = document.getElementById('searchInput');
     const searchValue = searchInput.value;
@@ -223,6 +229,7 @@ async function showAllPosts() {
             querySnapshot.forEach((doc) => {
                 addPosts(doc);
             });
+            hideLoader();
         });
     }
 }
@@ -232,6 +239,8 @@ async function showAllPosts() {
  * 
  */
 async function showFavorite() {
+    showLoader();
+    const user = await getCurrentUser();
     clearWrapper();
     const searchMessage = document.getElementById('searchMessage');
     searchMessage.innerHTML = "";
@@ -242,6 +251,7 @@ async function showFavorite() {
             querySnapshot.forEach((doc) => {
                 addPosts(doc);
             });
+            hideLoader();
         });
     if (document.getElementById('cancelSearch')){
         document.getElementById('searchInput').value = "";
@@ -257,6 +267,7 @@ async function showFavorite() {
 async function showDonatePosts() {
     // Setting distance to 10KM for now.
     const distance = 10;
+    showLoader();
     const user = await getCurrentUser();
     const searchInput = document.getElementById('searchInput');
     const searchValue = searchInput.value;
@@ -305,9 +316,15 @@ async function showDonatePosts() {
             });
             donateDocsArray = donateDocsArray.filter((item) => {
                 if (item.location.coords) {
+
+                    if (!userMetaData.locationCoords?.latitude
+                        || userMetaData.locationCoords?.longitude
+                    ) {
+                        return true;
+                    }
                     const coordsDistance = distanceBetweenCoords(
-                        userMetaData.locationCoords.latitude,
-                        userMetaData.locationCoords.longitude,
+                        userMetaData.locationCoords?.latitude,
+                        userMetaData.locationCoords?.longitude,
                         item.location.coords.latitude,
                         item.location.coords.longitude
                     )
@@ -325,6 +342,7 @@ async function showDonatePosts() {
                 wrapper.innerHTML += renderDonateItems(item);
 
             })
+            hideLoader();
         });
     }
 }

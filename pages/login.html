@@ -1,33 +1,44 @@
-<div class="logo">Logo</div>
-<div class="title">
-    <p class="welcome">Welcome Back</p>
-    <p class="phrase">Get inspired</p>
-</div>
-<div class="login-form">
-    <div class="email-wrapper">
-        <span class="email-label"><label for="email">Email</label></span>
-        <span class="email-input"><input type="text" id="email" required></span>
+<div class="signin-body-wrapper">
+  <div class="logo">Logo</div>
+  <div class="title">
+    <p class="signin-welcome">Welcome back to Stylise</p>
+    <p class="signin-phrase">Log in to your account</p>
+  </div>
+  <div class="signin-form">
+    <div class="signin-email-wrapper">
+      <!-- <span class="email-label"><label for="email">Email</label></span> -->
+      <span class="signin-email-input"
+        ><input type="text" id="email" placeholder="email" required
+      /></span>
     </div>
-    <div class="password-wrapper">
-        <span class="pass-label"><label for="password">Password</label></span>
-        <span class="pass-input"><input type="password" id="password" required></span>
+    <div class="signin-password-wrapper">
+      <!-- <span class="pass-label"><label for="password">Password</label></span> -->
+      <span class="signin-pass-input"
+        ><input type="password" id="password" placeholder="password" required
+      /></span>
     </div>
     <div class="signin-button">
-        <button type="submit" id="login">Sign in</button>
+      <button type="submit" id="login">Log in</button>
     </div>
     <div class="error">
-        <h4 id="error"></h4>
+      <h4 id="error"></h4>
     </div>
+    <div class="signin-links-container">
+      <a href="#">ABOUT Stylise</a>
+
+      <a href="#">Forgot password?</a>
+    </div>
+
     <div class="social-wrapper">
-        <p>OR</p>
-        <p>sign-in with:</p>
-        <div class="social-icons">
-            <button id="google-button">
-                <i class="fab fa-google"></i>
-            </button>
-            <button id="facebook-button">
-                <i class="fab fa-facebook-square"></i>
-            </button>
-        </div>
+      <p>OR sign-in with:</p>
+      <div class="social-icons">
+        <button id="google-button">
+          <i class="fab fa-google"></i>
+        </button>
+        <button id="facebook-button">
+          <i class="fab fa-facebook-square"></i>
+        </button>
+      </div>
     </div>
+  </div>
 </div>

@@ -1,45 +1,70 @@
-<body>
-<div class="logo">Logo</div>
-<div class="title">
-    <p class="welcome">Welcome to Stylise</p>
-    <p class="phrase">Get inspired</p>
-</div>
-<div class="login-form">
-    <h2 class="create-account">Create Account</h2>
-    <div class="email-wrapper">
-        <span class="email-label"><label for="username">Username</label></span>
-        <span class="email-input"><input type="text" id="username" required></span>
+<body class="signin-body-wrapper">
+<div class="signin-body-wrapper">
+  <div class="logo">Logo</div>
+  <div class="title">
+    <p class="signin-welcome">Welcome to Stylise</p>
+    <p class="signin-phrase">Create your account</p>
+  </div>
+  <div class="login-form">
+    <!-- <h2 class="create-account">Create Account</h2> -->
+    <div class="signin-email-wrapper">
+      <!-- <span class="email-label"><label for="username">Username</label></span> -->
+      <span class="signin-email-input"
+        ><input type="text" id="username" placeholder="username" required
+      /></span>
     </div>
-    <div class="email-wrapper">
-        <span class="email-label"><label for="email">Email</label></span>
-        <span class="email-input"><input type="email" id="email" required></span>
+    <div class="signin-email-wrapper">
+      <!-- <span class="email-label"><label for="email">Email</label></span> -->
+      <span class="signin-email-input"
+        ><input type="email" id="email" placeholder="email" required
+      /></span>
     </div>
-    <div class="password-wrapper">
-        <span class="pass-label"><label for="password">Password</label></span>
-        <span class="pass-input"><input type="password" id="password" required></span>
+    <div class="signin-password-wrapper">
+      <!-- <span class="pass-label"><label for="password">Password</label></span> -->
+      <span class="signin-pass-input"
+        ><input type="password" id="password" placeholder="password" required
+      /></span>
     </div>
-    <div class="conf-password-wrapper">
-        <span class="pass-label"><label for="conf-password">Confirm Password</label></span>
-        <span class="pass-input"><input type="password" id="conf-password" required></span>
+    <div class="signin-password-wrapper">
+      <!-- <span class="pass-label"><label for="conf-password">Confirm Password</label></span> -->
+      <span class="signin-pass-input"
+        ><input type="password" id="conf-password" placeholder="confirm password" required
+      /></span>
     </div>
-    <div class="signup-button">
-        <button type="submit" id="signup">Sign up</button>
+    <div class="signin-button">
+      <button type="submit" id="signup">Sign up</button>
     </div>
     <div class="error">
-        <h4 id="error"></h4>
+      <h4 id="error"></h4>
     </div>
-    <div class="social-wrapper">
-        <p>OR</p>
-        <p>create account using social media</p>
+    <div class="signin-links-container">
+        <a href="#">ABOUT Stylise</a>
+      </div>
+  
+      <div class="social-wrapper">
+        <p>OR sign-in with:</p>
         <div class="social-icons">
-            <button id="google-button">
-                <i class="fab fa-google"></i>
-            </button>
-
-            <button id="facebook-button">
-                <i class="fab fa-facebook-square"></i>
-            </button>
-
+          <button id="google-button">
+            <i class="fab fa-google"></i>
+          </button>
+          <button id="facebook-button">
+            <i class="fab fa-facebook-square"></i>
+          </button>
         </div>
+      </div>
     </div>
-</div>
+    <!-- <div class="social-wrapper">
+      <p>OR</p>
+      <p>create account using social media</p>
+      <div class="social-icons">
+        <button id="google-button">
+          <i class="fab fa-google"></i>
+        </button>
+
+        <button id="facebook-button">
+          <i class="fab fa-facebook-square"></i>
+        </button>
+      </div>
+    </div> -->
+  <!-- </div> -->
+</body>

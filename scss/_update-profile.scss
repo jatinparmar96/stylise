@@ -1,40 +1,232 @@
 .update-profile{
+
+  section {
+    background: radial-gradient(circle at top left,#BDB8CF 10%, #FAFAFD 40%,transparent 80%),
+    radial-gradient(circle at bottom right, #BDB8CF 10%, #FAFAFD 40%,transparent 80%);
+  }
+
+  .form-field.gender span, .form-field.birthday label, .form-field.location label, .form-field.foryou span:first-of-type {
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #EAE7F6;
+    display:block;
+    padding-left:.2rem;
+  }
+
+
+  .birthday label, .location label, .form-field.foryou span:first-of-type {
+    margin-bottom:1rem;
+  }
+
+  .form-field.foryou span:last-of-type, div.flex.form-field label  {
+    font-size: 	0.875rem;
+    font-weight: 400;
+  }
+
+  .form-field.location button {
+   border:none;
+   background-color: transparent;
+   color:$primary-color;
+   margin-left: -120px;
+   cursor: pointer;
+ }
+
+ .form-field.location button i{
+   font-size: 1rem;
+ }
+
+ .form-field.foryou span:first-of-type {
+   margin-top: 2rem;
+ }
+
+  div.flex.form-field {
+    margin-top: 0;
+  }
+
+  div.flex.form-field:last-of-type {
+    margin-top: 1rem;
+  }
+
+  h2 {
+    display:none;
+  }
+  .user-info, textarea {
+    max-width:90vw;
+  }
+
+  .form-field.name-img h4 {
+    font-weight:900;
+    font-size: 1rem;
+  }
+
+  div.form-field.name-img {
+  padding:2rem 0 0 0;
+  display: grid;
+  grid-template-rows: 50px, 1fr, 50px, 50px;
+  justify-content: center;
+  text-align:center;
+  }
+  div.user-info {
+    padding-top:0;
+  }
+
+  div.flex.form-field {
+    padding-bottom:2rem;
+  }
+
   .container{
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 800px;
     margin: auto;
+    
+  }
+ 
+  #img-picker {
+    display:none;
+  }
+
+  .form-field.name-img label {
+    color:$primary-color;
+    text-decoration: underline;
+    font-size: 	0.875rem;
+    font-weight: 400;
   }
 
   .form-field{
     width: 100%;
   }
 
+  .form-field.location input, .form-field.birthday input,  .form-field.foryou select { 
+  background: #FFFFFF;
+  box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 50px;
+  height: 2.5rem;
+  border: none;
+}
+
+.form-field.foryou select {
+ width:7.5rem;
+}
+
+
+textarea {
+  background: #FFFFFF;
+  box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+  border: none;
+  margin-top:.5rem;
+}
+
+::placeholder {
+  color: #BDB8CF;
+  font-size:1rem;
+  font-weight:500;
+}
+
   input[type="radio"]{
     width: auto;
     cursor: pointer;
+    accent-color: $primary-color;
   }
+
+
   input[type="checkbox"], input[type="checkbox"]+label{
     display: inline;
     width: auto;
+    accent-color: $primary-color;
   }
- 
+
+  input[type="submit"]{
+    cursor: pointer;
+    width:9rem;
+    color:$text-color-light;
+    background: $primary-color;
+    border-radius: 39.9056px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 21px;
+    padding:.5rem;
+    align-self:center;
+  }
+  input[type="submit"]:disabled{
+    opacity: .8;
+    cursor: not-allowed;
+  }
+
   .profile-image{
-    width: 300px;
-    height: 300px;
+    width: 35vw;
+    height: 35vw;
     border-radius: 50%;
     display: block;
     margin: auto;
     object-fit: cover;
     object-position: top;
+    padding:.5rem;
+    border:.3rem solid #ffff;
+  }
+
+  @media screen and (min-width: 768px) {
+    .update-profile {
+      max-width: 750px;
+    }
+
+    .profile-image{
+      width: 25vw;
+      height: 25vw;
+    }
 
   }
+ 
+  @media screen and (min-width: 992px) {
+
+    .update-profile {
+      max-width: 1200px;
+    }
+
+    div.form-field.name-img {
+      padding:0;
+    }
+
+    .profile-image{
+      width: 20vw;
+      height: 20vw;
+    }
+
+    div.form-field.name-img {
+      align-self: start;
+    }
+ 
 }
-input[type="submit"]{
-  cursor: pointer;
 }
-input[type="submit"]:disabled{
-  opacity: .8;
-  cursor: not-allowed;
+
+.update-profile form {
+  .user-info {
+    display: flex;
+    flex-flow:column nowrap;
+  }
+
+
+// MEDIUM
+@media screen and (min-width: 992px) {
+  display: grid;
+  grid-template-columns: 200px,1rem;
+  grid-gap: 2rem;
+
+
+.form-field.name-img {
+grid-column:1/2;
+grid-row: span 2;
+margin-top:2rem;
+}
+
+div.user-info {
+  grid-column: 2/3;
+  margin-top:2rem;
+  padding-left:1rem;
+  border-left:#BDB8CF solid 2px;
+}
+
+}
+
 }
