@@ -36,12 +36,12 @@ class Router {
                 if (urlHash === Router.pages[i].name) {
                     console.log(routesWithoutNav.includes(urlHash))
                     if (routesWithoutNav.includes(urlHash)) {
-                        this.toggleHeader()
+                        this.toggleHeader();
                     }
                     else {
                         this.toggleHeader(true);
                     }
-
+                    this.hideSideBar();
                     Router.goToPage(Router.pages[i]);
                     break;
                 }
@@ -93,6 +93,14 @@ class Router {
         }
         else {
             document.getElementById('nav-header').classList.add('dn')
+        }
+
+    }
+
+    static hideSideBar() {
+        const navMenu = document.getElementById('navigation-menu');
+        if (navMenu) {
+            navMenu.classList.remove('show');
         }
 
     }

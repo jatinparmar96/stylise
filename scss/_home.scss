@@ -8,12 +8,6 @@ ul {
 ul li {
   display: inline-block;
 }
-.main-nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  justify-items: center;
-}
 
 .community-nav-list {
   display: flex;
@@ -27,7 +21,7 @@ ul li {
   margin-right: auto;
   max-width: 1000px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 1.5rem;
 }
 img {
@@ -37,11 +31,6 @@ img {
   width: 50px;
   border-radius: 50%;
   border: 2px solid white;
-}
-#logo {
-  padding: 1rem;
-  max-width: 150px;
-
 }
 .notification-bell{
   max-width: 70px;
@@ -161,11 +150,6 @@ img {
   border-radius: 25px;
 }
 
-.user-info{
-  position:absolute;
-  top: -15px;
-  left: -20px;
-}
 #nav-header{
   background-color: #fff;
 }
