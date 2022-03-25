@@ -32,7 +32,7 @@ img {
   border-radius: 50%;
   border: 2px solid white;
 }
-.notification-bell{
+.notification-bell {
   max-width: 70px;
 }
 .jump-bar {
@@ -84,9 +84,9 @@ img {
   bottom: 1rem;
   right: 1rem;
   border-radius: 50%;
-  background-color: #765FC2;
+  background-color: #765fc2;
   color: white;
-  border: 3px solid white ;
+  border: 3px solid white;
   height: 3rem;
   width: 3rem;
   font-size: 1.75rem;
@@ -94,42 +94,53 @@ img {
   box-shadow: 0 0 2px 2px rgba($color: #000, $alpha: 0.5);
   cursor: pointer;
 }
-#index-body{
+#index-body {
   //  background-image: url("../icons/background.png");
   //  background-repeat: no-repeat;
   //  background-size:cover;
-   background: radial-gradient(circle at top left,#BDB8CF 10%, #FAFAFD 40%,transparent 80%),
-   radial-gradient(circle at bottom right, #BDB8CF 10%, #FAFAFD 40%,transparent 80%);
+  background: radial-gradient(
+      circle at top left,
+      #bdb8cf 10%,
+      #fafafd 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      #bdb8cf 10%,
+      #fafafd 40%,
+      transparent 80%
+    );
 }
 
-.community-nav-list{
+.community-nav-list {
   background-color: white;
 }
-.nav-btn:active,.nav-btn:hover{
-  background-color: #F7F7FA;
-  border-bottom: 3px solid #765FC2 ;
+.nav-btn:active,
+.nav-btn:hover {
+  background-color: #f7f7fa;
+  border-bottom: 3px solid #765fc2;
 }
-.nav-btn{
+.nav-btn {
   padding: 1rem;
   color: black;
   border: none;
   background-color: white;
 }
 
-#search{
+#search {
   border-radius: 25px;
   padding: 10px;
   border: none;
   width: 200px;
   box-shadow: 0 0 2px 2px rgba($color: rgba(66, 66, 66, 0.692), $alpha: 0.3);
 }
-.search{
+.search {
   grid-column: 3;
   position: relative;
   bottom: -350%;
 }
-#search-icon{
-  background-color: #765FC2;
+#search-icon {
+  background-color: #765fc2;
   position: absolute;
   max-width: 30px;
   border-radius: 50%;
@@ -137,7 +148,7 @@ img {
   right: 3px;
 }
 
-.post{
+.post {
   background-color: white;
   border-radius: 25px;
   padding: 30px 10px 10px 10px;
@@ -146,10 +157,10 @@ img {
   margin-top: 3rem;
 }
 
-.post a img{
+.post a img {
   border-radius: 25px;
 }
 
-#nav-header{
+#nav-header {
   background-color: #fff;
 }
