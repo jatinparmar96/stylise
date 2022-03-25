@@ -244,7 +244,6 @@ async function showFavorite() {
     clearWrapper();
     const searchMessage = document.getElementById('searchMessage');
     searchMessage.innerHTML = "";
-    const user = await getCurrentUser();
     // fetch all posts from "favorites" collection
     db.collection("users/" + user.uid + "/favorites")
         .get().then((querySnapshot) => {
