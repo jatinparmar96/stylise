@@ -82,6 +82,11 @@ form {
   div.flex.gap-1 {
     justify-content: space-between;
   }
+
+  .flex.gap-1 button#openCameraBtn {
+    display:none;
+  }
+
   .flex.gap-1 button {
     padding:1rem;
   }
@@ -115,9 +120,12 @@ form {
     align-self: start;
   }
 
-}
-}
+  .flex.gap-1 button#openCameraBtn {
+    display:inherit;
+  }
 
+}
+}
 
 // I hided it temporary, just for styling. Jatin, please move this item to another page
 .closet-add-item .flex.gap-2 {
