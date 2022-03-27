@@ -23,6 +23,10 @@ function checkLogin() {
     });
 
 }
+function openOverlay() {
+    const elm = document.getElementById('overlay-element');
+    elm.classList.remove('dn');
+}
 
 function redirectToLogin() {
     window.location.href = 'index.html#login'

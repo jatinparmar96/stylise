@@ -51,9 +51,11 @@ function clearWrapper() {
  * @method addPosts
  * @param
  */
-function addPosts(doc) {
+function addPosts(doc, index = 0) {
+    console.log(index)
     let div = document.createElement("div");
     div.classList.add("post");
+
     const link = document.createElement('a');
     link.href = `index.html#view-post?id=${doc.id}`;
     let img = document.createElement("img");
@@ -76,6 +78,8 @@ function addPosts(doc) {
     const all = document.getElementById('community-all');
     const forYou = document.getElementById('community-for-you');
     let favoriteIcon = document.createElement("button");
+    div.style.animationDelay = `${index * 100}ms`;
+    div.classList.add('fade-in-fwd');
 
     if (all.classList.contains('active') || forYou.classList.contains('active')) {
         favoriteIcon.classList.add("favorite-icon");
@@ -114,8 +118,10 @@ async function showForYou() {
     // fetch posts from "posts" collection with conditions
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains-any", tags)
         .get().then((querySnapshot) => {
+            let index = 0
             querySnapshot.forEach((doc) => {
-                addPosts(doc);
+                addPosts(doc, index);
+                index++;
             });
             hideLoader();
         });
@@ -131,92 +137,112 @@ async function showAllPosts() {
     showLoader();
     const user = await getCurrentUser();
     clearWrapper();
-    // fetch all posts from "posts" collection
-    db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community")
-        .get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                addPosts(doc);
-            });
-            hideLoader();
-        });
-}
-
-/**
- * Fetch all favorite posts
- * 
- */
-async function showFavorite() {
-    showLoader();
-    const user = await getCurrentUser();
-    clearWrapper();
-    // fetch all posts from "favorites" collection
-    db.collection("users/" + user.uid + "/favorites")
-        .get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                addPosts(doc);
-            });
-            hideLoader();
-        });
-}
-
-/**
- * Fetch all public-posts type donation
- * @method showDonatePosts
- */
-async function showDonatePosts() {
-    // Setting distance to 10KM for now.
-    const distance = 10;
-    showLoader();
-    const user = await getCurrentUser();
-    clearWrapper();
-    const userMetaDataDoc = await db.collection('users').doc(user.uid).get()
-    const userMetaData = userMetaDataDoc.data();
-    // fetch posts from "posts" collection with type = donate-item
-    db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item")
-        .get().then((querySnapshot) => {
-            let donateDocsArray = [];
-            querySnapshot.forEach((doc) => {
-                donateDocsArray.push(
-                    {
-                        ...doc.data(), id: doc.id
-                    }
-                );
-            });
-            donateDocsArray = donateDocsArray.filter((item) => {
-                if (item.location.coords) {
-
-                    if (!userMetaData.locationCoords?.latitude
-                        || userMetaData.locationCoords?.longitude
-                    ) {
-                        return true;
-                    }
-                    const coordsDistance = distanceBetweenCoords(
-                        userMetaData.locationCoords?.latitude,
-                        userMetaData.locationCoords?.longitude,
-                        item.location.coords.latitude,
-                        item.location.coords.longitude
-                    )
-                    if (Math.round(coordsDistance) <= distance) {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
+    if (searchValue.trim().length > 1) {
+        console.log(searchValue);
+        db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains", searchValue)
+            .get().then((querySnapshot) => {
+                if (querySnapshot.empty) {
+                    searchMessage.innerHTML = "<p>No results were found for <strong>" + searchValue + "</strong></p>";
                 }
-                return false;
+                else {
+                    searchMessage.innerHTML = "<p>Results for <strong>" + searchValue + "</strong></p>";
+                    let index = 0
+                    querySnapshot.forEach((doc) => {
+                        addPosts(doc, index);
+                        index++;
+                    });
+                }
             });
-            const wrapper = document.getElementById("wrapper");
-            donateDocsArray.forEach(item => {
-                wrapper.innerHTML += renderDonateItems(item);
+    }
+    else {
+        // fetch all posts from "posts" collection
+        db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community")
+            .get().then((querySnapshot) => {
+                let index = 0;
+                querySnapshot.forEach((doc) => {
+                    addPosts(doc, index);
+                    index++
+                });
+                hideLoader();
+            });
+    }
 
-            })
-            hideLoader();
-        });
-}
+    /**
+     * Fetch all favorite posts
+     * 
+     */
+    async function showFavorite() {
+        showLoader();
+        const user = await getCurrentUser();
+        clearWrapper();
+        // fetch all posts from "favorites" collection
+        db.collection("users/" + user.uid + "/favorites")
+            .get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    addPosts(doc);
+                });
+                hideLoader();
+            });
+    }
 
-function renderDonateItems(item) {
-    console.log(item);
-    return `
+    /**
+     * Fetch all public-posts type donation
+     * @method showDonatePosts
+     */
+    async function showDonatePosts() {
+        // Setting distance to 10KM for now.
+        const distance = 10;
+        showLoader();
+        const user = await getCurrentUser();
+        clearWrapper();
+        const userMetaDataDoc = await db.collection('users').doc(user.uid).get()
+        const userMetaData = userMetaDataDoc.data();
+        // fetch posts from "posts" collection with type = donate-item
+        db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item")
+            .get().then((querySnapshot) => {
+                let donateDocsArray = [];
+                querySnapshot.forEach((doc) => {
+                    donateDocsArray.push(
+                        {
+                            ...doc.data(), id: doc.id
+                        }
+                    );
+                });
+                donateDocsArray = donateDocsArray.filter((item) => {
+                    if (item.location.coords) {
+
+                        if (!userMetaData.locationCoords?.latitude
+                            || userMetaData.locationCoords?.longitude
+                        ) {
+                            return true;
+                        }
+                        const coordsDistance = distanceBetweenCoords(
+                            userMetaData.locationCoords?.latitude,
+                            userMetaData.locationCoords?.longitude,
+                            item.location.coords.latitude,
+                            item.location.coords.longitude
+                        )
+                        if (Math.round(coordsDistance) <= distance) {
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
+                    }
+                    return false;
+                });
+                const wrapper = document.getElementById("wrapper");
+                donateDocsArray.forEach(item => {
+                    wrapper.innerHTML += renderDonateItems(item);
+
+                })
+                hideLoader();
+            });
+    }
+
+    function renderDonateItems(item) {
+        console.log(item);
+        return `
     <div class="post">
         <a href="index.html#view-post?id=${item.id}">
             <img src="${item.uri}">
@@ -229,5 +255,5 @@ function renderDonateItems(item) {
         </div>
     </div>
     `
-}
-init();
+    }
+    init();

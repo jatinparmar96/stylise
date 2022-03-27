@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="../scss/main.css">
 </head>
 <main>
-    <button onclick="window.location.href='index.html#community/add-post'" class="floating-action-button">+</button>
+    <button onclick="openOverlay()" class="floating-action-button">+</button>
     <button onclick="window.location.href='index.html#donate/post-item'">Donate</button>
     <ul class="community-nav-list" id="community-nav-list">
         <li><button class="nav-btn active" id="community-for-you">FOR YOU</button></li>
@@ -15,4 +15,7 @@
 
         
     </div>
+<div class="full-screen-overlay scale-up-br dn" id="overlay-element">
+    <button onclick="document.getElementById('overlay-element').classList.add('dn')">close</button>
+</div>
 </main>
