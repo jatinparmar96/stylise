@@ -74,21 +74,22 @@
       box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
       border-radius: 30px;
       width: 350px;
-      height: 380px;
+      height: 400px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
       align-items: center;
-      margin-bottom: 35px;
+      margin-bottom: 45px;
 
       .user-info {
         // position: relative;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-content: space-between;
         width: 330px;
-        margin: auto;
+        margin: 15px auto 0 auto;
 
         .dp {
           margin-top: -50px;
@@ -101,6 +102,7 @@
           border: transparent;
           font-size: 20px;
           margin-right: 10px;
+          align-self: center;
         }
       }
 
