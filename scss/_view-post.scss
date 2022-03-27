@@ -1,0 +1,32 @@
+.view-post {
+  background-color: red;
+  margin: auto;
+
+  .type-container {
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "arrow type blank";
+    padding: 0 2rem;
+    margin: 1rem 0 2rem 0;
+
+    .type {
+      justify-self: center;
+      align-self: center;
+      grid-area: type;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+    }
+    .back-arrow {
+      width: 18px;
+      height: 18px;
+      justify-self: start;
+      align-self: center;
+      grid-area: arrow;
+    }
+  }
+}

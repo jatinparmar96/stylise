@@ -95,7 +95,9 @@ function renderPost(post) {
  * @param
  */
  function addPostsCommunity(doc) {
-    
+
+    let span=document.getElementById("suggestions");
+    span.innerHTML="You might also like...";
     let div = document.createElement("div");
     div.classList.add("post");
     const link = document.createElement('a');
@@ -138,7 +140,9 @@ function renderPost(post) {
     div_user.appendChild(favoriteIcon);
     
     div.appendChild(div_user);
+    
     document.getElementById("wrapper").appendChild(div);
+   
  }
 
  /**

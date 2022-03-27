@@ -1,6 +1,6 @@
 'use strict';
 
-const routesWithoutNav = ['#', '#login', '#register' , '#user-profile', '#view-user-profile'];
+const routesWithoutNav = ['#', '#login', '#register' , '#user-profile', '#view-user-profile', '#view-post'];
 window.removeFirebaseListener = [];
 class Page {
     constructor(name, htmlName, jsName) {
