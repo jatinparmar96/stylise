@@ -31,6 +31,9 @@
   }
 
   .single-post {
+    display: flex;
+    justify-content: center;
+
     .image-container {
       position: relative;
       border-radius: 0px 0px 72px 0px;
@@ -46,9 +49,10 @@
       bottom: -15px;
       width: 350px;
       height: 398px;
+      z-index: 1;
       background: rgba(255, 255, 255, 0.7);
       box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px); //not supported
       border-radius: 30px;
       .user-details {
         display: flex;
@@ -191,6 +195,118 @@
 
 @media screen and (min-width: $breakpoints-lg) {
   .view-post {
+    .single-post {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      .image-container {
+        width: 405px;
+        height: 405px;
+      }
+      .post-details-container {
+        position: initial;
+        backdrop-filter: blur(5px);
+        margin-top: 25px;
+        margin-left: -50px;
+        width: 477px;
+        height: 427px;
+
+        .user-details {
+          margin: 35px;
+
+          img {
+            width: 80px;
+            height: 80px;
+          }
+          .postUser {
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+        .postComments {
+          font-size: 18px;
+          line-height: 27px;
+        }
+        .tags {
+          .tags-title {
+            font-size: 16px;
+            line-height: 24px;
+          }
+          .postTags {
+            span {
+              font-size: 14px;
+              line-height: 21px;
+            }
+          }
+        }
+      }
+    }
+    .suggestions {
+      top: 70px;
+      font-size: 20px;
+      line-height: 30px;
+    }
+    .wrapper {
+      position: relative;
+      top: 120px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      .post {
+        // background: rgba(255, 255, 255, 0.8);
+        // box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+        // border-radius: 30px;
+        width: 245px;
+        height: 280px;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+
+        align-items: center;
+        margin-bottom: 45px;
+
+        .user-info-donate {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-content: space-between;
+          width: 231px;
+          margin: 15px auto 0 auto;
+
+          .dp {
+            margin-top: -50px;
+            width: 64px;
+            height: 64px;
+          }
+
+          .aux {
+            width: 64px;
+            height: 5px;
+          }
+        }
+
+        .user-info {
+          width: 231px;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 18px;
+
+          .dp {
+            margin-top: -50px;
+            width: 57.6px;
+            height: 57.6px;
+          }
+          .favorite-icon {
+          }
+        }
+
+        .post-img a img {
+          width: 229.6px;
+          height: 229.6px;
+          margin: 0px;
+        }
+      }
+    }
   }
 }
 

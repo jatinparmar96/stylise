@@ -7,14 +7,21 @@
         </div>
         <span id="type" class="type"></span>
     </div>
-    <div class="flex flex-column flex-center single-post">
+    <div class="single-post">
         <div class="image-container" id="image-container">
         <!-- <img id="postImg" style="width:100%;height: auto;"> -->
          </div>
          <div class="post-details-container">
-            <h3 id="postUser"></h3>
-            <p id="postComments"></p>
-            <div class="flex gap-1" id="postTags"></div>
+             <div class="user-details">
+                <img id= "postUserImg" src="">
+                <h3 id="postUser" class="postUser"></h3>
+                
+            </div>
+            <div id="postComments" class="postComments"></div>
+            <div class="tags">
+                <h3 class="tags-title">Tags</h3>
+                <div class="flex gap-1 postTags" id="postTags"></div>
+            </div>
         </div>
     </div>
     <h3 class="suggestions" id="suggestions"></h3>

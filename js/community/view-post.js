@@ -38,6 +38,7 @@ function renderPost(post) {
     const postComments = document.getElementById('postComments');
     const postTags = document.getElementById('postTags');
     const postUser = document.getElementById('postUser');
+    const postUserImg = document.getElementById('postUserImg');
 
     postType.innerHTML = post.data().type;
     // postImg.src = post.data().uri;
@@ -46,10 +47,11 @@ function renderPost(post) {
     postComments.innerHTML = post.data().comments;
     if (post.data().keywords?.length) {
         post.data().keywords.forEach(tag => {
-            postTags.innerHTML += `<span>${tag}</span>`;
+            postTags.innerHTML += `<span>#${tag}</span>`;
         })
     }
     postUser.innerHTML = post.data().username
+    postUserImg.src=post.data().user_uri;
 
 }
 
