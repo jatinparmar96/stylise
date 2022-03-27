@@ -1,0 +1,77 @@
+.post {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 30px;
+  display: flex;
+  padding: 0.5rem;
+  width: 300px;
+  height: 350px;
+  flex-direction: column;
+  .post-image {
+    height: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .user-info {
+    width: 100%;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    order: -1;
+    display: flex;
+    .dp {
+      margin-top: -35px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 4px 4px 8px 4px rgba($color: #000000, $alpha: 0.05);
+    }
+    .user-meta{
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 .25rem;
+    }
+    .favorite-icon {
+        appearance: none;
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .user-info-donate {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: space-between;
+      width: 231px;
+      margin: 15px auto 0 auto;
+      .dp {
+        margin-top: -50px;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+      }
+
+      .aux {
+        width: 64px;
+        height: 5px;
+      }
+    }
+  }
+
+  .post-img a img {
+    width: 229.6px;
+    height: 229.6px;
+    margin: 0px;
+  }
+}

@@ -31,53 +31,7 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
-  img {
-    width: 100%;
-  }
-  .dp {
-    width: 50px;
-    border-radius: 50%;
-    border: 2px solid white;
-  }
-  .notification-bell {
-    max-width: 70px;
-  }
-  .jump-bar {
-    text-align: center;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .jump-bar ul li {
-    padding: 1rem;
-    cursor: pointer;
-  }
-  .jump-bar ul li:hover {
-    background-color: gainsboro;
-  }
 
-  .jump-bar ul {
-    border-bottom: 10px solid black;
-    padding: 0;
-    display: flex;
-    gap: 1rem;
-  }
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .wrapper > div > a > img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  .dp {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-  }
 
   .floating-action-button {
     display: flex;
@@ -120,38 +74,8 @@
     transition: border 0.3s ease-in-out;
   }
 
-  #search {
-    border-radius: 25px;
-    padding: 10px;
-    border: none;
-    width: 200px;
-    box-shadow: 0 0 2px 2px rgba($color: rgba(66, 66, 66, 0.692), $alpha: 0.3);
-  }
-  .search {
-    grid-column: 3;
-    position: relative;
-    bottom: -350%;
-  }
-  #search-icon {
-    background-color: #765fc2;
-    position: absolute;
-    max-width: 30px;
-    border-radius: 50%;
-    padding: 2px;
-    right: 3px;
-  }
-
-  .post {
-    background-color: white;
-    border-radius: 25px;
-    padding: 30px 10px 10px 10px;
-    display: block;
-    position: relative;
-  }
-
-  .post a img {
-    border-radius: 25px;
-  }
+ 
+  
 
   #nav-header {
     background-color: #fff;

@@ -116,28 +116,38 @@ function cancelSearch() {
  * @method addPosts
  * @param
  */
-function addPosts(doc, index = 0) {
+function addPosts(doc, index = 0, userFavourites = undefined) {
     let div = document.createElement("div");
     div.classList.add("post");
 
-    const link = document.createElement('a');
-    link.href = `index.html#view-post?id=${doc.id}`;
+    const postLink = document.createElement('a');
+    postLink.href = `index.html#view-post?id=${doc.id}`;
+    postLink.classList.add('post-image');
     let img = document.createElement("img");
     img.src = doc.data().uri;
-    link.appendChild(img)
-    div.appendChild(link);
+    postLink.appendChild(img)
+    div.appendChild(postLink);
     let div_user = document.createElement("div");
     div_user.classList.add("user-info");
     let img_user = document.createElement("img");
     img_user.classList.add("dp");
+
+
     img_user.src = doc.data().user_uri;
     div_user.appendChild(img_user);
     let username = document.createElement("span");
+
+    // Create a link
     const userLink = document.createElement('a');
     userLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     username.innerHTML = doc.data().username;
     userLink.appendChild(username)
-    div_user.appendChild(userLink);
+
+    const userMetaDataDiv = document.createElement('div');
+    userMetaDataDiv.appendChild(userLink);
+    userMetaDataDiv.classList.add('user-meta');
+
+    div_user.appendChild(userMetaDataDiv);
 
     const all = document.getElementById('community-all');
     const forYou = document.getElementById('community-for-you');
@@ -146,11 +156,19 @@ function addPosts(doc, index = 0) {
     div.classList.add('fade-in-fwd');
 
     if (all.classList.contains('active') || forYou.classList.contains('active')) {
+
         favoriteIcon.classList.add("favorite-icon");
-        let favElement = document.createElement("i");
+        let favElement = document.createElement("img");
+        favElement.src = '/assets/common/heart.svg';
+        if (userFavourites) {
+            if (userFavourites.includes(doc.id)) {
+                favElement.src = '/assets/common/heart-filled.svg'
+            }
+        }
         favElement.classList.add("fa");
         favElement.classList.add("fa-heart");
         favoriteIcon.appendChild(favElement);
+        userMetaDataDiv.appendChild(favoriteIcon);
     }
     /**
      * Add post to favorites function
@@ -161,7 +179,7 @@ function addPosts(doc, index = 0) {
         const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
 
     }
-    div_user.appendChild(favoriteIcon);
+
 
     div.appendChild(div_user);
     document.getElementById("wrapper").appendChild(div);
@@ -181,13 +199,14 @@ async function showForYou() {
     const userFieldsRef = await db.collection('users').doc(user.uid).get();
     const userFields = userFieldsRef.data();
     tags = userFields.tags;
+    const userFavourites = await getUserFavorites(user.uid)
     clearWrapper();
     // fetch posts from "posts" collection with conditions
     db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains-any", tags)
         .get().then((querySnapshot) => {
             let index = 0
             querySnapshot.forEach((doc) => {
-                addPosts(doc, index);
+                addPosts(doc, index, userFavourites);
                 index++;
             });
             hideLoader();
@@ -199,7 +218,14 @@ async function showForYou() {
         cancelSearchBtn.remove();
     }
 }
-
+async function getUserFavorites(userID) {
+    const userFavouritesDocs = await db.collection(`users/${userID}/favorites`).get();
+    let userFavourites = [];
+    userFavouritesDocs.forEach(doc => {
+        userFavourites.push(doc.id)
+    });
+    return userFavourites;
+}
 /**
  * Fetch all public-posts type community
  * @method showAllPosts
@@ -210,6 +236,8 @@ async function showAllPosts() {
     const searchInput = document.getElementById('searchInput');
     const searchValue = searchInput?.value;
     const searchMessage = document.getElementById('searchMessage');
+    const userFavourites = await getUserFavorites(user.uid)
+
     clearWrapper();
     if (searchValue?.trim().length > 1) {
         db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains", searchValue)
@@ -221,7 +249,7 @@ async function showAllPosts() {
                     searchMessage.innerHTML = "<p>Results for <strong>" + searchValue + "</strong></p>";
                     let index = 0
                     querySnapshot.forEach((doc) => {
-                        addPosts(doc, index);
+                        addPosts(doc, index, userFavourites);
                         index++;
                     });
                 }
@@ -233,7 +261,7 @@ async function showAllPosts() {
             .get().then((querySnapshot) => {
                 let index = 0;
                 querySnapshot.forEach((doc) => {
-                    addPosts(doc, index);
+                    addPosts(doc, index, userFavourites);
                     index++
                 });
                 hideLoader();
@@ -343,8 +371,8 @@ async function showDonatePosts() {
                     return false;
                 });
                 const wrapper = document.getElementById("wrapper");
-                donateDocsArray.forEach(item => {
-                    wrapper.innerHTML += renderDonateItems(item);
+                donateDocsArray.forEach((item, idx) => {
+                    wrapper.innerHTML += renderDonateItems(item, idx);
 
                 })
                 hideLoader();
@@ -352,17 +380,19 @@ async function showDonatePosts() {
     }
 }
 
-function renderDonateItems(item) {
+function renderDonateItems(item, idx = 0) {
     return `
-    <div class="post">
-        <a href="index.html#view-post?id=${item.id}">
+    <div class="post fade-in-fwd" style="animation-delay: ${idx * 100}ms">
+        <a href="index.html#view-post?id=${item.id}" class="post-image">
             <img src="${item.uri}">
         </a>
         <div class="user-info">
             <img class="dp" src="${item.user_uri}">
+            <div class="user-meta">
             <a href="index.html#view-user-profile?id=${item.userID}"> 
                 <span>${item.username}</span>
             </a>
+            </div>
         </div>
     </div>
     `
