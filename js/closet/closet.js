@@ -41,8 +41,9 @@ function renderCloseCard(categoryDocument) {
     const categoryId = categoryDocument.id;
     const categoryData = categoryDocument.data();
     return `
-    <div class="flex flex-column" >
+    <div class="flex flex-column category-wrapper" >
         <a href="index.html#category?q=${categoryId}">
+
             <span>${categoryData.category}</span>
         </a>
     </div>

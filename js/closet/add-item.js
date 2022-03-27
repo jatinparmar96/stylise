@@ -12,7 +12,7 @@ function init() {
 
     const cameraBtn = document.getElementById('openCameraBtn');
     form.addEventListener('submit', uploadItemDesc)
-    initImageListener(getCategoryIdFromUrl());
+    // initImageListener(getCategoryIdFromUrl());
     addImageChangeListener(imageSrc, imageTarget)
     initCategoryListener();
 }
@@ -22,9 +22,9 @@ function init() {
  * Parse url and return the parameter q={parameter}
  * @returns {string}
  */
-function getCategoryIdFromUrl() {
-    return window.location.hash.split('?')[1].split('=')[1];
-}
+// function getCategoryIdFromUrl() {
+//     return window.location.hash.split('?')[1].split('=')[1];
+// }
 
 /**
  * Uploads Image to firestorage and returns a ref to uploaded object.
@@ -82,7 +82,7 @@ async function uploadItemDesc(event) {
         };
         const docRef = await db.collection('posts').add(itemObject);
         saveBtn.disabled = false;
-
+        window.location.href=`index.html#category?q=${itemObject.category}`;
 }
 
 function toggleInput(hideField, showField) {
@@ -135,18 +135,18 @@ async function getUserData(uid) {
  * Listen to Posts collection Changes.
  */
 
-function initImageListener(categoryId) {
-    const query = db.collection(`posts`).where('category', '==', getCategoryIdFromUrl());
-    const listener = query.onSnapshot(querySnapshot => {
-        const categoryImages = document.getElementById('category-images');
-        categoryImages.innerHTML = '';
-       querySnapshot.forEach(doc =>{
-           categoryImages.innerHTML += renderImages(doc);
+// function initImageListener(categoryId) {
+//     const query = db.collection(`posts`).where('category', '==', getCategoryIdFromUrl());
+//     const listener = query.onSnapshot(querySnapshot => {
+//         const categoryImages = document.getElementById('category-images');
+//         categoryImages.innerHTML = '';
+//        querySnapshot.forEach(doc =>{
+//            categoryImages.innerHTML += renderImages(doc);
            
-       })
-    })
-    window.removeFirebaseListener.push(listener);
-}
+//        })
+//     })
+//     window.removeFirebaseListener.push(listener);
+// }
 
 /**
  * Listen To Category Collections
@@ -175,19 +175,19 @@ function renderDataListItem(itemDoc) {
  * @param imageDoc
  * @returns {string}
  */
-function renderImages(imageDoc){
-    const imageData = imageDoc.data();
+// function renderImages(imageDoc){
+//     const imageData = imageDoc.data();
     
-    return`
-        <div class="flex flex-column closet-item" style="max-width: 25%;">
-            <a href="index.html#view-item?id=${imageDoc.id}">
-            <img src="${imageData.uri}" style="object-fit: cover;height: 200px;width: 200px">
-            </a>
-            <span>${imageData.category}</span>
-            <span>${imageData.keywords}</span>
-        </div>
-    `
-}
+//     return`
+//         <div class="flex flex-column closet-item" style="max-width: 25%;">
+//             <a href="index.html#view-item?id=${imageDoc.id}">
+//             <img src="${imageData.uri}" style="object-fit: cover;height: 200px;width: 200px">
+//             </a>
+//             <span>${imageData.category}</span>
+//             <span>${imageData.keywords}</span>
+//         </div>
+//     `
+// }
 /**
  * Trigger Image file input field
  */
