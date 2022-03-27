@@ -174,10 +174,10 @@ function addPosts(doc, index = 0, userFavourites = undefined) {
      * Add post to favorites function
      */
     favoriteIcon.onclick = async function addToFavorites() {
-        console.log(`${doc.id} added to favorites`);
         const user = await getCurrentUser();
         const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
-
+        const imgElement = favoriteIcon.querySelector('img');
+        imgElement.src = '/assets/common/heart-filled.svg';
     }
 
 
