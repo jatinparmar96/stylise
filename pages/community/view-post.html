@@ -1,5 +1,5 @@
 <main class="view-post">
-    <div class="type-container">
+    <div class="type-container" id="type-container">
         <div class="back-arrow">
             <a href="#home">
             <img src="/icons/keyboard_arrow_right.svg">
@@ -7,13 +7,17 @@
         </div>
         <span id="type" class="type"></span>
     </div>
-    <div class="flex flex-column flex-center">
-        <img id="postImg" style="width:100%;height: auto;">
-        <h3 id="postUser"></h3>
-        <p id="postComments"></p>
-        <div class="flex gap-1" id="postTags"></div>
+    <div class="flex flex-column flex-center single-post">
+        <div class="image-container" id="image-container">
+        <!-- <img id="postImg" style="width:100%;height: auto;"> -->
+         </div>
+         <div class="post-details-container">
+            <h3 id="postUser"></h3>
+            <p id="postComments"></p>
+            <div class="flex gap-1" id="postTags"></div>
+        </div>
     </div>
-    <span class="suggestions" id="suggestions"></span>
+    <h3 class="suggestions" id="suggestions"></h3>
     <div class="wrapper" id="wrapper">
         
        

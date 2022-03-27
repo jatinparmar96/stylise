@@ -1,5 +1,4 @@
 .view-post {
-  background-color: red;
   margin: auto;
 
   .type-container {
@@ -13,6 +12,7 @@
     margin: 1rem 0 2rem 0;
 
     .type {
+      text-transform: capitalize;
       justify-self: center;
       align-self: center;
       grid-area: type;
@@ -27,6 +27,88 @@
       justify-self: start;
       align-self: center;
       grid-area: arrow;
+    }
+  }
+
+  .single-post {
+    .image-container {
+      position: relative;
+      border-radius: 0px 0px 72px 0px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      width: 390px;
+      height: 390px;
+    }
+    .post-details-container {
+      position: absolute;
+      display: block;
+      bottom: -15px;
+      width: 350px;
+      height: 398px;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+    }
+  }
+
+  .suggestions {
+    position: relative;
+    top: 420px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    margin: 5px auto 20px auto;
+  }
+  .wrapper {
+    position: relative;
+    top: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .post {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 30px;
+      width: 350px;
+      height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      align-items: center;
+      margin-bottom: 35px;
+
+      .user-info {
+        // position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 330px;
+        margin: auto;
+
+        .dp {
+          margin-top: -50px;
+          width: 64px;
+          height: 64px;
+        }
+        .favorite-icon {
+          background-color: transparent;
+          color: $primary-color;
+          border: transparent;
+          font-size: 20px;
+          margin-right: 10px;
+        }
+      }
+
+      .post-img a img {
+        border-radius: 30px;
+        width: 328px;
+        height: 328px;
+      }
     }
   }
 }

@@ -33,12 +33,16 @@ function getPostDetails(postId) {
  */
 function renderPost(post) {
     // Define Variables
+    const postType = document.getElementById("type");
     const postImg = document.getElementById('postImg');
     const postComments = document.getElementById('postComments');
     const postTags = document.getElementById('postTags');
     const postUser = document.getElementById('postUser');
 
-    postImg.src = post.data().uri;
+    postType.innerHTML = post.data().type;
+    // postImg.src = post.data().uri;
+    const imgContainer = document.getElementById("image-container");
+    imgContainer.style.backgroundImage = `url(${post.data().uri})`;
     postComments.innerHTML = post.data().comments;
     if (post.data().keywords?.length) {
         post.data().keywords.forEach(tag => {
@@ -100,13 +104,7 @@ function renderPost(post) {
     span.innerHTML="You might also like...";
     let div = document.createElement("div");
     div.classList.add("post");
-    const link = document.createElement('a');
-    link.href = `index.html#view-post?id=${doc.id}`;
-    let img = document.createElement("img");
-    img.src = doc.data().uri;
-    link.appendChild(img)
-    div.appendChild(link);
-    let div_user = document.createElement("div");
+     let div_user = document.createElement("div");
     div_user.classList.add("user-info");
     let img_user = document.createElement("img");
     img_user.classList.add("dp");
@@ -118,15 +116,27 @@ function renderPost(post) {
     username.innerHTML = doc.data().username;
     userLink.appendChild(username)
     div_user.appendChild(userLink);
-
-
-    let favoriteIcon = document.createElement("button");
+        let favoriteIcon = document.createElement("button");
 
         favoriteIcon.classList.add("favorite-icon");
         let favElement = document.createElement("i");
         favElement.classList.add("fa");
         favElement.classList.add("fa-heart");
         favoriteIcon.appendChild(favElement);
+        div_user.appendChild(favoriteIcon);
+
+    const postImg = document.createElement("div");
+    postImg.classList.add("post-img");
+    
+    const link = document.createElement('a');
+    link.href = `index.html#view-post?id=${doc.id}`;
+    let img = document.createElement("img");
+    img.src = doc.data().uri;
+    link.appendChild(img)
+    postImg.appendChild(link);
+   
+
+
 
     /**
      * Add post to favorites function
@@ -137,9 +147,9 @@ function renderPost(post) {
         const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
 
     }
-    div_user.appendChild(favoriteIcon);
-    
     div.appendChild(div_user);
+    div.appendChild(postImg);
+    
     
     document.getElementById("wrapper").appendChild(div);
    
