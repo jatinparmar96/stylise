@@ -1,7 +1,10 @@
 .view-post {
   margin: auto;
+  background-color: $secondary-color03;
+  min-height: 100vh;
 
   .type-container {
+    background-color: #ffffff;
     padding: 1rem 0;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
