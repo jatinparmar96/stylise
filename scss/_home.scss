@@ -23,6 +23,10 @@ ul li {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 1.5rem;
+  @media screen and(min-width:$breakpoints-md) {
+    grid-template-columns: repeat(3,1fr);
+    
+  }
 }
 img {
   width: 100%;
@@ -125,6 +129,9 @@ img {
   color: black;
   border: none;
   background-color: white;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: border .3s ease-in;
 }
 
 #search {

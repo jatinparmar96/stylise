@@ -10,7 +10,7 @@
     padding: 0.1rem;
     justify-content: center;
     align-items: center;
-    box-shadow:  4px 4px 8px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.05);
     img.profile-photo {
       width: 30px;
       border-radius: 50%;
@@ -20,14 +20,17 @@
     width: 75px;
   }
   .hamburger-menu {
+    @media screen and (min-width: $breakpoints-md) {
+      display: none;
+    }
     img {
       width: 40px;
     }
   }
-  .main-nav.show {
+  .main-nav-mobile.show {
     transform: translateX(0%);
   }
-  .main-nav {
+  .main-nav-mobile {
     position: fixed;
     right: 0;
     top: 0;
@@ -45,26 +48,22 @@
     padding-right: 1rem;
     transition: transform 0.25s ease-in;
     @media screen and (min-width: $breakpoints-md) {
-        transform: unset;
-        width: unset;
-        position: unset;
-        display: flex;
-        
+      display: none;
     }
 
-    .user-info-container{
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-        @media screen and (min-width: $breakpoints-md) {
-            display: none;
-        }
+    .user-info-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      @media screen and (min-width: $breakpoints-md) {
+        display: none;
+      }
     }
-    .close-icon{
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
+    .close-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
     }
 
     .nav-list {
@@ -75,12 +74,19 @@
         border-bottom: 1px solid $primary-color;
         padding-bottom: 0.5rem;
 
-        a{
-            display: flex;
-            align-items: center;
-            gap: .5rem;
+        a {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
         }
       }
+    }
+  }
+
+  .main-nav-desktop{
+    display: none;
+    @media screen and (min-width:$breakpoints-md) {
+      display: block;
     }
   }
 }
