@@ -219,6 +219,7 @@ async function showAllPosts() {
                 addPosts(doc);
             });
         }
+        hideLoader();
         });
     }
     else {
@@ -298,6 +299,7 @@ async function showDonatePosts() {
                 })
             });
         }
+        hideLoader();
         });
     }
     else {
