@@ -15,6 +15,20 @@ sup{
 .wrapper{
   margin: 0 2rem;
 }
+
+.logo{
+  width: 100px;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.login-logo{
+  margin: 0 auto !important ;
+}
+
+.login-title{
+  margin: 20px 0 50px 0 !important;
+}
 .card{
   display: flex;
   flex-flow: column nowrap;
