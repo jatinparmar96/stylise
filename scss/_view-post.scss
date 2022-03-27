@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .view-post {
   margin: auto;
   background-color: $secondary-color03;
@@ -11,8 +15,8 @@
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-template-areas: "arrow type blank";
-    padding: 0 2rem;
-    margin: 1rem 0 2rem 0;
+    padding: 1.5rem 2%;
+    margin: 0;
 
     .type {
       text-transform: capitalize;
@@ -36,6 +40,9 @@
   .single-post {
     display: flex;
     justify-content: center;
+    .explore{
+      display: none;
+    }
 
     .image-container {
       position: relative;
@@ -43,25 +50,47 @@
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-      width: 390px;
-      height: 390px;
+      width: 100%;
+      height: 80vh;
+      @media screen and (min-width: $breakpoints-md) {
+        border-radius: 30px;
+      }
     }
     .post-details-container {
       position: absolute;
       display: block;
-      bottom: -15px;
-      width: 350px;
-      height: 398px;
+      top: 80vh;
+      width: 90%;
+      height: auto;
       z-index: 1;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.6);
       box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(20px); //not supported
+      backdrop-filter: blur(15px); //not supported
       border-radius: 30px;
+      padding: 2rem;
+      .post-meta-info{
+        display: flex;
+        justify-content: space-between;
+        p{
+          font-size: .9rem;
+          span{
+            padding-left: .5rem;
+          }
+        }
+      }
       .user-details {
         display: flex;
         flex-direction: row;
-        margin: 25px;
         align-items: center;
+        padding: 2rem 0;
+        .user-details-info{
+          h3{
+            padding-bottom: .5rem;
+          }
+          p{
+            color: $primary-color;
+          }
+        }
         img {
           width: 64px;
           height: 64px;
@@ -70,18 +99,17 @@
         }
         .postUser {
           font-weight: 500;
-          font-size: 14px;
+          font-size: 18px;
           line-height: 21px;
         }
       }
       .postComments {
-        margin-left: 25px;
         font-weight: 400;
         font-size: 16px;
         line-height: 24px;
       }
       .tags {
-        margin: 25px;
+        padding-top: 2rem;
         .tags-title {
           font-weight: 600;
           font-size: 14px;
@@ -89,10 +117,10 @@
           color: $primary-color;
         }
         .postTags {
-          margin: 25px;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+          padding-top: 0.5rem;
 
           span {
             font-style: italic;
@@ -120,7 +148,7 @@
   }
   .wrapper {
     position: relative;
-    top: 450px;
+    margin-top: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -191,30 +219,46 @@
   }
 }
 
-@media screen and (min-width: $breakpoints-md) {
-  .view-post {
-  }
-}
+// @media screen and (min-width: $breakpoints-md) {
+//   .view-post {
+//   }
+// }
 
-@media screen and (min-width: $breakpoints-lg) {
+@media screen and (min-width: $breakpoints-md) {
   .view-post {
     .single-post {
       flex-direction: row;
       flex-wrap: nowrap;
+      
+      p.explore{
+        display: block;
+        margin-top: 80%;
+        background-color: $primary-color;
+        height: 40px;
+        padding: .5rem;
+        color: white;
+        width: 300px;
+        border-radius: 0 50px 50px 0;
+        @media screen and (min-width: $breakpoints-lg) {
+          margin-left: -5rem;
+          padding-left: 5rem;
+          width: 400px;
+        }
+      }
       .image-container {
         width: 405px;
         height: 405px;
+        margin-top: 2rem;
       }
       .post-details-container {
         position: initial;
         backdrop-filter: blur(5px);
-        margin-top: 25px;
+        margin-top: 80px;
         margin-left: -50px;
         width: 477px;
         height: 427px;
 
         .user-details {
-          margin: 35px;
 
           img {
             width: 80px;
@@ -247,10 +291,11 @@
       top: 70px;
       font-size: 20px;
       line-height: 30px;
+      margin-top: 2rem;
     }
     .wrapper {
       position: relative;
-      top: 120px;
+      margin-top: 140px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
 
@@ -299,8 +344,8 @@
             width: 57.6px;
             height: 57.6px;
           }
-          .favorite-icon {
-          }
+          // .favorite-icon {
+          // }
         }
 
         .post-img a img {
@@ -313,7 +358,7 @@
   }
 }
 
-@media screen and (min-width: $breakpoints-xl) {
-  .view-post {
-  }
-}
+// @media screen and (min-width: $breakpoints-xl) {
+//   .view-post {
+//   }
+// }
