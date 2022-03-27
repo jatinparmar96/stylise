@@ -66,7 +66,7 @@ function renderPost(post) {
         .get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 if(doc.id != postID)
-                addPosts(doc);
+                addPostsCommunity(doc);
             });
             hideLoader();
         });
@@ -79,7 +79,7 @@ function renderPost(post) {
             if(querySnapshot){
                 querySnapshot.forEach((doc) => {
                     if(doc.id != postID)
-                    addPosts(doc);
+                    addPostsDonation(doc);
                 });
             }
             hideLoader();
@@ -91,10 +91,10 @@ function renderPost(post) {
 
 /**
  * add posts into the wrapper
- * @method addPosts
+ * @method addPostsCommunity
  * @param
  */
- function addPosts(doc) {
+ function addPostsCommunity(doc) {
     
     let div = document.createElement("div");
     div.classList.add("post");
@@ -117,21 +117,61 @@ function renderPost(post) {
     userLink.appendChild(username)
     div_user.appendChild(userLink);
 
-    // const all = document.getElementById('community-all');
-    // const forYou = document.getElementById('community-for-you');
-    // let favoriteIcon = document.createElement("button");
 
-    // if (all.classList.contains('active') || forYou.classList.contains('active')) {
-    //     favoriteIcon.classList.add("favorite-icon");
-    //     let favElement = document.createElement("i");
-    //     favElement.classList.add("fa");
-    //     favElement.classList.add("fa-heart");
-    //     favoriteIcon.appendChild(favElement);
-    // }
+    let favoriteIcon = document.createElement("button");
+
+        favoriteIcon.classList.add("favorite-icon");
+        let favElement = document.createElement("i");
+        favElement.classList.add("fa");
+        favElement.classList.add("fa-heart");
+        favoriteIcon.appendChild(favElement);
+
+    /**
+     * Add post to favorites function
+     */
+    favoriteIcon.onclick = async function addToFavorites() {
+        console.log(`${doc.id} added to favorites`);
+        const user = await getCurrentUser();
+        const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
+
+    }
+    div_user.appendChild(favoriteIcon);
+    
     div.appendChild(div_user);
     document.getElementById("wrapper").appendChild(div);
  }
 
+ /**
+ * add posts into the wrapper
+ * @method addPostsDonation
+ * @param
+ */
+  function addPostsDonation(doc) {
+    
+    let div = document.createElement("div");
+    div.classList.add("post");
+    const link = document.createElement('a');
+    link.href = `index.html#view-post?id=${doc.id}`;
+    let img = document.createElement("img");
+    img.src = doc.data().uri;
+    link.appendChild(img)
+    div.appendChild(link);
+    let div_user = document.createElement("div");
+    div_user.classList.add("user-info");
+    let img_user = document.createElement("img");
+    img_user.classList.add("dp");
+    img_user.src = doc.data().user_uri;
+    div_user.appendChild(img_user);
+    let username = document.createElement("span");
+    const userLink = document.createElement('a');
+    userLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
+    username.innerHTML = doc.data().username;
+    userLink.appendChild(username)
+    div_user.appendChild(userLink);
+    
+    div.appendChild(div_user);
+    document.getElementById("wrapper").appendChild(div);
+ }
 
 
 init();
