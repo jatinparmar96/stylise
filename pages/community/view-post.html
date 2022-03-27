@@ -1,9 +1,45 @@
-<main>
-    <a href="index.html#home"><button>Back</button></a>
-    <div style="max-width: 900px; margin:auto;" class="flex flex-column flex-center">
-        <img id="postImg" style="width:100%;height: auto;">
-        <h3 id="postUser"></h3>
-        <p id="postComments"></p>
-        <div class="flex gap-1" id="postTags"></div>
+<main class="view-post">
+    <div class="type-container" id="type-container">
+        <div class="back-arrow">
+            <a href="#home">
+            <img src="/icons/keyboard_arrow_right.svg">
+            </a>
+        </div>
+        <span id="type" class="type"></span>
+    </div>
+    <div class="single-post">
+        
+        <div class="image-container" id="image-container">
+            <a href="#suggestions">
+                <p class="explore">Explore more you might also like</p>
+            </a>
+        <!-- <img id="postImg" style="width:100%;height: auto;"> -->
+         </div>
+         <div class="post-details-container">
+            <div class="post-meta-info">
+                <p>2022/02/06</p>
+                <p>28 Likes<span><img src="../assets/common/heart-filled.svg"></span></p>
+            </div> 
+            <div class="user-details">
+                <img id= "postUserImg" src="">
+                <div class="user-details-info">
+                    <h3 id="postUser" class="postUser"></h3>
+                    <p>235 Followers / 35 Thanks</p>
+                </div>
+                
+            </div>
+            <div id="postComments" class="postComments"></div>
+            <div class="tags">
+                <h3 class="tags-title">Tags</h3>
+                <div class="flex gap-1 postTags" id="postTags"></div>
+            </div>
+        </div>
+    </div>
+    <h3 class="suggestions" id="suggestions"></h3>
+    <div class="wrapper" id="wrapper">
+        
+       
+
+        
     </div>
 </main>
