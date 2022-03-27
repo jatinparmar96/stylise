@@ -162,16 +162,12 @@ function renderPost(post) {
  */
   function addPostsDonation(doc) {
     
+    let span=document.getElementById("suggestions");
+    span.innerHTML="You might also like...";
     let div = document.createElement("div");
     div.classList.add("post");
-    const link = document.createElement('a');
-    link.href = `index.html#view-post?id=${doc.id}`;
-    let img = document.createElement("img");
-    img.src = doc.data().uri;
-    link.appendChild(img)
-    div.appendChild(link);
-    let div_user = document.createElement("div");
-    div_user.classList.add("user-info");
+     let div_user = document.createElement("div");
+    div_user.classList.add("user-info-donate");
     let img_user = document.createElement("img");
     img_user.classList.add("dp");
     img_user.src = doc.data().user_uri;
@@ -180,11 +176,29 @@ function renderPost(post) {
     const userLink = document.createElement('a');
     userLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     username.innerHTML = doc.data().username;
-    userLink.appendChild(username)
+    userLink.appendChild(username);
+    let aux=document.createElement("div");
+    aux.classList.add("aux");
     div_user.appendChild(userLink);
+    div_user.appendChild(aux);
+
+    const postImg = document.createElement("div");
+    postImg.classList.add("post-img");
     
+    const link = document.createElement('a');
+    link.href = `index.html#view-post?id=${doc.id}`;
+    let img = document.createElement("img");
+    img.src = doc.data().uri;
+    link.appendChild(img)
+    postImg.appendChild(link);
+   
+
     div.appendChild(div_user);
+    div.appendChild(postImg);
+    
+    
     document.getElementById("wrapper").appendChild(div);
+   
  }
 
 

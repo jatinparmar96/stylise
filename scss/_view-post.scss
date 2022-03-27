@@ -82,8 +82,27 @@
       align-items: center;
       margin-bottom: 45px;
 
+      .user-info-donate {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: space-between;
+        width: 330px;
+        margin: 15px auto 0 auto;
+
+        .dp {
+          margin-top: -50px;
+          width: 64px;
+          height: 64px;
+        }
+
+        .aux {
+          width: 64px;
+          height: 5px;
+        }
+      }
+
       .user-info {
-        // position: relative;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
