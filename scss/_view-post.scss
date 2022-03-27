@@ -50,17 +50,66 @@
       box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.05);
       backdrop-filter: blur(20px);
       border-radius: 30px;
+      .user-details {
+        display: flex;
+        flex-direction: row;
+        margin: 25px;
+        align-items: center;
+        img {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          margin-right: 15px;
+        }
+        .postUser {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 21px;
+        }
+      }
+      .postComments {
+        margin-left: 25px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+      }
+      .tags {
+        margin: 25px;
+        .tags-title {
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 21px;
+          color: $primary-color;
+        }
+        .postTags {
+          margin: 25px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+
+          span {
+            font-style: italic;
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 18px;
+            background: #f1f1f1;
+            border-radius: 50px;
+            margin: 2px;
+            padding: 3px 8px;
+          }
+        }
+      }
     }
   }
 
   .suggestions {
     position: relative;
-    top: 420px;
+    top: 400px;
     font-weight: 600;
     font-size: 18px;
     line-height: 27px;
     text-align: center;
-    margin: 5px auto 20px auto;
+    margin: 0px auto 10px auto;
   }
   .wrapper {
     position: relative;
@@ -132,5 +181,20 @@
         margin: 15px;
       }
     }
+  }
+}
+
+@media screen and (min-width: $breakpoints-md) {
+  .view-post {
+  }
+}
+
+@media screen and (min-width: $breakpoints-lg) {
+  .view-post {
+  }
+}
+
+@media screen and (min-width: $breakpoints-xl) {
+  .view-post {
   }
 }
