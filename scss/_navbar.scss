@@ -121,17 +121,18 @@
         & + .nav-list-item {
           margin-left: 0.5rem;
         }
-        .nav-list-item.active {
-          &:before {
-            content: "";
-  
-            -webkit-transform: scaleX(1) translateX(-50%);
-            -ms-transform: scaleX(1) translateX(-50%);
-            transform: scaleX(1) translateX(-50%);
-          }
+      }
+    }
+    .nav-list-item.active {
+      @media screen and (min-width: $breakpoints-md) {
+        &:before {
+          content: "";
+
+          -webkit-transform: scaleX(1) translateX(-50%);
+          -ms-transform: scaleX(1) translateX(-50%);
+          transform: scaleX(1) translateX(-50%);
         }
       }
-      
     }
   }
   .main-nav-desktop {
