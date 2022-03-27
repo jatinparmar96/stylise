@@ -28,9 +28,7 @@
     grid-gap: 1.5rem;
     padding: 3rem 0;
     grid-row-gap: 3rem;
-    @media screen and(min-width:$breakpoints-md) {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
   }
 
   .floating-action-button {
@@ -123,7 +121,7 @@
         grid-column: 1/-1;
       }
     }
-    .close-btn{
+    .close-btn {
       position: absolute;
       top: 1rem;
       right: 1rem;
