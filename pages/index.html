@@ -27,16 +27,17 @@
 <body>
     <div class="main-container">
         <header class="header" id="nav-header">
-            <div class="profile-photo-container">
-                <img class="profile-photo dn" alt="profile-photo">
-            </div>
             <div class="site-logo-container">
                 <img class="site-logo" src="../icons/logo.png" alt="logo" id="logo">
             </div>
-            <div class="hamburger-menu">
-                <img onclick="toggleMenu()" src="../assets/nav-bar/segment.png">
-            </div>
-            <!-- MOBILE NAVBAR STARTS =======================  -->
+            <div class="header-wrap">
+                <div class="profile-photo-container">
+                    <img class="profile-photo dn" alt="profile-photo">
+                </div>
+                <div class="hamburger-menu">
+                    <img onclick="toggleMenu()" src="../assets/nav-bar/segment.png">
+                </div>
+                <!-- MOBILE NAVBAR STARTS =======================  -->
             <nav id="navigation-menu" class="main-nav-mobile">
                 <div class="user-info-container">
                     <div class="profile-photo-container">
@@ -108,7 +109,6 @@
 
             </nav>
             <!-- MOBILE NAVBAR ENDS =======================  -->
-
             <!-- DESKTOP NAVBAR STARTS =======================  -->
             <nav class="main-nav-desktop">
                 <ul class="nav-list">
@@ -130,6 +130,11 @@
                 </ul>
             </nav>
             <!-- DESKTOP NAVBAR ENDS =======================  -->
+            
+        </div>
+            
+
+            
 
         </header>
         <div class="container" id="mainArea">

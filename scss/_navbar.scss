@@ -1,8 +1,20 @@
 .header {
   display: flex;
+  flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2%;
+  padding: .5rem 2% 1rem 2%;
+  
+  .header-wrap{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    @media screen and (min-width: $breakpoints-md) {
+      flex-flow: row;
+      align-items: center;
+    }
+  }
+
   .profile-photo-container {
     display: flex;
     width: fit-content;
@@ -12,7 +24,7 @@
     align-items: center;
     box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.05);
     img.profile-photo {
-      width: 30px;
+      width: 50px;
       border-radius: 50%;
       @media screen and (min-width: $breakpoints-md) {
         width: 50px;
@@ -24,9 +36,9 @@
     flex-grow: 1;
     text-align: center;
     .site-logo {
-      width: 75px;
+      width: 60px;
       @media screen and (min-width: $breakpoints-md) {
-        width: 100px;
+        width: 70px;
       }
     }
   }
