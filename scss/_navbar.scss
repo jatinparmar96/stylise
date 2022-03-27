@@ -16,8 +16,13 @@
       border-radius: 50%;
     }
   }
-  img.logo {
-    width: 75px;
+
+  .site-logo-container {
+    flex-grow: 1;
+    text-align: center;
+    .site-logo {
+      width: 75px;
+    }
   }
   .hamburger-menu {
     @media screen and (min-width: $breakpoints-md) {
@@ -73,19 +78,59 @@
       li {
         border-bottom: 1px solid $primary-color;
         padding-bottom: 0.5rem;
-
-        a {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
       }
     }
   }
-
-  .main-nav-desktop{
+  .nav-list {
+    .nav-list-item {
+      display: inline-block;
+      position: relative;
+      a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 0px;
+        left: 35%;
+        border-bottom: 3px solid $primary-color;
+        bottom: -.25rem;
+        -webkit-transform: scaleX(0);
+        -ms-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transition: -webkit-transform 0.2s ease-in;
+        transition: transform 0.2s ease-in;
+        transform-origin: 100% 100%;
+      }
+      &:hover::before {
+        -webkit-transform: scaleX(1);
+        -ms-transform: scaleX(1);
+        transform: scaleX(1);
+        transform-origin: 0% 0%;
+        
+      }
+      @media screen and (min-width: $breakpoints-md) {
+        & + .nav-list-item {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+    .nav-list-item.active{
+      &:before {
+        content: "";
+       
+        -webkit-transform: scaleX(1);
+        -ms-transform: scaleX(1);
+        transform: scaleX(1);
+      }
+    }
+  }
+  .main-nav-desktop {
     display: none;
-    @media screen and (min-width:$breakpoints-md) {
+    @media screen and (min-width: $breakpoints-md) {
       display: block;
     }
   }

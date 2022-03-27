@@ -117,7 +117,6 @@ function cancelSearch() {
  * @param
  */
 function addPosts(doc, index = 0) {
-    console.log(index)
     let div = document.createElement("div");
     div.classList.add("post");
 
@@ -283,7 +282,6 @@ async function showDonatePosts() {
     const userMetaDataDoc = await db.collection('users').doc(user.uid).get()
     const userMetaData = userMetaDataDoc.data();
     if (searchValue.trim().length > 1) {
-        console.log(searchValue);
         db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item").where("tags", "array-contains", searchValue)
             .get().then((querySnapshot) => {
                 if (querySnapshot.empty) {
@@ -355,7 +353,6 @@ async function showDonatePosts() {
 }
 
 function renderDonateItems(item) {
-    console.log(item);
     return `
     <div class="post">
         <a href="index.html#view-post?id=${item.id}">

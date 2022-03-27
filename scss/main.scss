@@ -1,7 +1,8 @@
 @import "./variables";
 @import "./mixins";
-@import "./base";
 @import "./utils";
+
+@import "./base";
 @import "./buttons";
 @import "./login";
 @import "./signin";
@@ -15,30 +16,4 @@
 @import "./typography";
 
 @import "./navbar";
-.fade-in-fwd {
-  animation: fade-in-fwd 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-@keyframes fade-in-fwd {
-  0% {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-.scale-up-br {
-  animation: scale-up-br 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-@keyframes scale-up-br {
-  0% {
-    // transform: scale(0);
-    background-position: bottom right;
-    opacity: 0;
-  }
-  100% {
-    background-position: top left;
-    opacity: 1;
-  }
-}
+@import "./animation";
