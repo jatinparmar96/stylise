@@ -32,9 +32,24 @@ function listenToCategory() {
 
             closeList.innerHTML = '';
             querySnapshot.forEach((doc) => {
+                let div = document.createElement("div");
+                div.classList.add("category-wrapper");
+                const link = document.createElement('a');
+                link.href = `index.html#category?q=${doc.id}`;
+                link.setAttribute("id",`${doc.id}`);
                 getCategoryImage(doc);
-                closeList.innerHTML += renderCloseCard(doc);
-                getCategoryImage(doc);
+                let catName = document.createElement('div');
+                catName.classList.add("catName-wrapper");
+                let span = document.createElement('span');
+                span.innerHTML = `${renderCloseCard(doc)}`;
+                // let img = document.createElement("img");
+                // img.src = doc.data().uri;
+                // link.appendChild(img)
+                catName.appendChild(span);
+                link.appendChild(catName);
+                div.appendChild(link);
+                closeList.appendChild(div);
+                // closeList.innerHTML += renderCloseCard(doc);
             });
     });
     window.removeFirebaseListener.push(listener);
@@ -42,16 +57,21 @@ function listenToCategory() {
 
 function getCategoryImage(categoryDocument){
     const categoryId = categoryDocument.id;
-    const closeList = document.getElementById('closetList');
+    //const closeList = document.getElementById('closetList');
     //var categoryImg = "";
     db.collection("posts").where("category","==",categoryId).where("type","==","closet-item").limit(1)
     .get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-           doc.data().uri;
-           let imageElement = document.createElement("img");
-           imageElement.src = `${doc.data().uri}`;
-           closeList.appendChild(imageElement);
-            //console.log(doc.data().uri);
+                doc.data().uri;
+                const link = document.getElementById(`${categoryId}`);
+                let imageWrapper = document.createElement("div");
+                imageWrapper.classList.add("catImageWrapper");
+                let Imagediv = document.createElement("div");
+                Imagediv.classList.add("categoryImage");
+                Imagediv.style.backgroundImage = `url(${doc.data().uri})`;
+                imageWrapper.appendChild(Imagediv);
+                link.prepend(imageWrapper);
+            console.log(doc.data().uri);
             //console.log(imageUri(doc));
         });
        });
@@ -68,14 +88,9 @@ function renderCloseCard(categoryDocument) {
     const categoryId = categoryDocument.id;
     console.log(categoryId);
     const categoryData = categoryDocument.data();
+    const categoryName = categoryData.category;
 
-       return `
-       <div class="flex flex-column category-wrapper" >
-           <a href="index.html#category?q=${categoryId}">
-               <span>${categoryData.category}</span>
-            </a>
-            </div>
-       `;
+    return categoryName;
 }
 
 init();

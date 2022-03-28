@@ -6,3 +6,51 @@
   grid-gap: 20px;
   margin: auto;
 }
+
+.closet {
+  margin: auto;
+
+  background-color: $secondary-color02;
+  padding: 4rem 0;
+
+  .closetList-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    max-width: 95vw;
+    margin: auto;
+    place-items: center;
+
+    .category-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      .catName-wrapper {
+        font-weight: bold;
+        padding: 5px 10px;
+      }
+
+      .catImageWrapper {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        width: 182px;
+        height: 186px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .categoryImage {
+          width: 174.96px;
+          height: 178.65px;
+          justify-self: center;
+          align-self: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+}
