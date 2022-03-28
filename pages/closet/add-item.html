@@ -7,7 +7,69 @@
                 <div class="images-container" id="img-download">
                 </div>
                 <div class="flex flex-column" id="imageContainer">
-                
+
+                    <!-- Image placeholder -->
+                    <svg onclick="triggerImageInput()" class="img-placeholder" version="1.1" id="img-placeholder"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 504 504"
+                        style="enable-background:new 0 0 504 504;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0 {
+                                fill: #765FC2;
+                            }
+                    
+                            .st1 {
+                                fill: #BDB8CF;
+                            }
+                    
+                            .st2 {
+                                fill: #F7F7FA;
+                            }
+                    
+                            .st3 {
+                                font-family: 'Poppins';
+                                font-weight: '600'
+                            }
+                    
+                            .st4 {
+                                font-size: 20px;
+                            }
+                    
+                            .st5 {
+                                fill: none;
+                                stroke: #765FC2;
+                                stroke-width: 15;
+                                stroke-linecap: round;
+                                stroke-miterlimit: 10;
+                            }
+                    
+                            .st6 {
+                                fill: none;
+                                stroke: #F7F7FA;
+                                stroke-width: 9;
+                                stroke-linecap: round;
+                                stroke-miterlimit: 10;
+                            }
+                    
+                            .st7 {
+                                fill: none;
+                                stroke: #F7F7FA;
+                                stroke-width: 4;
+                                stroke-linecap: round;
+                                stroke-miterlimit: 10;
+                            }
+                        </style>
+                        <path class="st0"
+                            d="M331.5,383.4h-170c-19.3,0-35-15.7-35-35v0c0-19.3,15.7-35,35-35h170c19.3,0,35,15.7,35,35v0
+                                                                                                                                                                       C366.5,367.7,350.8,383.4,331.5,383.4z" />
+                        <polygon class="st1" points="246.1,106.3 108.5,185.8 246.9,265.6 384.5,186.2 " />
+                        <polygon class="st0" points="246.1,65.3 108.5,144.8 246.9,224.6 384.5,145.2 " />
+                        <text transform="matrix(1 0 0 1 192.687 354.2541)" class="st2 st3 st4">Upload Image</text>
+                        <path class="st2" d="M153.6,354.6h28.2v6.5c0,1.9-1.6,3.5-3.5,3.5h-21.2c-1.9,0-3.5-1.6-3.5-3.5V354.6L153.6,354.6z" />
+                        <line class="st5" x1="167.4" y1="345.8" x2="167.4" y2="353.3" />
+                        <line class="st6" x1="167.4" y1="348.8" x2="167.4" y2="353.3" />
+                        <polygon class="st7" points="174.6,344.5 167.4,344.5 160.2,344.5 163.8,338.3 167.4,332 171,338.3 " />
+                    </svg>
+                    <!-- Image placeholder ends -->
                     <video class="dn" id="video-stream" autoplay></video>
                     <button class="dn" type="button" id="snapPhotoBtn" onclick="captureImage()">Capture Image</button>
                     <img id="image">

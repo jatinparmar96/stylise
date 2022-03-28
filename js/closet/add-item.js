@@ -202,6 +202,7 @@ function triggerImageInput() {
 function addImageChangeListener(src, target) {
     const fileReader = new FileReader();
     fileReader.onload = function () {
+        document.getElementById('img-placeholder').classList.add('dn')
         target.src = this.result
         target.classList.add('profile-image')
     }
@@ -211,6 +212,7 @@ function addImageChangeListener(src, target) {
         } else {
             target.classList.remove('profile-image');
             target.src = '';
+            document.getElementById('img-placeholder').classList.remove('dn')
         }
 
     })
