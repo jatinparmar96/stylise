@@ -1,0 +1,364 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.view-post {
+  margin: auto;
+  background-color: $secondary-color03;
+  min-height: 100vh;
+
+  .type-container {
+    background-color: #ffffff;
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "arrow type blank";
+    padding: 1.5rem 2%;
+    margin: 0;
+
+    .type {
+      text-transform: capitalize;
+      justify-self: center;
+      align-self: center;
+      grid-area: type;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+    }
+    .back-arrow {
+      width: 18px;
+      height: 18px;
+      justify-self: start;
+      align-self: center;
+      grid-area: arrow;
+    }
+  }
+
+  .single-post {
+    display: flex;
+    justify-content: center;
+    .explore{
+      display: none;
+    }
+
+    .image-container {
+      position: relative;
+      border-radius: 0px 0px 72px 0px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      height: 80vh;
+      @media screen and (min-width: $breakpoints-md) {
+        border-radius: 30px;
+      }
+    }
+    .post-details-container {
+      position: absolute;
+      display: block;
+      top: 80vh;
+      width: 90%;
+      height: auto;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(15px); //not supported
+      border-radius: 30px;
+      padding: 2rem;
+      .post-meta-info{
+        display: flex;
+        justify-content: space-between;
+        p{
+          font-size: .9rem;
+          span{
+            padding-left: .5rem;
+          }
+        }
+      }
+      .user-details {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 2rem 0;
+        .user-details-info{
+          h3{
+            padding-bottom: .5rem;
+          }
+          p{
+            color: $primary-color;
+          }
+        }
+        img {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          margin-right: 15px;
+        }
+        .postUser {
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 21px;
+        }
+      }
+      .postComments {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+      }
+      .tags {
+        padding-top: 2rem;
+        .tags-title {
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 21px;
+          color: $primary-color;
+        }
+        .postTags {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          padding-top: 0.5rem;
+
+          span {
+            font-style: italic;
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 18px;
+            background: #f1f1f1;
+            border-radius: 50px;
+            margin: 2px;
+            padding: 3px 8px;
+          }
+        }
+      }
+    }
+  }
+
+  .suggestions {
+    position: relative;
+    top: 400px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    margin: 0px auto 10px auto;
+  }
+  .wrapper {
+    position: relative;
+    margin-top: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .post {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 30px;
+      width: 350px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      align-items: center;
+      margin-bottom: 45px;
+
+      .user-info-donate {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: space-between;
+        width: 330px;
+        margin: 15px auto 0 auto;
+
+        .dp {
+          margin-top: -50px;
+          width: 64px;
+          height: 64px;
+        }
+
+        .aux {
+          width: 64px;
+          height: 5px;
+        }
+      }
+
+      .user-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: space-between;
+        width: 330px;
+        margin: 15px auto 0 auto;
+
+        .dp {
+          margin-top: -50px;
+          width: 64px;
+          height: 64px;
+        }
+        .favorite-icon {
+          background-color: transparent;
+          color: $primary-color;
+          border: transparent;
+          font-size: 20px;
+          margin-right: 10px;
+          align-self: center;
+        }
+      }
+
+      .post-img a img {
+        border-radius: 30px;
+        width: 328px;
+        height: 328px;
+        margin: 15px;
+      }
+    }
+  }
+}
+
+// @media screen and (min-width: $breakpoints-md) {
+//   .view-post {
+//   }
+// }
+
+@media screen and (min-width: $breakpoints-md) {
+  .view-post {
+    .single-post {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      
+      p.explore{
+        display: block;
+        margin-top: 80%;
+        background-color: $primary-color;
+        height: 40px;
+        padding: .5rem;
+        color: white;
+        width: 300px;
+        border-radius: 0 50px 50px 0;
+        @media screen and (min-width: $breakpoints-lg) {
+          margin-left: -5rem;
+          padding-left: 5rem;
+          width: 400px;
+        }
+      }
+      .image-container {
+        width: 405px;
+        height: 405px;
+        margin-top: 2rem;
+      }
+      .post-details-container {
+        position: initial;
+        backdrop-filter: blur(5px);
+        margin-top: 80px;
+        margin-left: -50px;
+        width: 477px;
+        height: 427px;
+
+        .user-details {
+
+          img {
+            width: 80px;
+            height: 80px;
+          }
+          .postUser {
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+        .postComments {
+          font-size: 18px;
+          line-height: 27px;
+        }
+        .tags {
+          .tags-title {
+            font-size: 16px;
+            line-height: 24px;
+          }
+          .postTags {
+            span {
+              font-size: 14px;
+              line-height: 21px;
+            }
+          }
+        }
+      }
+    }
+    .suggestions {
+      top: 70px;
+      font-size: 20px;
+      line-height: 30px;
+      margin-top: 2rem;
+    }
+    .wrapper {
+      position: relative;
+      margin-top: 140px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      .post {
+        // background: rgba(255, 255, 255, 0.8);
+        // box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+        // border-radius: 30px;
+        width: 245px;
+        height: 280px;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+
+        align-items: center;
+        margin-bottom: 45px;
+
+        .user-info-donate {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-content: space-between;
+          width: 231px;
+          margin: 15px auto 0 auto;
+
+          .dp {
+            margin-top: -50px;
+            width: 64px;
+            height: 64px;
+          }
+
+          .aux {
+            width: 64px;
+            height: 5px;
+          }
+        }
+
+        .user-info {
+          width: 231px;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 18px;
+
+          .dp {
+            margin-top: -50px;
+            width: 57.6px;
+            height: 57.6px;
+          }
+          // .favorite-icon {
+          // }
+        }
+
+        .post-img a img {
+          width: 229.6px;
+          height: 229.6px;
+          margin: 0px;
+        }
+      }
+    }
+  }
+}
+
+// @media screen and (min-width: $breakpoints-xl) {
+//   .view-post {
+//   }
+// }
