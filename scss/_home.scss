@@ -94,7 +94,7 @@
     //   transparent 0%,
     //   $accent-color 100%
     // );
-    background: transparent;
+    background: rgba($color: #fff, $alpha:0.8);
     background-size: 200% 200%;
     backdrop-filter: blur(30px);
     overflow: hidden;
