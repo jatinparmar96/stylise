@@ -1,10 +1,30 @@
-@mixin  flex() {
-    display: flex;
-    @content;
+@mixin flex() {
+  display: flex;
+  @content;
 }
 
 @mixin flex-column() {
-    display: flex;
-    flex-direction: column;
-    @content;
+  display: flex;
+  flex-direction: column;
+  @content;
+}
+
+@mixin primaryBackgroundGradient() {
+  background: radial-gradient(
+      circle at top left,
+      #765fc2 0%,
+      #f6f4f9 20%,
+      transparent 80%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      #765fc2 0%,
+      #f6f4f9 50%,
+      transparent 80%
+    );
+  background-repeat: no-repeat, no-repeat;
+}
+@mixin screenBlur() {
+  background-color: rgba(246, 244, 249, 0.5);
+  backdrop-filter: blur(2rem);
 }

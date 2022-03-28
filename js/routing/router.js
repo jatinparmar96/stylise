@@ -1,6 +1,37 @@
 'use strict';
 
-const routesWithoutNav = ['#', '#login', '#register' , '#user-profile', '#view-user-profile', '#view-post'];
+const routesWithoutNav = ['#', '#login', '#register', '#user-profile', '#view-user-profile'];
+
+const tabsMapping = [
+    {
+        tab: 'community',
+        routes: [
+            '#home',
+            '#community/add-post',
+            '#donate/post-item',
+            '#view-post',
+        ]
+    },
+    {
+        tab: 'closet',
+        routes: [
+            '#closet',
+            '#category',
+            '#closet/add-item',
+            '#view-item',
+
+        ]
+    },
+    {
+        tab: 'account',
+        routes: [
+            '#user-profile',
+            '#update-profile',
+
+        ]
+    }
+]
+
 window.removeFirebaseListener = [];
 class Page {
     constructor(name, htmlName, jsName) {
@@ -28,20 +59,19 @@ class Router {
 
     static handleHashChange() {
         const urlHash = window.location.hash.split('?')[0];
-        console.log(urlHash)
         if (urlHash.length > 0) {
             // If there is a hash in URL
             for (let i = 0; i < Router.pages.length; i++) {
                 // find which page matches the hash then navigate to it
                 if (urlHash === Router.pages[i].name) {
-                    console.log(routesWithoutNav.includes(urlHash))
                     if (routesWithoutNav.includes(urlHash)) {
-                        this.toggleHeader()
+                        this.toggleHeader();
                     }
                     else {
                         this.toggleHeader(true);
                     }
-
+                    setActiveTab(urlHash);
+                    this.hideSideBar();
                     Router.goToPage(Router.pages[i]);
                     break;
                 }
@@ -59,7 +89,6 @@ class Router {
         try {
             const response = await fetch(page.htmlName);
             Router.rootElem.innerHTML = await response.text();
-            console.log(page);
             //append JS part to run.
             if (page.jsName.length) {
                 page.jsName.forEach((jsName) => {
@@ -96,4 +125,26 @@ class Router {
         }
 
     }
+
+    static hideSideBar() {
+        const navMenu = document.getElementById('navigation-menu');
+        if (navMenu) {
+            navMenu.classList.remove('show');
+        }
+
+    }
+}
+
+
+
+function setActiveTab(urlHash) {
+    tabsMapping.forEach(item => {
+        if (item.routes.includes(urlHash)) {
+            const elm = document.querySelector(`.main-nav-desktop .nav-list-item #${item.tab}`);
+            const allListElm = document.querySelectorAll(`.main-nav-desktop .nav-list-item`);
+            allListElm.forEach(elm => elm.classList.remove('active'));
+            elm.parentElement.classList.add('active');
+        }
+    })
+
 }
