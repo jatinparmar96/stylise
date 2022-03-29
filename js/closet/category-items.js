@@ -74,9 +74,11 @@ function renderImages(imageDoc){
     const imageData = imageDoc.data();
     
     return`
-        <div class="flex flex-column closet-item" style="max-width: 25%;">
+        <div class="flex flex-column closet-item">
             <a href="index.html#view-item?id=${imageDoc.id}">
-            <img src="${imageData.uri}" style="object-fit: cover;height: 200px;width: 200px">
+                <div class="image-container">
+                    <div class="item" style="background-image: url(${imageData.uri})"></div>
+                </div>
             </a>
             <span>${imageData.keywords}</span>
         </div>
