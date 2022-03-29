@@ -1,53 +1,87 @@
-<main>
+<div class="donate-post-container">
+  <main>
     <div class="upload-item">
+      <div id="add-item-form">
+        <div class="upload-image">
+          <div class="images-container" id="img-download"></div>
+          <div class="flex flex-column">
+            <div class="camera" id="camera"></div>
+            <div class="capture-btn" id="capture-btn"></div>
 
-        <div id="add-item-form">
-            <div class="upload-image">
-                <div class="images-container" id="img-download">
-                </div>
-                <div class="flex flex-column">
-                
-                    <div class="camera" id="camera">
-                        
-                    </div>
-                    <div class="capture-btn" id="capture-btn"></div>
-                      
-                    <img id="image">
-                    <input type="file" style="display: none;" id="donate-input" name="img" accept="image/*">
-                </div>
-                <div class="flex gap-1">
-                    <button type="button" id="openCameraBtn">Open Camera</button>
-                    <button type="button" id="uploadImageBtn" onclick="triggerDonateInput()">Choose Image</button>
-                </div>
-            </div>
-            <div class="item-description">
-                <div class="comments-wrapper">
-                    <label for="comments">Comments</label>
-                    <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
-                </div>
-                <div class="location-wrapper">
-                    <label for="location">Select a location:</label>
-                    <div class="flex gap-1">
-                        <input type="text" id="location">
-                        <input type="hidden" id="locationCoords">
-                        <button type="button" onclick="getCurrentUserLocation()"> Get Location</button>
-                    </div>
-                </div>
-                <div class="tags-wrapper">
-                    <label for="tags">Add Tags</label>
-                    <input type="text" name="tags" id="tags">
-                    <span id="show-tags"></span>
-                    <input type="button" value="Add tag" id="add-tag">
-                    <input type="hidden" id="tagsHiddenValue" name="tagsHiddenValue">
-                </div>
-            </div>
-            <p class="dn" id="showStatus"></p>
-            <input type="button" value="Post" id="postBtn">
+            <img id="image" />
+            <input
+              type="file"
+              style="display: none"
+              id="donate-input"
+              name="img"
+              accept="image/*"
+            />
+          </div>
+          <div class="image-container">
+            <img
+              src="/icons/placeholder.png"
+              id="image"
+              class="image"
+              onclick="triggerDonateInput()"
+            />
+          </div>
+          <div class="flex gap-1">
+            <button type="button" id="openCameraBtn">Open Camera</button>
+            <button
+              type="button"
+              id="uploadImageBtn"
+              onclick="triggerDonateInput()"
+            >
+              Upload Your Photo
+            </button>
+          </div>
         </div>
+
+        <div class="item-description-wrapper">
+          <div class="item-description">
+            <div class="comments-wrapper">
+              <label for="comments">Comments</label>
+              <textarea
+                id="comments"
+                name="comments"
+                rows="4"
+                cols="50"
+              ></textarea>
+            </div>
+            <div class="location-wrapper">
+              <label for="location">Location</label>
+              <div class="flex gap-1">
+                <input type="text" id="location" />
+                <input type="hidden" id="locationCoords" />
+                <button
+                  type="button"
+                  class="add-tag-btn"
+                  onclick="getCurrentUserLocation()"
+                >
+                  Get Location
+                </button>
+              </div>
+            </div>
+            <div class="tags-wrapper">
+              <label for="tags">Tags</label>
+              <div class="tags-input-container">
+                <input type="text" name="tags" id="tags" />
+                <input type="button" value="Add tag" id="add-tag" />
+                <input
+                  type="hidden"
+                  id="tagsHiddenValue"
+                  name="tagsHiddenValue"
+                />
+              </div>
+              <span id="show-tags"></span>
+            </div>
+          </div>
+          <p class="dn" id="showStatus"></p>
+          <input type="button" value="Post" id="postBtn" />
+        </div>
+      </div>
     </div>
 
-    <div class="flex gap-2" id="category-images" style="margin-top: 1rem">
-
-    </div>
-
-</main>
+    <div class="flex gap-2" id="category-images" style="margin-top: 1rem"></div>
+  </main>
+</div>
