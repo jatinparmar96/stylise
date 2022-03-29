@@ -1,15 +1,16 @@
 function init() {
     const addCategoryForm = document.getElementById('add-category-form');
     addCategoryForm.addEventListener('submit', handleFormSubmit);
+    const closeList = document.getElementById('closetList');
+    closeList.innerHTML = '';
     updateUsername();
 }
 
 function updateUsername() {
     auth.onAuthStateChanged((user) => {
         if (user) {
-            document.getElementById('username').innerHTML = user.displayName;
+            //document.getElementById('username').innerHTML = user.displayName;
             listenToCategory();
-            allItems();
         }
     })
 }
@@ -22,7 +23,12 @@ async function handleFormSubmit(event) {
         user: user.uid,
         category: categoryName
     })
-    alert('category Added Successfully');
+    const categoryForm = document.getElementById("add-category");
+    const disableLinks = document.getElementById("disableLinks");
+    categoryForm.style.removeProperty('z-index');
+    categoryForm.style.zIndex = '-5';
+    disableLinks.style.removeProperty('z-index');
+    disableLinks.style.zIndex = '-10';
 }
 
 function listenToCategory() {
@@ -38,6 +44,7 @@ function listenToCategory() {
                 const link = document.createElement('a');
                 link.href = `index.html#category?q=${doc.id}`;
                 link.setAttribute("id",`${doc.id}`);
+                link.classList.add("catLink");
                 getCategoryImage(doc);
                 let catName = document.createElement('div');
                 catName.classList.add("catName-wrapper");
@@ -52,8 +59,9 @@ function listenToCategory() {
                 closeList.appendChild(div);
                 // closeList.innerHTML += renderCloseCard(doc);
             });
+        allItems();
     });
-    window.removeFirebaseListener.push(listener);
+    window.removeFirebaseListener.push(listener) 
 }
 
 function getCategoryImage(categoryDocument){
@@ -106,15 +114,18 @@ function renderCloseCard(categoryDocument) {
 
 function allItems(){
     const user = auth.currentUser;
+    const closeList = document.getElementById('closetList');
+    //closeList.innerHTML = '';
     db.collection("posts").where("userId","==",user.uid).where("type","==","closet-item").limit(1)
     .get().then((querySnapshot) => {
         if (querySnapshot.empty){
-            const closeList = document.getElementById('closetList');
+            //const closeList = document.getElementById('closetList');
                 let div = document.createElement("div");
                 div.classList.add("category-wrapper");
                 const link = document.createElement('a');
                 link.href = `index.html#category`;
                 link.setAttribute("id","all-items");
+                link.classList.add("catLink");
                 let catName = document.createElement('div');
                 catName.classList.add("catName-wrapper");
                 let span = document.createElement('span');
@@ -132,7 +143,7 @@ function allItems(){
                     closeList.prepend(div);
         }
         querySnapshot.forEach((doc) => {
-            const closeList = document.getElementById('closetList');
+            //const closeList = document.getElementById('closetList');
                 let div = document.createElement("div");
                 div.classList.add("category-wrapper");
                 const link = document.createElement('a');
@@ -155,8 +166,45 @@ function allItems(){
                     div.appendChild(link);
                     closeList.prepend(div);
             });
+        addCategoryContainer();
     });
-    
+};
+
+function addCategoryContainer(){
+    const closeList = document.getElementById('closetList');
+    let div = document.createElement("div");
+    div.classList.add("category-wrapper");
+    div.classList += " catAddContainer";
+    let imageWrapper = document.createElement("div");
+    imageWrapper.classList.add("catImageWrapper");
+    let Imagediv = document.createElement("div");
+    Imagediv.classList.add("categoryImage");
+    Imagediv.setAttribute("id",'addCat-container');
+    Imagediv.style.backgroundImage = 'url(/assets/addCategoryImage.jpg)';
+    imageWrapper.appendChild(Imagediv);
+    div.appendChild(imageWrapper);
+    closeList.appendChild(div);
+
+    const categoryForm = document.getElementById("add-category");
+    const disableLinks = document.getElementById("disableLinks");
+    Imagediv.addEventListener('click',()=>{
+        categoryForm.style.removeProperty('z-index');
+        categoryForm.style.zIndex = '10';
+        categoryForm.style.left = '0';
+        disableLinks.style.removeProperty('z-index');
+        disableLinks.style.zIndex = '5';
+    });
+
+    document.addEventListener('click',(event)=>{
+        let clickInside = categoryForm.contains(event.target);
+        let clickInsideImagediv = Imagediv.contains(event.target);
+        if (!clickInside && !clickInsideImagediv){
+            categoryForm.style.removeProperty('z-index');
+            categoryForm.style.zIndex = '-5';
+            disableLinks.style.removeProperty('z-index');
+            disableLinks.style.zIndex = '-10';
+        }
+    });
 };
 
 init();

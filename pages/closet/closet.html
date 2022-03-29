@@ -4,7 +4,8 @@
     
         <button onclick="window.location.href='index.html#closet/add-item'" class="floating-action-button">+</button>
         <h2>Your Closet <span id="username"></span></h2>
-        <div class="add-category">
+        <div class="add-category" id="add-category">
+            <h2>Add Category</h2>
             <form id="add-category-form">
                 <label for="category-name">
                 Category Name
@@ -13,6 +14,7 @@
                 <button type="submit">Add Category</button>
             </form>
         </div>
+        <div class="disableLinks" id="disableLinks"></div>
         <div id="closetList" class="closetList-wrapper flex gap-1">
 
         </div>
