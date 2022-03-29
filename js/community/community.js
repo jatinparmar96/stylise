@@ -452,6 +452,7 @@ function renderDonateItems(item, idx = 0) {
     const all = document.getElementById('community-all');
     const forYou = document.getElementById('community-for-you');
     let favoriteIcon = document.createElement("button");
+    favoriteIcon.classList.add("favorite");
     div.style.animationDelay = `${index * 100}ms`;
     div.classList.add('fade-in-fwd');
 
@@ -460,7 +461,6 @@ function renderDonateItems(item, idx = 0) {
         favoriteIcon.classList.add("favorite-icon");
         let favElement = document.createElement("img");
         favElement.src = '/assets/common/heart-filled.svg';
-
         favElement.classList.add("fa");
         favElement.classList.add("fa-heart");
         favoriteIcon.appendChild(favElement);
