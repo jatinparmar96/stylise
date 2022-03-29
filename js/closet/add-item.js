@@ -291,7 +291,7 @@ function setTagsValue(tagsArray) {
     hiddenTagsValueElement.value = JSON.stringify(tagsArray);
     showTags.innerHTML = '';
     tagsArray.forEach(val => {
-        showTags.innerHTML += `<span onclick="removeTag('${val}')">#${val}</span>`
+        showTags.innerHTML += `<span class="tag">#${val} <span onclick="removeTag('${val}')">x</span> </span>`
     })
 }
 init();

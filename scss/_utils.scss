@@ -9,20 +9,29 @@
   flex-wrap: wrap;
   padding-top: 0.5rem;
 
-  span {
+  span.tag {
     font-style: italic;
     font-weight: 300;
+    gap: .5rem;
     font-size: 12px;
     line-height: 18px;
     background: $primary-color;
     color: white;
     border-radius: 50px;
     margin: 2px;
-    padding: 3px 8px;
+    padding: .3rem .5rem ;
     cursor: pointer;
     transition: all .35s ease;
+    display: flex;
+    align-items: center;
     &:hover{
-        background-color: $danger-color;
+        span{
+            visibility: visible;
+                }
     }
+    span{
+        visibility: hidden;
+    }
+    
   }
 }
