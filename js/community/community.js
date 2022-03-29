@@ -269,12 +269,14 @@ async function showAllPosts() {
     }
     else {
         // fetch all posts from "posts" collection
-        db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community")
+        db.collection("posts").orderBy("timeStamp").where("public", "==", true).where("type", "==", "community")
             .get().then((querySnapshot) => {
                 let index = 0;
                 querySnapshot.forEach((doc) => {
+                    if(doc.data().userID != user.uid){
                     addPosts(doc, index, userFavourites);
                     index++
+                    }
                 });
                 hideLoader();
             });
@@ -349,15 +351,17 @@ async function showDonatePosts() {
     else {
         searchMessage.innerHTML = "";
         // fetch posts from "posts" collection with type = donate-item
-        db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item")
+        db.collection("posts").orderBy("timeStamp").where("public", "==", true).where("type", "==", "donate-item")
             .get().then((querySnapshot) => {
                 let donateDocsArray = [];
                 querySnapshot.forEach((doc) => {
+                    if(doc.data().userID != user.uid){
                     donateDocsArray.push(
                         {
                             ...doc.data(), id: doc.id
                         }
                     );
+                    }
                 });
                 donateDocsArray = donateDocsArray.filter((item) => {
                     if (item.location.coords) {
