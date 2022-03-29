@@ -175,9 +175,21 @@ function addPosts(doc, index = 0, userFavourites = undefined) {
      */
     favoriteIcon.onclick = async function addToFavorites() {
         const user = await getCurrentUser();
-        const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
         const imgElement = favoriteIcon.querySelector('img');
+        if (favoriteIcon.classList.contains('favorite')){
+            const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).delete().then(() => {
+                console.log("Document successfully deleted!");
+                favoriteIcon.classList.remove('favorite');
+                imgElement.src = '/assets/common/heart.svg';
+
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        } else {
+        const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
+        favoriteIcon.classList.add('favorite');
         imgElement.src = '/assets/common/heart-filled.svg';
+        }
     }
 
 
@@ -283,7 +295,7 @@ async function showFavorite() {
     db.collection("users/" + user.uid + "/favorites")
         .get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                addPosts(doc);
+                addFavoritePosts(doc);
             });
             hideLoader();
         });
@@ -396,5 +408,88 @@ function renderDonateItems(item, idx = 0) {
         </div>
     </div>
     `
+}
+
+
+/**
+ * add posts into the wrapper
+ * @method addFavoritePosts
+ * @param
+ */
+ function addFavoritePosts(doc, index = 0) {
+    let div = document.createElement("div");
+    div.classList.add("post");
+
+    const postLink = document.createElement('a');
+    postLink.href = `index.html#view-post?id=${doc.id}`;
+    postLink.classList.add('post-image');
+    let img = document.createElement("img");
+    img.src = doc.data().uri;
+    postLink.appendChild(img)
+    div.appendChild(postLink);
+    let div_user = document.createElement("div");
+    div_user.classList.add("user-info");
+    let img_user = document.createElement("img");
+    img_user.classList.add("dp");
+
+
+    img_user.src = doc.data().user_uri;
+    div_user.appendChild(img_user);
+    let username = document.createElement("span");
+
+    // Create a link
+    const userLink = document.createElement('a');
+    userLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
+    username.innerHTML = doc.data().username;
+    userLink.appendChild(username)
+
+    const userMetaDataDiv = document.createElement('div');
+    userMetaDataDiv.appendChild(userLink);
+    userMetaDataDiv.classList.add('user-meta');
+
+    div_user.appendChild(userMetaDataDiv);
+
+    const all = document.getElementById('community-all');
+    const forYou = document.getElementById('community-for-you');
+    let favoriteIcon = document.createElement("button");
+    favoriteIcon.classList.add("favorite");
+    div.style.animationDelay = `${index * 100}ms`;
+    div.classList.add('fade-in-fwd');
+
+
+
+        favoriteIcon.classList.add("favorite-icon");
+        let favElement = document.createElement("img");
+        favElement.src = '/assets/common/heart-filled.svg';
+        favElement.classList.add("fa");
+        favElement.classList.add("fa-heart");
+        favoriteIcon.appendChild(favElement);
+        userMetaDataDiv.appendChild(favoriteIcon);
+
+
+    div.appendChild(div_user);
+    document.getElementById("wrapper").appendChild(div);
+        /**
+     * Add post to favorites function
+     */
+         favoriteIcon.onclick = async function addToFavorites() {
+            const user = await getCurrentUser();
+            const imgElement = favoriteIcon.querySelector('img');
+            if (favoriteIcon.classList.contains('favorite')){
+                const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).delete().then(() => {
+                    console.log("Document successfully deleted!");
+                    favoriteIcon.classList.remove('favorite');
+                    imgElement.src = '/assets/common/heart.svg';
+                    div.remove();
+    
+                }).catch((error) => {
+                    console.error("Error removing document: ", error);
+                });
+            } else {
+            const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
+            favoriteIcon.classList.add('favorite');
+            imgElement.src = '/assets/common/heart-filled.svg';
+            }
+        }
 }
 init();
