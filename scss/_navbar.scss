@@ -163,6 +163,9 @@
         position: relative;
         span{
           cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
         }
         .dropdown-content {
           position: absolute;
