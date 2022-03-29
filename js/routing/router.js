@@ -143,7 +143,7 @@ function setActiveTab(urlHash) {
             const elm = document.querySelector(`.main-nav-desktop .nav-list-item #${item.tab}`);
             const allListElm = document.querySelectorAll(`.main-nav-desktop .nav-list-item`);
             allListElm.forEach(elm => elm.classList.remove('active'));
-            elm.parentElement.classList.add('active');
+            elm?.parentElement.classList.add('active');
         }
     })
 
