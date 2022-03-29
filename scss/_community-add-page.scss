@@ -26,6 +26,9 @@
       font-weight: 600;
       margin: 0.5rem 0;
     }
+    input,textarea{
+      font-family: "Poppins", sans-serif;
+    }
     ::placeholder {
       font-family: "Poppins", sans-serif;
       color: #BDB8CF;
@@ -158,7 +161,7 @@
       justify-items: center;
       .images-container {
       width: 75%;
-      }
+   
     .image-container {
       margin: 0;
       }
@@ -172,4 +175,28 @@
         width: 200px;
       }
     }
+  }
+  .placeholder-container{
+    text-align: center;
+  }
+
+  .placeholder-container img{
+    max-width: 50%;
+  }
+  .community-add-item-form{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+  }
+  .save-button{
+    grid-column: 1/-1;
+  }
+  .viewfinder video{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .viewfinder img{
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
   }
