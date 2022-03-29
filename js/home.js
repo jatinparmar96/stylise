@@ -2,6 +2,8 @@
 
 function init() {
     document.getElementById('logout').addEventListener('click', logoutCurrentUser)
+
+    loadUserProfileImages();
     // checkLogin();
 }
 function logoutCurrentUser() {
@@ -21,8 +23,26 @@ function checkLogin() {
     });
 
 }
+function openOverlay() {
+    const elm = document.getElementById('overlay-element');
+    elm.classList.remove('dn');
+}
 
 function redirectToLogin() {
     window.location.href = 'index.html#login'
 }
+
+async function loadUserProfileImages() {
+    const user = await getCurrentUser();
+    const profileLogo = document.querySelectorAll('header .profile-photo');
+    profileLogo.forEach(logoItem => {
+        logoItem.src = user.photoURL;
+        logoItem.classList.remove('dn');
+    })
+    const usernameElement = document.getElementById('username-area');
+    usernameElement.textContent = user.email
+}
+
+
+
 init();

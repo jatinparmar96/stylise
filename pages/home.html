@@ -1,17 +1,37 @@
-
-<main>
-    <button onclick="window.location.href='index.html#community/add-post'" class="floating-action-button">+</button>
-    <button onclick="window.location.href='index.html#donate/post-item'">Donate</button>
-    <ul class="community-nav-list" id="community-nav-list">
-        <li><button class="nav-btn active" id="community-for-you">FOR YOU</button></li>
-        <li><button class="nav-btn" id="community-all" >ALL</button></li>
-        <li><button class="nav-btn" id="community-favourite" > FAVOURITE </button></li>
-        <li><button class="nav-btn" id="community-donate" >DONATE</button></li>
-    </ul>
-    <div class="searchMessage" id="searchMessage"></div>
-    <div class="wrapper" id="wrapper">
-       
-
-        
+<div class="home-container">
+    <button onclick="openOverlay()" class="floating-action-button">+</button>
+    <!-- <button onclick="window.location.href='index.html#donate/post-item'">Donate</button> -->
+    <div class="list-container">
+        <ul class="community-nav-list" id="community-nav-list">
+            <li>
+                <button class="nav-btn active" id="community-for-you">FOR YOU</button>
+            </li>
+            <li><button class="nav-btn" id="community-all">ALL</button></li>
+            <li><button class="nav-btn" id="community-favourite"> FAVOURITE </button></li>
+            <li><button class="nav-btn" id="community-donate">DONATE</button></li>
+            </ul>
     </div>
-</main>
+    <div class="searchMessage" id="searchMessage"></div>
+    <div class="background">
+        <div class="screen-blur">
+            <div class="wrapper" id="wrapper">
+
+            </div>
+        </div>
+        </div>
+
+    <div class="full-screen-overlay scale-up-br dn" id="overlay-element">
+        <div class="overlay-content-container">
+            <a class="link slide-right" href="#community/add-post">
+                Community
+            </a>
+            <a class="link slide-left" href="#donate/post-item">
+                Donate
+            </a>
+            <a class="link slide-up" href="#closet">
+                Closet
+            </a>
+        </div>
+        <button class="close-btn" onclick="document.getElementById('overlay-element').classList.add('dn')">x</button>
+    </div>
+</div>

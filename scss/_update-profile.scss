@@ -10,7 +10,9 @@
     font-weight: 600;
     background-color: #EAE7F6;
     display:block;
-    padding-left:.2rem;
+    padding:.5rem;
+    border-bottom: 1px solid $primary-color;
+    margin-bottom: 1rem;
   }
 
 
@@ -35,10 +37,6 @@
    font-size: 1rem;
  }
 
- .form-field.foryou span:first-of-type {
-   margin-top: 2rem;
- }
-
   div.flex.form-field {
     margin-top: 0;
   }
@@ -55,23 +53,21 @@
   }
 
   .form-field.name-img h4 {
-    font-weight:900;
-    font-size: 1rem;
+    font-weight:600;
+    font-size: 1.25rem;
+    padding-bottom: 1rem;
   }
 
   div.form-field.name-img {
-  padding:2rem 0 0 0;
+  padding-bottom: 4rem;
   display: grid;
   grid-template-rows: 50px, 1fr, 50px, 50px;
   justify-content: center;
   text-align:center;
   }
+  
   div.user-info {
     padding-top:0;
-  }
-
-  div.flex.form-field {
-    padding-bottom:2rem;
   }
 
   .container{
@@ -79,6 +75,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
+    padding: 5rem 0;
     
   }
  
@@ -109,12 +106,24 @@
  width:7.5rem;
 }
 
+.form-field.foryou #for-you-age {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("../assets/common/arrow_back_ios.png");
+  background-repeat: no-repeat;
+  background-position-x: 90%;
+  background-position-y: 8px;
+  background-size: 15%;
+ }
+
 
 textarea {
   background: #FFFFFF;
   box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
   border: none;
   margin-top:.5rem;
+  padding: 1rem;
 }
 
 ::placeholder {
@@ -148,6 +157,7 @@ textarea {
     line-height: 21px;
     padding:.5rem;
     align-self:center;
+    margin-bottom: 5rem;
   }
   input[type="submit"]:disabled{
     opacity: .8;
@@ -159,11 +169,15 @@ textarea {
     height: 35vw;
     border-radius: 50%;
     display: block;
-    margin: auto;
+    margin: 0 auto 1rem auto;
     object-fit: cover;
     object-position: top;
     padding:.5rem;
     border:.3rem solid #ffff;
+  }
+
+  .form-field.foryou div{
+    padding: .5rem 0;
   }
 
   @media screen and (min-width: 768px) {
@@ -204,6 +218,7 @@ textarea {
   .user-info {
     display: flex;
     flex-flow:column nowrap;
+    gap: 2rem;
   }
 
 
@@ -223,7 +238,7 @@ margin-top:2rem;
 div.user-info {
   grid-column: 2/3;
   margin-top:2rem;
-  padding-left:1rem;
+  padding-left:2rem;
   border-left:#BDB8CF solid 2px;
 }
 

@@ -1,8 +1,9 @@
 @import "./variables";
 @import "./post-item";
 @import "./mixins";
-@import "./base";
 @import "./utils";
+
+@import "./base";
 @import "./buttons";
 @import "./login";
 @import "./signin";
@@ -14,3 +15,8 @@
 @import "./loader";
 @import "./landing-page";
 @import "./typography";
+
+@import "./navbar";
+@import "./animation";
+@import "./post";
+@import "./view-post";

@@ -8,7 +8,7 @@ $secondary-color03: #f7f7fa;
 $secondary-color04:  #F6F4F9;
 $error: #db6984;
 
-* {
+*,*::before,*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -80,7 +80,10 @@ video {
   width: 200px;
   height: 200px;
 }
-
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
 .camera video#player {
   width: 376px;
   height: 296px;

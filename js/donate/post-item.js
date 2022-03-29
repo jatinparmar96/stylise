@@ -170,6 +170,7 @@ async function uploadDonationDesc(event) {
     type: "donate-item",
     public: true,
     location: locationObject,
+    timeStamp: timestamp(),
   };
   await db.collection("posts").add(itemObject);
   submitBtn.disabled = false;
