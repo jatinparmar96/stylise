@@ -175,9 +175,21 @@ function addPosts(doc, index = 0, userFavourites = undefined) {
      */
     favoriteIcon.onclick = async function addToFavorites() {
         const user = await getCurrentUser();
-        const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
         const imgElement = favoriteIcon.querySelector('img');
+        if (favoriteIcon.classList.contains('favorite')){
+            const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).delete().then(() => {
+                console.log("Document successfully deleted!");
+                favoriteIcon.classList.remove('favorite');
+                imgElement.src = '/assets/common/heart.svg';
+
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        } else {
+        const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
+        favoriteIcon.classList.add('favorite');
         imgElement.src = '/assets/common/heart-filled.svg';
+        }
     }
 
 
