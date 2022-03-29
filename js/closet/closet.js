@@ -9,6 +9,7 @@ function updateUsername() {
         if (user) {
             document.getElementById('username').innerHTML = user.displayName;
             listenToCategory();
+            allItems();
         }
     })
 }
@@ -61,6 +62,16 @@ function getCategoryImage(categoryDocument){
     //var categoryImg = "";
     db.collection("posts").where("category","==",categoryId).where("type","==","closet-item").limit(1)
     .get().then((querySnapshot) => {
+        if (querySnapshot.empty){
+            const link = document.getElementById(`${categoryId}`);
+                let imageWrapper = document.createElement("div");
+                imageWrapper.classList.add("catImageWrapper");
+                let Imagediv = document.createElement("div");
+                Imagediv.classList.add("categoryImage");
+                Imagediv.style.backgroundImage = 'url(/assets/noItemsImage.jpg)';
+                imageWrapper.appendChild(Imagediv);
+                link.prepend(imageWrapper);  
+        }
         querySnapshot.forEach((doc) => {
                 doc.data().uri;
                 const link = document.getElementById(`${categoryId}`);
@@ -92,5 +103,60 @@ function renderCloseCard(categoryDocument) {
 
     return categoryName;
 }
+
+function allItems(){
+    const user = auth.currentUser;
+    db.collection("posts").where("userId","==",user.uid).where("type","==","closet-item").limit(1)
+    .get().then((querySnapshot) => {
+        if (querySnapshot.empty){
+            const closeList = document.getElementById('closetList');
+                let div = document.createElement("div");
+                div.classList.add("category-wrapper");
+                const link = document.createElement('a');
+                link.href = `index.html#category`;
+                link.setAttribute("id","all-items");
+                let catName = document.createElement('div');
+                catName.classList.add("catName-wrapper");
+                let span = document.createElement('span');
+                span.innerHTML = "All Items";
+                catName.appendChild(span);
+                link.appendChild(catName);
+                let imageWrapper = document.createElement("div");
+                imageWrapper.classList.add("catImageWrapper");
+                let Imagediv = document.createElement("div");
+                Imagediv.classList.add("categoryImage");
+                    Imagediv.style.backgroundImage = 'url(/assets/noItemsImage.jpg)';
+                    imageWrapper.appendChild(Imagediv);
+                    link.prepend(imageWrapper);
+                    div.appendChild(link);
+                    closeList.prepend(div);
+        }
+        querySnapshot.forEach((doc) => {
+            const closeList = document.getElementById('closetList');
+                let div = document.createElement("div");
+                div.classList.add("category-wrapper");
+                const link = document.createElement('a');
+                link.href = `index.html#category`;
+                link.setAttribute("id","all-items");
+                //getCategoryImage(doc);
+                let catName = document.createElement('div');
+                catName.classList.add("catName-wrapper");
+                let span = document.createElement('span');
+                span.innerHTML = "All Items";
+                catName.appendChild(span);
+                link.appendChild(catName);
+                let imageWrapper = document.createElement("div");
+                imageWrapper.classList.add("catImageWrapper");
+                let Imagediv = document.createElement("div");
+                Imagediv.classList.add("categoryImage");
+                    Imagediv.style.backgroundImage = `url(${doc.data().uri})`;
+                    imageWrapper.appendChild(Imagediv);
+                    link.prepend(imageWrapper);
+                    div.appendChild(link);
+                    closeList.prepend(div);
+            });
+    });
+    
+};
 
 init();

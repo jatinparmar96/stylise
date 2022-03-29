@@ -59,6 +59,7 @@ async function uploadItemDesc(event) {
     const tagsArray = JSON.parse(document.getElementById('tagsHiddenValue').value || '[]');
     const imageItem = document.getElementById('image-input').files[0]; //image selected to upload by user
     const capturedImage = document.getElementById('capturedImage');
+    const user = auth.currentUser.uid;
     let imageRef;
 
     if (!imageItem && !capturedImage) {
@@ -78,6 +79,7 @@ async function uploadItemDesc(event) {
             keywords: tagsArray,
             uri: imageUrl,
             type: 'closet-item',
+            userId : user,
             public: false
         };
         const docRef = await db.collection('posts').add(itemObject);
