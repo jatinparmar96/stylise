@@ -125,139 +125,142 @@
   }
 }
 .closet-add-item {
-background-color:$secondary-color04;
+  background-color: $secondary-color04;
 
-form {
-  padding: 2rem;
-  margin: auto;
+  form {
+    padding: 2rem;
+    margin: auto;
 
-  .item-description {
-    display: flex;
-    flex-flow: column nowrap;
-  }
+    .item-description {
+      display: flex;
+      flex-flow: column nowrap;
+    }
 
-  input.btn-primary{
-    width:9rem;
-    border-radius: 39.91px;
-    font-weight: 600;
-    font-size: 0.875rem;
-    line-height: 24px;
-    padding:.5rem;
-    margin-top: 1.5rem;
-    align-self: center;
-  }
+    input.btn-primary {
+      width: 9rem;
+      border-radius: 39.91px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 24px;
+      padding: 0.5rem;
+      margin-top: 1.5rem;
+      align-self: center;
+    }
 
-  .tags-wrapper label, .category label {
-    font-family: "Poppins", sans-serif;	
-    color:$primary-color;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  .tags-input-wrapper{
-    position: relative;
-    button.add-tag{
-      position: absolute;
+    .tags-wrapper label,
+    .category label {
+      font-family: 'Poppins', sans-serif;
+      color: $primary-color;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .tags-input-wrapper {
+      position: relative;
+      button.add-tag {
+        position: absolute;
+        height: 40px;
+        right: 0;
+        bottom: 0;
+        padding: 0 0.5rem;
+      }
+    }
+
+    ::placeholder {
+      font-family: 'Poppins', sans-serif;
+      color: #bdb8cf;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    select,
+    input.tags,
+    .after input {
+      width: 350px;
+      background: $accent-color;
       height: 40px;
-      right: 0;
-      bottom:0;
-      padding: 0 .5rem;
+      box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+      font-weight: 400;
+      border: none;
+    }
+
+    .after input {
+      margin-bottom: 1rem;
+    }
+
+    .after input:focus {
+      outline: 3px solid $primary-color;
+    }
+
+    .tags:focus {
+      outline: 3px solid $primary-color;
+    }
+
+    select {
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+
+    option {
+      color: $primary-color;
+    }
+
+    .add-tag,
+    .add-category,
+    .flex.gap-1 button {
+      border: none;
+      background-color: transparent;
+      color: $primary-color;
+      cursor: pointer;
+    }
+
+    div.flex.gap-1 {
+      justify-content: space-between;
+    }
+
+    .flex.gap-1 button#openCameraBtn {
+      display: none;
+    }
+
+    .flex.gap-1 button {
+      padding: 1rem;
+    }
+
+    .add-category {
+      margin-left: -85px;
+      margin-top: -15px;
+    }
+
+    .add-tag {
+      text-align: right;
+      margin-top: -35px;
     }
   }
-
-  ::placeholder {
-    font-family: "Poppins", sans-serif;	
-    color: #BDB8CF;
-    font-size:1rem;
-    font-weight:500;
-  }
-
-  select,  input.tags, .after input {
-  width:350px;
-  background:$accent-color;
-  height: 40px;
-  box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
-  font-weight: 400;
-  border: none;
-  }
-
-  .after input {
-    margin-bottom: 1rem;
-  }
-
-  .after input:focus  {
-    outline:  3px solid $primary-color;
-  }
-
-  .tags:focus {
-  outline:  3px solid $primary-color;
-  }
-
-  select {
-  border-radius: 50px; 
-  margin-bottom:1rem;
-  }
-
-  option {
-  color:$primary-color;
-  }
-
-  .add-tag, .add-category, .flex.gap-1 button{
-   border:none;
-   background-color: transparent;
-   color:$primary-color;
-   cursor: pointer;
-  }
-  
-
-  div.flex.gap-1 {
-    justify-content: space-between;
-  }
-
-  .flex.gap-1 button#openCameraBtn {
-    display:none;
-  }
-
-  .flex.gap-1 button {
-    padding:1rem;
-  }
-  
-  .add-category {
-  margin-left: -85px;
-  margin-top: -15px;
-  }
-
-  .add-tag {
-    text-align:right;
-    margin-top: -35px;
-  
-  }
-}
 }
 
 @media screen and (min-width: 992px) {
   .closet-add-item form {
     display: grid;
     grid-template-columns: 2fr, 1fr;
-  
-  .profile-image {
-    grid-column: 1/2;
-    width:300px;
-    padding-right: 1rem;
-  }
 
-  .flex.gap-1, .item-description {
-    grid-column: 2/3;
-    align-self: start;
-  }
+    .profile-image {
+      grid-column: 1/2;
+      width: 300px;
+      padding-right: 1rem;
+    }
 
-  .flex.gap-1 button#openCameraBtn {
-    display:inherit;
-  }
+    .flex.gap-1,
+    .item-description {
+      grid-column: 2/3;
+      align-self: start;
+    }
 
-}
+    .flex.gap-1 button#openCameraBtn {
+      display: inherit;
+    }
+  }
 }
 
 // I hided it temporary, just for styling. Jatin, please move this item to another page
 .closet-add-item .flex.gap-2 {
-  display:none;
+  display: none;
 }
