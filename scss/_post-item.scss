@@ -1,164 +1,152 @@
-  // #mainArea {
-  //   width: 100vw;
-  // }
-  .donate-post-container {
-    background-color: #f6f4f9;
-    height: 100vh;
+// #mainArea {
+//   width: 100vw;
+// }
+.donate-post-container {
+  background-color: #f6f4f9;
+  height: 100vh;
   .upload-item {
     width: 100%;
     align-content: end;
     grid-gap: 20px;
     margin: auto;
-  
-  #add-item-form {
-    padding: 2rem;
-    margin: auto;
-    width: 75%;
-    .item-description {
-      display: flex;
-      flex-flow: column nowrap;
-    }
-   #postBtn{
-      width:9rem;
-      border-radius: 39.91px;
-      font-weight: 600;
-      font-size: 0.875rem;
-      line-height: 24px;
-      padding:.5rem;
-      margin-top: 1.5rem;
-      align-self: center;
-      background-color: #765fc2;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    .location-wrapper label, .comments-wrapper label, .tags-wrapper label{
-      font-family: "Poppins", sans-serif;
-      color:$primary-color;
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0.5rem 0;
-    }
-    ::placeholder {
-      font-family: "Poppins", sans-serif;
-      color: #BDB8CF;
-      font-size:1rem;
-      font-weight:500;
-    }
-    textarea,  input#tags, input#location {
-    width: 100%;
-    background:$accent-color;
-    height: 2rem;
-    box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
-    font-weight: 400;
-    border: none;
-    border-radius: 5px;
-    }
-    textarea {
-      height: 5rem;
-    }
-    .after input {
-      margin-bottom: 1rem;
-    }
-    textarea:focus, input#tags:focus, input#location:focus {
-      outline:  3px solid $primary-color;
-    }
-    .flex.gap-1 button, .tags-input-container input[type="button"], #capture {
-     border:none;
-     background-color: transparent;
-     color:$primary-color;
-     cursor: pointer;
-   
-    }
-    #openCameraBtn, #capture {
-  font-size: large;
-     text-decoration: underline;
-    }
-    .tags-input-container {
-      display: flex;
-    }
-    .add-tag-btn {
-      margin-left: -100px;
-    }
-    #add-tag {
-      width: auto;
-      margin-left: -75px;
-    }
-    .upload-image .flex.gap-1 {
-      justify-content: center;
-      margin: 2rem;
-    }
 
-    div.flex.gap-1 {
-      justify-content: flex-start;
-      align-items: center
-    }
-    .flex.gap-1 button#uploadImageBtn {
-      display:none;
-    }
-    #postBtn {
+    #add-item-form {
+      padding: 2rem;
       margin: auto;
-    }
-    .tags-wrapper {
-      #show-tags {
-        margin: 1rem 0;
+      width: 75%;
+      .item-description {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        span {
-          font-style: italic;
-          font-weight: 300;
-          font-size: 12px;
-          line-height: 18px;
-          background: #F1F1F1;
-          border-radius: 50px;
-          margin: 2px;
-          padding: 3px 8px;
-        }
+        flex-flow: column nowrap;
+      }
+      #postBtn {
+        width: 9rem;
+        border-radius: 39.91px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 24px;
+        padding: 0.5rem;
+        margin-top: 1.5rem;
+        align-self: center;
+        background-color: #765fc2;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+      .location-wrapper label,
+      .comments-wrapper label,
+      .tags-wrapper label {
+        font-family: "Poppins", sans-serif;
+        color: $primary-color;
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0.5rem 0;
+      }
+      ::placeholder {
+        font-family: "Poppins", sans-serif;
+        color: #bdb8cf;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      textarea,
+      input#tags,
+      input#location {
+        width: 100%;
+        background: $accent-color;
+        height: 2rem;
+        box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+        font-weight: 400;
+        border: none;
+        border-radius: 5px;
+      }
+      textarea {
+        height: 5rem;
+      }
+      .after input {
+        margin-bottom: 1rem;
+      }
+      textarea:focus,
+      input#tags:focus,
+      input#location:focus {
+        outline: 3px solid $primary-color;
+      }
+      .flex.gap-1 button,
+      .tags-input-container input[type="button"],
+      #capture {
+        border: none;
+        background-color: transparent;
+        color: $primary-color;
+        cursor: pointer;
+      }
+      #openCameraBtn,
+      #capture {
+        font-size: large;
+        text-decoration: underline;
+      }
+      .tags-input-container {
+        display: flex;
+      }
+      .add-tag-btn {
+        margin-left: -100px;
+      }
+      #add-tag {
+        width: auto;
+        margin-left: -75px;
+      }
+      .upload-image .flex.gap-1 {
+        justify-content: center;
+        margin: 2rem;
+      }
+
+      div.flex.gap-1 {
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .flex.gap-1 button#uploadImageBtn {
+        display: none;
+      }
+      #postBtn {
+        margin: auto;
+      }
+      .tags-wrapper {
+      }
+      .image-container {
+        margin: auto;
+        cursor: pointer;
+        // width: 150px;
       }
     }
-    .image-container {
-      margin: auto;
-      cursor: pointer;
-      // width: 150px;
-    } 
-  }}}
-  
-  .loader {
-    display: none;
   }
-  @media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) {
   .donate-post-container .upload-item #add-item-form {
     width: 50%;
   }
-  // .image-container {
-  //   width: 300px;
-  //   // margin: auto;
-  // }
-  }
-  @media screen and (min-width: 992px) {
-    .donate-post-container .upload-item #add-item-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 50px;
-      justify-items: center;
-      #add-item-form {
+}
+@media screen and (min-width: 992px) {
+  .donate-post-container .upload-item #add-item-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 50px;
+    justify-items: center;
+    #add-item-form {
       width: 75%;
-      }
+    }
     .image-container {
       margin: 0;
-      }
+    }
     // .flex.gap-1 button#openCameraBtn {
     //   display:none;
     //   }
     .item-description-wrapper {
       grid-column: span 2;
-      }
-    .upload-image, .image-container img {
+    }
+    .upload-image,
+    .image-container img {
       width: 200px;
-      }
-      .camera video#player, #canvas {
+    }
+    .camera video#player,
+    #canvas {
       width: 100%;
     }
-    }
   }
+}

@@ -99,22 +99,6 @@
         margin-top: 1rem;
         display: flex;
         flex-flow: column wrap;
-      #show-tags {
-        margin: 1rem 0;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        span {
-          font-style: italic;
-          font-weight: 300;
-          font-size: 12px;
-          line-height: 18px;
-          background: #F1F1F1;
-          border-radius: 50px;
-          margin: 2px;
-          padding: 3px 8px;
-        }
-      }
     }
     .image-container {
       margin: auto;
