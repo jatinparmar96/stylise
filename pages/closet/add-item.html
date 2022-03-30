@@ -6,49 +6,54 @@
                     <div class="images-container" id="img-download">
                     </div>
                     <div class="flex flex-column" id="imageContainer">
-            
+
                         <video class="dn" id="video-stream" autoplay></video>
                         <button class="dn" type="button" id="snapPhotoBtn" onclick="captureImage()">Capture
                             Image</button>
                         <img id="image">
                         <input type="file" style="display: none;" id="image-input" name="img" accept="image/*">
-                        </div>
-                        <div class="flex gap-1">
-                            <button type="button" id="openCameraBtn" onclick="openCamera()">Open Camera</button>
-                            <button type="button" id="uploadImageBtn" onclick="triggerImageInput()">Upload Image</button>
-                        </div>
-                        </div>
-                        <div class="item-description">
-                            <div class="category">
-                                <label for="category">Category</label>
-                                <select name="category" onchange="checkOptionValue(this)" id="categories">
-                                </select>
-                                <div class="after" style="display:none">
-                                    <input disabled name="category" onblur="toggleSelect(this)" id="category-input" placeholder="category">
+                    </div>
+                    <div class="flex gap-1">
+                        <button type="button" id="openCameraBtn" onclick="openCamera()">Open Camera</button>
+                        <button type="button" id="uploadImageBtn" onclick="triggerImageInput()">Upload Image</button>
+                    </div>
+                </div>
+                <div class="item-description">
+                    <div class="category">
+                        <label for="category">Category</label>
+                        <select name="category" onchange="checkOptionValue(this)" id="categories">
+                        </select>
+                        <div class="after" style="display:none">
+                            <input disabled name="category" onblur="toggleSelect(this)" id="category-input"
+                                placeholder="category">
                             <button class="add-category" type="button" onclick="addCategory()">Add Category</button>
-                            </div>
+                        </div>
 
                     </div>
                     <div class="tags-wrapper">
                         <label for="tags">Tags</label>
                         <div class="tags-input-wrapper">
-                            <input onkeyup="checkKeyVal(event)" class="tags" type="text" name="tags" id="tags" placeholder="summer">
+                            <input onkeyup="checkKeyVal(event)" class="tags" type="text" name="tags" id="tags"
+                                placeholder="summer">
                             <button class="add-tag" type="button" value="Add Tag" id="add-tag">Add Tag</button>
                         </div>
                         <div class="postTags" id="show-tags">
-                        
+
                         </div>
                         <input type="hidden" id="tagsHiddenValue" name="tagsHiddenValue">
-                        </div>
-                    <input class="btn-primary" type="submit" value="Save" id="saveBtn">
                     </div>
+                    <input class="btn-primary" type="submit" value="Save" id="saveBtn">
+                </div>
 
             </form>
-            </div>
-
-        <div class="flex gap-2" id="category-images" style="margin-top: 1rem">
-
         </div>
 
-    </main>
+        </form>
+</div>
+
+<!-- <div class="flex gap-2" id="category-images" style="margin-top: 1rem">
+
+    </div> -->
+
+</main>
 </div>

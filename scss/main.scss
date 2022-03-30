@@ -1,4 +1,5 @@
 @import "./variables";
+@import "./post-item";
 @import "./mixins";
 @import "./utils";
 
@@ -15,7 +16,12 @@
 @import "./landing-page";
 @import "./typography";
 
+
 @import "./navbar";
 @import "./animation";
 @import "./post";
 @import "./view-post";
+
+@import "./community-add-page";
+
+@import './categoryItems';

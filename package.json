@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "sass": "node-sass -w scss/main.scss scss/main.css"
+  }
+}
+

@@ -45,11 +45,22 @@ function renderPost(post) {
     const imgContainer = document.getElementById("image-container");
     imgContainer.style.backgroundImage = `url(${post.data().uri})`;
     postComments.innerHTML = post.data().comments;
+    if (post.data().type="donate-item") {
+        if (post.data().tags?.length) {
+            post.data().tags.forEach(tag => {
+                postTags.innerHTML += `<span>#${tag}</span>`;
+                }) 
+
+        } 
+    } 
     if (post.data().keywords?.length) {
         post.data().keywords.forEach(tag => {
             postTags.innerHTML += `<span>#${tag}</span>`;
-        })
+                })    
     }
+    
+
+
     postUser.innerHTML = post.data().username
     postUserImg.src=post.data().user_uri;
 
@@ -65,14 +76,17 @@ function renderPost(post) {
 
     showLoader();
     const user = await getCurrentUser();
+    const userFavourites = await getUserFavorites(user.uid);
+
      // fetch posts from "posts" collection with conditions
      if (post.data().type=="community"){
         const keywords = post.data().keywords;
         db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains-any", keywords)
         .get().then((querySnapshot) => {
+            let index=0;
             querySnapshot.forEach((doc) => {
                 if(doc.id != postID)
-                addPostsCommunity(doc);
+                addPostsCommunity(doc,index,userFavourites);
             });
             hideLoader();
         });
@@ -95,17 +109,27 @@ function renderPost(post) {
 
 }
 
+async function getUserFavorites(userID) {
+    const userFavouritesDocs = await db.collection(`users/${userID}/favorites`).get();
+    let userFavourites = [];
+    userFavouritesDocs.forEach(doc => {
+        userFavourites.push(doc.id)
+    });
+    return userFavourites;
+}
+
 /**
  * add posts into the wrapper
  * @method addPostsCommunity
  * @param
  */
- function addPostsCommunity(doc) {
+ function addPostsCommunity(doc, index = 0, userFavourites = undefined) {
 
     let span=document.getElementById("suggestions");
     span.innerHTML="You might also like...";
     let div = document.createElement("div");
     div.classList.add("post");
+    //user Info
      let div_user = document.createElement("div");
     div_user.classList.add("user-info");
     let img_user = document.createElement("img");
@@ -113,19 +137,52 @@ function renderPost(post) {
     img_user.src = doc.data().user_uri;
     div_user.appendChild(img_user);
     let username = document.createElement("span");
+    // Create Link
     const userLink = document.createElement('a');
     userLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     username.innerHTML = doc.data().username;
     userLink.appendChild(username)
     div_user.appendChild(userLink);
-        let favoriteIcon = document.createElement("button");
 
-        favoriteIcon.classList.add("favorite-icon");
-        let favElement = document.createElement("i");
-        favElement.classList.add("fa");
-        favElement.classList.add("fa-heart");
-        favoriteIcon.appendChild(favElement);
-        div_user.appendChild(favoriteIcon);
+    let favoriteIcon = document.createElement("button");
+
+    favoriteIcon.classList.add("favorite-icon");
+    let favElement = document.createElement("img");
+    favElement.src = '/assets/common/heart.svg';
+    if (userFavourites) {
+        if (userFavourites.includes(doc.id)) {
+            favElement.src = '/assets/common/heart-filled.svg'
+        }
+    }
+    favElement.classList.add("fa");
+    favElement.classList.add("fa-heart");
+    favoriteIcon.appendChild(favElement);
+    div_user.appendChild(favoriteIcon);
+
+        /**
+     * Add post to favorites function
+     */
+         favoriteIcon.onclick = async function addToFavorites() {
+             console.log('hola');
+            const user = await getCurrentUser();
+            const imgElement = favoriteIcon.querySelector('img');
+            if (favoriteIcon.classList.contains('favorite')){
+                const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).delete().then(() => {
+                    console.log("Document successfully deleted!");
+                    favoriteIcon.classList.remove('favorite');
+                    imgElement.src = '/assets/common/heart.svg';
+    
+                }).catch((error) => {
+                    console.error("Error removing document: ", error);
+                });
+            } else {
+            const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
+            favoriteIcon.classList.add('favorite');
+            imgElement.src = '/assets/common/heart-filled.svg';
+            }
+        }
+
+    
 
     const postImg = document.createElement("div");
     postImg.classList.add("post-img");
@@ -137,18 +194,6 @@ function renderPost(post) {
     link.appendChild(img)
     postImg.appendChild(link);
    
-
-
-
-    /**
-     * Add post to favorites function
-     */
-    favoriteIcon.onclick = async function addToFavorites() {
-        console.log(`${doc.id} added to favorites`);
-        const user = await getCurrentUser();
-        const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
-
-    }
     div.appendChild(div_user);
     div.appendChild(postImg);
     

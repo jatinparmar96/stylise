@@ -1,3 +1,4 @@
+
 .btn{
     border-radius: 2rem;
     padding: .5rem 2rem;
@@ -8,20 +9,45 @@
     width: 180px;
     font-weight: 600;
 }
-.btn-primary{
-    background-color: $primary-color;
-    color: $accent-color;
+.btn-primary {
+  background-color: $primary-color;
+  color: $accent-color;
 }
-.btn-accent-filled{
-    background-color: $accent-color;
-    color: $primary-color;
+.btn-accent-filled {
+  background-color: $accent-color;
+  color: $primary-color;
 }
 
-.btn-accent{
-   color: $accent-color;
-   border: 1px solid $accent-color;
+.btn-accent {
+  color: $accent-color;
+  border: 1px solid $accent-color;
 }
-.btn-group{
-    display: flex;
-    gap: 1rem;
+.btn-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.back-arrow {
+  width: 25px;
+  height: 25px;
+}
+
+.floating-action-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 50%;
+  background-color: #765fc2;
+  color: white;
+  border: 3px solid white;
+  height: 4rem;
+  width: 4rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  box-shadow: 4px 4px 8px 8px rgb(0 0 0 / 10%);
+  cursor: pointer;
+  z-index: 3;
 }
