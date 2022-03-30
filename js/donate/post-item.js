@@ -159,7 +159,8 @@ async function uploadDonationDesc(event) {
     user_uri: user.photoURL,
     type: 'donate-item',
     public: true,
-    location: locationObject
+    location: locationObject,
+    timeStamp: timestamp(),
   };
   await db.collection('posts').add(itemObject);
   submitBtn.disabled = false;

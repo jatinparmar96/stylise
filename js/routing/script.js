@@ -22,7 +22,7 @@ Router.init('mainArea', [
     // Closet Routes
     new Page('#closet/add-item', '/pages/closet/add-item.html', ['/js/closet/add-item']),
     new Page('#closet', '/pages/closet/closet.html', ['/js/closet/closet']),
-    new Page('#category', '/pages/closet/add-item.html', ['/js/closet/add-item']),
+    new Page('#category', '/pages/closet/category-items.html', ['/js/closet/category-items']),
     new Page('#closet/add-item', '/pages/closet/add-item.html', ['/js/closet/add-item']),
     new Page('#view-item', '/pages/closet/view-item.html', ['/js/closet/view-item' ]),
 

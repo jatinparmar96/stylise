@@ -5,6 +5,125 @@
   margin: auto;
 }
 
+.closet {
+  margin: auto;
+  //height: 100vh;
+  background-color: $secondary-color02;
+  padding: 4rem 0;
+
+  h2 {
+    padding: 10px 40px;
+  }
+
+  .add-category {
+    position: fixed;
+    width: 100%;
+    height: 70%;
+    bottom: 0;
+    z-index: -5;
+    background: rgba(255, 255, 255, 0.5);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    backdrop-filter: blur(30px);
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      padding-left: 5%;
+    }
+
+    input {
+      width: 90vw;
+    }
+  }
+
+  .disableLinks {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: -10;
+  }
+
+  .closetList-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    min-width: 95vw;
+    max-width: 95vw;
+    margin: auto;
+    place-items: center;
+
+    .catAddContainer {
+      height: 221px;
+      order: 10;
+      :hover {
+        cursor: pointer;
+      }
+    }
+
+    .category-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      .catName-wrapper {
+        font-weight: bold;
+        padding: 5px 10px;
+      }
+
+      .catImageWrapper {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        width: 182px;
+        height: 186px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .categoryImage {
+          width: 174.96px;
+          height: 178.65px;
+          justify-self: center;
+          align-self: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .closet {
+    h2 {
+      padding-left: 10%;
+    }
+
+    .closetList-wrapper {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .add-category {
+      width: 40%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      //color: white;
+      padding-top: 120px;
+
+      input {
+        width: 35vw;
+      }
+    }
+  }
+}
 .closet-add-item {
 background-color:$secondary-color04;
 
