@@ -1,82 +1,139 @@
 .signin-welcome {
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 42px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #444444;
-  }
-  .signin-phrase {
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 42px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: #444444;
+}
+.signin-phrase {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
   /* identical to box height */
-    text-align: center;
-    letter-spacing: 0.05em;
-    color: #444444;
-  }
-  .signin-email-input input, .signin-pass-input input {
-    background: #FFFFFF;
-    box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
-    border-radius: 50px;
-    width: 350px;
-    height: 40px;
-    border: none;
-    margin: auto;
-  }
-  .signin-email-wrapper, .signin-password-wrapper {
-    text-align: center;
-    padding-bottom: 1rem;
-  }
-  .signin-button button {
-    background: #765FC2;
-    border-radius: 39.9056px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #444444;
+}
+.signin-email-input input,
+.signin-pass-input input {
+  background: #ffffff;
+  box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 50px;
+  width: 350px;
+  height: 40px;
+  border: none;
+  margin: auto;
+}
+.signin-email-wrapper,
+.signin-password-wrapper {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.signin-button button {
+  background: #765fc2;
+  border-radius: 39.9056px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  width: 144px;
+  height: 40px;
+  margin-bottom: 2rem;
   /* identical to box height */
-    border: none;
-    text-align: center;
-    cursor: pointer;
-    color: #FFFFFF;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+}
+.signin-button {
+  text-align: center;
+}
+.signin-links-container a {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  /* identical to box height */
+  letter-spacing: 0.05em;
+  text-decoration-line: underline;
+  color: #765fc2;
+  padding: 0 1rem;
+}
+.signin-links-container {
+  display: flex;
+  justify-content: center;
+}
+.signin-about,
+.signin-forgot-password {
+  margin: auto;
+}
+.signin-body-wrapper {
+  height: 100vh;
+  background: radial-gradient(
+      circle at top left,
+      #bdb8cf 10%,
+      #fafafd 50%,
+      transparent 80%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      #bdb8cf 10%,
+      #fafafd 50%,
+      transparent 80%
+    );
+}
+#signin-email::placeholder,
+#signin-password::placeholder,
+#signin-conf-password::placeholder,
+#signin-username::placeholder {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  /* identical to box height */
+  color: #bdb8cf;
+}
+
+.signup-title {
+  margin: 0 0 1rem 0 !important;
+}
+
+.signup-logo {
+  margin: 0 auto !important;
+  padding-top: 2rem;
+}
+
+.signin-body-wrapper {
+  .social-wrapper {
+    p {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      letter-spacing: 0.05em;
+      margin: 2em auto 2em auto;
+    }
+    .social-icons {
+      button {
+        width: 45px;
+        height: 45px;
+
+        background: #444444;
+        border-radius: 50px;
+        border: transparent;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
   }
-  .signin-button {
-    text-align: center;
-  }
-  .signin-links-container a {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
-    /* identical to box height */
-    letter-spacing: 0.05em;
-    text-decoration-line: underline;  
-    color: #765FC2;
-    padding: 0 1rem;
-  }
-  .signin-links-container {
-    display: flex;
-    justify-content: center;
-  }
-  .signin-about, .signin-forgot-password {
-    margin: auto;
-  }
-  .signin-body-wrapper {
-    height: 100vh;
-    background: radial-gradient(circle at top left,#BDB8CF 10%, #FAFAFD 50%,transparent 80%),
-    radial-gradient(circle at bottom right, #BDB8CF 10%, #FAFAFD 50%,transparent 80%); 
-  }
-  #signin-email::placeholder, #signin-password::placeholder,
-  #signin-conf-password::placeholder,
-  #signin-username::placeholder {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 21px;
-    /* identical to box height */
-    color: #BDB8CF; 
-  }
+}

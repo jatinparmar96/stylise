@@ -8,6 +8,8 @@
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-template-areas: "arrow user blank";
+    padding: 0 2rem;
+    margin: 1rem 0 2rem 0;
 
     .username {
       justify-self: center;
@@ -37,11 +39,12 @@
     grid-template-areas: "user-details" "buttons" "user-message ";
 
     margin-bottom: 1rem;
+    padding: 0 2rem;
 
     .user-details {
       grid-area: user-details;
       align-self: center;
-      justify-self: center;
+      justify-content: space-between;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
@@ -50,15 +53,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 80px;
-        width: 80px;
+        height: 90px;
+        width: 90px;
         border-radius: 50%;
         background: #ffffff;
         box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.05);
 
         .profile-image {
-          height: 75px;
-          width: 75px;
+          height: 90px;
+          width: 90px;
           background-repeat: no-repeat;
           border-radius: 50%;
           background-size: cover;
@@ -71,7 +74,7 @@
         display: grid;
         grid-template-columns: 1fr 3px 1fr 3px 1fr;
         text-align: center;
-        gap: 0px 10px;
+        gap: 20px;
         margin: auto 30px;
         color: $primary-color;
 
@@ -86,6 +89,9 @@
           font-size: 18px;
           line-height: 27px;
           text-align: center;
+            @media screen and (min-width:$breakpoints-md) {
+              font-size: 20px;
+            }
         }
 
         .counter-title {
@@ -99,18 +105,18 @@
       }
     }
     .user-message {
-      grid-area: user-message;
-      justify-self: center;
-      align-self: center;
-      width: 350px;
-      height: 96px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      // grid-area: user-message;
+      // justify-self: center;
+      // align-self: center;
+      // width: 350px;
+      // height: 96px;
+      // padding: 1.5rem;
+      // display: flex;
+      // align-items: center;
+      // justify-content: center;
 
-      background: #ffffff;
-      box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+      // background: #ffffff;
+      // box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
 
       .text-message {
         display: inline;
@@ -125,6 +131,7 @@
       justify-self: center;
       align-self: center;
       grid-area: buttons;
+      margin: 1rem 0 2rem 0;
 
       .edit-btn,
       .follow-btn {
@@ -165,6 +172,11 @@
       }
     }
   }
+
+  .user-posts-type {
+    margin: 0 2rem;
+}
+
   .user-posts-type {
     .post-type-nav {
       margin-block-start: 0;
@@ -176,16 +188,17 @@
       .nav-btn {
         margin: auto;
         width: 100%;
-        height: 30px;
+        height: 40px;
         border-color: transparent;
         border-radius: 8px 8px 0px 0px;
         border-style: solid;
         border-bottom-color: $secondary-color03;
         font-style: normal;
         font-weight: 600;
-        font-size: 12px;
+        font-size: 14px;
         line-height: 18px;
         color: $secondary-color;
+        background: none;
       }
       .active {
         background: $secondary-color03;
@@ -198,6 +211,7 @@
   .wrapper-container {
     background-color: $secondary-color02;
     padding: 4rem 0;
+    height: 100vh;
 
     .wrapper {
       display: grid;
@@ -246,7 +260,7 @@
   .profile {
     .username-container {
       .username {
-        font-size: 24px;
+        font-size: 18px;
         line-height: 36px;
       }
 
@@ -272,13 +286,12 @@
           }
         }
         .counter {
-          margin: auto 8px;
+          margin: auto 20px;
           .line {
             height: 65px;
           }
 
           .q {
-            font-size: 22px;
             line-height: 33px;
           }
 
@@ -329,7 +342,7 @@
           height: 50px;
           border-radius: 13.6px 13.6px 0px 0px;
 
-          font-size: 20px;
+          font-size: 18px;
           line-height: 30px;
         }
       }

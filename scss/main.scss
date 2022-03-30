@@ -1,16 +1,22 @@
-@import './variables';
-@import './mixins';
-@import './base';
-@import './utils';
-@import './buttons';
-@import './login';
-@import './signin';
-@import './style';
-@import './home';
-@import './update-profile';
-@import './closet';
-@import './user-profile';
-@import './loader';
-@import './landing-page';
-@import './typography';
+@import "./variables";
+@import "./mixins";
+@import "./utils";
+
+@import "./base";
+@import "./buttons";
+@import "./login";
+@import "./signin";
+@import "./style";
+@import "./home";
+@import "./update-profile";
+@import "./closet";
+@import "./user-profile";
+@import "./loader";
+@import "./landing-page";
+@import "./typography";
+
+@import "./navbar";
+@import "./animation";
+@import "./post";
+@import "./view-post";
 @import './categoryItems';

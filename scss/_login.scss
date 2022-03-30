@@ -5,15 +5,27 @@ h1{
 h2{
   margin-bottom: 1rem;
 }
-main{
-  margin-top: 2rem;
-}
+
 sup{
   color: firebrick;
   font-size: 1.25rem;
 }
 .wrapper{
   margin: 0 2rem;
+}
+
+.logo{
+  width: 100px;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.login-logo{
+  margin: 0 auto !important ;
+}
+
+.login-title{
+  margin: 20px 0 50px 0 !important;
 }
 .card{
   display: flex;
@@ -44,8 +56,8 @@ input{
   border-radius: 5px;
 }
 input[type="submit"]{
-  background-color: darkseagreen;
-  color: black;
+  // background-color: darkseagreen;
+  // color: black;
   font-weight: bold;
   border-radius: 5px;
   border:none;

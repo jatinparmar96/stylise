@@ -1,23 +1,15 @@
-.landing-page-background {
-  background: radial-gradient(
-      circle at top left,
-      #765fc2 0%,
-      #f6f4f9 60%,
-      transparent 80%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      #765fc2 0%,
-      #f6f4f9 60%,
-      transparent 80%
-    );
-  background-repeat: no-repeat, no-repeat;
+
+.landing-page-background{
+  background: radial-gradient(circle at top left, #765fc2 0%, #F6F4F9 20%, transparent 80%), radial-gradient(circle at bottom right, #765fc2 0%, #F6F4F9 50%, transparent 80%);
+  background-repeat:  no-repeat,no-repeat;
 }
 .landing-page-container {
   min-height: 100vh;
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(246, 244, 249, 0.5);
   backdrop-filter: blur(2rem);
+  line-height: 1.8;
+  letter-spacing: .1rem;
   @media screen and (min-width: $breakpoints-md) {
     padding-top: 3rem;
   }
@@ -27,7 +19,8 @@
     margin: 0 -1rem;
     h2 {
       text-align: center;
-      margin-bottom: 1rem;
+      margin: 3rem 0;
+      font-size: 1.2rem;
     }
   }
   .hero-container {
@@ -45,13 +38,14 @@
     align-items: center;
     padding: 1rem 4%;
     @media screen and(min-width: $breakpoints-md) {
-      min-height: 75vh;
+      min-height: 85vh;
       flex-direction: row;
       justify-content: space-between;
       align-items: unset;
       background-color: rgba($color: #fff, $alpha: 0.3);
       border-radius: 32px;
       overflow: hidden;
+      border: 1px solid #fff;
     }
     .left {
       display: flex;
@@ -67,6 +61,20 @@
       }
       h1 {
         margin-top: 0;
+        font-weight: 700;
+        letter-spacing: .1rem;
+        @media screen and (min-width: $breakpoints-md) {
+          text-align: left;
+        }
+          span{
+            @media screen and (min-width: $breakpoints-lg) {
+              display: none;
+            }
+          }
+      }
+      p{
+        padding-bottom: 2rem;
+        font-weight: 500;
       }
     }
     .right {
@@ -91,23 +99,26 @@
     bottom: -1rem;
     border-radius: 50%;
     background-color: white;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     cursor: pointer;
     background-image: url('../assets/landing-page-images/down-arrow.svg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 25px 25px;
-    box-shadow: 0 0 3px 1px rgba($color: #000, $alpha: 0.2);
+    box-shadow: 0 4px 4px 4px rgb(0 0 0 / 5%);
   }
 
   .about-section {
-    @media screen and (min-width: $breakpoints-md) {
-      margin-left: 4%;
-      margin-right: 4%;
-    }
+
+    padding: 10rem 0;
+      @media screen and (min-width:$breakpoints-md) {
+          margin-left: 4%;
+          margin-right: 4%;
+      }
     h2 {
       text-align: center;
+      font-size: 1.5rem;
     }
     .flex {
       @include flex {
@@ -199,6 +210,7 @@
         h3,
         p {
           text-align: center;
+          padding-bottom: 2rem;
           @media screen and (min-width: $breakpoints-md) {
             text-align: left;
           }
@@ -206,6 +218,7 @@
       }
       .section-image {
         width: 80%;
+        padding-bottom: 5rem;
         @media screen and (min-width: $breakpoints-md) {
           order: -1;
           width: 40%;
@@ -215,8 +228,17 @@
           }
         }
       }
-      .btn-group {
-        margin-top: 1rem;
+
+      .btn-group{
+          margin-top: 1rem;
+          justify-content: center;
+          padding-bottom: 2rem;
+          @media screen and (min-width: $breakpoints-md) {
+            flex-flow: column nowrap;
+          }
+          @media screen and (min-width: $breakpoints-lg) {
+            flex-flow: row nowrap;
+          }
       }
     }
   }
@@ -225,7 +247,7 @@
   .features {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    background-color: $accent-color;
+    background-color: #F6F4F9;
     margin: 0 -1rem;
     padding: 5rem 1rem;
     @media screen and (min-width: $breakpoints-md) {
@@ -236,7 +258,7 @@
       grid-column: 1/-1;
     }
     .feature-item {
-      padding: 1rem 0;
+      padding: 2rem 1rem 4rem 1rem;
     }
     .image-decoration {
       width: 60%;
@@ -258,7 +280,7 @@
         z-index: 2;
         position: relative;
         box-shadow: 13.7121px 13.7121px 13.7121px 13.7121px rgba(0, 0, 0, 0.03);
-        filter: drop-shadow(13.71px 13.71px 13.71px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(13.71px 13.71px 13.71px rgba(0 0 0 /0.1));
         img {
           width: 75px;
           display: block;
@@ -272,8 +294,20 @@
         height: 90px;
         border-radius: 50%;
         top: -12%;
-        right: 5%;
+        right: 10%;
         z-index: 1;
+        @media screen and (min-width: $breakpoints-sm) {
+          right: 20%;
+        }
+        @media screen and (min-width: $breakpoints-md) {
+          right: -20%;
+        }
+        @media screen and (min-width: $breakpoints-lg) {
+          right: -10%;
+        }
+        @media screen and (min-width: $breakpoints-xl) {
+          right: 0;
+        }
       }
     }
     h3,
@@ -282,10 +316,60 @@
     }
     h3 {
       margin-bottom: 1rem;
+      font-weight: 600;
     }
   }
 
   /** Features End ****/
+
+.screenshots{
+  overflow: hidden;
+  padding-bottom: 10rem;
+
+  @media screen and (min-width: $breakpoints-xl){
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10rem;
+  }
+
+  h2{
+    color: $primary-color;
+    @media screen and (min-width: $breakpoints-lg){
+      color: $primary-color;
+    }
+    @media screen and (min-width: $breakpoints-xl){
+      width: 30%;
+    }
+  }
+
+  .screen-img{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 2rem;
+    @media screen and (min-width: $breakpoints-xl){
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+    
+    img{
+      width: 50%;
+      height: auto;
+      @media screen and (min-width: $breakpoints-md){
+        width: 30%;
+      }
+      @media screen and (min-width: $breakpoints-xl){
+        width: 25%;
+      }
+    }
+  }
+
+  
+}
+
+
   .footer {
     background-color: $primary-color;
     display: flex;
@@ -298,6 +382,8 @@
     }
     h2 {
       color: $accent-color;
+      font-size: 1.5rem;
+      font-weight: 600;
     }
   }
 }

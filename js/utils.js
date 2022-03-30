@@ -81,3 +81,12 @@ function showLoader() {
 function hideLoader() {
     document.getElementById('loader').classList.add('dn');
 }
+
+/**
+ * Toggle Side bar Menu
+ */
+function toggleMenu() {
+    const navMenu = document.getElementById('navigation-menu');
+    navMenu.classList.toggle('show');
+}
+
