@@ -1,14 +1,6 @@
-$body-text: #444444;
-$primary-color: #765fc2;
-$secondary-color: #bdb8cf;
-$text-color-dark: #444444;
-$text-color-light: #ffffff;
-$secondary-color02: #eae7f6;
-$secondary-color03: #f7f7fa;
-$secondary-color04:  #F6F4F9;
-$error: #db6984;
-
-*,*::before,*::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -16,7 +8,7 @@ $error: #db6984;
 
 body {
   /*Generic font family for now*/
- 
+
   min-height: 100vh;
 }
 h1 {

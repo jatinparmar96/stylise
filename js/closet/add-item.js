@@ -260,20 +260,40 @@ function captureImage() {
 }
 
 
-
+function checkKeyVal(e) {
+    // Check if enter key
+    if (e.keyCode === 13) {
+        addTagInput();
+    }
+}
 function addTagInput() {
-    const showTags = document.getElementById('show-tags');
+    const tagsArray = getTagsValue();
+    const tagValue = document.getElementById('tags');
+    if (tagValue.value != '' && tagValue.value.trim().length > 0) {
+        const tags = tagValue.value.split(',').filter(val => val);
+        tags.forEach(val => tagsArray.push(val));
+    }
+    setTagsValue(tagsArray);
+    tagValue.value = null;
+}
+function removeTag(val) {
+    let tagsArray = getTagsValue();
+    tagsArray = tagsArray.filter(tag => tag !== val);
+    setTagsValue(tagsArray);
+}
+function getTagsValue() {
     const hiddenTagsValueElement = document.getElementById('tagsHiddenValue')
     const tagsArray = JSON.parse(hiddenTagsValueElement.value || "[]");
-    const tagValue = document.getElementById('tags');
-  
-    if (tagValue.value != '' && tagValue.value.trim().length > 0) {
-      tagsArray.push(tagValue.value); //stores tag in an array
-      let tagsString = tagsArray.join(", ");
-      showTags.innerHTML = tagsString;
-    }
-    hiddenTagsValueElement.value = JSON.stringify(tagsArray);
-    tagValue.value = null;
-  }
+    return tagsArray
+}
 
+function setTagsValue(tagsArray) {
+    const showTags = document.getElementById('show-tags');
+    const hiddenTagsValueElement = document.getElementById('tagsHiddenValue')
+    hiddenTagsValueElement.value = JSON.stringify(tagsArray);
+    showTags.innerHTML = '';
+    tagsArray.forEach(val => {
+        showTags.innerHTML += `<span class="tag">#${val} <span onclick="removeTag('${val}')">x</span> </span>`
+    })
+}
 init();
