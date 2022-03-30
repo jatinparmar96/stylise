@@ -45,11 +45,22 @@ function renderPost(post) {
     const imgContainer = document.getElementById("image-container");
     imgContainer.style.backgroundImage = `url(${post.data().uri})`;
     postComments.innerHTML = post.data().comments;
+    if (post.data().type="donate-item") {
+        if (post.data().tags?.length) {
+            post.data().tags.forEach(tag => {
+                postTags.innerHTML += `<span>#${tag}</span>`;
+                }) 
+
+        } 
+    } 
     if (post.data().keywords?.length) {
         post.data().keywords.forEach(tag => {
             postTags.innerHTML += `<span>#${tag}</span>`;
-        })
+                })    
     }
+    
+
+
     postUser.innerHTML = post.data().username
     postUserImg.src=post.data().user_uri;
 
