@@ -21,10 +21,10 @@
     height: 70%;
     bottom: 0;
     z-index: -5;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.5);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-
+    backdrop-filter: blur(30px);
     h2 {
       text-align: center;
     }
