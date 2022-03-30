@@ -1,8 +1,7 @@
+.community-post-container {
+  background-color: #f6f4f9;
+  height: 100vh;
 
-  .community-post-container {
-    background-color: #f6f4f9;
-    height: 100vh;
-}
   .community-upload-item {
     width: 100%;
     align-content: end;
@@ -14,169 +13,177 @@
     margin: auto;
     width: 75%;
   }
-    .community-post-description {
-      display: flex;
-      flex-flow: column nowrap;
-    }
- 
-   .community-post-description label{
-      font-family: "Poppins", sans-serif;
-      color:#765fc2;
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0.5rem 0;
-    }
-    input,textarea{
-      font-family: "Poppins", sans-serif;
-    }
-    ::placeholder {
-      font-family: "Poppins", sans-serif;
-      color: #BDB8CF;
-      font-size:1rem;
-      font-weight:500;
-    }
-    .community-textarea{
-        height: 5rem;
-    }
-    .community-textarea,  input#tags {
+  .community-post-description {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  .community-post-description label {
+    font-family: "Poppins", sans-serif;
+    color: #765fc2;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+  }
+  input,
+  textarea {
+    font-family: "Poppins", sans-serif;
+  }
+  ::placeholder {
+    font-family: "Poppins", sans-serif;
+    color: #bdb8cf;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .community-textarea {
+    height: 5rem;
+  }
+  .community-textarea,
+  input#tags {
     width: 100%;
-    background:$accent-color;
+    background: $accent-color;
     box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
     font-weight: 400;
     border: none;
     border-radius: 5px;
-    }
-    textarea {
-      height: 5rem;
-    }
-    .after input {
-      margin-bottom: 1rem;
-    }
-    textarea:focus, input#tags:focus, input#location:focus {
-      outline:  3px solid $primary-color;
-    }
-    .flex.gap-1 button, .tags-wrapper input[type="button"], #capture {
-     border:none;
-     background-color: transparent;
-     color:$primary-color;
-     cursor: pointer;
-   
-    }
-    #openCameraBtn, #capture {
-  font-size: large;
-     text-decoration: underline;
-    }
-    .tags-wrapper {
-      display: flex;
-    }
-    .add-tag-btn {
-      margin-left: -100px;
-    }
-    #add-tag {
-      width: auto;
-      margin-left: -75px;
-    }
-    .upload-image .flex.gap-1 {
-      justify-content: center;
-      margin: 2rem;
-    }
+  }
+  textarea {
+    height: 5rem;
+  }
+  .after input {
+    margin-bottom: 1rem;
+  }
+  textarea:focus,
+  input#tags:focus,
+  input#location:focus {
+    outline: 3px solid $primary-color;
+  }
+  .flex.gap-1 button,
+  .tags-wrapper input[type="button"],
+  #capture {
+    border: none;
+    background-color: transparent;
+    color: $primary-color;
+    cursor: pointer;
+  }
+  #openCameraBtn,
+  #capture {
+    font-size: large;
+    text-decoration: underline;
+  }
+  .tags-wrapper {
+    display: flex;
+  }
+  .add-tag-btn {
+    margin-left: -100px;
+  }
+  #add-tag {
+    width: auto;
+    margin-left: -75px;
+  }
+  .upload-image .flex.gap-1 {
+    justify-content: center;
+    margin: 2rem;
+  }
 
-    div.flex.gap-1 {
-      justify-content: flex-start;
-      align-items: center
-    }
-    .flex.gap-1 button#uploadImageBtn {
-      display:none;
-    }
-    .save-button{
-      margin: auto;
-    }
-    .tags-div{
-        display: flex;
-        flex-flow: row nowrap;
-    }
-    .tags-wrapper {
-        margin-top: 1rem;
-        display: flex;
-        flex-flow: column wrap;
-    }
-    .image-container {
-      margin: auto;
-      cursor: pointer;
-      // width: 150px;
-    } 
-    .community-post-container .community-upload-item .community-add-item-form .save-button, #snapPhotoBtn {
-        width:9rem;
-        border-radius: 39.91px;
-        font-weight: 600;
-        font-size: 0.875rem;
-        line-height: 24px;
-        padding:.5rem;
-        margin-top: 1.5rem;
-        align-self: center;
-        background-color: #765fc2;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-      }
+  div.flex.gap-1 {
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .flex.gap-1 button#uploadImageBtn {
+    display: none;
+  }
+  .save-button {
+    margin: auto;
+  }
+  .tags-div {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  .tags-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: column wrap;
+  }
+  .image-container {
+    margin: auto;
+    cursor: pointer;
+    // width: 150px;
+  }
+  .community-post-container
+    .community-upload-item
+    .community-add-item-form
+    .save-button,
+  #snapPhotoBtn {
+    width: 9rem;
+    border-radius: 39.91px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 24px;
+    padding: 0.5rem;
+    margin-top: 1.5rem;
+    align-self: center;
+    background-color: #765fc2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+}
 
-
-
-
-  @media screen and (min-width: 768px) {
-  .community-post-container .upload-item .images-container{
+@media screen and (min-width: 768px) {
+  .community-post-container .upload-item .images-container {
     width: 50%;
   }
   // .image-container {
   //   width: 300px;
   //   // margin: auto;
   // }
-  }
-  @media screen and (min-width: 992px) {
-    .community-post-container .upload-item .images-container{
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 50px;
-      justify-items: center;
-      .images-container {
+}
+@media screen and (min-width: 992px) {
+  .community-post-container .upload-item .images-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 50px;
+    justify-items: center;
+    .images-container {
       width: 75%;
-   
-    .image-container {
-      margin: 0;
+
+      .image-container {
+        margin: 0;
       }
-    // .flex.gap-1 button#openCameraBtn {
-    //   display:none;
-    //   }
-    .community-post-description {
-      grid-column: span 2;
+      // .flex.gap-1 button#openCameraBtn {
+      //   display:none;
+      //   }
+      .community-post-description {
+        grid-column: span 2;
       }
-      .upload-image, .image-container img {
+      .upload-image,
+      .image-container img {
         width: 200px;
       }
     }
   }
-  .placeholder-container{
+  .placeholder-container {
     text-align: center;
   }
 
-  .placeholder-container img{
+  .placeholder-container img {
     max-width: 50%;
   }
-  .community-add-item-form{
+  .community-add-item-form {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
-  .save-button{
+  .save-button {
     grid-column: 1/-1;
   }
-  .viewfinder video{
+  .viewfinder video {
     margin-left: auto;
     margin-right: auto;
   }
-  .viewfinder img{
+  .viewfinder img {
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
   }
- 
-  }
+}
