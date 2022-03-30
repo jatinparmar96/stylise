@@ -1,6 +1,11 @@
 <div class="donate-post-container">
   <main>
     <div class="upload-item">
+      <div class="back-arrow">
+        <a href="javascript:history.back()">
+        <img src="/icons/keyboard_arrow_right.svg">
+        </a>
+    </div>
       <div id="add-item-form">
         <div class="upload-image">
           <div class="images-container" id="img-download"></div>
@@ -8,7 +13,7 @@
             <div class="camera" id="camera"></div>
             <div class="capture-btn" id="capture-btn"></div>
 
-            <img id="image" />
+            <!-- <img id="image" /> -->
             <input
               type="file"
               style="display: none"
@@ -26,7 +31,7 @@
             />
           </div>
           <div class="flex gap-1">
-            <button type="button" id="openCameraBtn">Open Camera</button>
+            <button type="button" id="openCameraBtn" >Open Camera</button>
             <button
               type="button"
               id="uploadImageBtn"

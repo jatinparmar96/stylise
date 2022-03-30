@@ -53,8 +53,8 @@ function setTagsValue(tagsArray) {
  * Trigger Image file input field
  */
 function triggerDonateInput() {
-  let camera = document.getElementById("camera");
-  camera.innerHTML = "";
+  // let camera = document.getElementById("camera");
+  // camera.innerHTML = "";
   document.getElementById("donate-input").click();
 }
 
@@ -193,6 +193,7 @@ async function uploadDonationDesc(event) {
   document.getElementById("tags").value = null;
   document.getElementById("show-tags").innerHTML = "";
   document.getElementById("tagsHiddenValue").value = null;
+  window.location.href = 'index.html#home'
 }
 
 /**

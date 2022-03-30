@@ -10,8 +10,9 @@ function init() {
     const tags =document.getElementById('add-tag');
     tags.addEventListener('click', addTagInput);
 
-    form.addEventListener('submit', uploadItemDesc)
-    addImageChangeListener(imageSrc, imageTarget)
+  
+    addImageChangeListener(imageSrc, imageTarget);
+      form.addEventListener('submit', uploadItemDesc);
 }
 
 
@@ -106,28 +107,28 @@ function renderDataListItem(itemDoc) {
  */
 function triggerImageInput() {
     document.getElementById('image-input').click();
+
 }
 
 /**
  * 
  * Add Image Change listener, same method form update-profile.js file
  */
-function addImageChangeListener(src, target) {
+ function addImageChangeListener(src, target) {
     const fileReader = new FileReader();
     fileReader.onload = function () {
-        target.src = this.result
-        target.classList.add('profile-image')
-    }
-    src.addEventListener('change', function () {
-        if (src.files.length) {
-            fileReader.readAsDataURL(src.files[0])
-        } else {
-            target.classList.remove('profile-image');
-            target.src = '';
-        }
-
-    })
-}
+      target.src = this.result;
+      target.classList.add("input-image");
+    };
+    src.addEventListener("change", function () {
+      if (src.files.length) {
+        fileReader.readAsDataURL(src.files[0]);
+      } else {
+        target.classList.remove("input-image");
+        target.src = "";
+      }
+    });
+  }
 
 function openCamera() {
     const video = document.getElementById('video-stream');
