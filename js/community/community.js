@@ -265,6 +265,7 @@ async function showAllPosts() {
                         index++;
                     });
                 }
+                hideLoader();
             });
     }
     else {
@@ -352,16 +353,17 @@ async function showDonatePosts() {
         searchMessage.innerHTML = "";
         // fetch posts from "posts" collection with type = donate-item
         db.collection("posts").orderBy("timeStamp").where("public", "==", true).where("type", "==", "donate-item")
-            .get().then((querySnapshot) => {
+            .get().
+            then((querySnapshot) => {
                 let donateDocsArray = [];
                 querySnapshot.forEach((doc) => {
-                    if(doc.data().userID != user.uid){
-                    donateDocsArray.push(
-                        {
-                            ...doc.data(), id: doc.id
-                        }
-                    );
-                    }
+                    if (doc.data().userID != user.uid) {
+                        donateDocsArray.push(
+                            {
+                                ...doc.data(), id: doc.id
+                            }
+                        );
+                    };
                 });
                 donateDocsArray = donateDocsArray.filter((item) => {
                     if (item.location.coords) {
@@ -391,10 +393,11 @@ async function showDonatePosts() {
                     wrapper.innerHTML += renderDonateItems(item, idx);
 
                 })
-                hideLoader();
-            });
+            })
     }
+    hideLoader();
 }
+
 
 function renderDonateItems(item, idx = 0) {
     return `

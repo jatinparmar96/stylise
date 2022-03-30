@@ -1,3 +1,4 @@
+
 .landing-page-background{
   background: radial-gradient(circle at top left, #765fc2 0%, #F6F4F9 20%, transparent 80%), radial-gradient(circle at bottom right, #765fc2 0%, #F6F4F9 50%, transparent 80%);
   background-repeat:  no-repeat,no-repeat;
@@ -101,7 +102,7 @@
     height: 60px;
     width: 60px;
     cursor: pointer;
-    background-image: url("../assets/landing-page-images/down-arrow.svg");
+    background-image: url('../assets/landing-page-images/down-arrow.svg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 25px 25px;
@@ -109,6 +110,7 @@
   }
 
   .about-section {
+
     padding: 10rem 0;
       @media screen and (min-width:$breakpoints-md) {
           margin-left: 4%;
@@ -131,7 +133,7 @@
       }
       .info {
         @media screen and (min-width: $breakpoints-md) {
-            width: 50%;
+          width: 50%;
         }
 
         h3 {
@@ -154,7 +156,7 @@
       .images {
         position: relative;
         @media screen and (min-width: $breakpoints-md) {
-            width: 35%;
+          width: 35%;
         }
         img {
           width: 200px;
@@ -189,17 +191,17 @@
         flex-direction: column;
       }
       @media screen and (min-width: $breakpoints-md) {
-          flex-direction: row;
+        flex-direction: row;
       }
       .info {
         padding: 1rem;
         @media screen and (min-width: $breakpoints-md) {
-            width: 40%;
+          width: 40%;
         }
-        h2{
-            @media screen and (min-width: $breakpoints-md) {
-                text-align: left;
-            }
+        h2 {
+          @media screen and (min-width: $breakpoints-md) {
+            text-align: left;
+          }
         }
         h3 {
           color: $accent-color;
@@ -218,14 +220,15 @@
         width: 80%;
         padding-bottom: 5rem;
         @media screen and (min-width: $breakpoints-md) {
-            order: -1;
-            width: 40%;
-           img{
+          order: -1;
+          width: 40%;
+          img {
             position: relative;
             top: -15%;
-           }
+          }
         }
       }
+
       .btn-group{
           margin-top: 1rem;
           justify-content: center;
