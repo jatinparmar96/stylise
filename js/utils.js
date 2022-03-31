@@ -90,3 +90,22 @@ function toggleMenu() {
     navMenu.classList.toggle('show');
 }
 
+
+function getProgressBar() {
+    const progressBarParent = document.querySelector('#progress-bar')
+    progressBarParent.classList.remove('hide');
+    const progressBar = document.querySelector('#progress-bar .ldBar');
+    const bar = new ldBar(progressBar);
+    bar.set(0);
+    return bar
+}
+
+function setProgressBar(bar, value) {
+    bar.set(value)
+}
+
+function hideProgressBar(bar) {
+    const progressBarParent = document.querySelector('#progress-bar')
+    bar.set(100);
+    setTimeout(() => { progressBarParent.classList.add('hide'); bar.set(0) }, 300);
+}
