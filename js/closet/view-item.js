@@ -35,10 +35,12 @@ function renderPost(post) {
     const postImg = document.getElementById('postImg');
     const postTags = document.getElementById('postTags');
 
-    postImg.src = post.data().uri;
+    // postImg.src = post.data().uri;
+    const imgContainer = document.getElementById("image-container");
+    imgContainer.style.backgroundImage = `url(${post.data().uri})`;
     if (post.data().keywords?.length) {
         post.data().keywords.forEach(tag => {
-            postTags.innerHTML += `<span>${tag}</span>`;
+            postTags.innerHTML += `<span>#${tag}</span>`;
         })
     }
   
