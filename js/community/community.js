@@ -129,12 +129,16 @@ function addPosts(doc, index = 0, userFavourites = undefined) {
     div.appendChild(postLink);
     let div_user = document.createElement("div");
     div_user.classList.add("user-info");
+
+    const imgLink = document.createElement('a');
+    imgLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     let img_user = document.createElement("img");
     img_user.classList.add("dp");
 
 
     img_user.src = doc.data().user_uri;
-    div_user.appendChild(img_user);
+    imgLink.appendChild(img_user);
+    div_user.appendChild(imgLink);
     let username = document.createElement("span");
 
     // Create a link
@@ -406,7 +410,9 @@ function renderDonateItems(item, idx = 0) {
             <img src="${item.uri}">
         </a>
         <div class="user-info">
+            <a href="index.html#view-user-profile?id=${item.userID}"> 
             <img class="dp" src="${item.user_uri}">
+            </a>
             <div class="user-meta">
             <a href="index.html#view-user-profile?id=${item.userID}"> 
                 <span>${item.username}</span>
@@ -436,12 +442,16 @@ function renderDonateItems(item, idx = 0) {
     div.appendChild(postLink);
     let div_user = document.createElement("div");
     div_user.classList.add("user-info");
+
+    const imgLink = document.createElement('a');
+    imgLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     let img_user = document.createElement("img");
     img_user.classList.add("dp");
 
 
     img_user.src = doc.data().user_uri;
-    div_user.appendChild(img_user);
+    imgLink.appendChild(img_user);
+    div_user.appendChild(imgLink);
     let username = document.createElement("span");
 
     // Create a link
