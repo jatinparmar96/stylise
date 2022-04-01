@@ -108,8 +108,22 @@ html {
         font-size: 16px;
         line-height: 24px;
       }
+      .location-container {
+        padding-top: 1rem;
+
+        .location-title {
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 21px;
+          color: $primary-color;
+        }
+        .location-city {
+          font-size: 14px;
+          line-height: 21px;
+        }
+      }
       .tags {
-        padding-top: 2rem;
+        padding-top: 1rem;
         .tags-title {
           font-weight: 600;
           font-size: 14px;
@@ -260,7 +274,7 @@ html {
         margin-top: 80px;
         margin-left: -50px;
         width: 477px;
-        height: 427px;
+        min-height: 427px;
 
         .user-details {
           img {
@@ -275,6 +289,20 @@ html {
         .postComments {
           font-size: 18px;
           line-height: 27px;
+        }
+        .location-container {
+          padding-top: 1rem;
+
+          .location-title {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 21px;
+            color: $primary-color;
+          }
+          .location-city {
+            font-size: 14px;
+            line-height: 21px;
+          }
         }
         .tags {
           .tags-title {

@@ -45,19 +45,37 @@ function renderPost(post) {
     const imgContainer = document.getElementById("image-container");
     imgContainer.style.backgroundImage = `url(${post.data().uri})`;
     postComments.innerHTML = post.data().comments;
-    if (post.data().type="donate-item") {
+    if (post.data().type==="donate-item") {
+       
+        const location=document.getElementById("location-container");
+        const locationTitle=document.createElement("h3");
+        locationTitle.classList.add("location-title");
+        locationTitle.innerHTML="Location";
+        const city=document.createElement("span");
+        city.classList.add("location-city");
+        city.innerHTML=post.data().location.city;
+        location.appendChild(locationTitle);
+        location.appendChild(city);
+
+
+
         if (post.data().tags?.length) {
             post.data().tags.forEach(tag => {
                 postTags.innerHTML += `<span>#${tag}</span>`;
                 }) 
 
         } 
-    } 
-    if (post.data().keywords?.length) {
-        post.data().keywords.forEach(tag => {
-            postTags.innerHTML += `<span>#${tag}</span>`;
-                })    
+       
+
+    }else {
+
+        if (post.data().keywords?.length) {
+            post.data().keywords.forEach(tag => {
+                postTags.innerHTML += `<span>#${tag}</span>`;
+                    })    
+        }
     }
+
     
 
 
