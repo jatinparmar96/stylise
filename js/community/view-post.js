@@ -60,7 +60,11 @@ function renderPost(post) {
     }
     
 
-
+  
+    const link= document.getElementById('profile-link');
+    link.href=`index.html#view-user-profile?id=${post.data().userID}`;
+    const imglink= document.getElementById('img-link');
+    imglink.href=`index.html#view-user-profile?id=${post.data().userID}`;
     postUser.innerHTML = post.data().username
     postUserImg.src=post.data().user_uri;
 
@@ -132,10 +136,15 @@ async function getUserFavorites(userID) {
     //user Info
      let div_user = document.createElement("div");
     div_user.classList.add("user-info");
+
+    const imgLink = document.createElement('a');
+    imgLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     let img_user = document.createElement("img");
     img_user.classList.add("dp");
     img_user.src = doc.data().user_uri;
-    div_user.appendChild(img_user);
+    imgLink.appendChild(img_user);
+    div_user.appendChild(imgLink);
+
     let username = document.createElement("span");
     // Create Link
     const userLink = document.createElement('a');
@@ -215,10 +224,13 @@ async function getUserFavorites(userID) {
     div.classList.add("post");
      let div_user = document.createElement("div");
     div_user.classList.add("user-info-donate");
+    const imgLink = document.createElement('a');
+    imgLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     let img_user = document.createElement("img");
     img_user.classList.add("dp");
     img_user.src = doc.data().user_uri;
-    div_user.appendChild(img_user);
+    imgLink.appendChild(img_user);
+    div_user.appendChild(imgLink);
     let username = document.createElement("span");
     const userLink = document.createElement('a');
     userLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
