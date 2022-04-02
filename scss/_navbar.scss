@@ -15,7 +15,7 @@
     }
   }
 
-  .profile-photo-container {
+  .profile-photo-container a {
     display: flex;
     width: fit-content;
     border-radius: 50%;
@@ -102,7 +102,7 @@
     }
   }
   .nav-list {
-    li.nav-list-item{
+    li.nav-list-item {
       display: inline-block;
       position: relative;
       a {
@@ -113,7 +113,6 @@
       }
     }
     li:not(.no-animation).nav-list-item {
-      
       @media screen and (min-width: $breakpoints-md) {
         &:before {
           content: "";
@@ -141,7 +140,7 @@
         }
       }
     }
-    
+
     .nav-list-item.active {
       @media screen and (min-width: $breakpoints-md) {
         &:before {
@@ -161,7 +160,7 @@
 
       .dropdown {
         position: relative;
-        span{
+        span {
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -173,8 +172,8 @@
           background: white;
           border: 1px solid $secondary-color;
           border-radius: 10px;
-          padding: .5rem 1rem;
-          right: -.5rem;
+          padding: 0.5rem 1rem;
+          right: -0.5rem;
           z-index: 5;
           border-radius: 10px;
           white-space: nowrap;
@@ -182,13 +181,13 @@
           opacity: 0;
           z-index: -1;
           transform: translateY(-20px);
-          transition: all .35s ease;
+          transition: all 0.35s ease;
           text-align: right;
           a {
             display: inline;
           }
-          hr{
-            margin:.5rem 0;
+          hr {
+            margin: 0.5rem 0;
             border-top: 2px solid $secondary-color;
             background-color: $secondary-color;
           }
@@ -202,8 +201,6 @@
             opacity: 1;
             z-index: 5;
             transform: translateY(0);
-
-           
           }
         }
       }

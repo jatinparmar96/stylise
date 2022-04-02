@@ -1,6 +1,6 @@
 'use strict';
 
-const routesWithoutNav = ['#', '#login', '#register', '#user-profile', '#view-user-profile', '#view-post'];
+const routesWithoutNav = ['#', '#login', '#register', '#user-profile', '#view-user-profile', '#view-post', '#view-item'];
 
 const tabsMapping = [
     {

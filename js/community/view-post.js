@@ -45,22 +45,44 @@ function renderPost(post) {
     const imgContainer = document.getElementById("image-container");
     imgContainer.style.backgroundImage = `url(${post.data().uri})`;
     postComments.innerHTML = post.data().comments;
-    if (post.data().type="donate-item") {
+    if (post.data().type==="donate-item") {
+       
+        const location=document.getElementById("location-container");
+        const locationTitle=document.createElement("h3");
+        locationTitle.classList.add("location-title");
+        locationTitle.innerHTML="Location";
+        const city=document.createElement("span");
+        city.classList.add("location-city");
+        city.innerHTML=post.data().location.city;
+        location.appendChild(locationTitle);
+        location.appendChild(city);
+
+
+
         if (post.data().tags?.length) {
             post.data().tags.forEach(tag => {
                 postTags.innerHTML += `<span>#${tag}</span>`;
                 }) 
 
         } 
-    } 
-    if (post.data().keywords?.length) {
-        post.data().keywords.forEach(tag => {
-            postTags.innerHTML += `<span>#${tag}</span>`;
-                })    
+       
+
+    }else {
+
+        if (post.data().keywords?.length) {
+            post.data().keywords.forEach(tag => {
+                postTags.innerHTML += `<span>#${tag}</span>`;
+                    })    
+        }
     }
+
     
 
-
+  
+    const link= document.getElementById('profile-link');
+    link.href=`index.html#view-user-profile?id=${post.data().userID}`;
+    const imglink= document.getElementById('img-link');
+    imglink.href=`index.html#view-user-profile?id=${post.data().userID}`;
     postUser.innerHTML = post.data().username
     postUserImg.src=post.data().user_uri;
 
@@ -132,10 +154,15 @@ async function getUserFavorites(userID) {
     //user Info
      let div_user = document.createElement("div");
     div_user.classList.add("user-info");
+
+    const imgLink = document.createElement('a');
+    imgLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     let img_user = document.createElement("img");
     img_user.classList.add("dp");
     img_user.src = doc.data().user_uri;
-    div_user.appendChild(img_user);
+    imgLink.appendChild(img_user);
+    div_user.appendChild(imgLink);
+
     let username = document.createElement("span");
     // Create Link
     const userLink = document.createElement('a');
@@ -215,10 +242,13 @@ async function getUserFavorites(userID) {
     div.classList.add("post");
      let div_user = document.createElement("div");
     div_user.classList.add("user-info-donate");
+    const imgLink = document.createElement('a');
+    imgLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     let img_user = document.createElement("img");
     img_user.classList.add("dp");
     img_user.src = doc.data().user_uri;
-    div_user.appendChild(img_user);
+    imgLink.appendChild(img_user);
+    div_user.appendChild(imgLink);
     let username = document.createElement("span");
     const userLink = document.createElement('a');
     userLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;

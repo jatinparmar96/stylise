@@ -7,11 +7,10 @@ function init() {
     const imageSrc = document.getElementById('image-input');
     const imageTarget = document.getElementById('image');
 
-    const tags =document.getElementById('add-tag');
+    const tags = document.getElementById('add-tag');
     tags.addEventListener('click', addTagInput);
-
-    form.addEventListener('submit', uploadItemDesc)
-    addImageChangeListener(imageSrc, imageTarget)
+    addImageChangeListener(imageSrc, imageTarget);
+    form.addEventListener('submit', uploadItemDesc);
 }
 
 
@@ -25,15 +24,44 @@ async function uploadItemImg(imgItem) {
     const storageRef = storage.ref();
     const userID = auth.currentUser.uid;
     const closetRef = storageRef.child("closet/" + userID + "/" + currentDate.getTime())// reference to user storage folder
+    const progressBar = getProgressBar()
     return new Promise((resolve, reject) => {
         try {
-            closetRef.put(imgItem).then((snapshot) => {
-                document.getElementById('image-input').value = null;
-                resolve(snapshot);
-            })
+            const uploadTask = closetRef.put(imgItem);
+            uploadTask.on('state_changed', // or 'state_changed'
+                (snapshot) => {
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    setProgressBar(progressBar, progress);
+                },
+                (error) => {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                        // ...
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect error.serverResponse
+                            break;
+                    }
+                },
+                () => {
+                    // Upload completed successfully, now we can get the download URL
+                    document.getElementById('image-input').value = null;
+                    hideProgressBar(progressBar);
+                    resolve(uploadTask.snapshot);
+                }
+            );
         }
         catch (error) {
-            console.log(error.code);
+            console.log(error);
             reject();
         }
     })
@@ -85,10 +113,7 @@ async function uploadItemDesc(event) {
         itemObject = { ...itemObject, ...{ username: `You don't have a username` } }
     }
     const docRef = await db.collection('posts').add(itemObject);
-    alert('item added');
-    
     window.location.href = 'index.html#home'
-
 }
 
 async function getUserData(uid) {
@@ -106,6 +131,7 @@ function renderDataListItem(itemDoc) {
  */
 function triggerImageInput() {
     document.getElementById('image-input').click();
+
 }
 
 /**
@@ -115,18 +141,17 @@ function triggerImageInput() {
 function addImageChangeListener(src, target) {
     const fileReader = new FileReader();
     fileReader.onload = function () {
-        target.src = this.result
-        target.classList.add('profile-image')
-    }
-    src.addEventListener('change', function () {
+        target.src = this.result;
+        target.classList.add("input-image");
+    };
+    src.addEventListener("change", function () {
         if (src.files.length) {
-            fileReader.readAsDataURL(src.files[0])
+            fileReader.readAsDataURL(src.files[0]);
         } else {
-            target.classList.remove('profile-image');
-            target.src = '';
+            target.classList.remove("input-image");
+            target.src = "";
         }
-
-    })
+    });
 }
 
 function openCamera() {

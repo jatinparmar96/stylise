@@ -1,6 +1,12 @@
 <div class="closet-add-item">
     <main>
+        <div class="back-arrow">
+            <a href="javascript:history.back()">
+            <img src="/icons/keyboard_arrow_right.svg">
+            </a>
+        </div>
         <div class="upload-item">
+
             <form id="add-item-form">
                 <div class="upload-image">
                     <div class="images-container" id="img-download">
@@ -10,9 +16,17 @@
                         <video class="dn" id="video-stream" autoplay></video>
                         <button class="dn" type="button" id="snapPhotoBtn" onclick="captureImage()">Capture
                             Image</button>
-                        <img id="image">
+                        <!-- <img id="image"> -->
                         <input type="file" style="display: none;" id="image-input" name="img" accept="image/*">
                     </div>
+                    <div class="placeholder-container">
+                        <img
+                          src="/icons/placeholder.svg"
+                          id="image"
+                          class="image"
+                          onclick="triggerImageInput()"
+                        />
+                      </div>
                     <div class="flex gap-1">
                         <button type="button" id="openCameraBtn" onclick="openCamera()">Open Camera</button>
                         <button type="button" id="uploadImageBtn" onclick="triggerImageInput()">Upload Image</button>

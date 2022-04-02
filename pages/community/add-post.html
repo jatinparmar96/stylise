@@ -1,57 +1,55 @@
 <div class=" community-post-container">
-<main>
-    <div class="upload-item community-upload-item">
-        <div class="back-arrow">
-            <a href="#home">
-            <img src="/icons/keyboard_arrow_right.svg">
-            </a>
+    <main>
+        <div class="upload-item community-upload-item">
+            <div class="back-arrow">
+                <a href="#home">
+                    <img src="/icons/keyboard_arrow_right.svg">
+                </a>
+            </div>
+            <form id="add-item-form" class="community-add-item-form">
+                <div class="upload-image">
+                    <div class="images-container" id="img-download">
+                    </div>
+                    <div class="flex flex-column viewfinder" id="imageContainer">
+
+                        <video class="dn" id="video-stream" autoplay></video>
+                        <button class="dn" type="button" id="snapPhotoBtn" onclick="captureImage()">Capture
+                            Image</button>
+                        <!-- <img id="image"> -->
+                        <input type="file" style="display: none;" id="image-input" name="img" accept="image/*">
+                    </div>
+                    <div class="placeholder-container">
+                        <img src="/icons/placeholder.svg" id="image" class="image" onclick="triggerImageInput()" />
+                    </div>
+                    <div class="flex gap-1">
+                        <button type="button" id="openCameraBtn" onclick="openCamera()">Open Camera</button>
+                        <button type="button" id="uploadImageBtn" onclick="triggerImageInput()">Upload Image</button>
+                    </div>
+                </div>
+                <div class="post-description community-post-description">
+                    <label class="label-input">
+                        Comments
+                    </label>
+                    <textarea id="comments" rows="4" cols="50" style="width: 100%;" placeholder="some context"
+                        class="community-textarea"></textarea>
+                    <!-- <label for="keywords" class="label-input">Keywords</label> -->
+                    <div class="tags-wrapper">
+                        <label for="tags" class="label-input add-tag-label">Add Tags</label>
+                        <div class="tags-div">
+                            <input type="text" name="tags" id="tags" placeholder="summer">
+                            <input type="button" value="Add tag" id="add-tag">
+                        </div>
+                        <div class="postTags" id="show-tags">
+
+                        </div>
+
+
+                        <input type="hidden" id="tagsHiddenValue" name="tagsHiddenValue">
+                    </div>
+                </div>
+                <input type="submit" value="Save" id="saveBtn" class="save-button">
+            </form>
         </div>
-        <form id="add-item-form " class="community-add-item-form">
-            <div class="upload-image">
-                <div class="images-container" id="img-download">
-                </div>
-                <div class="flex flex-column viewfinder" id="imageContainer">
 
-                    <video class="dn" id="video-stream" autoplay></video>
-                    <button class="dn" type="button" id="snapPhotoBtn" onclick="captureImage()">Capture Image</button>
-                    <img id="image">
-                    <input type="file" style="display: none;" id="image-input" name="img" accept="image/*">
-                </div>
-                <div class="placeholder-container">
-                    <img
-                      src="/icons/placeholder.svg"
-                      id="image"
-                      class="image"
-                      onclick="triggerDonateInput()"
-                    />
-                  </div>
-                <div class="flex gap-1">
-                    <button  type="button" id="openCameraBtn" onclick="openCamera()">Open Camera</button>
-                    <button type="button" id="uploadImageBtn" onclick="triggerImageInput()">Upload Image</button>
-                </div>
-            </div>
-            <div class="post-description community-post-description">
-                <label class="label-input">
-                    Comments
-                </label>
-                <textarea id="comments" rows="4" cols="50" style="width: 100%;" placeholder="some context" class="community-textarea"></textarea>
-                <!-- <label for="keywords" class="label-input">Keywords</label> -->
-                <div class="tags-wrapper">
-                    <label for="tags" class="label-input add-tag-label">Add Tags</label>
-                    <div class="tags-div">
-                    <input type="text" name="tags" id="tags" placeholder="summer" >
-                    <input type="button" value="Add tag" id="add-tag">
-                </div>
-                <div class="postTags" id="show-tags">
-                
-                </div>
 
-                    
-                    <input type="hidden" id="tagsHiddenValue" name="tagsHiddenValue">
-                </div>
-            </div>
-            <input type="submit" value="Save" id="saveBtn" class="save-button">
-        </form>
-    </div>
-</main>
-</div>
+    </main>

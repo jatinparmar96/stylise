@@ -53,8 +53,8 @@ function setTagsValue(tagsArray) {
  * Trigger Image file input field
  */
 function triggerDonateInput() {
-  let camera = document.getElementById("camera");
-  camera.innerHTML = "";
+  // let camera = document.getElementById("camera");
+  // camera.innerHTML = "";
   document.getElementById("donate-input").click();
 }
 
@@ -70,24 +70,24 @@ async function donateItemImg(imgItem) {
   const closetRef = storageRef.child(
     "donate/" + userID + "/" + currentDate.getTime()
   ); // reference to user storage folder
+  const progressBar = getProgressBar()
   return new Promise((resolve, reject) => {
     try {
       const uploadTask = closetRef.put(imgItem);
-      progress.classList.remove("dn");
       uploadTask.on(
         "state_changed",
         (snapshot) => {
           let uploadProgress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          progress.innerHTML = `Uploading... ${Math.round(uploadProgress)}%`;
+          setProgressBar(progressBar, uploadProgress);
         },
-        (error) => {},
+        (error) => { },
         () => {
           document.getElementById("image").removeAttribute("src");
           document.getElementById("donate-input").value = null;
           let camera = document.getElementById("camera");
           camera.innerHTML = "";
-          progress.classList.add("dn");
+          hideProgressBar(progressBar);
           resolve(uploadTask.snapshot);
         }
       );
@@ -174,7 +174,7 @@ async function uploadDonationDesc(event) {
 
   const itemObject = {
     userID,
-    username: userData.data().username,
+    username: userData.data().username || '',
     comments,
     location,
     user_uri: user.photoURL,
@@ -193,6 +193,7 @@ async function uploadDonationDesc(event) {
   document.getElementById("tags").value = null;
   document.getElementById("show-tags").innerHTML = "";
   document.getElementById("tagsHiddenValue").value = null;
+  window.location.href = 'index.html#home'
 }
 
 /**
