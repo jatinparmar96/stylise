@@ -1,0 +1,192 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.view-item {
+  margin: auto;
+  background-color: $secondary-color03;
+  min-height: 120vh;
+
+  .type-container {
+    background-color: #ffffff;
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "arrow type blank";
+    padding: 1.5rem 2%;
+    margin: 0;
+
+    .type {
+      text-transform: capitalize;
+      justify-self: center;
+      align-self: center;
+      grid-area: type;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+    }
+    .back-arrow {
+      width: 18px;
+      height: 18px;
+      justify-self: start;
+      align-self: center;
+      grid-area: arrow;
+    }
+  }
+
+  .single-post {
+    display: flex;
+    justify-content: center;
+    .explore {
+      display: none;
+    }
+
+    .image-container {
+      position: relative;
+      border-radius: 0px 0px 72px 0px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      height: 80vh;
+      @media screen and (min-width: $breakpoints-md) {
+        border-radius: 30px;
+      }
+    }
+    .post-details-container {
+      position: absolute;
+      display: block;
+      top: 80vh;
+      width: 90%;
+      height: auto;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(15px); //not supported
+      border-radius: 30px;
+      padding: 2rem;
+      //   margin-bottom: 50px;
+      .post-meta-info {
+        display: flex;
+        justify-content: space-between;
+        p {
+          font-size: 0.9rem;
+          span {
+            padding-left: 0.5rem;
+          }
+        }
+      }
+      .action-buttons {
+        text-align: center;
+        padding-top: 2rem;
+
+        margin: 0 auto 2rem auto;
+        .edit-btn {
+          width: 120px;
+          height: 26px;
+          margin-right: 1rem;
+
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 21px;
+          text-align: center;
+
+          color: #ffffff;
+
+          background: $primary-color;
+          border-radius: 50px;
+          border: 2px solid $primary-color;
+        }
+
+        .delete-btn {
+          width: 120px;
+          height: 30px;
+
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 21px;
+          text-align: center;
+
+          color: $primary-color;
+
+          background: #ffffff;
+          border: 2px solid $primary-color;
+          box-sizing: border-box;
+          border-radius: 50px;
+        }
+      }
+
+      .tags {
+        padding-top: 1rem;
+
+        .tags-title {
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 21px;
+          color: $primary-color;
+        }
+        .postTags {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          padding-top: 0.5rem;
+
+          span {
+            font-style: italic;
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 18px;
+            background: #f1f1f1;
+            border-radius: 50px;
+            margin: 2px;
+            padding: 3px 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $breakpoints-md) {
+  .view-item {
+    .single-post {
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      .image-container {
+        width: 405px;
+        height: 405px;
+        margin-top: 2rem;
+      }
+      .post-details-container {
+        position: initial;
+        backdrop-filter: blur(5px);
+        margin-top: 80px;
+        margin-left: -50px;
+        width: 477px;
+        height: 310px;
+        .action-buttons {
+          text-align: start;
+        }
+
+        .tags {
+          .tags-title {
+            font-size: 16px;
+            line-height: 24px;
+          }
+          .postTags {
+            span {
+              font-size: 14px;
+              line-height: 21px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

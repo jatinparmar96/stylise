@@ -1,7 +1,61 @@
-<main>
-    <a href="index.html#closet"><button>Back</button></a>
-    <div style="max-width: 900px; margin:auto;" class="flex flex-column flex-center">
-        <img id="postImg" style="width:100%;height: auto;">
-        <div class="flex gap-1" id="postTags"></div>
+<main class="view-item">
+
+    <div class="type-container" id="type-container">
+        <div class="back-arrow">
+            <a href="javascript:history.back()">
+            <img src="/icons/keyboard_arrow_right.svg">
+            </a>
+        </div>
+        <span id="type" class="type"> YOUR CLOSET</span>
     </div>
+    <div class="single-post">
+        
+        <div class="image-container" id="image-container">
+
+                <img id="postImg" style="width:100%;height: auto;">
+     
+            </div>
+        <div class="post-details-container">
+            <div class="post-meta-info">
+                <p>2022/03/28</p>
+
+            </div> 
+            <div class="action-buttons">
+                <button class="edit-btn action-btn">Edit</button>
+                <button class="delete-btn action-btn">Delete</button>
+
+            </div>
+
+
+
+            <div class="tags">
+                <h3 class="tags-title">Tags</h3>
+                <div class="flex gap-1 postTags" id="postTags"></div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <a href="index.html#closet"><button>Back</button></a> -->
+
 </main>
