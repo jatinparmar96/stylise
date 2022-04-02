@@ -10,9 +10,9 @@ function init() {
      */
     for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
-            let current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
+            let current = document.querySelectorAll('#post-type-nav .nav-btn');
+            current.forEach(elm => elm.classList.remove('active'))
+            this.classList.add('active');
         });
     }
     //Handle User Outfit Posts
