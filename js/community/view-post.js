@@ -45,46 +45,51 @@ function renderPost(post) {
     const imgContainer = document.getElementById("image-container");
     imgContainer.style.backgroundImage = `url(${post.data().uri})`;
     postComments.innerHTML = post.data().comments;
-    if (post.data().type==="donate-item") {
-       
-        const location=document.getElementById("location-container");
-        const locationTitle=document.createElement("h3");
+    if (post.data().type === "donate-item") {
+
+        const location = document.getElementById("location-container");
+        const locationTitle = document.createElement("h3");
         locationTitle.classList.add("location-title");
-        locationTitle.innerHTML="Location";
-        const city=document.createElement("span");
+        locationTitle.innerHTML = "Location";
+        const city = document.createElement("span");
         city.classList.add("location-city");
-        city.innerHTML=post.data().location.city;
+        city.innerHTML = post.data().location.city;
         location.appendChild(locationTitle);
         location.appendChild(city);
 
+        //Show Message Btn
+        const messageContainer = document.getElementById('message-user-container');
+        messageContainer.classList.remove('dn')
+        const a = messageContainer.querySelector('a');
+        a.href = `mailto:${post.data().userEmail}`
 
 
         if (post.data().tags?.length) {
             post.data().tags.forEach(tag => {
                 postTags.innerHTML += `<span>#${tag}</span>`;
-                }) 
+            })
 
-        } 
-       
+        }
 
-    }else {
+
+    } else {
 
         if (post.data().keywords?.length) {
             post.data().keywords.forEach(tag => {
                 postTags.innerHTML += `<span>#${tag}</span>`;
-                    })    
+            })
         }
     }
 
-    
 
-  
-    const link= document.getElementById('profile-link');
-    link.href=`index.html#view-user-profile?id=${post.data().userID}`;
-    const imglink= document.getElementById('img-link');
-    imglink.href=`index.html#view-user-profile?id=${post.data().userID}`;
+
+
+    const link = document.getElementById('profile-link');
+    link.href = `index.html#view-user-profile?id=${post.data().userID}`;
+    const imglink = document.getElementById('img-link');
+    imglink.href = `index.html#view-user-profile?id=${post.data().userID}`;
     postUser.innerHTML = post.data().username
-    postUserImg.src=post.data().user_uri;
+    postUserImg.src = post.data().user_uri;
 
 }
 
@@ -94,40 +99,40 @@ function renderPost(post) {
  * @param {string} post
  * @returns {Promise<>}
  */
- async function getSuggestions(post, postID) {
+async function getSuggestions(post, postID) {
 
     showLoader();
     const user = await getCurrentUser();
     const userFavourites = await getUserFavorites(user.uid);
 
-     // fetch posts from "posts" collection with conditions
-     if (post.data().type=="community"){
+    // fetch posts from "posts" collection with conditions
+    if (post.data().type == "community") {
         const keywords = post.data().keywords;
         db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains-any", keywords)
-        .get().then((querySnapshot) => {
-            let index=0;
-            querySnapshot.forEach((doc) => {
-                if(doc.id != postID)
-                addPostsCommunity(doc,index,userFavourites);
+            .get().then((querySnapshot) => {
+                let index = 0;
+                querySnapshot.forEach((doc) => {
+                    if (doc.id != postID)
+                        addPostsCommunity(doc, index, userFavourites);
+                });
+                hideLoader();
             });
-            hideLoader();
-        });
     }
-    if (post.data().type=="donate-item"){
+    if (post.data().type == "donate-item") {
         const tags = post.data().tags;
         console.log(tags);
         const data = db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "donate-item").where("tags", "array-contains-any", tags)
-        .get().then((querySnapshot) => {
-            if(querySnapshot){
-                querySnapshot.forEach((doc) => {
-                    if(doc.id != postID)
-                    addPostsDonation(doc);
-                });
-            }
-            hideLoader();
-        });
+            .get().then((querySnapshot) => {
+                if (querySnapshot) {
+                    querySnapshot.forEach((doc) => {
+                        if (doc.id != postID)
+                            addPostsDonation(doc);
+                    });
+                }
+                hideLoader();
+            });
     }
-    
+
 
 }
 
@@ -145,14 +150,14 @@ async function getUserFavorites(userID) {
  * @method addPostsCommunity
  * @param
  */
- function addPostsCommunity(doc, index = 0, userFavourites = undefined) {
+function addPostsCommunity(doc, index = 0, userFavourites = undefined) {
 
-    let span=document.getElementById("suggestions");
-    span.innerHTML="You might also like...";
+    let span = document.getElementById("suggestions");
+    span.innerHTML = "You might also like...";
     let div = document.createElement("div");
     div.classList.add("post");
     //user Info
-     let div_user = document.createElement("div");
+    let div_user = document.createElement("div");
     div_user.classList.add("user-info");
 
     const imgLink = document.createElement('a');
@@ -186,61 +191,61 @@ async function getUserFavorites(userID) {
     favoriteIcon.appendChild(favElement);
     div_user.appendChild(favoriteIcon);
 
-        /**
-     * Add post to favorites function
-     */
-         favoriteIcon.onclick = async function addToFavorites() {
-             console.log('hola');
-            const user = await getCurrentUser();
-            const imgElement = favoriteIcon.querySelector('img');
-            if (favoriteIcon.classList.contains('favorite')){
-                const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).delete().then(() => {
-                    console.log("Document successfully deleted!");
-                    favoriteIcon.classList.remove('favorite');
-                    imgElement.src = '/assets/common/heart.svg';
-    
-                }).catch((error) => {
-                    console.error("Error removing document: ", error);
-                });
-            } else {
+    /**
+ * Add post to favorites function
+ */
+    favoriteIcon.onclick = async function addToFavorites() {
+        console.log('hola');
+        const user = await getCurrentUser();
+        const imgElement = favoriteIcon.querySelector('img');
+        if (favoriteIcon.classList.contains('favorite')) {
+            const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).delete().then(() => {
+                console.log("Document successfully deleted!");
+                favoriteIcon.classList.remove('favorite');
+                imgElement.src = '/assets/common/heart.svg';
+
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        } else {
             const docFavRef = await db.collection('users/' + user.uid + '/favorites').doc(doc.id).set(doc.data());
             favoriteIcon.classList.add('favorite');
             imgElement.src = '/assets/common/heart-filled.svg';
-            }
         }
+    }
 
-    
+
 
     const postImg = document.createElement("div");
     postImg.classList.add("post-img");
-    
+
     const link = document.createElement('a');
     link.href = `index.html#view-post?id=${doc.id}`;
     let img = document.createElement("img");
     img.src = doc.data().uri;
     link.appendChild(img)
     postImg.appendChild(link);
-   
+
     div.appendChild(div_user);
     div.appendChild(postImg);
-    
-    
-    document.getElementById("wrapper").appendChild(div);
-   
- }
 
- /**
- * add posts into the wrapper
- * @method addPostsDonation
- * @param
- */
-  function addPostsDonation(doc) {
-    
-    let span=document.getElementById("suggestions");
-    span.innerHTML="You might also like...";
+
+    document.getElementById("wrapper").appendChild(div);
+
+}
+
+/**
+* add posts into the wrapper
+* @method addPostsDonation
+* @param
+*/
+function addPostsDonation(doc) {
+
+    let span = document.getElementById("suggestions");
+    span.innerHTML = "You might also like...";
     let div = document.createElement("div");
     div.classList.add("post");
-     let div_user = document.createElement("div");
+    let div_user = document.createElement("div");
     div_user.classList.add("user-info-donate");
     const imgLink = document.createElement('a');
     imgLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
@@ -254,29 +259,29 @@ async function getUserFavorites(userID) {
     userLink.href = `index.html#view-user-profile?id=${doc.data().userID}`;
     username.innerHTML = doc.data().username;
     userLink.appendChild(username);
-    let aux=document.createElement("div");
+    let aux = document.createElement("div");
     aux.classList.add("aux");
     div_user.appendChild(userLink);
     div_user.appendChild(aux);
 
     const postImg = document.createElement("div");
     postImg.classList.add("post-img");
-    
+
     const link = document.createElement('a');
     link.href = `index.html#view-post?id=${doc.id}`;
     let img = document.createElement("img");
     img.src = doc.data().uri;
     link.appendChild(img)
     postImg.appendChild(link);
-   
+
 
     div.appendChild(div_user);
     div.appendChild(postImg);
-    
-    
+
+
     document.getElementById("wrapper").appendChild(div);
-   
- }
+
+}
 
 
 init();

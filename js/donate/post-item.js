@@ -180,10 +180,10 @@ async function uploadDonationDesc(event) {
     user_uri: user.photoURL,
     tags: tagsArray,
     uri: imageUrl,
-    user_uri: user.photoURL,
     type: "donate-item",
     public: true,
     location: locationObject,
+    userEmail: user.email,
     timeStamp: timestamp(),
   };
   await db.collection("posts").add(itemObject);
