@@ -76,7 +76,7 @@ function getCategoryImage(categoryDocument){
                 imageWrapper.classList.add("catImageWrapper");
                 let Imagediv = document.createElement("div");
                 Imagediv.classList.add("categoryImage");
-                Imagediv.style.backgroundImage = 'url(/assets/noItemsImage.jpg)';
+                Imagediv.style.backgroundImage = 'url(../../assets/noItemsImage.jpg)';
                 imageWrapper.appendChild(Imagediv);
                 link.prepend(imageWrapper);  
         }
@@ -136,7 +136,7 @@ function allItems(){
                 imageWrapper.classList.add("catImageWrapper");
                 let Imagediv = document.createElement("div");
                 Imagediv.classList.add("categoryImage");
-                    Imagediv.style.backgroundImage = 'url(/assets/noItemsImage.jpg)';
+                    Imagediv.style.backgroundImage = 'url(../../assets/noItemsImage.jpg)';
                     imageWrapper.appendChild(Imagediv);
                     link.prepend(imageWrapper);
                     div.appendChild(link);
