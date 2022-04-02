@@ -1,8 +1,8 @@
 .loader {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   .lds-roller {
     display: inline-block;
     position: relative;
@@ -85,6 +85,39 @@
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+}
+
+.uploading-progress-bar.hide {
+  position: absolute;
+  left: -1000px;
+  top: -1000px;
+  opacity: 0;
+}
+.uploading-progress-bar {
+  position: fixed;
+  top: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: rgba($secondary-color, 0.8);
+  z-index: 999;
+  opacity: 1;
+  transition: opacity .5s ease;
+  .ldBar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .ldBar-label {
+    text-align: center;
+    margin-top: -4rem;
+    color: white;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,.8));
+    &::before{
+      content: 'Uploading ';
     }
   }
 }

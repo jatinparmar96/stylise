@@ -3,7 +3,7 @@ function init() {
     const form = document.getElementById('update-profile-form')
     form.addEventListener('submit', handleFormSubmit);
     addCheckboxEventListeners();
- 
+
     const imgSrc = document.getElementById('img-picker');
     const target = document.getElementById('image')
     addImageChangeListener(imgSrc, target)
@@ -69,7 +69,7 @@ async function handleFormSubmit(event) {
             values[key] = JSON.parse(value);
             return;
         }
-            values[key] = value;
+        values[key] = value;
 
     })
     // set No Terms to off if not present in values 
@@ -202,12 +202,13 @@ async function handleCoords(position) {
     hiddenInput.type = 'hidden';
     hiddenInput.name = 'locationCoords'
     hiddenInput.value = JSON.stringify(locationObject);
+    hiddenInput.id = 'locationCoords';
     const form = document.getElementById('update-profile-form');
     if (form.elements.locationCoords) {
         form.replaceChild(hiddenInput, form.elements.locationCoords);
     }
     else {
-        form.append(hiddenInput)
+        form.appendChild(hiddenInput)
     }
 }
 
