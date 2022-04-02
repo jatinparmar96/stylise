@@ -1,5 +1,5 @@
 async function init() {
-    console.log('test')
+    //console.log('test')
     const postId = getPostIdFromUrl();
     if (postId) {
         console.log(postId);

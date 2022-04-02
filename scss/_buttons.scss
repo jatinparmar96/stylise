@@ -1,13 +1,12 @@
-
-.btn{
-    border-radius: 2rem;
-    padding: .5rem 2rem;
-    border: 1px solid $primary-color;
-    cursor: pointer;
-    text-align: center;
-    color: #765fc2;
-    width: 180px;
-    font-weight: 600;
+.btn {
+  border-radius: 2rem;
+  padding: 0.5rem 2rem;
+  border: 1px solid $primary-color;
+  cursor: pointer;
+  text-align: center;
+  color: #765fc2;
+  width: 180px;
+  font-weight: 600;
 }
 .btn-primary {
   background-color: $primary-color;
@@ -52,7 +51,7 @@
   width: 4rem;
   font-size: 1.75rem;
   font-weight: bold;
-  box-shadow: 4px 4px 8px 8px rgb(0 0 0 / 10%);
+  box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 10%);
   cursor: pointer;
   z-index: 3;
 }

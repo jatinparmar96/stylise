@@ -12,10 +12,20 @@ function init() {
 
     //const cameraBtn = document.getElementById('openCameraBtn');
     //form.addEventListener('submit', uploadItemDesc)
-    initImageListener(getCategoryIdFromUrl());
+    //initImageListener(getCategoryIdFromUrl());
     //addImageChangeListener(imageSrc, imageTarget)
     //initCategoryListener();
+    updateUsername()
     categoryName();
+}
+
+function updateUsername() {
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            //document.getElementById('username').innerHTML = user.displayName;
+            initImageListener(getCategoryIdFromUrl());
+        }
+    })
 }
 
 
@@ -24,7 +34,13 @@ function init() {
  * @returns {string}
  */
 function getCategoryIdFromUrl() {
-    return window.location.hash.split('?')[1].split('=')[1];
+    let categoryUrl = "";
+    if (location.href.indexOf("#category?") != -1) {
+        categoryUrl = window.location.hash.split('?')[1].split('=')[1];
+    } else {
+        categoryUrl = "all";
+    }
+    return categoryUrl;
 }
 
 // async function getUserData(uid) {
@@ -40,7 +56,7 @@ async function categoryName(){
             const docData = doc.data();
             catElement.innerHTML = `<span>${docData.category}</span>`;
         } else {
-            console.log("Category not found.")
+            catElement.innerHTML = `<span>All Items</span>`;
         }
     }).catch((error) => {
         console.log("Error getting document:",error);
@@ -53,7 +69,18 @@ async function categoryName(){
  */
 
 function initImageListener(categoryId) {
-    const query = db.collection(`posts`).where('category', '==', getCategoryIdFromUrl());
+    const user = auth.currentUser;
+    
+    let query = "";
+    if (getCategoryIdFromUrl() == "all"){
+        query = db.collection('posts').where('userId','==',user.uid).where('type','==','closet-item');
+        console.log("Category All!");
+        console.log(user.uid);
+    } else {
+        query = db.collection(`posts`).where('category', '==', getCategoryIdFromUrl());
+    }
+    
+    //const query = db.collection(`posts`).where('category', '==', getCategoryIdFromUrl());
     const listener = query.onSnapshot(querySnapshot => {
         const categoryImages = document.getElementById('category-images');
         categoryImages.innerHTML = '';
