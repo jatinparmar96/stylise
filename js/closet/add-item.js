@@ -7,7 +7,7 @@ function init() {
     const imageSrc = document.getElementById('image-input');
     const imageTarget = document.getElementById('image');
 
-    const tags =document.getElementById('add-tag');
+    const tags = document.getElementById('add-tag');
     tags.addEventListener('click', addTagInput);
 
     const cameraBtn = document.getElementById('openCameraBtn');
@@ -35,12 +35,40 @@ async function uploadItemImg(imgItem) {
     const storageRef = storage.ref();
     const userID = auth.currentUser.uid;
     const closetRef = storageRef.child("closet/" + userID + "/" + currentDate.getTime())// reference to user storage folder
+    const progressBar = getProgressBar();
     return new Promise((resolve, reject) => {
         try {
-            closetRef.put(imgItem).then((snapshot) => {
-                document.getElementById('image-input').value = null;
-                resolve(snapshot);
-            })
+            const uploadTask = closetRef.put(imgItem)
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    setProgressBar(progressBar, progress);
+                },
+                (error) => {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                        // ...
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect error.serverResponse
+                            break;
+                    }
+                },
+                () => {
+                    // Upload completed successfully, now we can get the download URL
+                    document.getElementById('image-input').value = null;
+                    hideProgressBar(progressBar);
+                    resolve(uploadTask.snapshot);
+                }
+            )
         }
         catch (error) {
             console.log(error.code);
@@ -75,16 +103,16 @@ async function uploadItemDesc(event) {
     }
     const imageUrl = await imageRef.ref.getDownloadURL();
     const itemObject = {
-            category,
-            keywords: tagsArray,
-            uri: imageUrl,
-            type: 'closet-item',
-            userId : user,
-            public: false
-        };
-        const docRef = await db.collection('posts').add(itemObject);
-        saveBtn.disabled = false;
-        window.location.href=`index.html#category?q=${itemObject.category}`;
+        category,
+        keywords: tagsArray,
+        uri: imageUrl,
+        type: 'closet-item',
+        userId: user,
+        public: false
+    };
+    const docRef = await db.collection('posts').add(itemObject);
+    saveBtn.disabled = false;
+    window.location.href = `index.html#category?q=${itemObject.category}`;
 }
 
 function toggleInput(hideField, showField) {
@@ -144,7 +172,7 @@ async function getUserData(uid) {
 //         categoryImages.innerHTML = '';
 //        querySnapshot.forEach(doc =>{
 //            categoryImages.innerHTML += renderImages(doc);
-           
+
 //        })
 //     })
 //     window.removeFirebaseListener.push(listener);
@@ -179,7 +207,7 @@ function renderDataListItem(itemDoc) {
  */
 // function renderImages(imageDoc){
 //     const imageData = imageDoc.data();
-    
+
 //     return`
 //         <div class="flex flex-column closet-item" style="max-width: 25%;">
 //             <a href="index.html#view-item?id=${imageDoc.id}">
