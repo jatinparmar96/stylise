@@ -93,14 +93,17 @@
   position: absolute;
   left: -1000px;
   top: -1000px;
+  opacity: 0;
 }
 .uploading-progress-bar {
   position: fixed;
   top: 0%;
   height: 100%;
   width: 100%;
-  background-color: rgba($secondary-color, 0.6);
+  background-color: rgba($secondary-color, 0.8);
   z-index: 999;
+  opacity: 1;
+  transition: opacity .5s ease;
   .ldBar {
     position: absolute;
     top: 50%;
@@ -109,6 +112,12 @@
   }
 
   .ldBar-label {
-    display: none;
+    text-align: center;
+    margin-top: -4rem;
+    color: white;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,.8));
+    &::before{
+      content: 'Uploading ';
+    }
   }
 }

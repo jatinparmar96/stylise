@@ -9,8 +9,6 @@ function init() {
 
     const tags = document.getElementById('add-tag');
     tags.addEventListener('click', addTagInput);
-
-
     addImageChangeListener(imageSrc, imageTarget);
     form.addEventListener('submit', uploadItemDesc);
 }
