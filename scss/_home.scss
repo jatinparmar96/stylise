@@ -23,6 +23,11 @@
   .screen-blur {
     @include screenBlur();
   }
+  .searchMessage {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+  }
   .wrapper {
     max-width: 1000px;
     margin: auto;
@@ -31,10 +36,8 @@
     grid-gap: 1.5rem;
     padding: 5rem 0;
     grid-row-gap: 3rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
-
-
 
   .community-nav-list {
     background-color: white;
@@ -76,7 +79,7 @@
     //   transparent 0%,
     //   $accent-color 100%
     // );
-    background: rgba($color: #fff, $alpha:0.8);
+    background: rgba($color: #fff, $alpha: 0.8);
     background-size: 200% 200%;
     backdrop-filter: blur(30px);
     overflow: hidden;

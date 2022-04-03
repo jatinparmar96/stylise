@@ -33,13 +33,13 @@
         <header class="header" id="nav-header">
             <div class="site-logo-container">
                 <a href="#home">
-                <img class="site-logo" src="../icons/logo.png" alt="logo" id="logo">
+                    <img class="site-logo" src="../icons/logo.png" alt="logo" id="logo">
                 </a>
             </div>
             <div class="header-wrap">
                 <div class="profile-photo-container">
                     <a href="#user-profile">
-                    <img class="profile-photo dn" alt="profile-photo">
+                        <img class="profile-photo dn" alt="profile-photo">
                     </a>
                 </div>
                 <div class="hamburger-menu">
@@ -48,9 +48,7 @@
                 <!-- MOBILE NAVBAR STARTS =======================  -->
                 <nav id="navigation-menu" class="main-nav-mobile">
                     <div class="user-info-container">
-                        <div class="profile-photo-container">
-                            <img class="profile-photo dn" alt="profile-photo">
-                        </div>
+
                         <span id="username-area" class="username-area"></span>
                     </div>
                     <span onclick="toggleMenu()" class="close-icon">
@@ -109,13 +107,7 @@
                                 LOG OUT</a>
                         </li>
                     </ul>
-                    <div class="search">
-                        <form>
-                            <input type="text" placeholder="Search" id="searchInput" />
-                            <img src="../icons/search.png" alt="search" id="search-icon">
-                            <button id="searchBtn">Search</button>
-                        </form>
-                    </div>
+
 
                 </nav>
                 <!-- MOBILE NAVBAR ENDS =======================  -->
@@ -153,11 +145,30 @@
                     </ul>
                 </nav>
                 <!-- DESKTOP NAVBAR ENDS =======================  -->
+                <div class="search">
+                    <form>
+                        <input type="text" placeholder="Search" id="searchInput" />
+                        <button id="searchBtn" class="search-btn">
+                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1463_2573)">
+                                    <path
+                                        d="M16.2378 15.0833H15.4102L15.1169 14.8021C16.1435 13.6146 16.7616 12.0729 16.7616 10.3958C16.7616 6.65625 13.7131 3.625 9.9521 3.625C6.19115 3.625 3.14258 6.65625 3.14258 10.3958C3.14258 14.1354 6.19115 17.1667 9.9521 17.1667C11.6388 17.1667 13.1892 16.5521 14.3835 15.5313L14.6664 15.8229V16.6458L19.9045 21.8438L21.4654 20.2917L16.2378 15.0833ZM9.9521 15.0833C7.34353 15.0833 5.23782 12.9896 5.23782 10.3958C5.23782 7.80208 7.34353 5.70833 9.9521 5.70833C12.5607 5.70833 14.6664 7.80208 14.6664 10.3958C14.6664 12.9896 12.5607 15.0833 9.9521 15.0833Z"
+                                        fill="white" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_1463_2573">
+                                        <rect width="25.1429" height="25" fill="white" transform="translate(0 0.5)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+                        </button>
+                    </form>
+                </div>
+
 
             </div>
-
-
-
 
         </header>
         <div class="container" id="mainArea">

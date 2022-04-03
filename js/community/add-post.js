@@ -74,7 +74,6 @@ async function uploadItemImg(imgItem) {
 async function uploadItemDesc(event) {
     event.preventDefault();
     const user = await getCurrentUser();
-    console.log(user);
     const saveBtn = document.getElementById('saveBtn');
     const comments = document.getElementById('comments').value;
     const tagsArray = JSON.parse(document.getElementById('tagsHiddenValue').value || '[]');

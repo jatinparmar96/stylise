@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 2% 1rem 2%;
-
+  position: relative;
   .header-wrap {
     display: flex;
     justify-content: space-between;
@@ -23,12 +23,12 @@
     justify-content: center;
     align-items: center;
     box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.05);
-    img.profile-photo {
+  }
+  .profile-photo-container img.profile-photo {
+    width: 50px;
+    border-radius: 50%;
+    @media screen and (min-width: $breakpoints-md) {
       width: 50px;
-      border-radius: 50%;
-      @media screen and (min-width: $breakpoints-md) {
-        width: 50px;
-      }
     }
   }
 
@@ -203,6 +203,50 @@
             transform: translateY(0);
           }
         }
+      }
+    }
+  }
+
+  .search {
+    position: absolute;
+    bottom: -4.5rem;
+    right: 2%;
+    z-index: 1;
+    display: none;
+    @media screen and (min-width: $breakpoints-md) {
+      display: block;
+    }
+    form {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      position: relative;
+      input {
+        border-radius: 30px;
+        padding: 0.75rem 0.75rem;
+        width: 250px;
+        border: none;
+        box-shadow: 4px 4px 14px 4px rgba(0, 0, 0, 0.05);
+        font-family: "Poppins";
+        text-transform: lowercase;
+        &:focus-visible {
+          outline: 1px solid $primary-color;
+        }
+      }
+      .search-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        border: none;
+        background-color: #765fc2;
+        color: #fff;
+        position: absolute;
+        text-align: center;
+        right: 5px;
+        padding: 0.2rem;
       }
     }
   }
