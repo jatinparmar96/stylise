@@ -59,10 +59,16 @@ input[type="submit"]{
   // background-color: darkseagreen;
   // color: black;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 50px;
   border:none;
   padding: 1rem .5rem;
   cursor: pointer;
+  background-color: $primary-color;
+  color: white;
+  width: 340px;
+  @media screen and (min-width: $breakpoints-lg) {
+    width: 200px;
+  }
 }
 hr{
   width: 100%;
