@@ -218,12 +218,14 @@ async function showForYou() {
     const userFavourites = await getUserFavorites(user.uid)
     clearWrapper();
     // fetch posts from "posts" collection with conditions
-    db.collection("posts").where("userID", "!=", user.uid).where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains-any", tags)
+    db.collection("posts").orderBy("timeStamp", "desc").where("public", "==", true).where("type", "==", "community").where("keywords", "array-contains-any", tags)
         .get().then((querySnapshot) => {
             let index = 0
             querySnapshot.forEach((doc) => {
+                if(doc.data().userID != user.uid){
                 addPosts(doc, index, userFavourites);
                 index++;
+            }
             });
             hideLoader();
         });
@@ -274,7 +276,7 @@ async function showAllPosts() {
     }
     else {
         // fetch all posts from "posts" collection
-        db.collection("posts").orderBy("timeStamp").where("public", "==", true).where("type", "==", "community")
+        db.collection("posts").orderBy("timeStamp", "desc").where("public", "==", true).where("type", "==", "community")
             .get().then((querySnapshot) => {
                 let index = 0;
                 querySnapshot.forEach((doc) => {
@@ -356,7 +358,7 @@ async function showDonatePosts() {
     else {
         searchMessage.innerHTML = "";
         // fetch posts from "posts" collection with type = donate-item
-        db.collection("posts").orderBy("timeStamp").where("public", "==", true).where("type", "==", "donate-item")
+        db.collection("posts").orderBy("timeStamp", "desc").where("public", "==", true).where("type", "==", "donate-item")
             .get().
             then((querySnapshot) => {
                 let donateDocsArray = [];
