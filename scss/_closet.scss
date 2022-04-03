@@ -3,6 +3,22 @@
   align-content: end;
   grid-gap: 20px;
   margin: auto;
+  height: 100vh;
+  @media screen and (min-width: $breakpoints-lg) {
+    width: unset;
+  }
+  form{
+    .upload-image{
+      width: 100%;
+
+      img{
+        max-width: unset;
+        width: 80%;
+        margin: auto;
+        display: block;
+      }
+    }
+  }
 }
 
 .closet {
@@ -128,7 +144,7 @@
   background-color: $secondary-color04;
 
   form {
-    padding: 2rem;
+    padding: 2rem 0 3rem 0;
     margin: auto;
 
     .item-description {
@@ -153,6 +169,7 @@
       color: $primary-color;
       font-size: 1rem;
       font-weight: 600;
+      padding: 0.5rem 0;
     }
     .tags-input-wrapper {
       position: relative;
@@ -211,18 +228,20 @@
       background-color: transparent;
       color: $primary-color;
       cursor: pointer;
+      font-size: 1rem;
     }
 
     div.flex.gap-1 {
       justify-content: space-between;
     }
 
-    .flex.gap-1 button#openCameraBtn {
-      display: none;
-    }
+    // .flex.gap-1 button#openCameraBtn {
+    //   display: none;
+    // }
 
     .flex.gap-1 button {
       padding: 1rem;
+      margin: auto;
     }
 
     .add-category {
@@ -240,7 +259,7 @@
 @media screen and (min-width: 992px) {
   .closet-add-item form {
     display: grid;
-    grid-template-columns: 2fr, 1fr;
+    // grid-template-columns: 2fr, 1fr;
 
     .profile-image {
       grid-column: 1/2;
