@@ -19,9 +19,11 @@
   }
   .background {
     @include primaryBackgroundGradient();
+    min-height: 90vh;
   }
   .screen-blur {
     @include screenBlur();
+    min-height: 90vh;
   }
   .wrapper {
     max-width: 1000px;
