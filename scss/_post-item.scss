@@ -17,6 +17,7 @@
       .item-description {
         display: flex;
         flex-flow: column nowrap;
+        padding-bottom: 1rem;
       }
       #postBtn {
         width: 9rem;
@@ -94,7 +95,7 @@
       }
       .upload-image .flex.gap-1 {
         justify-content: center;
-        margin: 2rem;
+        margin: 2rem 0 1rem 0;
       }
 
       div.flex.gap-1 {
@@ -113,20 +114,24 @@
         margin: auto;
         cursor: pointer;
         // width: 150px;
+        img{
+          display: block;
+          margin: auto;
+          width: 200px;
+        }
       }
     }
   }
 }
 @media screen and (min-width: 768px) {
   .donate-post-container .upload-item #add-item-form {
-    width: 50%;
+    // width: 50%;
   }
 }
 @media screen and (min-width: 992px) {
   .donate-post-container .upload-item #add-item-form {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 50px;
+    grid-template-columns: 2fr 1fr 2fr;
     justify-items: center;
     #add-item-form {
       width: 75%;

@@ -9,13 +9,14 @@
     margin: auto;
   }
   .community-add-item-form {
-    padding: 2rem;
+    padding-top: 3rem;
     margin: auto;
     width: 75%;
   }
   .community-post-description {
     display: flex;
     flex-flow: column nowrap;
+    padding-bottom: 1rem;
   }
 
   .community-post-description label {
@@ -173,9 +174,12 @@
   .community-add-item-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    .upload-image {
+      grid-row: 1/3;
+  }
   }
   .save-button {
-    grid-column: 1/-1;
+    grid-column: -2/-1;
   }
   .viewfinder video {
     margin-left: auto;
