@@ -274,7 +274,7 @@ async function showAllPosts() {
     }
     else {
         // fetch all posts from "posts" collection
-        db.collection("posts").orderBy("timeStamp").where("public", "==", true).where("type", "==", "community")
+        db.collection("posts").orderBy("timeStamp", "desc").where("public", "==", true).where("type", "==", "community")
             .get().then((querySnapshot) => {
                 let index = 0;
                 querySnapshot.forEach((doc) => {
@@ -356,7 +356,7 @@ async function showDonatePosts() {
     else {
         searchMessage.innerHTML = "";
         // fetch posts from "posts" collection with type = donate-item
-        db.collection("posts").orderBy("timeStamp").where("public", "==", true).where("type", "==", "donate-item")
+        db.collection("posts").orderBy("timeStamp", "desc").where("public", "==", true).where("type", "==", "donate-item")
             .get().
             then((querySnapshot) => {
                 let donateDocsArray = [];
