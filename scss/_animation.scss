@@ -27,17 +27,30 @@
   }
 }
 
+$animation-delay: 0.2s;
 .slide-right {
-  animation: slide-right-br 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+  transform: translateX(-20px);
+  opacity: 0;
+  animation: slide-right-br 0.35s cubic-bezier(0.39, 0.575, 0.565, 1)
+    $animation-delay forwards;
 }
 .slide-left {
-  animation: slide-left-br 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+  transform: translateX(20px);
+  opacity: 0;
+  animation: slide-left-br 0.35s cubic-bezier(0.39, 0.575, 0.565, 1)
+    $animation-delay forwards;
 }
 .slide-up {
-  animation: slide-up-br 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slide-up-br 0.35s cubic-bezier(0.39, 0.575, 0.565, 1)
+    $animation-delay forwards;
 }
 .slide-down {
-  animation: slide-down-br 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: slide-down-br 0.35s cubic-bezier(0.39, 0.575, 0.565, 1)
+    $animation-delay forwards;
 }
 
 @keyframes slide-left-br {
