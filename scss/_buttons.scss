@@ -21,7 +21,7 @@
   color: $accent-color;
   border: 1px solid $accent-color;
 }
-.btn-secondary{
+.btn-secondary {
   background-color: $accent-color;
   color: $primary-color;
   border: 1px solid $primary-color;
@@ -53,5 +53,9 @@
   font-weight: bold;
   box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 10%);
   cursor: pointer;
-  z-index: 3;
+  z-index: 1;
+  @media screen and (min-width: $breakpoints-md) {
+    bottom: 4rem;
+    right: 4rem;
+  }
 }

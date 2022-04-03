@@ -31,10 +31,8 @@
     grid-gap: 1.5rem;
     padding: 5rem 0;
     grid-row-gap: 3rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
-
-
 
   .community-nav-list {
     background-color: white;
@@ -76,7 +74,7 @@
     //   transparent 0%,
     //   $accent-color 100%
     // );
-    background: rgba($color: #fff, $alpha:0.8);
+    background: rgba($color: #fff, $alpha: 0.8);
     background-size: 200% 200%;
     backdrop-filter: blur(30px);
     overflow: hidden;
@@ -92,6 +90,23 @@
       top: 50%;
       transform: translate(-50%, -50%);
       gap: 1rem;
+      .upload-text {
+        grid-column: 1/-1;
+        background: $primary-color;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+        padding-bottom: 2rem;
+        clip-path: polygon(
+          100% 0,
+          100% 80%,
+          53% 80%,
+          50% 100%,
+          47% 80%,
+          0 80%,
+          0 0
+        );
+      }
       .link {
         width: 100%;
         height: 200px;
@@ -102,6 +117,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 0.5rem;
       }
       .link:last-of-type {
         grid-column: 1/-1;
