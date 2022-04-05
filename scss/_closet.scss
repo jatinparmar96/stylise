@@ -3,11 +3,27 @@
   align-content: end;
   grid-gap: 20px;
   margin: auto;
+  height: 100vh;
+  @media screen and (min-width: $breakpoints-lg) {
+    width: unset;
+  }
+  form{
+    .upload-image{
+      width: 100%;
+
+      img{
+        max-width: unset;
+        width: 80%;
+        margin: auto;
+        display: block;
+      }
+    }
+  }
 }
 
 .closet {
   margin: auto;
-  //height: 100vh;
+  min-height: 100vh;
   background-color: $secondary-color02;
   padding: 4rem 0;
 
@@ -48,7 +64,7 @@
 
   .closetList-wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 1rem;
     min-width: 95vw;
     max-width: 95vw;
@@ -99,12 +115,15 @@
 
 @media screen and (min-width: 768px) {
   .closet {
+    .back-arrow {
+      padding-left: 4rem;
+    }
     h2 {
-      padding-left: 10%;
+      padding-left: 4rem;
     }
 
     .closetList-wrapper {
-      grid-template-columns: repeat(3, 1fr);
+      // grid-template-columns: repeat(3, 1fr);
     }
     .add-category {
       width: 40%;
@@ -128,7 +147,7 @@
   background-color: $secondary-color04;
 
   form {
-    padding: 2rem;
+    padding: 2rem 0 3rem 0;
     margin: auto;
 
     .item-description {
@@ -149,10 +168,11 @@
 
     .tags-wrapper label,
     .category label {
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
       color: $primary-color;
       font-size: 1rem;
       font-weight: 600;
+      padding: 0.5rem 0;
     }
     .tags-input-wrapper {
       position: relative;
@@ -166,7 +186,7 @@
     }
 
     ::placeholder {
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
       color: #bdb8cf;
       font-size: 1rem;
       font-weight: 500;
@@ -211,18 +231,20 @@
       background-color: transparent;
       color: $primary-color;
       cursor: pointer;
+      font-size: 1rem;
     }
 
     div.flex.gap-1 {
       justify-content: space-between;
     }
 
-    .flex.gap-1 button#openCameraBtn {
-      display: none;
-    }
+    // .flex.gap-1 button#openCameraBtn {
+    //   display: none;
+    // }
 
     .flex.gap-1 button {
       padding: 1rem;
+      margin: auto;
     }
 
     .add-category {
@@ -240,7 +262,7 @@
 @media screen and (min-width: 992px) {
   .closet-add-item form {
     display: grid;
-    grid-template-columns: 2fr, 1fr;
+    // grid-template-columns: 2fr, 1fr;
 
     .profile-image {
       grid-column: 1/2;
