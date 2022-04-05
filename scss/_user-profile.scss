@@ -8,7 +8,7 @@
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-template-areas: "arrow user blank";
-    padding: 0 2rem;
+    padding: 0 2%;
     margin: 1rem 0 2rem 0;
 
     .username {
@@ -39,7 +39,7 @@
     grid-template-areas: "user-details" "buttons" "user-message ";
 
     margin-bottom: 1rem;
-    padding: 0 2rem;
+    padding: 0 2%;
 
     .user-details {
       grid-area: user-details;
@@ -66,7 +66,7 @@
           border-radius: 50%;
           background-size: cover;
           background-position: center;
-          border:.3rem solid #ffff;
+          border: 0.3rem solid #ffff;
         }
       }
 
@@ -89,9 +89,9 @@
           font-size: 18px;
           line-height: 27px;
           text-align: center;
-            @media screen and (min-width:$breakpoints-md) {
-              font-size: 20px;
-            }
+          @media screen and (min-width: $breakpoints-md) {
+            font-size: 20px;
+          }
         }
 
         .counter-title {
@@ -132,13 +132,12 @@
       align-self: center;
       grid-area: buttons;
       margin: 1rem 0 2rem 0;
+      display: flex;
 
       .edit-btn,
       .follow-btn {
-        width: 165px;
-        height: 26px;
+        padding: 0.2rem 1rem;
         margin-right: 2rem;
-
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -154,9 +153,7 @@
 
       .delete-btn,
       .thanks-btn {
-        width: 165px;
-        height: 30px;
-
+        padding: 0.2rem 1rem;
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -175,7 +172,7 @@
 
   .user-posts-type {
     margin: 0 2rem;
-}
+  }
 
   .user-posts-type {
     .post-type-nav {
@@ -212,7 +209,7 @@
   .wrapper-container {
     background-color: $secondary-color02;
     padding: 4rem 0;
-    height: 100vh;
+    min-height: 100vh;
 
     .wrapper {
       display: grid;
