@@ -1,14 +1,14 @@
 function init() {
     //const userID; // variable to store user id
-  //  const saveBtn = document.getElementById('saveBtn');
+    //  const saveBtn = document.getElementById('saveBtn');
     // saveBtn.addEventListener('click', uploadItemDesc);
-   // const form = document.getElementById('add-item-form');
+    // const form = document.getElementById('add-item-form');
 
-   // const imageSrc = document.getElementById('image-input');
-   // const imageTarget = document.getElementById('image');
+    // const imageSrc = document.getElementById('image-input');
+    // const imageTarget = document.getElementById('image');
 
-   // const tags =document.getElementById('add-tag');
-   // tags.addEventListener('click', addTagInput);
+    // const tags =document.getElementById('add-tag');
+    // tags.addEventListener('click', addTagInput);
 
     //const cameraBtn = document.getElementById('openCameraBtn');
     //form.addEventListener('submit', uploadItemDesc)
@@ -46,7 +46,7 @@ function getCategoryIdFromUrl() {
 // async function getUserData(uid) {
 //     return db.collection('users').doc(uid).get();
 // }
-async function categoryName(){
+async function categoryName() {
     const catElement = document.getElementById('categoryName');
     const categoryId = getCategoryIdFromUrl();
     const dbRef = db.collection("categories").doc(`${categoryId}`);
@@ -59,7 +59,7 @@ async function categoryName(){
             catElement.innerHTML = `<span>All Items</span>`;
         }
     }).catch((error) => {
-        console.log("Error getting document:",error);
+        console.log("Error getting document:", error);
     });
 }
 
@@ -70,24 +70,22 @@ async function categoryName(){
 
 function initImageListener(categoryId) {
     const user = auth.currentUser;
-    
+
     let query = "";
-    if (getCategoryIdFromUrl() == "all"){
-        query = db.collection('posts').where('userId','==',user.uid).where('type','==','closet-item');
-        console.log("Category All!");
-        console.log(user.uid);
+    if (getCategoryIdFromUrl() == "all") {
+        query = db.collection('posts').where('userId', '==', user.uid).where('type', '==', 'closet-item');
     } else {
         query = db.collection(`posts`).where('category', '==', getCategoryIdFromUrl());
     }
-    
+
     //const query = db.collection(`posts`).where('category', '==', getCategoryIdFromUrl());
     const listener = query.onSnapshot(querySnapshot => {
         const categoryImages = document.getElementById('category-images');
         categoryImages.innerHTML = '';
-       querySnapshot.forEach(doc =>{
-           categoryImages.innerHTML += renderImages(doc);
-           
-       })
+        querySnapshot.forEach(doc => {
+            categoryImages.innerHTML += renderImages(doc);
+
+        })
     })
     window.removeFirebaseListener.push(listener);
 }
@@ -97,10 +95,10 @@ function initImageListener(categoryId) {
  * @param imageDoc
  * @returns {string}
  */
-function renderImages(imageDoc){
+function renderImages(imageDoc) {
     const imageData = imageDoc.data();
-    
-    return`
+
+    return `
         <div class="flex flex-column closet-item">
             <a href="index.html#view-item?id=${imageDoc.id}">
                 <div class="image-container">
