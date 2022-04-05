@@ -52,7 +52,7 @@
     border-bottom: 3px solid #765fc2;
   }
   .nav-btn {
-    padding: 1rem 1.5rem;
+    padding: 1rem 0.5rem;
     // NOT MAGIC NUMBERS, FROM FIGMA
     border-top-left-radius: 13.6px;
     border-top-right-radius: 13.6px;
@@ -63,6 +63,10 @@
     border-bottom: 3px solid transparent;
     transition: border 0.3s ease-in-out;
     font-weight: 600;
+    white-space: nowrap;
+    @media screen and(min-width:$breakpoints-md) {
+      padding: 1rem 1.5rem;
+    }
   }
 
   #nav-header {
