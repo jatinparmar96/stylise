@@ -37,30 +37,23 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
-    // it is invoked after the service worker completes its installation. 
-    // It's a place for the service worker to clean up from previous SW versions
-    // console.log(`[SW] Event fired: ${event.type}`);
-
-    // console.log(`[SW] activated`);
+    event.waitUntil( // waitUntil tells the browser to wait for this to finish
+        caches.keys().then((keyList) => {
+            return Promise.all(keyList.map((key) => {
+                if (key !== cacheName) { // compare key with the new cache Name in SW
+                    return caches.delete(key);
+                }
+            }));
+        })
+    );
 });
 
 self.addEventListener('fetch', event => {
-    // Fires whenever the app requests a resource (file or data)  normally this is where the service worker would check to see
-    // if the requested resource is in the local cache before going to the server to get it. 
-    // console.log(`[SW] Fetch event for ${event.request.url}`);
-
-    //1. No Strategy, simply forward the request to server (i.e. No Offline Capability)
-    event.respondWith((async () => {
-        try {
-            return fetch(event.request)
-        }
-        catch (e) {
-            const response = await caches.match(event.request);
-            console.log(response);
-            return response;
-        }
-    })());
-
-
-
+    event.respondWith(
+        fetch(event.request).
+            catch((error) => {
+                console.log(event.request);
+                return caches.match(event.request);
+            })
+    );
 });
