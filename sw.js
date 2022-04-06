@@ -51,8 +51,14 @@ self.addEventListener('fetch', event => {
 
     //1. No Strategy, simply forward the request to server (i.e. No Offline Capability)
     event.respondWith((async () => {
-        const response = await caches.match(event.request);
-        return response || fetch(event.request);
+        try {
+            return fetch(event.request)
+        }
+        catch (e) {
+            const response = await caches.match(event.request);
+            console.log(response);
+            return response;
+        }
     })());
 
 
