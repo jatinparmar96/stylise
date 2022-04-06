@@ -112,7 +112,7 @@
     height: 60px;
     width: 60px;
     cursor: pointer;
-    background-image: url('../assets/landing-page-images/down-arrow.svg');
+    background-image: url("../assets/landing-page-images/down-arrow.svg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 25px 25px;
@@ -234,6 +234,7 @@
           img {
             position: relative;
             top: -15%;
+            max-width: 100%;
           }
         }
       }
